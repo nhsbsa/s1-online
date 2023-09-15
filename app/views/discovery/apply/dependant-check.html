@@ -1,0 +1,81 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <form action="../route-dependants-check" method="post">
+            <div class="nhsuk-form-group">
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            <span class="nhsuk-caption-l">Application</span>
+                            Does the applicant want to add any dependants?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-hint">
+                        The applicant's dependants can be their:
+                        <ul>
+                            <li>spouse or civil parter</li>
+                            <li>children</li>
+                            <li>durable partner (an unmarried partnership that has normally continued for 2 years or more)</li>
+                        </ul>
+                      </div>
+
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="dependants-check-yes" name="dependants-check" type="radio"
+                                value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-yes">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="dependants-check-no" name="dependants-check" type="radio"
+                                value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-no">
+                                No
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

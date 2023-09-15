@@ -1,0 +1,124 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l">
+      <span class="nhsuk-caption-l">Application</span>
+      Check your answers
+    </h1>
+
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          Does the applicant want to add any dependants?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+            What is the dependents name?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Sarah Louise Kirkland
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+            What is the dependents date of birth?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          14-10-1973
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Does the dependant live at the same address as the applicant?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          No
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is the dependents address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          48 avenue de Provence<br />
+          Vallauris<br />
+          Provence-Alpes-Côte d'Azur<br/>
+          France</br>
+          63000
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+
+    <a href="physical-copy">
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Continue
+      </button>
+    </a>
+
+
+  </div>
+</div>
+{% endblock %}

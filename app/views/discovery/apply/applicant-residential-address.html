@@ -1,0 +1,88 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+
+
+      
+
+        <form action="applicant-correspondence-address-check" method="post">
+
+            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Application</span>What is the applicants residential address?</h1>
+
+            <div class="nhsuk-inset-text">
+              <span class="nhsuk-u-visually-hidden">Information: </span>
+              <p>For the S1 form to be issued, you need to have an address in the EU country you are moving to. This can be a temporary address, but you must contact NHS Business Services Authority (NHSBSA) and the relevant authority in the country you are moving to, to let them know your new address (if it changes). This is to prevent important confidential information being sent to the wrong address.</p>
+            </div>
+
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="example-1">
+                  Building and street (line 1 of 2)
+                </label>
+                <input class="nhsuk-input" id="example-1" name="example-1" type="text">
+              </div>
+
+              <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="example-1">
+                  Building and street (line 2 of 2)
+                </label>
+                <input class="nhsuk-input" id="example-1" name="example-1" type="text">
+              </div>
+
+              <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="example-1">
+                  Town or City
+                </label>
+                <input class="nhsuk-input" id="example-1" name="example-1" type="text">
+              </div>
+
+              <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="example-1">
+                  Postcode (optional)
+                </label>
+                <input class="nhsuk-input" id="example-1" name="example-1" type="text">
+              </div>
+
+              <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="example-1">
+                  Country
+                </label>
+                <input class="nhsuk-input" id="example-1" name="example-1" type="text">
+              </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

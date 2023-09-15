@@ -1,0 +1,59 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <form action="applicant-dob" method="post">
+
+            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Application</span>What is the applicants name?</h1>
+
+            <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="first-name">
+                  Given names
+                </label>
+                <input class="nhsuk-input" id="first-name" name="first-name" type="text">
+              </div>
+
+              <div class="nhsuk-form-group">
+                <label class="nhsuk-label" for="surname">
+                  Family name
+                </label>
+                <input class="nhsuk-input" id="surname" name="surname" type="text">
+              </div>
+
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

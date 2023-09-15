@@ -1,0 +1,68 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1>
+        Overseas Healthcare Services
+        <span class="nhsuk-caption-xl nhsuk-caption--bottom">S1 Online</span>
+      </h1>
+      <hr>
+
+      <h2>
+        Project aim
+      </h2>
+      <p class="nhsuk-body-l">
+        Enable users to apply online directly for a certificate of entitlement known as an S1 form.
+      </p>
+      <hr>
+
+      <h2>
+        Project phases
+      </h2>
+
+      <ul class="nhsuk-grid-row">
+        <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      
+          <div class="nhsuk-card nhsuk-card--clickable">
+            <div class="nhsuk-card__content">
+              <h2 class="nhsuk-card__heading nhsuk-heading-m">
+                <a class="nhsuk-card__link" href="/discovery/index">Discovery</a>
+              </h2>
+              <p class="nhsuk-card__description">September 2023</p>
+      
+            </div>
+          </div>
+      
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+{% endblock %}

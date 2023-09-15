@@ -1,0 +1,386 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l nhsuk-u-margin-bottom-6">
+      <span class="nhsuk-caption-l">Application</span>
+      Check your answers
+    </h1>
+
+    <!-- Start eligability -->
+    <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3">Eligability</h2>
+    <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          Does the applicant receive a UK State pension, or will they receive this within the next 90 days?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next 90 days?</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Does the applicant get a state pension from a EEA country or Switzerland?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> does the applicant get a state pension from a EEA country or Switzerland?</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Is this pension more than that state pension received from the UK?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          No
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> is this pension more than that state pension received from the
+              UK?</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Which country is the applicant applying for?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          France
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> which country is the applicant applying for?</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Has the applicant already moved to France?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          No
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> has the applicant already moved to France?</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What date did the applicant move to France?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          01-12-2023
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> what date did the applicant move to France?</span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+    <!-- End eligability-->
+
+ <br />
+<!-- Start personal details -->
+      <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3">Personal details</h2>
+      <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+      <dl class="nhsuk-summary-list">
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key" style="width:80%">
+              What is the applicants name?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Mary Collette Kirkland
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+              What is the applicants date of birth?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            03-10-1945
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            What is the applicants National Insurance number? (optional)
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            -
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            What is the applicants residential address?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            43 avenue de Provence<br />
+            Vallauris<br />
+            Provence-Alpes-Côte d'Azur<br/>
+            France</br>
+            63000
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            Is this the applicants correspondence address?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            Yes
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            What is the applicants email address?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            mary.kirkland@gmail.com
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+  
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            What is the applicants telphone number?
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            +33 04.87.31.39.94
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="#">
+              Change<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+  
+        
+  
+      </dl>
+      <!-- End personal details-->
+<br />
+      <!-- Start dependant details -->
+    <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3">Dependant details</h2>
+    <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          Does the applicant want to add any dependants?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+            What is the dependents name?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Sarah Louise Kirkland
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+            What is the dependents date of birth?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          14-10-1973
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Does the dependant live at the same address as the applicant?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          No
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is the dependents address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          48 avenue de Provence<br />
+          Vallauris<br />
+          Provence-Alpes-Côte d'Azur<br/>
+          France</br>
+          63000
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+    <!-- End dependant details-->
+<br />
+    <!-- Start additional information-->
+    <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3">Additional information</h2>
+    <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          Does the applicant need a physical copy of the S1 certificate?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          Yes
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+    <!-- End additional information-->
+<br />
+    <form action="confirmation" method="post">
+
+        <div class="nhsuk-form-group">
+
+            <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
+              <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                <h1 class="nhsuk-fieldset__heading">
+                  Declaration
+                </h1>
+              </legend>
+
+        
+              <div class="nhsuk-checkboxes">
+        
+                <div class="nhsuk-checkboxes__item">
+                  <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
+                  <label class="nhsuk-label nhsuk-checkboxes__label" for="example-1">
+                    I declare that the above information is true to the best of my knowledge
+                  </label>
+                </div>
+        
+                
+        
+              </div>
+            </fieldset>
+        
+          </div>
+
+
+        <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+            Submit application
+        </button>
+
+    </form>
+
+
+  </div>
+</div>
+{% endblock %}
