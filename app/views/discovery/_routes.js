@@ -85,7 +85,7 @@ router.post('/route-dependants-check', function(req,res){
         res.redirect('/discovery/apply/dependant-name')
     }
     else if (answer == "no"){
-        res.redirect('/discovery/apply/physical-copy-check')
+        res.redirect('/discovery/apply/physical-copy')
     }
     else {
         res.redirect('/discovery/apply/dependant-check')
