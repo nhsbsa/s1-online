@@ -1,0 +1,50 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+
+
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+<div class="nhsuk-card" style="background-color:#005eb8; color: white; text-align:center;">
+    <div class="nhsuk-card__content">
+      <h2 class="nhsuk-card__heading">
+        Your S1 form application has been submitted
+      </h3> 
+      <br /> 
+      <h2><span class="nhsuk-caption-l" style="color:white;">Overseas Healthcare Services (OHS) reference number</span>7548475</h3>
+    </div>
+  </div>
+
+  <h3>What happens next?</h3>
+<p>An email has been sent to the email address you provided.</p>
+<p>If we require evidence we will contact you.</p>
+
+    </div>
+</div>
+{% endblock %}
