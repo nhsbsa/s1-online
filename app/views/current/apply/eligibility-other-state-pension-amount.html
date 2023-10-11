@@ -29,30 +29,30 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="../route-other-state-pension" method="post">
+        <form action="eligibility-other-state-pension-amount" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Eligibility</span>
-                            Do you also get a State Pension from an EU country, Norway, Iceland, Liechtenstein or Switzerland?
+                            Is your State Pension from {{ data['countrySOne'] }} more than your UK State Pension? 
                         </h1>
                     </legend>
 
                     <div class="nhsuk-radios nhsuk-radios--inline">
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-yes" name="other-state-pension" type="radio"
-                                value="yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-yes">
+                            <input class="nhsuk-radios__input" id="other-state-pension-amount-yes" name="otherPensionAmount" type="radio"
+                                value="Yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-amount-yes">
                                 Yes
                             </label>
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-no" name="other-state-pension" type="radio"
-                                value="no">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-no">
+                            <input class="nhsuk-radios__input" id="other-state-pension-amount-no" name="otherPensionAmount" type="radio"
+                                value="No">
+                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-amount-no">
                                 No
                             </label>
                         </div>

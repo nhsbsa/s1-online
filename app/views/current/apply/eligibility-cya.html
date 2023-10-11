@@ -38,14 +38,14 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key" style="width:80%">
-          Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 day date]?
+          Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow }}?
         </dt>
         <dd class="nhsuk-summary-list__value">
           Yes
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
-            Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next 90 days?</span>
+            Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next {{ ninetyDaysFromNow }}?</span>
           </a>
         </dd>
       </div>
@@ -84,7 +84,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Which country is the applicant applying for?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          France
+          {{ data['countrySOne']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
@@ -95,21 +95,21 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Are you already living in [Country]?
+          Are you already living in {{ data['countrySOne']}}?
         </dt>
         <dd class="nhsuk-summary-list__value">
           No
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
-            Change<span class="nhsuk-u-visually-hidden"> has the applicant already moved to France?</span>
+            Change<span class="nhsuk-u-visually-hidden"> has the applicant already moved to {{ data['countrySOne']}}?</span>
           </a>
         </dd>
       </div>
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          When did you move to [Country]?
+          When did you move to {{ data['countrySOne'] }}?
         </dt>
         <dd class="nhsuk-summary-list__value">
           01-12-2023

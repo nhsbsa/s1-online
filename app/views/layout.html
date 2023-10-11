@@ -50,9 +50,16 @@ S1 Onine - Overseas Healthcare Services - NHSBSA
 
 {% block bodyEnd %}
   {% block scripts %}
+
     <!-- Custom JavaScript files can be added to this file -->
+    <script type="module" src="../assets/javascript/accessible-autocomplete.js">
+      
+    </script>
+
     {% include "includes/scripts.html" %}
     <!-- For adding page specific JavsScript -->
+
+
     {% block pageScripts %}{% endblock %}
   {% endblock %}
 {% endblock %}

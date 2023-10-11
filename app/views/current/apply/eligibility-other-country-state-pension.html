@@ -29,17 +29,60 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="../route-other-state-pension-amount" method="post">
+        <form action="eligibility-other-country-state-pension" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Eligibility</span>
-                            Is your State Pension from [Country] more than your UK State Pension? 
+                            Which other countries do you get a State Pension from?
                         </h1>
                     </legend>
 
-                    <div class="nhsuk-radios nhsuk-radios--inline">
+                    <div class="nhsuk-form-group">
+                      
+                        <label class="nhsuk-label" for="eu-eligibility-country">
+                          Country name
+                        </label>
+                        <select id="eu-location-picker" class="eu-eligibility-country" name="otherCountryPension" type="text">
+                          <option value=""></option>
+                          <option value="at">Austria</option>
+                          <option value="be">Belgium</option>
+                          <option value="bg">Bulgaria</option>
+                          <option value="hr">Croatia</option>
+                          <option value="cy">Cyprus</option>
+                          <option value="cz">Czech Republic</option>
+                          <option value="dk">Denmark</option>
+                          <option value="ee">Estonia</option>
+                          <option value="fi">Finland</option>
+                          <option value="fr">France</option>
+                          <option value="de">Germany</option>
+                          <option value="gr">Greece</option>
+                          <option value="hu">Hungary</option>
+                          <option value="is">Iceland</option>
+                          <option value="ie">Ireland</option>
+                          <option value="it">Italy</option>
+                          <option value="lv">Latvia</option>
+                          <option value="li">Liechtenstein</option>
+                          <option value="lt">Lithuania</option>
+                          <option value="lu">Luxemburg</option>
+                          <option value="mt">Malta</option>
+                          <option value="nl">Netherlands</option>
+                          <option value="no">Norway</option>
+                          <option value="pl">Poland</option>
+                          <option value="pt">Portugal</option>
+                          <option value="ro">Romania</option>
+                          <option value="sk">Slovakia</option>
+                          <option value="si">Slovenia</option>
+                          <option value="es">Spain</option>
+                          <option value="se">Sweden</option>
+                          <option value="cf">Switzerland</option>
+                        </select>
+                        <!-- <a href="#" type="button" value="+" onClick="return addInputEU(this)">+ Add another country</a> -->
+
+                    </div>
+
+                    <!-- <div class="nhsuk-radios nhsuk-radios--inline">
 
                         <div class="nhsuk-radios__item">
                             <input class="nhsuk-radios__input" id="other-state-pension-amount-yes" name="other-state-pension-amount" type="radio"
@@ -57,7 +100,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                             </label>
                         </div>
 
-                    </div>
+                    </div> -->
                 </fieldset>
             </div>
 

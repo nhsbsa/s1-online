@@ -22,6 +22,7 @@ const locals = require('./app/locals');
 const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils');
+const accessibleAutocomplete = require('./app/assets/javascript/accessible-autocomplete')
 
 // Set configuration variables
 const port = process.env.PORT || config.port;
@@ -95,6 +96,12 @@ app.use(bodyParser.urlencoded({
 if (useAutoStoreData === 'true') {
   app.use(utils.autoStoreData);
   utils.addCheckedFunction(nunjucksAppEnv);
+}
+
+if (document.querySelector('#eu-efta-location-picker')) {
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#eu-efta-location-picker')
+  });
 }
 
 // Warn if node_modules folder doesn't exist

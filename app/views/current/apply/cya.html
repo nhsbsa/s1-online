@@ -34,7 +34,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
       Check your answers
     </h1>
 
-    <!-- Start eligability -->
+    <!-- Start eligibility -->
     <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3">Eligibility</h2>
     <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
     <dl class="nhsuk-summary-list">
@@ -48,7 +48,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
-            Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next 90 days?</span>
+            Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next {{ ninetyDaysFromNow }}?</span>
           </a>
         </dd>
       </div>
@@ -98,7 +98,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Are you already living in [Country]?
+          Are you already living in {{ data['eligibility-country']}}?
         </dt>
         <dd class="nhsuk-summary-list__value">
           No
@@ -112,7 +112,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          When did you move to [Country]?
+          When did you move to {{ data['eligibility-country']}}?
         </dt>
         <dd class="nhsuk-summary-list__value">
           01-12-2023
@@ -125,7 +125,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
       </div>
 
     </dl>
-    <!-- End eligability-->
+    <!-- End eligibility-->
 
  <br />
 <!-- Start personal details -->
@@ -177,7 +177,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
   
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">
-            What is your address in [Country]?
+            What is your address in {{ data['eligibility-country'] }}?
           </dt>
           <dd class="nhsuk-summary-list__value">
             43 avenue de Provence<br />
