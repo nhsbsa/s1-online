@@ -22,6 +22,8 @@ const locals = require('./app/locals');
 const routes = require('./app/routes');
 const documentationRoutes = require('./docs/documentation_routes');
 const utils = require('./lib/utils');
+
+//Autocomplete
 const accessibleAutocomplete = require('./app/assets/javascript/accessible-autocomplete')
 
 // Set configuration variables
@@ -98,6 +100,7 @@ if (useAutoStoreData === 'true') {
   utils.addCheckedFunction(nunjucksAppEnv);
 }
 
+// Accessible Autocomplete
 if (document.querySelector('#eu-efta-location-picker')) {
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: document.querySelector('#eu-efta-location-picker')
