@@ -10,6 +10,7 @@ const axios = require('axios');
 
 router.post(['/eligibility-country', '/eligibility-country-error'], function (req, res){
     var countrySOne = req.session.data['countrySOne']
+    console.log(countrySOne);
 
     if (countrySOne == 'Iceland' || countrySOne == 'Liechtenstein' || countrySOne == 'Norway') {
         res.redirect('eligibility-move-before-check')
