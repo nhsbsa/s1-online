@@ -1,5 +1,4 @@
-import { accessibleAutocomplete } from "./accessible-autocomplete"; // ES6 or Vanilla JavaScript
-
+// ES6 or Vanilla JavaScript
 if (document.querySelector('#eu-efta-location-picker')) {
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: document.querySelector('#eu-efta-location-picker')
@@ -37,5 +36,3 @@ function removeInputEURT(btn) {
   btn.parentNode.parentNode.remove();
   return false;
 }
-
-module.exports = app;

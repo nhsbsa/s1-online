@@ -1,5 +1,3 @@
-import { accessibleAutocomplete } from "./accessible-autocomplete";
-
 // ES6 or Vanilla JavaScript
 if (document.querySelector('#eu-efta-location-picker')) {
     accessibleAutocomplete.enhanceSelectElement({
@@ -38,5 +36,3 @@ if (document.querySelector('#eu-efta-location-picker')) {
     btn.parentNode.parentNode.remove();
     return false;
   }
-
-  module.exports = app;
