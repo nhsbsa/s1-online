@@ -8,24 +8,24 @@ const axios = require('axios');
 
 //  Which country do you need an S1 for?
 
-router.post([/eligibility-country/, /eligibility-country-error/], function (req, res){
-    
+router.post(['/eligibility-country', '/eligibility-country-error'], function (req, res){
+    var countrySOne = req.session.data['countrySOne']
 
-    if  (req.body.countrySOne === 'Iceland' || req.body.countrySOne === 'Liechtenstein' || req.body.countrySOne === 'Norway') {
+    if (countrySOne == 'Iceland' || countrySOne == 'Liechtenstein' || countrySOne == 'Norway') {
         res.redirect('eligibility-move-before-check')
-    } if (req.body.countrySOne === 'Austria' || req.body.countrySOne === 'Belgium' || req.body.countrySOne === 'Bulgaria' || req.body.countrySOne === 'Denmark') {
+    } if (countrySOne == 'Austria' || countrySOne == 'Belgium' || countrySOne == 'Bulgaria' || countrySOne == 'Denmark') {
         res.redirect('eligibility-move-check')
-    } if (req.body.countrySOne === 'Czech Republic' || req.body.countrySOne === 'Estonia' || req.body.countrySOne === 'Finland' || req.body.countrySOne === 'France') {
+    } if (countrySOne == 'Czech Republic' || countrySOne == 'Estonia' || countrySOne == 'Finland' || countrySOne == 'France') {
         res.redirect('eligibility-move-check')
-    } if (req.body.countrySOne === 'Germany' || req.body.countrySOne === 'Greece' || req.body.countrySOne === 'Hungary' || req.body.countrySOne === 'Ireland' || req.body.countrySOne === 'Italy') {
+    } if (countrySOne == 'Germany' || countrySOne == 'Greece' || countrySOne == 'Hungary' || countrySOne == 'Ireland' || countrySOne == 'Italy') {
         res.redirect('eligibility-move-check')
-    } if (req.body.countrySOne === 'Latvia' || req.body.countrySOne === 'Lithuania' || req.body.countrySOne === 'Luxemburg' || req.body.countrySOne === 'Malta' || req.body.countrySOne === 'Montenegro') {
+    } if (countrySOne == 'Latvia' || countrySOne == 'Lithuania' || countrySOne == 'Luxemburg' || countrySOne == 'Malta' || countrySOne == 'Montenegro') {
         res.redirect('eligibility-move-check')
-    }  if (req.body.countrySOne === 'Netherlands' || req.body.countrySOne === 'Poland' || req.body.countrySOne === 'Portugal' || req.body.countrySOne === 'Romania' || req.body.countrySOne === 'Slovakia') {
+    }  if (countrySOne == 'Netherlands' || countrySOne == 'Poland' || countrySOne == 'Portugal' || countrySOne == 'Romania' || countrySOne == 'Slovakia') {
         res.redirect('eligibility-move-check')
-    }  if (req.body.countrySOne === 'Slovenia' || req.body.countrySOne === 'Spain' || req.body.countrySOne === 'Sweden' || req.body.countrySOne === 'Switzerland') {
+    }  if (countrySOne == 'Slovenia' || countrySOne == 'Spain' || countrySOne == 'Sweden' || countrySOne == 'Switzerland') {
         res.redirect('eligibility-move-check')
-    }  if (req.body.countrySOne === '') {
+    }  if (countrySOne == '') {
         res.redirect('eligibility-country-error')
     } else {
         res.redirect('kickouts/ineligible-country-kickout')
