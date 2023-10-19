@@ -29,27 +29,46 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-move-date" method="post">
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          
+          <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+            <li>
+              <a href="#date-move-invalid-error">Date of moving must be a valid date</a>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
 
-            <div class="nhsuk-form-group">
+        <form action="eligibility-move-date-invalid-error" method="post">
+
+            <div class="nhsuk-form-group--error">
                 <fieldset class="nhsuk-fieldset" aria-describedby="example-hint" role="group">
                   <legend class="nhsuk-fieldset__legend nhsuk-label--l">
                     <h1 class="nhsuk-fieldset__heading">
-                        <span class="nhsuk-caption-l">Application</span>
+                        <span class="nhsuk-caption-l">Eligibility</span>
                         When did you move to {{ data['countrySOne']}}?
                     </h1>
                   </legend>
                   <div class="nhsuk-hint" id="example-hint">
                     For example, 15 3 1984
                   </div>
-              
-                  <div class="nhsuk-date-input" id="example">
+                  
+                  <span class="nhsuk-error-message">
+                    <span class="nhsuk-u-visually-hidden">Error:</span>Date of moving must be a valid date
+                  </span>
+
+                  <div class="nhsuk-date-input" id="date-move-invalid-error">
                     <div class="nhsuk-date-input__item">
                       <div class="nhsuk-form-group">
                         <label class="nhsuk-label nhsuk-date-input__label" for="move-day">
                           Day
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="move-day" name="moveDay" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2 nhsuk-input--error" id="move-day" name="moveDay" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
@@ -57,7 +76,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         <label class="nhsuk-label nhsuk-date-input__label" for="move-month">
                           Month
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="move-month" name="moveMonth" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2 nhsuk-input--error" id="move-month" name="moveMonth" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
@@ -65,7 +84,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         <label class="nhsuk-label nhsuk-date-input__label" for="move-year">
                           Year
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="move-year" name="moveYear" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4 nhsuk-input--error" id="move-year" name="moveYear" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                   </div>
@@ -73,6 +92,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
               
               </div>
 
+              <br>
 
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
                 Continue

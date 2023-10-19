@@ -4,6 +4,12 @@ if (document.querySelector('#eu-efta-location-picker')) {
       selectElement: document.querySelector('#eu-efta-location-picker')
     });
   } //// Select Countries List (ADD / REMOVE NEW SELECT tags for each conditional checkbox input) ////
+
+  if (document.querySelector('#eu-live-location-picker')) {
+    accessibleAutocomplete.enhanceSelectElement({
+      selectElement: document.querySelector('#eu-live-location-picker')
+    });
+  }
   
   
   const countrySelects = document.querySelectorAll('.autocomplete-country');
