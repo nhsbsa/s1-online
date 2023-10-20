@@ -3,6 +3,7 @@ const router = express.Router()
 
 const axios = require('axios');
 
+
 //// Alpha S1 V.2 /////
 //////////////////////
 
@@ -113,18 +114,22 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
     var fullMoveDate = new Date(moveDate.split('/')[2], moveDate.split('/')[1] - 1, moveDate.split('/')[0]);
 
 
-    /////Today's date
+    //Today's date
     const now = new Date();
     const yyyy = now.getFullYear();
     let mm = now.getMonth() + 1; 
     const dd = now.getDate();
     const formatToday = dd + '/' + mm + '/' + yyyy;
-    
-    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
 
+    console.log(formatToday);
+
+    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = todayDate.setDate(todayDate.getDate() + 90);
+    var ninetyDaysFromNow = new Date(todayDate.getTime() + (91 * 86400000));
+    console.log(ninetyDaysFromNow);
+
 
     ///// Validate date input values using regular expressions
     var yearReg = /^(200[0-9]|201[0-9]|202[0-4])$/;     ///< Allows a number between 2000 and 2024
@@ -172,17 +177,21 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     var fullFutureDate = new Date(futureDate.split('/')[2], futureDate.split('/')[1] - 1, futureDate.split('/')[0]);
 
 
-    /////Today's date
+    //Today's date
     const now = new Date();
     const yyyy = now.getFullYear();
     let mm = now.getMonth() + 1; 
     const dd = now.getDate();
     const formatToday = dd + '/' + mm + '/' + yyyy;
-    
+
+    console.log(formatToday);
+
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = todayDate.setDate(todayDate.getDate() + 90);
+    var ninetyDaysFromNow = new Date(todayDate.getTime() + (91 * 86400000));
+    console.log(ninetyDaysFromNow);
 
 
     ///// Validate date input values using regular expressions
@@ -216,24 +225,35 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
 
 /// TO DO: work out separate input dates ///
 
-router.get('/eligibility-uk-state-pension', function (req, res) {
-
+router.get(/eligibility-uk-state-pension/, function (req, res) {
+    
     //Today's date
     const now = new Date();
     const yyyy = now.getFullYear();
     let mm = now.getMonth() + 1; 
     const dd = now.getDate();
     const formatToday = dd + '/' + mm + '/' + yyyy;
-    
+
+    console.log(formatToday);
+
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = todayDate.setDate(todayDate.getDate() + 90);
-  
-    res.render(__dirname + '/eligibility-uk-state-pension', {ninetyDaysFromNow: ninetyDaysFromNow});
+    var ninetyDays = new Date(todayDate.getTime() + (91 * 86400000));
+    console.log(ninetyDays);
+
+    // Convert format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+    console.log(ninetyDaysFromNow);
+    
+    res.render('current/apply/eligibility-uk-state-pension', {ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
-router.get('/cya', function (req, res) {
+router.get(/cya/, function (req, res) {
 
     //Today's date
     const now = new Date();
@@ -241,16 +261,27 @@ router.get('/cya', function (req, res) {
     let mm = now.getMonth() + 1; 
     const dd = now.getDate();
     const formatToday = dd + '/' + mm + '/' + yyyy;
-    
+
+    console.log(formatToday);
+
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = todayDate.setDate(todayDate.getDate() + 90);
+    var ninetyDays = new Date(todayDate.getTime() + (91 * 86400000));
+    console.log(ninetyDays);
+
+    // Convert format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+    console.log(ninetyDaysFromNow);
   
-    res.render(__dirname + '/cya', {ninetyDaysFromNow: ninetyDaysFromNow});
+    res.render('current/apply/cya', {ninetyDaysFromNow: ninetyDaysFromNow});
 })
   
-router.get('/eligibility-cya', function (req, res) {
+router.get(/eligibility-cya/, function (req, res) {
 
     //Today's date
     const now = new Date();
@@ -258,13 +289,24 @@ router.get('/eligibility-cya', function (req, res) {
     let mm = now.getMonth() + 1; 
     const dd = now.getDate();
     const formatToday = dd + '/' + mm + '/' + yyyy;
-    
+
+    console.log(formatToday);
+
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = todayDate.setDate(todayDate.getDate() + 90);
+    var ninetyDays = new Date(todayDate.getTime() + (91 * 86400000));
+    console.log(ninetyDays);
+
+    // Convert format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+    console.log(ninetyDaysFromNow);
   
-    res.render(__dirname + '/eligibility-cya', {ninetyDaysFromNow: ninetyDaysFromNow});
+    res.render('current/apply/eligibility-cya', {ninetyDaysFromNow: ninetyDaysFromNow});
 })
   
 ///
