@@ -29,30 +29,33 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-other-state-pension" method="post">
+        <form action="eligibility-move-before-check" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Eligibility</span>
-                            Do you get a State Pension from another country?
+                            Did you move in {{ data['countrySOne']}} before 1 January 2021?
                         </h1>
+                        <h2>
+                            Alternatively, do you have evidence of freedom of movement, or have you paid social security contributions to an EU member state before EU exit?
+                        </h2>
                     </legend>
 
                     <div class="nhsuk-radios nhsuk-radios--inline">
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-yes" name="otherStatePension" type="radio"
+                            <input class="nhsuk-radios__input" id="move-check-before-yes" name="moveBeforeCheck" type="radio"
                                 value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="move-check-before-yes">
                                 Yes
                             </label>
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-no" name="otherStatePension" type="radio"
+                            <input class="nhsuk-radios__input" id="move-check-before-no" name="moveBeforeCheck" type="radio"
                                 value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="move-check-no">
                                 No
                             </label>
                         </div>
@@ -66,7 +69,6 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
             </button>
 
         </form>
-
         <div class="nhsuk-back-link">
             <a href="javascript:history.back()">
             <button class="nhsuk-back-link__link">
@@ -75,7 +77,6 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
               </svg>
               Change my previous answer</button></a>
           </div>
-
     </div>
 </div>
 {% endblock %}

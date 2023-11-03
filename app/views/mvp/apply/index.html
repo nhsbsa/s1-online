@@ -1,0 +1,84 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1>
+        Apply for an S1 form
+      </h1>
+      <p>Use this service if you're moving abroad on a permanent basis. You can apply for an S1 form up to 90 days before moving to live in an EU country. You can ask for the form to be sent to your UK address if you need it for your visa application.</p>
+      <p>You can also <a href="#">contact us to apply for an S1 form by phone</a>.</p>
+
+      <!-- Start of warning callout -->
+      <div class="nhsuk-warning-callout">
+        <h3 class="nhsuk-warning-callout__label">
+          <span role="text">
+            Important:
+          </span>
+        </h3>
+        <p>For the S1 form to be issued, you need to have an address in the EU country you are moving to. This can be a temporary address, but you must contact NHS Business Services Authority (NHSBSA) and the relevant authority in the country you are moving to, to let them know your new address (if it changes). This is to prevent important confidential information being sent to the wrong address.</p>
+      </div>
+      <!-- End of warning callout -->
+
+    <!-- Start of what is covered-->
+    <h2>What is covered by an S1 form</h2>
+    <p>An S1 form will cover you for</p>
+    <!-- End of what is covered -->
+
+    <!-- Start of who can use this service -->
+    <h2>Who can use this service</h2>
+    <p>You can use this service to apply for an S1 form for:
+        <ul>
+            <li>yourself</li>
+        </ul>
+    </p>
+    <!-- End of who can use this service -->
+
+    <!-- Start of before you start -->
+    <h2>Before you start</h2>
+    <p>We'll ask you for your details including:</p>
+    <ul>
+        <li>your email address</li>
+        <li>your National Insurance number, if you know this</li>
+    </ul>
+    <p>We'll also ask for details about any dependants, including their:</p>
+    <ul>
+        <li>date of birth</li>
+        <li>address</li>
+    </ul>
+    <p>If you're applying on behalf of someone else, we'll ask for their details.</p>
+    <a href="eligibility-country-check">
+    <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Start now
+      </button>
+    </a>
+    <!-- End of before you start -->
+
+    </div>
+  </div>
+{% endblock %}

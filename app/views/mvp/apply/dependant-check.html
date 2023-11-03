@@ -29,30 +29,40 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-other-state-pension" method="post">
+        <form action="../route-dependants-check" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
-                            <span class="nhsuk-caption-l">Eligibility</span>
-                            Do you get a State Pension from another country?
+                            <span class="nhsuk-caption-l">Add family members</span>
+                            Do you want to add any family members to your S1 application?
                         </h1>
                     </legend>
+
+                    <div class="nhsuk-hint">
+                        You can add your:
+                        <ul>
+                            <li>spouse or civil parter</li>
+                            <li>partner</li>
+                            <li>children</li>
+                        </ul>
+                        There are different rules on who can be added to your S1 certificate, depending on the country you're living in. We cannot guarantee any S1 forms we issue to your family members will be accepted by the country you're moving to.
+                      </div>
 
                     <div class="nhsuk-radios nhsuk-radios--inline">
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-yes" name="otherStatePension" type="radio"
-                                value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-yes">
+                            <input class="nhsuk-radios__input" id="dependants-check-yes" name="dependants-check" type="radio"
+                                value="yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-yes">
                                 Yes
                             </label>
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="other-state-pension-no" name="otherStatePension" type="radio"
-                                value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="other-state-pension-no">
+                            <input class="nhsuk-radios__input" id="dependants-check-no" name="dependants-check" type="radio"
+                                value="no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-no">
                                 No
                             </label>
                         </div>
@@ -66,15 +76,6 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
             </button>
 
         </form>
-
-        <div class="nhsuk-back-link">
-            <a href="javascript:history.back()">
-            <button class="nhsuk-back-link__link">
-              <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
-                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-              </svg>
-              Change my previous answer</button></a>
-          </div>
 
     </div>
 </div>

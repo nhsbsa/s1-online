@@ -29,50 +29,62 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-move-date-plan" method="post">
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          
+          <ul class="nhsuk-list nhsuk-error-summary__list" role="list">
+            <li>
+              <a href="#live-day">Date of moving must include a day</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-            <div class="nhsuk-form-group">
+        <form action="eligibility-live-date-day-error" method="post">
+
+            <div class="nhsuk-form-group--error">
                 <fieldset class="nhsuk-fieldset" aria-describedby="example-hint" role="group">
                   <legend class="nhsuk-fieldset__legend nhsuk-label--l">
                     <h1 class="nhsuk-fieldset__heading">
                         <span class="nhsuk-caption-l">Eligibility</span>
-                        When will you move to 
-                        {% if data['liveEUCountry'] %}   
-                          {{ data['liveEUCountry']}}
-                        {% endif %}
-                        {% if data['countrySOne'] %}
-                          {{ data['countrySOne']}}
-                        {% endif %}
-                        ?
+                        When did you move or are planning to move to {{ data['liveEUCountry']}}?
                     </h1>
                   </legend>
                   <div class="nhsuk-hint" id="example-hint">
                     For example, 15 3 1984
                   </div>
+
+                  <span class="nhsuk-error-message">
+                    <span class="nhsuk-u-visually-hidden">Error:</span>
+                    Date of moving must include a day
+                  </span>
               
                   <div class="nhsuk-date-input" id="example">
                     <div class="nhsuk-date-input__item">
                       <div class="nhsuk-form-group">
-                        <label class="nhsuk-label nhsuk-date-input__label" for="future-day">
+                        <label class="nhsuk-label nhsuk-date-input__label" for="live-day">
                           Day
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="future-day" name="futureDay" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2 nhsuk-input--error" id="live-day" name="liveDay" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
                       <div class="nhsuk-form-group">
-                        <label class="nhsuk-label nhsuk-date-input__label" for="future-month">
+                        <label class="nhsuk-label nhsuk-date-input__label" for="live-month">
                           Month
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="future-month" name="futureMonth" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="live-month" name="liveMonth" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
                       <div class="nhsuk-form-group">
-                        <label class="nhsuk-label nhsuk-date-input__label" for="future-year">
+                        <label class="nhsuk-label nhsuk-date-input__label" for="live-year">
                           Year
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="future-year" name="futureYear" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="live-year" name="liveYear" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                   </div>
@@ -80,8 +92,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
               
               </div>
 
-
-
+              <br>
 
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
                 Continue

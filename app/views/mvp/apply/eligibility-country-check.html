@@ -29,13 +29,13 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-current-future-living" method="post">
+        <form action="eligibility-country-check" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Eligibility</span>
-                            Do you plan to permanently move to a different country?
+                            	Are you permanently living or moving outside the UK?
                         </h1>
                     </legend>
 
@@ -66,7 +66,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         </div>
                     </details> -->
 
-                    <div class="nhsuk-radios nhsuk-radios--inline nhsuk-radios--conditional">
+                    <div class="nhsuk-radios">
 
                         <div class="nhsuk-radios__item">
                             <input class="nhsuk-radios__input" id="eu-country-live-yes" name="liveEU" type="radio"
@@ -74,57 +74,9 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                             <label class="nhsuk-label nhsuk-radios__label" for="eu-country-live-yes">
                                 Yes
                             </label>
-                            <div class="nhsuk-hint">
-                                If 'Yes', select the name of the country
-                            </div>
+                            
                         </div>
 
-                        <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-eu-country">
-
-                            <div class="nhsuk-form-group">
-                      
-                                <label class="nhsuk-label" for="eu-eligibility-country">
-                                  Country name
-                                </label>
-                                <select id="eu-live-location-picker" class="eu-eligibility-country" name="liveEUCountry" type="text">
-                                    <option value=""></option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Belgium">Belgium</option>
-                                    <option value="Bulgaria">Bulgaria</option>
-                                    <option value="Croatia">Croatia</option>
-                                    <option value="Cyprus">Cyprus</option>
-                                    <option value="Czech Republic">Czech Republic</option>
-                                    <option value="Denmark">Denmark</option>
-                                    <option value="Estonia">Estonia</option>
-                                    <option value="Finland">Finland</option>
-                                    <option value="France">France</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Greece">Greece</option>
-                                    <option value="Hungary">Hungary</option>
-                                    <option value="Iceland">Iceland</option>
-                                    <option value="Ireland">Ireland</option>
-                                    <option value="Italy">Italy</option>
-                                    <option value="Latvia">Latvia</option>
-                                    <option value="Liechtenstein">Liechtenstein</option>
-                                    <option value="Lithuania">Lithuania</option>
-                                    <option value="Luxemburg">Luxemburg</option>
-                                    <option value="Malta">Malta</option>
-                                    <option value="Netherlands">Netherlands</option>
-                                    <option value="Norway">Norway</option>
-                                    <option value="Poland">Poland</option>
-                                    <option value="Portugal">Portugal</option>
-                                    <option value="Romania">Romania</option>
-                                    <option value="Slovakia">Slovakia</option>
-                                    <option value="Slovenia">Slovenia</option>
-                                    <option value="Spain">Spain</option>
-                                    <option value="Sweden">Sweden</option>
-                                    <option value="Switzerland">Switzerland</option>
-                                </select>
-                                <!-- <a href="#" type="button" value="+" onClick="return addInputEU(this)">+ Add another country</a> -->
-        
-                            </div>
-
-                        </div>
 
                         <div class="nhsuk-radios__item">
                             <input class="nhsuk-radios__input" id="eu-country-live-no" name="liveEU" type="radio"
@@ -144,14 +96,6 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
         </form>
 
-        <div class="nhsuk-back-link">
-            <a href="javascript:history.back()">
-            <button class="nhsuk-back-link__link">
-              <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
-                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
-              </svg>
-              Change my previous answer</button></a>
-          </div>
 
     </div>
 </div>
