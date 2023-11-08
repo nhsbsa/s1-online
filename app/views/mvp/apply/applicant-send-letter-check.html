@@ -29,32 +29,30 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-country-check" method="post">
+        <form action="applicant-send-letter-check" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
-                            <span class="nhsuk-caption-l">Eligibility</span>
-                            	Are you permanently living or moving outside the UK?
+                            <span class="nhsuk-caption-l">Main application</span>
+                            Do you want a copy of your S1 certificate to be sent by letter?
                         </h1>
                     </legend>
 
-                    <div class="nhsuk-radios">
+                    <div class="nhsuk-radios nhsuk-radios--inline">
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="eu-country-live-yes" name="liveEU" type="radio"
+                            <input class="nhsuk-radios__input" id="correspondence-address-yes" name="sendCopyLetter" type="radio"
                                 value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="eu-country-live-yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="correspondence-address-yes">
                                 Yes
                             </label>
-                            
                         </div>
 
-
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="eu-country-live-no" name="liveEU" type="radio"
+                            <input class="nhsuk-radios__input" id="correspondence-address-no" name="sendCopyLetter" type="radio"
                                 value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="eu-country-live-no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="correspondence-address-no">
                                 No
                             </label>
                         </div>
@@ -69,6 +67,14 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
         </form>
 
+        <div class="nhsuk-back-link">
+            <a href="javascript:history.back()">
+            <button class="nhsuk-back-link__link">
+              <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+              </svg>
+              Change my previous answer</button></a>
+          </div>
 
     </div>
 </div>
