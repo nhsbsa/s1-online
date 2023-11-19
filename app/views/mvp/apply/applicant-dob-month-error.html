@@ -29,27 +29,46 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="dependant-dob" method="post">
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list">
+            <li>
+              <a href="#example-month">Date of birth must include a valid month</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-            <div class="nhsuk-form-group">
+        <form action="applicant-dob-month-error" method="post">
+
+          <div class="nhsuk-form-group nhsuk-form-group--error">
                 <fieldset class="nhsuk-fieldset" aria-describedby="example-hint" role="group">
                   <legend class="nhsuk-fieldset__legend nhsuk-label--l">
                     <h1 class="nhsuk-fieldset__heading">
-                        <span class="nhsuk-caption-l">Add family members</span>
-                        What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s date of birth?
+                        <span class="nhsuk-caption-l">Main application</span>
+                        What is your date of birth?
                     </h1>
                   </legend>
                   <div class="nhsuk-hint" id="example-hint">
                     For example, 15 3 1984
                   </div>
-              
+
+                  <span class="nhsuk-error-message" id="example-error">
+                    <span class="nhsuk-u-visually-hidden">Error:</span> Date of birth must include a valid month
+                  </span>
+                  
+                  <div class="nhsuk-form-group">
                   <div class="nhsuk-date-input" id="example">
                     <div class="nhsuk-date-input__item">
                       <div class="nhsuk-form-group">
                         <label class="nhsuk-label nhsuk-date-input__label" for="example-day">
                           Day
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="example-day" name="dependant-day" type="text" pattern="[0-9]*" inputmode="numeric">
+
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="example-day" name="example-day" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
@@ -57,7 +76,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         <label class="nhsuk-label nhsuk-date-input__label" for="example-month">
                           Month
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-2" id="example-month" name="dependant-month" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-input--error nhsuk-date-input__input nhsuk-input--width-2" id="example-month" name="example-month" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                     <div class="nhsuk-date-input__item">
@@ -65,7 +84,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         <label class="nhsuk-label nhsuk-date-input__label" for="example-year">
                           Year
                         </label>
-                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="example-year" name="dependant-year" type="text" pattern="[0-9]*" inputmode="numeric">
+                        <input class="nhsuk-input nhsuk-date-input__input nhsuk-input--width-4" id="example-year" name="example-year" type="text" pattern="[0-9]*" inputmode="numeric">
                       </div>
                     </div>
                   </div>

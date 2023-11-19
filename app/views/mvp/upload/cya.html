@@ -1,0 +1,123 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  
+    <!-- End of before you start -->
+
+    <!--  -->
+
+    <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-full">
+            <form action="cya" method="post">
+                <div class="nhsuk-form-group">
+               
+                        <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--xl">
+                            <h1 class="nhsuk-fieldset__heading">
+                                <span class="nhsuk-caption-l">Upload evidence</span>
+                                Check your answers
+                            </h1>
+                        </legend>
+
+
+                            <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+                                <div class="nhsuk-card__content">
+
+                                    <dl class="nhsuk-summary-list">
+
+                                        <div class="nhsuk-summary-list__row">
+                                            <dt class="nhsuk-summary-list__key">
+                                                State pension countries
+                                            </dt>
+                                            <dd class="nhsuk-summary-list__value">
+                                                {% for i in data['myInputsEUSP']%}
+                                                    <span>{{i}}</span><br>
+                                                {% endfor %}
+                                            </dd>
+                                            <dd class="nhsuk-summary-list__actions">
+                                                <a href="/../eligibility/eligibility-eu-country-state-pension">
+                                                    Change<span class="nhsuk-u-visually-hidden">State Pension countries</span>
+                                                </a>
+                                            </dd>
+                                        </div>
+
+                                        <div class="nhsuk-summary-list__row">
+                                            <dt class="nhsuk-summary-list__key">
+                                                Files uploaded
+                                            </dt>
+                                            <dd class="nhsuk-summary-list__value">
+                                               doc-file-1.pdf
+
+                                            </dd>
+                                            <dd class="nhsuk-summary-list__actions">
+                                                <a href="additional-file">
+                                                    Change<span class="nhsuk-u-visually-hidden"> file uploaded</span>
+                                                </a>
+                                            </dd>
+                                        </div>
+
+                                        {% if data['additionalUploadTwo'] === 'Yes' or data['additionalUploadTwo'] === 'No' %}
+                                        <div class="nhsuk-summary-list__row">
+                                            <dt class="nhsuk-summary-list__key">
+                                                File 2
+                                            </dt>
+                                            <dd class="nhsuk-summary-list__value">
+                                                doc-file-2.pdf
+                                            </dd>
+                                        
+                                            <dd class="nhsuk-summary-list__actions">
+                                                <a href="additional-file-2">
+                                                    Change<span class="nhsuk-u-visually-hidden"> file uploaded</span>
+                                                </a>
+                                            </dd>
+                                        
+                                            </div>
+                                        {% endif %}
+
+                                    </dl>
+                                
+                                <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                                    Continue
+                                </button>
+                                
+                            </form>
+                            </div>
+            
+                            
+
+        </div>
+    </div>
+
+    {{ backLink({
+        "href": "",
+        "text": "Change my previous answer"
+      }) }}
+
+
+    <!--  -->
+
+{% endblock %}

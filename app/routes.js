@@ -5,10 +5,10 @@ const router = express.Router();
 
 // Alpha
 
-router.use('/current', require('./views/mvp/_routes'));
+router.use('/mvp', require('./views/mvp/_routes'));
 
-//router.use('/current', require('./views/current/_routes'));
+// router.use('/current', require('./views/current/_routes'));
 
-//router.use('/discovery', require('./views/discovery/_routes'));
+router.use('/discovery', require('./views/discovery/_routes'));
 
 module.exports = router;

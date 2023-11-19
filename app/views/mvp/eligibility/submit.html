@@ -41,13 +41,13 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key" style="width:80%">
-          Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 day date]?
+          Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow }}?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          Yes
+          {{ data['ukStatePension']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="#eligibility-uk-state-pension">
             Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next {{ ninetyDaysFromNow }}?</span>
           </a>
         </dd>
@@ -276,10 +276,10 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          What is {% data['dependant-first-name'] %} {% data['dependant-surname'] %} date of birth?
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s date of birth?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          14-10-1973
+          {{ depDobDateFormatted }}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
@@ -290,7 +290,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Does {% data['dependant-first-name'] %} {% data['dependant-surname'] %} live at the same address as you?
+          Does {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} live at the same address as you?
         </dt>
         <dd class="nhsuk-summary-list__value">
           No
@@ -302,9 +302,10 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         </dd>
       </div>
 
+      {% if data['depenantAddressCheck'] == 'No' %}
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          What is {% data['dependant-first-name'] %} {% data['dependant-surname'] %} address?
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s address?
         </dt>
         <dd class="nhsuk-summary-list__value">
           48 avenue de Provence<br />
@@ -319,6 +320,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           </a>
         </dd>
       </div>
+      {% endif %}
 
     </dl>
     <!-- End dependant details-->

@@ -39,12 +39,13 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         </h1>
                     </legend>
 
-                    <div class="nhsuk-form-group form-group" id="appendableEURT">
+                    <div class="nhsuk-form-group form-group" id="appendableEUSP">
                       
                         <label class="nhsuk-label" for="eu-eligibility-country">
                           Country name
                         </label>
-                        <select id="eu-location-picker" class="eu-eligibility-country" name="euCountryPension" type="text">
+                        <select id="eu-location-picker" class="eu-eligibility-country" name="myInputsEUSP[]" type="text">
+                            <option value=""></option>
                             <option value="Austria">Austria</option>
                             <option value="Belgium">Belgium</option>
                             <option value="Bulgaria">Bulgaria</option>
@@ -77,7 +78,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                             <option value="Sweden">Sweden</option>
                             <option value="Switzerland">Switzerland</option>
                         </select>
-                        <a href="#" type="button" value="+" onClick="return addInputEURT(this)">+ Add another country</a>
+                        <a href="#" type="button" value="+" onClick="return addInputEUSP(this)">+ Add another country</a>
                     </div>
 
                    

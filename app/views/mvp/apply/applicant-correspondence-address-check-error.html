@@ -29,23 +29,24 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="applicant-send-letter-check" method="post">
+        <form action="applicant-correspondence-address-check-error" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Main application</span>
-                            Do you need a paper copy of your S1 certificate?
+                            Is this also your correspondence address?
                         </h1>
                     </legend>
 
-                    <div class="nhsuk-radios nhsuk-radios">
-                        <div class="nhsuk-hint">
-                            Select yes if you want a copy of your S1 certificate to be sent to you by post, as well as email
-                        </div>
+                    <div class="nhsuk-radios nhsuk-radios--inline">
+
+                        <p>
+                            Your correspondence address is the address we'll send your S1 to, if you want us to post a copy. It's also the address we'll use if we need to send you any important information in future. Your correspondence address can be in any country, including the UK.
+                        </p>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="correspondence-address-yes" name="sendCopyLetter" type="radio"
+                            <input class="nhsuk-radios__input" id="correspondence-address-yes" name="correspondenceAddressCheck" type="radio"
                                 value="Yes">
                             <label class="nhsuk-label nhsuk-radios__label" for="correspondence-address-yes">
                                 Yes
@@ -53,7 +54,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="correspondence-address-no" name="sendCopyLetter" type="radio"
+                            <input class="nhsuk-radios__input" id="correspondence-address-no" name="correspondenceAddressCheck" type="radio"
                                 value="No">
                             <label class="nhsuk-label nhsuk-radios__label" for="correspondence-address-no">
                                 No
