@@ -684,7 +684,7 @@ router.get(/eligibility-cya-1/, function (req, res) {
 })
 
 // Check Your Answers
-router.get(/application-cya/, function(req, res){
+router.get(/application-dependant-cya/, function(req, res){
     //Today's date
     const now = new Date();
     const yyyy = now.getFullYear();
@@ -721,7 +721,66 @@ router.get(/application-cya/, function(req, res){
         var liveDateFormatted = "1 March 2021"
         console.log(liveDateFormatted);
     }
-    res.render('mvp/aply/application-cya', { moveDateFormatted: moveDateFormatted, liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
+
+      //Today's date
+      const year = req.session.data['dependant-year'];
+      const month = req.session.data['dependant-month'];
+      const day = req.session.data['dependant-day'];
+      const formatDob = day + '/' + month + '/' + year;
+  
+      console.log(formatDob);
+  
+      var depDobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+      console.log(depDobDate);
+  
+      // Convert format
+      const depDobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  
+      const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
+      var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
+      console.log(depDobDateFormatted);
+
+    res.render('mvp/apply/application-dependant-cya', { moveDateFormatted: moveDateFormatted, liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow, depDobDateFormatted: depDobDateFormatted});
+})
+
+router.get(/application-nodependant-cya/, function(req, res){
+    //Today's date
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    let mm = now.getMonth() + 1; 
+    const dd = now.getDate();
+    const formatToday = dd + '/' + mm + '/' + yyyy;
+
+    // console.log(formatToday);
+
+    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    // console.log(todayDate);
+
+    // 90 days from today 
+    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    // console.log(ninetyDays);
+
+    // Convert format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+    // console.log(ninetyDaysFromNow);
+
+    const liveDay = req.session.data['liveDay'];
+    
+    if(!liveDay){
+        var moveDateFormatted = "1 February 2024"
+        console.log(moveDateFormatted);
+    }
+
+    const moveDay = req.session.data['moveDay'];
+
+    if(!moveDay){
+        var liveDateFormatted = "1 March 2021"
+        console.log(liveDateFormatted);
+    }
+    res.render('mvp/apply/application-nodependant-cya', { moveDateFormatted: moveDateFormatted, liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
 // // Do you get a State Pension from another country? (2)
@@ -1077,7 +1136,7 @@ router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
     if(dependantCheck == 'Yes') {
       res.redirect('dependant-name');
     } else if(dependantCheck == 'No') {
-      res.redirect('application-cya');
+      res.redirect('application-nodependant-cya');
     } else {
         res.redirect('dependant-check-error');
     }
