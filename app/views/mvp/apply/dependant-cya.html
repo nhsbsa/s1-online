@@ -64,9 +64,10 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         </dd>
       </div>
 
+      {% if data['dependantCheck'] == 'Yes' %}
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          What is {% data['dependantFirstName'] %} {% data['dependantSurname'] %}'s date of birth?
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s date of birth?
         </dt>
         <dd class="nhsuk-summary-list__value">
           {{ depDobDateFormatted }}
@@ -80,7 +81,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Does {% data['dependantFirstName'] %} {% data['dependantSurname'] %} live at the same address as you?
+          Does {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} live at the same address as you?
         </dt>
         <dd class="nhsuk-summary-list__value">
           {{ data['depenantAddressCheck']}}
@@ -95,7 +96,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
       {% if data['depenantAddressCheck'] == 'No' %}
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          What is {% data['dependantFirstName'] %} {% data['dependantSurname'] %}'s address?
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s address?
         </dt>
         <dd class="nhsuk-summary-list__value">
           {% if data['dependantAddressLineOne'] %}
@@ -129,7 +130,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         </dd>
       </div>
       {% endif %}
-
+    {% endif %}
     </dl>
 
     <a href="application-dependant-cya">

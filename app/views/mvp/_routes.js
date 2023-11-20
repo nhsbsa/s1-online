@@ -390,9 +390,13 @@ router.get(/dependant-cya/, function (req, res) {
     // Convert format
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
+    var dependantCheck = req.session.data['dependantCheck'];
+    if (dependantCheck == 'Yes'){
     const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
     var depDobDateFormatted = dateTimeFormat.format(depDobDate);
     console.log(depDobDateFormatted);
+    }
+    
   
     res.render('mvp/apply/dependant-cya', {depDobDateFormatted: depDobDateFormatted});
 })
@@ -1136,7 +1140,7 @@ router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
     if(dependantCheck == 'Yes') {
       res.redirect('dependant-name');
     } else if(dependantCheck == 'No') {
-      res.redirect('application-nodependant-cya');
+      res.redirect('application-submit');
     } else {
         res.redirect('dependant-check-error');
     }
@@ -1250,9 +1254,9 @@ router.post(/more-dependants-check/, function(req, res){
     var moreDependantsCheck = req.session.data['moreDependantsCheck'];
 
     if(moreDependantsCheck == 'No') {
-        res.redirect('dependant-cya');
+        res.redirect('application-submit');
     } else {
-        res.redirect('dependant-cya');
+        res.redirect('application-submit');
     }
 })
 
