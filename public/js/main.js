@@ -104,3 +104,37 @@ function removeInputOther(btn) {
   btn.parentNode.remove();
   return false;
 }
+
+var spEuCountries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia (Czech Republic)", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxemburg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"];
+
+function generateSelectList(countryArray) {
+  let selectListOptions = '';
+  countryArray.forEach(element => {
+    selectListOptions += `<option value='${element}'>${element}</option>`;
+  });
+  return selectListOptions;
+}
+
+function addInputEUSP(el) {
+  var newFieldOther = document.createElement('div'); // Count current amount of inputs in section
+
+  var inputCountOther = el.closest('div').getElementsByTagName('select').length;
+  console.log(inputCountOther); // Create ID for new select we're going to add
+
+  var newSelectID = `${el.previousElementSibling.className}-${inputCountOther}`;
+  let generatedOptionList = generateSelectList(spEuCountries);
+  newFieldOther.innerHTML = `<br><label class='nhsuk-label' for='${newSelectID}'>Country name</label><select id='${newSelectID}' name='myInputsEUSP[]' type='text'><option value=''></option>${generatedOptionList}</select></div><a href='#' type='button' value='-' onClick='return removeInputOther(this);'>- Remove nationality</a>`;
+  document.getElementById('appendableEUSP').appendChild(newFieldOther); // Use ID of new select to initilise autcomplete for our new select
+
+  let select = document.querySelector(`#${newSelectID}`);
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: select,
+    source: spEuCountries
+  });
+  return false;
+}
+
+function removeInputEUSP(btn) {
+  btn.parentNode.remove();
+  return false;
+}

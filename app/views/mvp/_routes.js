@@ -467,29 +467,31 @@ router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-p
 // Which countries do you get a State Pension from, other than the UK?
 
 router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-state-pension-error/], function(req, res) {
+    console.log(req.session.data);
+
     var euCountryPension = req.session.data['myInputsEUSP[]'];
     var countrySOne = req.session.data['countrySOne'];
 
     if (euCountryPension === countrySOne){
-        res.redirect('kickout/ineligible-sone-state-pension');
+        return res.redirect('kickout/ineligible-sone-state-pension');
     } if (euCountryPension == 'Iceland' || euCountryPension == 'Liechtenstein' || euCountryPension == 'Norway'){
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     } if (euCountryPension == 'Austria' || euCountryPension == 'Belgium' || euCountryPension == 'Bulgaria' || euCountryPension == 'Denmark' ){
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     } if (euCountryPension == 'Czech Republic' || euCountryPension == 'Estonia' || euCountryPension == 'Finland' || euCountryPension == 'France') {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     } if (euCountryPension == 'Germany' || euCountryPension == 'Greece' || euCountryPension == 'Hungary' || euCountryPension == 'Ireland' || euCountryPension == 'Italy') {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     } if (euCountryPension == 'Latvia' || euCountryPension == 'Lithuania' || euCountryPension == 'Luxemburg' || euCountryPension == 'Malta' || euCountryPension == 'Montenegro') {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     }  if (euCountryPension == 'Netherlands' || euCountryPension == 'Poland' || euCountryPension == 'Portugal' || euCountryPension == 'Romania' || euCountryPension == 'Slovakia' || euCountryPension == 'Switzerland') {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     }  if (euCountryPension == 'Slovenia' || euCountryPension == 'Spain' || euCountryPension == 'Sweden') {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     } if (euCountryPension == ''){
-        res.redirect('eligibility-eu-country-state-pension-error');
+        return res.redirect('eligibility-eu-country-state-pension-error');
     } else {
-        res.redirect('eligibility-eu-state-pension-amount');
+        return res.redirect('eligibility-eu-state-pension-amount');
     }
 })
 
