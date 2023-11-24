@@ -847,7 +847,7 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
    
     dt1 = ninetyDays;
     dt2 = dobDate;
-    var diffDate = diff_years(dt1, dt2);
+    const diffDate = diff_years(dt1, dt2);
     console.log(diffDate);
     
 
@@ -880,6 +880,33 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
     } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate >= 67) {
         res.redirect('applicant-nino');
     }   
+})
+
+router.get(/applicant-dob-ineligible-error/, function(req, res){
+    //Today's date
+    const now = new Date();
+    const yyyy = now.getFullYear();
+    let mm = now.getMonth() + 1; 
+    const dd = now.getDate();
+    const formatToday = dd + '/' + mm + '/' + yyyy;
+
+    // console.log(formatToday);
+
+    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+    // console.log(todayDate);
+
+    // 90 days from today 
+    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    // console.log(ninetyDays);
+
+    // Convert format
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+    // console.log(ninetyDaysFromNow);
+
+    res.render('mvp/apply/applicant-dob-ineligible-error', { ninetyDaysFromNow: ninetyDaysFromNow });
 })
 
 router.post(/applicant-dob-ineligible-error/, function (req, res){
@@ -921,7 +948,7 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
    
     dt1 = ninetyDays;
     dt2 = dobDate;
-    var diffDate = diff_years(dt1, dt2);
+    const diffDate = diff_years(dt1, dt2);
     console.log(diffDate);
     
 
@@ -956,32 +983,7 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
     }   
 })
 
-router.get(/applicant-dob-ineligible-error/, function(req, res){
-    //Today's date
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    let mm = now.getMonth() + 1; 
-    const dd = now.getDate();
-    const formatToday = dd + '/' + mm + '/' + yyyy;
 
-    // console.log(formatToday);
-
-    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
-    // console.log(todayDate);
-
-    // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
-    // console.log(ninetyDays);
-
-    // Convert format
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
-    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
-    // console.log(ninetyDaysFromNow);
-
-    res.render('mvp/apply/applicant-dob-ineligible-error', { ninetyDaysFromNow: ninetyDaysFromNow });
-})
 
 
 
