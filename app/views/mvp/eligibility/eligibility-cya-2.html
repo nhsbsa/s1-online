@@ -160,7 +160,9 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Which countries do you get a State Pension from, other than the UK?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          {{ data['myInputsEUSP']}}
+          {% for i in data['myInputsEUSP']%}
+            {{i}}<br>
+          {% endfor %}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
