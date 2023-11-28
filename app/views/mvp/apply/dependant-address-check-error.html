@@ -29,33 +29,53 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-state-pension-check" method="post">
-            <div class="nhsuk-form-group">
+        <form action="dependant-address-check-error" method="post">
+
+            <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+                <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+                  There is a problem
+                </h2>
+                <div class="nhsuk-error-summary__body">
+                  <ul class="nhsuk-list nhsuk-error-summary__list">
+                    <li>
+                      <a href="#depenant-address-check-yes">Select 'Yes' if {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} lives at the same address as you</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+            <div class="nhsuk-form-group nhsuk-form-group--error">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
-                            <span class="nhsuk-caption-l">Eligibility</span>
-                            Do you get a State Pension from {{ data['countrySOne']}}?
-
+                            <span class="nhsuk-caption-l">Add family members</span>
+                            Does {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} live at the same address as you?
                         </h1>
                     </legend>
 
                     <div class="nhsuk-radios nhsuk-radios">
 
-                        <!-- <div class="nhsuk-hint">Select yes if {{ data['countrySOne']}} pay you a State Pension.</div> -->
+                        <div class="nhsuk-hint">
+                            This address will appear on their S1 form.
+                        </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="state-pension-check-yes" name="statePensionCheck" type="radio"
+
+                            <span class="nhsuk-error-message" id="location-error">
+                                <span class="nhsuk-u-visually-hidden">Error:</span>Select 'Yes' if {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} lives at the same address as you
+                             </span>
+
+                            <input class="nhsuk-radios__input nhsuk-radios__input--error" id="depenant-address-check-yes" name="dependantAddressCheck" type="radio"
                                 value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="state-pension-check-yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="depenant-address-check-yes">
                                 Yes
                             </label>
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="state-pension-check-no" name="statePensionCheck" type="radio"
+                            <input class="nhsuk-radios__input nhsuk-radios__input--error" id="depenant-address-check-no" name="dependantAddressCheck" type="radio"
                                 value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="state-pension-check-no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="depenant-address-check-no">
                                 No
                             </label>
                         </div>

@@ -29,14 +29,28 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="applicant-residential-address" method="post">
+      <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+        <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+          There is a problem
+        </h2>
+        <div class="nhsuk-error-summary__body">
+          <ul class="nhsuk-list nhsuk-error-summary__list">
+            
+            <li>
+              <a href="#country">Enter a valid country</a>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Main application</span>What is your address in {{ data['countrySOne'] }}?</h1>
+        <form action="applicant-current-residential-address-country-error" method="post">
+
+            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Main application</span>What is your current address?</h1>
 
             <div class="nhsuk-inset-text">
               <span class="nhsuk-u-visually-hidden">Information: </span>
               <p>	
-                You need to tell us the address you're living at in {{ data['countrySOne'] }}. This address will appear on your S1 certificate. This can be a temporary address, but you'll need to contact both the NHS Business Services Authority and the relevant authority in the country you're living in to let them know if your address changes. 
+                You need to tell us the address you're living at. This address will appear on your S1 certificate. This can be a temporary address, but you'll need to contact both the NHS Business Services Authority and the relevant authority in the country you're living in to let them know if your address changes. 
               </p>
             </div>
 
@@ -44,6 +58,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                 <label class="nhsuk-label" for="address-line-one">
                   Address line 1
                 </label>
+               
                 <input class="nhsuk-input" id="address-line-one" name="addressLineOne" type="text">
               </div>
 
@@ -58,6 +73,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                 <label class="nhsuk-label" for="city">
                   Town or City
                 </label>
+               
                 <input class="nhsuk-input" id="city" name="city" type="text">
               </div>
 
@@ -72,14 +88,18 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                 <label class="nhsuk-label" for="postcode">
                   Postcode
                 </label>
+                
                 <input class="nhsuk-input" id="postcode" name="postcode" type="text">
               </div>
 
-              <div class="nhsuk-form-group">
+              <div class="nhsuk-form-group nhsuk-form-group--error">
                 <label class="nhsuk-label" for="country">
                   Country
                 </label>
-                <input class="nhsuk-input" id="country" name="country" type="text">
+                <span class="nhsuk-error-message" id="location-error">
+                  <span class="nhsuk-u-visually-hidden">Error:</span> Enter a valid country
+               </span>
+                <input class="nhsuk-input nhsuk-input--error" id="country" name="country" type="text">
               </div>
 
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
