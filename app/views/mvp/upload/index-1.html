@@ -1,0 +1,162 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <span class="nhsuk-caption-l">Upload evidence</span>
+      <h1>
+        Add evidence to your S1 application
+      </h1>
+      <p>Use this service to upload copies of evidence for receiving State Pension from EU countries, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+      <p>We require evidence for the following countries:</p>
+      <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <p> {% for i in data['myInputsEUSP']%}
+                {{i}}<br>
+            {% endfor %}
+        </p>
+      </div>
+      
+
+    <!-- Start of before you start -->
+    <!-- <h2>Before you start</h2>
+    <p>We'll ask you for your details including:</p>
+    <ul>
+        <li>your Overseas Healthcare Services (OHS) reference number, which can be found on your confirmation email</li>
+        <li>your National Insurance number</li>
+    </ul>
+   
+    <p>You'll then be able to upload the required evidence.</p>
+    <a href="#">
+    <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Start now
+      </button>
+    </a> -->
+    <!-- End of before you start -->
+
+    <!--  -->
+
+    
+
+    <form id="checkFile" action="index-1" method="post">
+             
+      <div id="uploadFile">
+          <div class="nhsuk-card nhsuk-u-margin-bottom-3">
+              <div class="nhsuk-card__content">
+
+                  <!-- Upload -->
+                  <div class="form-group">
+                      <fieldset class="nhsuk-fieldset">
+                          <legend
+                              class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s nhsuk-u-margin-bottom-1">
+                              <h1 class="nhsuk-fieldset__heading">
+                                  Upload a file
+                              </h1>
+                          </legend>
+                          <!-- <div class="nhsuk-hint" id="article-hint">
+                              This must be an XML file.
+                          </div> -->
+
+                          <div class="nhsuk-form-group nhsuk-grid-column-two-thirds"
+                              style="border:2px dashed #0b0c0c; padding:24px; width: inherit">
+                              <!-- <label class="nhsuk-label" for="file-upload">
+                                Upload a file
+                              </label> -->
+                              <input class="nhsuk-file-upload" style="font-size:18px;" id="file-upload"
+                                  name="file-upload" type="file">
+                          </div>
+
+                      </fieldset>
+
+                  </div>
+
+                  <div class="nhsuk-checkboxes__item" data-target="checkbox">
+                    <input class="nhsuk-checkboxes__input" id="no-evidence" name="noEvidence" type="checkbox" value="checked">
+                    <label class="nhsuk-label nhsuk-checkboxes__label" for="no-evidence">I will provide evidence after submitting my application</label>
+                  </div>
+
+                  <hr class="nhsuk-section-break nhsuk-section-break--m nhsuk-section-break--visible">
+                  
+                  <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                      Continue
+                  </button>
+             
+
+              </div>
+          </div>
+
+
+          </form>
+
+          {{ backLink({
+            "href": "",
+            "text": "Change my previous answer"
+          }) }}
+      </div>
+  </div>
+
+
+  <!-- <div id="upload-progress" style="display: none;" class="nhsuk-grid-column-full" aria-hidden="true"
+      tabindex="-1">
+      <div class="nhsuk-loader">
+          <p>Checking file.<br />This may take a few minutes. Do not close your browser.</p>
+          <span class="nhsuk-loader__spinner"></span>
+      </div>
+  </div>
+
+
+  <script>
+      // Upload in progress visual indicator
+      var submitForm = document.getElementById("checkFile");
+      var uploadFile = document.getElementById("uploadFile");
+      var uploadProgress = document.getElementById("upload-progress"); 
+      submitForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+
+          legend1.style.display = "none";
+          legend2.style.display = "block";
+          uploadFile.style.display = "none";
+          uploadProgress.style.display = "block";
+          uploadProgress.setAttribute("role", "alert");
+          uploadProgress.setAttribute("aria-hidden", "false");
+          uploadProgress.focus();
+
+          // setTimeout(function () {
+          //     submitForm.submit();
+          // }, 5000);
+      });
+  </script> -->
+
+
+</div>
+
+
+    <!--  -->
+
+{% endblock %}

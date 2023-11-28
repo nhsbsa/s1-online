@@ -1,0 +1,158 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <form action="eligibility-current-future-living" method="post">
+            <div class="nhsuk-form-group">
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            <span class="nhsuk-caption-l">Eligibility</span>
+                            Do you plan to permanently move to a different country?
+                        </h1>
+                    </legend>
+
+                    <!-- <div class="nhsuk-hint">
+                        If you are planning to move and live for only 3-6 months in an EU or EEA, that does not constitute permanent residency.
+                    </div> -->
+
+                    <!-- <details class="nhsuk-details">
+                        <summary class="nhsuk-details__summary">
+                          <span class="nhsuk-details__summary-text">
+                            Countries in the EU and EEA 
+                          </span>
+                        </summary>
+                        <div class="nhsuk-details__text">
+                          <h5>EU countries</h5>
+                          <p>The EU countries are:</p>
+                          <p>
+                            Austria, Belgium, Bulgaria, Croatia, Republic of Cyprus, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Ireland, Italy, Latvia, Lithuania, Luxembourg, Malta, Netherlands, Poland, Portugal, Romania, Slovakia, Slovenia, Spain and Sweden.
+                          </p>
+                          <br>
+                          <h5>The European Economic Area (EEA)</h5>
+                          <p>
+                            The EEA includes EU countries and also Iceland, Liechtenstein and Norway. It allows them to be part of the EU’s single market.
+                          </p>
+                          <p>
+                            Switzerland is not an EU or EEA member but is part of the single market. This means Swiss nationals have the same rights to live and work in the UK as other EEA nationals.
+                          </p>
+                        </div>
+                    </details> -->
+
+                    <div class="nhsuk-radios nhsuk-radios--inline nhsuk-radios--conditional">
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="eu-country-live-yes" name="liveEU" type="radio"
+                                value="Yes" aria-controls="conditional-eu-country" aria-expanded="false">
+                            <label class="nhsuk-label nhsuk-radios__label" for="eu-country-live-yes">
+                                Yes
+                            </label>
+                            <div class="nhsuk-hint">
+                                If 'Yes', select the name of the country
+                            </div>
+                        </div>
+
+                        <div class="nhsuk-radios__conditional nhsuk-radios__conditional--hidden" id="conditional-eu-country">
+
+                            <div class="nhsuk-form-group">
+                      
+                                <label class="nhsuk-label" for="eu-eligibility-country">
+                                  Country name
+                                </label>
+                                <select id="eu-live-location-picker" class="eu-eligibility-country" name="liveEUCountry" type="text">
+                                    <option value=""></option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Croatia">Croatia</option>
+                                    <option value="Cyprus">Cyprus</option>
+                                    <option value="Czech Republic">Czech Republic</option>
+                                    <option value="Denmark">Denmark</option>
+                                    <option value="Estonia">Estonia</option>
+                                    <option value="Finland">Finland</option>
+                                    <option value="France">France</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Greece">Greece</option>
+                                    <option value="Hungary">Hungary</option>
+                                    <option value="Iceland">Iceland</option>
+                                    <option value="Ireland">Ireland</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Latvia">Latvia</option>
+                                    <option value="Liechtenstein">Liechtenstein</option>
+                                    <option value="Lithuania">Lithuania</option>
+                                    <option value="Luxemburg">Luxemburg</option>
+                                    <option value="Malta">Malta</option>
+                                    <option value="Netherlands">Netherlands</option>
+                                    <option value="Norway">Norway</option>
+                                    <option value="Poland">Poland</option>
+                                    <option value="Portugal">Portugal</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Slovakia">Slovakia</option>
+                                    <option value="Slovenia">Slovenia</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Sweden">Sweden</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                </select>
+                                <!-- <a href="#" type="button" value="+" onClick="return addInputEU(this)">+ Add another country</a> -->
+        
+                            </div>
+
+                        </div>
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="eu-country-live-no" name="liveEU" type="radio"
+                                value="No">
+                            <label class="nhsuk-label nhsuk-radios__label" for="eu-country-live-no">
+                                No
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+        <div class="nhsuk-back-link">
+            <a href="javascript:history.back()">
+            <button class="nhsuk-back-link__link">
+              <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+                <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+              </svg>
+              Change my previous answer</button></a>
+          </div>
+
+    </div>
+</div>
+{% endblock %}

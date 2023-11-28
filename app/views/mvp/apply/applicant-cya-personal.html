@@ -1,0 +1,229 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l">
+      <span class="nhsuk-caption-l">Main application</span>
+      Check your details - main applicant
+    </h1>
+
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          What is your name?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['firstName'] %}
+						{{ data['firstName'] }} {{ data['surname']}}
+					{% else %}
+            Mary Collette Kirkland
+					{% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-name">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your date of birth?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['example-day'] %}
+						{{ dobDateFormatted }}
+					{% else %}
+            3 October 1945
+					{% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-dob">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your National Insurance number?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['nino'] %}
+						{{ data['nino']}}
+					{% else %}
+						SR123456A
+					{% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-nino">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your address in {{ data['countrySOne'] }}?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['addressLineOne'] %}
+            {{ data['addressLineOne']}}
+          {% else %}
+            43 avenue de Provence<br />
+          {% endif %}
+            <br>
+          {% if data['city'] %}
+            {{ data['city']}}
+          {% else %}
+            Vallauris<br />
+          {% endif %}
+            <br>
+          {% if data['country'] %}
+            {{ data['country']}}
+          {% else %}
+            France<br />
+          {% endif %}
+            <br>
+          {% if data['postcode'] %}
+            {{ data['postcode']}}
+          {% else %}
+            63000
+          {% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-residential-address">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Is this also your correspondence address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ data['correspondenceAddressCheck']}}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-correspondence-address-check">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['correspondenceAddressCheck'] == 'No' %}
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your correspondence address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['corrAddressLineOne'] %}
+            {{ data['corrAddressLineOne']}}
+          {% else %}
+            9 rue Giscard de la Tour Fondue<br />
+          {% endif %}
+            <br>
+          {% if data['corrCity'] %}
+            {{ data['corrCity']}}
+          {% else %}
+            Clermont-Ferrand<br />
+          {% endif %}
+            <br>
+          {% if data['corrCountry'] %}
+            {{ data['corrCountry']}}
+          {% else %}
+            France<br />
+          {% endif %}
+            <br>
+          {% if data['corrPostcode'] %}
+            {{ data['corrPostcode']}}
+          {% else %}
+            63002
+          {% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-correspondence-address">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your email address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['email'] %}
+						{{ data['email']}}
+					{% else %}
+            mary.kirkland@gmail.com
+					{% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-email">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is your phone number? (optional)
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['phone'] %}
+						{{ data['phone']}}
+					{% else %}
+            &#8212;
+					{% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#applicant-phone">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+     
+    </dl>
+
+    <a href="../upload/index-1">
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Continue
+      </button>
+    </a>
+
+
+  </div>
+</div>
+{% endblock %}

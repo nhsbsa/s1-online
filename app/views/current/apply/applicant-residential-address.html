@@ -35,12 +35,12 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
         <form action="applicant-correspondence-address-check" method="post">
 
-            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Main application</span>What is your address in [Country]?</h1>
+            <h1 class="nhsuk-heading-l"><span class="nhsuk-caption-l">Main application</span>What is your address in {{ data['countrySOne'] }}?</h1>
 
             <div class="nhsuk-inset-text">
               <span class="nhsuk-u-visually-hidden">Information: </span>
               <p>	
-                You need to tell us the address you're living at in [Country]. This address will appear on your S1 certificate. This can be a temporary address, but you'll need to contact both the NHS Business Services Authority and the relevant authority in the country you're living in to let them know if your address changes. 
+                You need to tell us the address you're living at in {{ data['countrySOne'] }}. This address will appear on your S1 certificate. This can be a temporary address, but you'll need to contact both the NHS Business Services Authority and the relevant authority in the country you're living in to let them know if your address changes. 
               </p>
             </div>
 

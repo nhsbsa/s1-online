@@ -1,0 +1,90 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+            <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+              There is a problem
+            </h2>
+            <div class="nhsuk-error-summary__body">
+              <ul class="nhsuk-list nhsuk-error-summary__list">
+                <li>
+                  <a href="#uk-state-pension-yes">Select 'Yes' if you are being paid a UK State Pension, or if you will be paid your UK State Pension before {{ ninetyDaysFromNow }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        <form action="eligibility-uk-state-pension-error" method="post">
+            <div class="nhsuk-form-group nhsuk-form-group-error">
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            <span class="nhsuk-caption-l">Eligibility</span>
+                            Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow }}?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-radios">
+
+                        <span class="nhsuk-error-message" id="location-error">
+                            <span class="nhsuk-u-visually-hidden">Error:</span>Select 'Yes' if you are being paid a UK State Pension, or if you will be paid your UK State Pension before {{ ninetyDaysFromNow }}
+                         </span>
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input nhsuk-radios__input--error" id="uk-state-pension-yes" name="ukStatePension" type="radio"
+                                value="Yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-yes">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input nhsuk-radios__input--error" id="uk-state-pension-no" name="ukStatePension" type="radio"
+                                value="No">
+                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-no">
+                                No
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+<script src="/public/js/jquery-3.5.1.min.js"></script>
+{% endblock %}

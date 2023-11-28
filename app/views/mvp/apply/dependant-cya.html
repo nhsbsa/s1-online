@@ -1,0 +1,145 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <h1 class="nhsuk-heading-l">
+      <span class="nhsuk-caption-l">Add family members</span>
+      Check your family member's details
+    </h1>
+
+    <dl class="nhsuk-summary-list">
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key" style="width:80%">
+          Do you want to add any family members to your S1 application?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ data['dependantCheck']}}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#dependant-check">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Who do you want to add to your application?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ data['dependantFirstName']}}{{ data['dependantSurname']}}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#dependant-name">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['dependantCheck'] == 'Yes' %}
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s date of birth?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ depDobDateFormatted }}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#dependant-dob">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          Does {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} live at the same address as you?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {{ data['depenantAddressCheck']}}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#dependant-address-check">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+
+      {% if data['depenantAddressCheck'] == 'No' %}
+      <div class="nhsuk-summary-list__row">
+        <dt class="nhsuk-summary-list__key">
+          What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s address?
+        </dt>
+        <dd class="nhsuk-summary-list__value">
+          {% if data['dependantAddressLineOne'] %}
+            {{ data['dependantAddressLineOne']}}
+          {% else %}
+            9 rue Giscard de la Tour Fondue<br />
+          {% endif %}
+            <br>
+          {% if data['dependantCity'] %}
+            {{ data['dependantCity']}}
+          {% else %}
+            Clermont-Ferrand<br />
+          {% endif %}
+            <br>
+          {% if data['dependantCountry'] %}
+            {{ data['dependantCountry']}}
+          {% else %}
+            France<br />
+          {% endif %}
+            <br>
+          {% if data['dependantPostcode'] %}
+            {{ data['dependantPostcode']}}
+          {% else %}
+            63002
+          {% endif %}
+        </dd>
+        <dd class="nhsuk-summary-list__actions">
+          <a href="#dependant-address">
+            Change<span class="nhsuk-u-visually-hidden"> </span>
+          </a>
+        </dd>
+      </div>
+      {% endif %}
+    {% endif %}
+    </dl>
+
+    <a href="application-dependant-cya">
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Continue
+      </button>
+    </a>
+
+
+  </div>
+</div>
+{% endblock %}

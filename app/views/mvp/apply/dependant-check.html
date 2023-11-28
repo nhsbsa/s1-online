@@ -1,0 +1,82 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+        <form action="dependant-check" method="post">
+            <div class="nhsuk-form-group">
+                <fieldset class="nhsuk-fieldset">
+                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+                        <h1 class="nhsuk-fieldset__heading">
+                            <span class="nhsuk-caption-l">Add family members</span>
+                            Do you want to add any family members to your S1 application?
+                        </h1>
+                    </legend>
+
+                    <div class="nhsuk-hint">
+                        You can add your:
+                        <ul>
+                            <li>spouse or civil parter</li>
+                            <li>partner</li>
+                            <li>children</li>
+                        </ul>
+                        There are different rules on who can be added to your S1 certificate, depending on the country you're living in. We cannot guarantee any S1 forms we issue to your family members will be accepted by the country you're moving to.
+                      </div>
+
+                    <div class="nhsuk-radios nhsuk-radios">
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="dependants-check-yes" name="dependantCheck" type="radio"
+                                value="Yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-yes">
+                                Yes
+                            </label>
+                        </div>
+
+                        <div class="nhsuk-radios__item">
+                            <input class="nhsuk-radios__input" id="dependants-check-no" name="dependantCheck" type="radio"
+                                value="No">
+                            <label class="nhsuk-label nhsuk-radios__label" for="dependants-check-no">
+                                No
+                            </label>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

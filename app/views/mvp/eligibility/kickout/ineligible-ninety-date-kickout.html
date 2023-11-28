@@ -1,0 +1,47 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+
+
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+<div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+          
+<h1 class="nhsuk-heading-l">
+  You cannot apply for an S1 for healthcare cover</h1>
+  
+  <span class="nhsuk-caption-l">To be entitled to an S1 for healthcare cover, you must be either: 
+    <ul>
+      <li>permanently living in an EU country, Switzerland, Norway, Iceland, or Liechtenstein</li>
+      <li>permanently moving to an EU country, Switzerland, Norway, Iceland, or Liechtenstein in the next 90 days</li>
+    </ul>
+  </span>
+
+  
+    </div>
+</div>
+{% endblock %}

@@ -10,6 +10,7 @@
     "test": "jest --coverage=true",
     "prewatch": "gulp build",
     "watch": "gulp",
+    "type": "module",
     "lint:js": "eslint -c ./linters/.eslintrc.js app.js middleware/**/*.js lib/**/*.js app/*.js docs/*.js"
   },
   "author": "https://github.com/nhsuk/",
