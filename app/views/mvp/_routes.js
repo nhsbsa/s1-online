@@ -289,6 +289,16 @@ router.get(/eligibility-uk-state-pension/, function (req, res) {
     var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
     console.log(ninetyDays);
 
+    // Code to add 90 days to input Time
+    // let ut = document.getElementById("updatedTime")
+    // function add() {
+    //    setInterval(() => {
+    //       let currentTime = new Date().getTime();
+    //       let updatedTIme = new Date(currentTime + 2 * 24 * 60 * 60 * 1000);
+    //       ut.innerText = "Updated Date : " + updatedTIme.toLocaleDateString()
+    //    }, 1000)
+    // }
+
     // Convert format
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
@@ -1352,8 +1362,8 @@ router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, 
     const month = req.session.data['dependant-month']
     const year =req.session.data['dependant-year']
     
-    var yearRegEx = /^([1-2][0-9][1-9][0-9])$/;            ///< Allows a number between 2021 and 2022
-    var monthRegEx = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
+    var yearRegEx = /^([1-2][0-9][0-9][0-9])$/;           ///< Allows a number between 2021 and 2022
+    var monthRegEx = /^(0?[1-9]|1[0-2])$/;             ///< Allows a number between 00 and 12
     var dayRegEx = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
         
     if(day === '' && month === '' && year === '') {
@@ -1438,11 +1448,19 @@ router.post([/more-dependants-check/, /more-dependants-check-error/], function(r
     if(moreDependantsCheck == 'No' && euStatePension == 'Yes') {
         res.redirect('../upload/index-1');
     } else if(moreDependantsCheck == 'No' && euStatePension == 'No') {
-            res.redirect('submit');
+        res.redirect('submit');
     } else if (moreDependantsCheck == 'Yes') {
         res.redirect('dependant-name');
     } else {
         res.redirect('more-dependants-check-error');
+    }
+})
+
+router.post(/cya/, function(req, res){
+    var euStatePension = req.session.data['euStatePension'];
+
+    if (euStatePension == 'Yes'){
+        res.redirect('../apply/submit');
     }
 })
 
