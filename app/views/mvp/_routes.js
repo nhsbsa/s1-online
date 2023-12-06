@@ -464,11 +464,14 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
 
 router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-pension-error/], function (req, res){
     var euStatePension = req.session.data['euStatePension'];
+    var moveCheck = req.session.data['moveCheck'];
 
     if (euStatePension == 'Yes'){
         res.redirect('eligibility-eu-country-state-pension');
-    } if (euStatePension == 'No'){
-        res.redirect('../apply/applicant-name');
+    } if (euStatePension == 'No' && moveCheck == 'No'){
+        res.redirect('eligibility-cya-1');
+    } if (euStatePension == 'No' && moveCheck == 'Yes'){
+        res.redirect('eligibility-cya-2');
     } else {
         res.redirect('eligibility-other-eu-state-pension-error');
     }
@@ -608,31 +611,27 @@ router.get(/eligibility-cya-2/, function (req, res) {
     var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
     // console.log(ninetyDaysFromNow);
 
+    // const liveYear = req.session.data['liveYear'];
+    // console.log(liveYear);
+    // const liveMonth = req.session.data['liveMonth'];
+    // const liveDay = req.session.data['liveDay'];
+    // When did you start living in S1 country?
+            
+    // const formatLiveDate = liveDay + '/' + liveMonth + '/' + liveYear;
 
-    const moveDay = req.session.data['moveDay'];
-    // const liveYear = parseInt(req.session.data['liveYear']);
-    // const liveMonth = parseInt(req.session.data['liveMonth']);
-    // const liveDay = parseInt(req.session.data['liveDay']);
+    // console.log(formatLiveDate);
 
-    if(!moveDay){
-        // When did you start living in S1 country?
-        
-        // const formatLiveDate = liveDay + '/' + liveMonth + '/' + liveYear;
+    // var liveDate = new Date(formatLiveDate.split('/')[2], formatLiveDate.split('/')[1] - 1, formatLiveDate.split('/')[0]);
+    // console.log(liveDate);
 
-        // console.log(formatLiveDate);
+    //Convert format
+    // const liveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
-        // var liveDate = new Date(formatLiveDate.split('/')[2], formatLiveDate.split('/')[1] - 1, formatLiveDate.split('/')[0]);
-        // console.log(liveDate);
+    // const liveDateTimeFormat = new Intl.DateTimeFormat('en-GB', liveOptions);
+    // var liveDateFormatted = liveDateTimeFormat.format(liveDate);
+    var liveDateFormatted = "1 March 2021"
+    console.log(liveDateFormatted);
 
-        // Convert format
-        // const liveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-        // const liveDateTimeFormat = new Intl.DateTimeFormat('en-GB', liveOptions);
-        // var liveDateFormatted = liveDateTimeFormat.format(liveDate);
-        var liveDateFormatted = "1 March 2021"
-        console.log(liveDateFormatted);
-    }
-  
     res.render('mvp/eligibility/eligibility-cya-2', {liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
@@ -661,30 +660,25 @@ router.get(/eligibility-cya-1/, function (req, res) {
     var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
     // console.log(ninetyDaysFromNow);
 
-    const liveDay = req.session.data['liveDay'];
     // const moveYear = parseInt(req.session.data['moveYear']);
-    // const moveMonth = parseInt(req.session.data['moveMonth']);
-    // const moveDay = parseInt(req.session.data['moveDay']);
-    
-    if(!liveDay){
-        // When did you move to the S1 country?
-        
-        // const formatMoveDate = moveDay + '/' + moveMonth + '/' + moveYear;
-        
-        // console.log(formatMoveDate);
+    // const moveYear = req.session.data['moveYear'];
+    // console.log(moveYear);
+    // const moveMonth = req.session.data['moveMonth'];
+    // const moveDay = req.session.data['moveDay'];
+    // const formatMoveDate = moveDay + '/' + moveMonth + '/' + moveYear;
+    // console.log(formatMoveDate);
 
-        // var moveDate = new Date(formatMoveDate.split('/')[2], formatMoveDate.split('/')[1] - 1, formatMoveDate.split('/')[0]);
-        // console.log(moveDate);
+    // var moveDate = new Date(formatMoveDate.split('/')[2], formatMoveDate.split('/')[1] - 1, formatMoveDate.split('/')[0]);
+    // console.log(moveDate);
 
-        // Convert format
-        // const moveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    // Convert format
+    // const moveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
-        // const moveDateTimeFormat = new Intl.DateTimeFormat('en-GB', moveOptions);
-        // var moveDateFormatted = moveDateTimeFormat.format(moveDate);
-        var moveDateFormatted = "1 February 2024"
-        console.log(moveDateFormatted);
-    }
-  
+    // const moveDateTimeFormat = new Intl.DateTimeFormat('en-GB', moveOptions);
+    // var moveDateFormatted = moveDateTimeFormat.format(moveDate);
+    var moveDateFormatted = "1 February 2024"
+    console.log(moveDateFormatted);
+
     res.render('mvp/eligibility/eligibility-cya-1', { moveDateFormatted: moveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
