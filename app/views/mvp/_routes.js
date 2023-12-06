@@ -96,7 +96,7 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDaysFromNow = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDaysFromNow);
 
 
@@ -286,7 +286,8 @@ router.get(/eligibility-uk-state-pension/, function (req, res) {
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    //var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + ( 90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     // Code to add 90 days to input Time
@@ -324,7 +325,7 @@ router.get(/submit/, function (req, res) {
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     
@@ -597,7 +598,7 @@ router.get(/eligibility-cya-2/, function (req, res) {
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -650,7 +651,7 @@ router.get(/eligibility-cya-1/, function (req, res) {
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -702,7 +703,7 @@ router.get(/application-dependant-cya/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -761,7 +762,7 @@ router.get(/application-nodependant-cya/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -891,7 +892,7 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     function diff_years(dt2, dt1) 
@@ -954,7 +955,7 @@ router.get(/applicant-dob-ineligible-error/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -992,7 +993,7 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     function diff_years(dt2, dt1) 
