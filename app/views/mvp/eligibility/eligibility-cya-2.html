@@ -85,7 +85,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           When did you move to {{ data['countrySOne'] }}?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          {{ liveDateFormatted }}
+          {{ moveDateFormatted }}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
@@ -174,11 +174,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Is your UK State Pension less than the State Pension you receive from the following countries? (
-            {% for i in data['myInputsEUSP']%}
-            {{i}}<br>
-          {% endfor %}
-          )
+          Is your UK State Pension less than the State Pension you receive from the following countries? 
         </dt>
         <dd class="nhsuk-summary-list__value">
           {{ data['euPensionAmount']}}
