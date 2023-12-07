@@ -96,7 +96,7 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDaysFromNow = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDaysFromNow = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDaysFromNow);
 
 
@@ -286,7 +286,8 @@ router.get(/eligibility-uk-state-pension/, function (req, res) {
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    //var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + ( 90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     // Code to add 90 days to input Time
@@ -324,7 +325,7 @@ router.get(/submit/, function (req, res) {
     console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     
@@ -463,11 +464,14 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
 
 router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-pension-error/], function (req, res){
     var euStatePension = req.session.data['euStatePension'];
+    var moveCheck = req.session.data['moveCheck'];
 
     if (euStatePension == 'Yes'){
         res.redirect('eligibility-eu-country-state-pension');
-    } if (euStatePension == 'No'){
-        res.redirect('../apply/applicant-name');
+    } if (euStatePension == 'No' && moveCheck == 'No'){
+        res.redirect('eligibility-cya-1');
+    } if (euStatePension == 'No' && moveCheck == 'Yes'){
+        res.redirect('eligibility-cya-2');
     } else {
         res.redirect('eligibility-other-eu-state-pension-error');
     }
@@ -597,7 +601,7 @@ router.get(/eligibility-cya-2/, function (req, res) {
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -607,31 +611,27 @@ router.get(/eligibility-cya-2/, function (req, res) {
     var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
     // console.log(ninetyDaysFromNow);
 
+    // const liveYear = req.session.data['liveYear'];
+    // console.log(liveYear);
+    // const liveMonth = req.session.data['liveMonth'];
+    // const liveDay = req.session.data['liveDay'];
+    // When did you start living in S1 country?
+            
+    // const formatLiveDate = liveDay + '/' + liveMonth + '/' + liveYear;
 
-    const moveDay = req.session.data['moveDay'];
-    // const liveYear = parseInt(req.session.data['liveYear']);
-    // const liveMonth = parseInt(req.session.data['liveMonth']);
-    // const liveDay = parseInt(req.session.data['liveDay']);
+    // console.log(formatLiveDate);
 
-    if(!moveDay){
-        // When did you start living in S1 country?
-        
-        // const formatLiveDate = liveDay + '/' + liveMonth + '/' + liveYear;
+    // var liveDate = new Date(formatLiveDate.split('/')[2], formatLiveDate.split('/')[1] - 1, formatLiveDate.split('/')[0]);
+    // console.log(liveDate);
 
-        // console.log(formatLiveDate);
+    //Convert format
+    // const liveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
-        // var liveDate = new Date(formatLiveDate.split('/')[2], formatLiveDate.split('/')[1] - 1, formatLiveDate.split('/')[0]);
-        // console.log(liveDate);
+    // const liveDateTimeFormat = new Intl.DateTimeFormat('en-GB', liveOptions);
+    // var liveDateFormatted = liveDateTimeFormat.format(liveDate);
+    var liveDateFormatted = "1 March 2021"
+    console.log(liveDateFormatted);
 
-        // Convert format
-        // const liveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-        // const liveDateTimeFormat = new Intl.DateTimeFormat('en-GB', liveOptions);
-        // var liveDateFormatted = liveDateTimeFormat.format(liveDate);
-        var liveDateFormatted = "1 March 2021"
-        console.log(liveDateFormatted);
-    }
-  
     res.render('mvp/eligibility/eligibility-cya-2', {liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
@@ -650,7 +650,7 @@ router.get(/eligibility-cya-1/, function (req, res) {
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -660,30 +660,25 @@ router.get(/eligibility-cya-1/, function (req, res) {
     var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
     // console.log(ninetyDaysFromNow);
 
-    const liveDay = req.session.data['liveDay'];
     // const moveYear = parseInt(req.session.data['moveYear']);
-    // const moveMonth = parseInt(req.session.data['moveMonth']);
-    // const moveDay = parseInt(req.session.data['moveDay']);
-    
-    if(!liveDay){
-        // When did you move to the S1 country?
-        
-        // const formatMoveDate = moveDay + '/' + moveMonth + '/' + moveYear;
-        
-        // console.log(formatMoveDate);
+    // const moveYear = req.session.data['moveYear'];
+    // console.log(moveYear);
+    // const moveMonth = req.session.data['moveMonth'];
+    // const moveDay = req.session.data['moveDay'];
+    // const formatMoveDate = moveDay + '/' + moveMonth + '/' + moveYear;
+    // console.log(formatMoveDate);
 
-        // var moveDate = new Date(formatMoveDate.split('/')[2], formatMoveDate.split('/')[1] - 1, formatMoveDate.split('/')[0]);
-        // console.log(moveDate);
+    // var moveDate = new Date(formatMoveDate.split('/')[2], formatMoveDate.split('/')[1] - 1, formatMoveDate.split('/')[0]);
+    // console.log(moveDate);
 
-        // Convert format
-        // const moveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    // Convert format
+    // const moveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
 
-        // const moveDateTimeFormat = new Intl.DateTimeFormat('en-GB', moveOptions);
-        // var moveDateFormatted = moveDateTimeFormat.format(moveDate);
-        var moveDateFormatted = "1 February 2024"
-        console.log(moveDateFormatted);
-    }
-  
+    // const moveDateTimeFormat = new Intl.DateTimeFormat('en-GB', moveOptions);
+    // var moveDateFormatted = moveDateTimeFormat.format(moveDate);
+    var moveDateFormatted = "1 February 2024"
+    console.log(moveDateFormatted);
+
     res.render('mvp/eligibility/eligibility-cya-1', { moveDateFormatted: moveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
@@ -702,7 +697,7 @@ router.get(/application-dependant-cya/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -761,7 +756,7 @@ router.get(/application-nodependant-cya/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -891,7 +886,7 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     function diff_years(dt2, dt1) 
@@ -954,7 +949,7 @@ router.get(/applicant-dob-ineligible-error/, function(req, res){
     // console.log(todayDate);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     // console.log(ninetyDays);
 
     // Convert format
@@ -992,7 +987,7 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
 
     // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDays);
 
     function diff_years(dt2, dt1) 
@@ -1217,16 +1212,16 @@ router.post([/applicant-correspondence-address/, /applicant-correspondence-addre
 
 router.post([/applicant-email/, /applicant-email-error/], function (req,res) {
     
-    console.log(req.body.email);
+    var email = req.session.data['email'];
 
     const emailRegEx = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
   
-    if(req.body.email !== '' && emailRegEx.test(req.body.email)) {
+    if(email != '' && emailRegEx.test(email)) {
       res.redirect('applicant-phone');
-    } else if(req.body.email !== '' && !emailRegEx.test(req.body.email)) {
+    } else if(email == '') {
       res.redirect('applicant-email-error');
-    } else {
-      res.redirect('applicant-phone');
+    } else if(email != '' && !emailRegEx.test(email)) {
+        res.redirect('applicant-email-error');
     }
   })
 

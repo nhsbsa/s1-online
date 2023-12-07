@@ -116,7 +116,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
             Have you paid Statutory Health Contributions to Germany?
           </dt>
           <dd class="nhsuk-summary-list__value">
-            No
+            {{ data['germanyContributions']}}
           </dd>
           <dd class="nhsuk-summary-list__actions">
             <a href="#">
@@ -170,14 +170,18 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           </a>
         </dd>
       </div>
-      {% endif %}
+      
 
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
-          Is your UK State Pension less than the State Pension you receive from other countries?
+          Is your UK State Pension less than the State Pension you receive from the following countries? (
+            {% for i in data['myInputsEUSP']%}
+            {{i}}<br>
+          {% endfor %}
+          )
         </dt>
         <dd class="nhsuk-summary-list__value">
-          No
+          {{ data['euPensionAmount']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#">
@@ -186,6 +190,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           </a>
         </dd>
       </div>
+      {% endif %}
 
     </dl>
 
