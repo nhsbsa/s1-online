@@ -406,56 +406,6 @@ router.get(/eligibility-uk-state-pension/, function (req, res) {
     res.render('mvp/eligibility/eligibility-uk-state-pension', {ninetyDaysFromNow: ninetyDaysFromNow});
 })
 
-router.get(/submit/, function (req, res) {
-
-    //Today's date
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    let mm = now.getMonth() + 1; 
-    const dd = now.getDate();
-    const formatToday = dd + '/' + mm + '/' + yyyy;
-
-    console.log(formatToday);
-
-    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
-    console.log(todayDate);
-
-    // 90 days from today 
-    var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
-    console.log(ninetyDays);
-
-    
-    // Convert format
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
-    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
-    console.log(ninetyDaysFromNow);
-
-    //Dependant DOB 
-    const year = req.session.data['dependant-year'];
-    const month = req.session.data['dependant-month'];
-    const day = req.session.data['dependant-day'];
-    const formatDob = day + '/' + month + '/' + year;
-
-    if(year){
-        console.log(formatDob);
-
-        var depDobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
-        console.log(depDobDate);
-
-        // Convert format
-        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
-        var depDobDateFormatted = dobDateTimeFormat.format(depDobDate);
-        console.log(depDobDateFormatted);
-     }
-    
-  
-    res.render('mvp/eligibility/submit', {ninetyDaysFromNow: ninetyDaysFromNow, depDobDateFormatted: depDobDateFormatted});
-})
-
 
 router.get(/dependant-cya/, function (req, res) {
 
@@ -480,7 +430,6 @@ router.get(/dependant-cya/, function (req, res) {
     console.log(depDobDateFormatted);
     }
     
-  
     res.render('mvp/apply/dependant-cya', {depDobDateFormatted: depDobDateFormatted});
 })
 
@@ -1027,6 +976,74 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
       
         res.render('mvp/apply/applicant-cya-personal', {dobDateFormatted: dobDateFormatted});
     })
+
+    router.get(/submit/, function (req, res) {
+
+        //Today's date
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        let mm = now.getMonth() + 1; 
+        const dd = now.getDate();
+        const formatToday = dd + '/' + mm + '/' + yyyy;
+    
+        console.log(formatToday);
+    
+        var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+        console.log(todayDate);
+    
+        // 90 days from today 
+        var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
+        console.log(ninetyDays);
+    
+        
+        // Convert format
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+        const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+        var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+        console.log(ninetyDaysFromNow);
+
+        //Today's date
+        const year = req.session.data['example-year'];
+        const month = req.session.data['example-month'];
+        const day = req.session.data['example-day'];
+        const formatDob = day + '/' + month + '/' + year;
+    
+        console.log(formatDob);
+    
+        var dobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+        console.log(dobDate);
+    
+        // Convert format
+        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
+        var dobDateFormatted = dobDateTimeFormat.format(dobDate);
+        console.log(dobDateFormatted);
+    
+        //Dependant DOB 
+        const depYear = req.session.data['dependant-year'];
+        const depMonth = req.session.data['dependant-month'];
+        const depDay = req.session.data['dependant-day'];
+        const formatDepDob = depDay + '/' + depMonth + '/' + depYear;
+    
+        if(depYear){
+            console.log(formatDepDob);
+    
+            var depDobDate = new Date(formatDepDob.split('/')[2], formatDepDob.split('/')[1] - 1, formatDepDob.split('/')[0]);
+            console.log(depDobDate);
+    
+            // Convert format
+            const depDobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+            const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
+            var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
+            console.log(depDobDateFormatted);
+         }
+        
+      
+        res.render('mvp/eligibility/submit', {ninetyDaysFromNow: ninetyDaysFromNow, dobDateFormatted: dobDateFormatted, depDobDateFormatted: depDobDateFormatted});
+    })
 })
 
 router.get(/applicant-dob-ineligible-error/, function(req, res){
@@ -1447,47 +1464,114 @@ router.post([/dependant-name/, /dependant-firstname-error/, /dependant-surname-e
 // What is [dependant name]'s date of birth?
 
 router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, /dependant-dob-day-month-error/, /dependant-dob-month-error/, /dependant-dob-month-year-error/, /dependant-dob-day-year-error/, /dependant-dob-year-error/], function (req, res) {
-    const day = req.session.data['dependant-day']
-    const month = req.session.data['dependant-month']
-    const year =req.session.data['dependant-year']
+    const depDay = req.session.data['dependant-day']
+    const depMonth = req.session.data['dependant-month']
+    const depYear =req.session.data['dependant-year']
     
     var yearRegEx = /^([1-2][0-9][0-9][0-9])$/;           ///< Allows a number between 2021 and 2022
     var monthRegEx = /^(0?[1-9]|1[0-2])$/;             ///< Allows a number between 00 and 12
     var dayRegEx = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
         
-    if(day === '' && month === '' && year === '') {
+    if(depDay === '' && depMonth === '' && depYear === '') {
         res.redirect('dependant-dob-error');
-    } else if(day === '' && month !== '' && year !== ''){
+    } else if(depDay === '' && depMonth !== '' && depYear !== ''){
         res.redirect('dependant-dob-day-error');
-    } else if(day === '' && month === '' && year !== ''){
+    } else if(depDay === '' && depMonth === '' && depYear !== ''){
         res.redirect('dependant-dob-day-month-error');
-    } else if(day === '' && month !== '' && year !== ''){
+    } else if(depDay === '' && depMonth !== '' && depYear !== ''){
         res.redirect('dependant-dob-day-year-error');
-    } else if(day !== '' && month === '' && year !== ''){
+    } else if(depDay !== '' && depMonth === '' && depYear !== ''){
         res.redirect('dependant-dob-month-error');
-    } else if(day !== '' && month === '' && year === ''){
+    } else if(depDay !== '' && depMonth === '' && depYear === ''){
         res.redirect('dependant-dob-month-year-error');
-    } else if(day !== '' && month !== '' && year === ''){
+    } else if(depDay !== '' && depMonth !== '' && depYear === ''){
         res.redirect('dependant-dob-year-error');
-    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+    } else if(depDay !== '' && !dayRegEx.test(depDay) && depMonth !== '' && !monthRegEx.test(depMonth) && depYear !== '' && !yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-error');
-    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+    } else if(depDay !== '' && !dayRegEx.test(depDay) && depMonth !== '' && monthRegEx.test(depMonth) && depYear !== '' && yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-day-error');
-    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+    } else if(depDay !== '' && !dayRegEx.test(depDay) && depMonth !== '' && !monthRegEx.test(depMonth) && depYear !== '' && yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-day-month-error');
-    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+    } else if(depDay !== '' && !dayRegEx.test(depDay) && depMonth !== '' && !monthRegEx.test(depMonth) && depYear !== '' && !yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-day-year-error');
-    } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+    } else if(depDay !== '' && dayRegEx.test(depDay) && depMonth !== '' && !monthRegEx.test(depMonth) && depYear !== '' && yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-month-error');
-    } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+    } else if(depDay !== '' && dayRegEx.test(depDay) && depMonth !== '' && !monthRegEx.test(depMonth) && depYear !== '' && !yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-month-year-error');
-    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+    } else if(depDay !== '' && !dayRegEx.test(depDay) && depMonth !== '' && monthRegEx.test(depMonth) && depYear !== '' && !yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-day-year-error');
-    } else if(day !== '' && dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+    } else if(depDay !== '' && dayRegEx.test(depDay) && depMonth !== '' && monthRegEx.test(depMonth) && depYear !== '' && !yearRegEx.test(depYear)) {
         res.redirect('dependant-dob-year-error');
     } else {
         res.redirect('dependant-address-check');
-    }   
+    }  
+
+    router.get(/submit/, function (req, res) {
+
+        //Today's date
+        const now = new Date();
+        const yyyy = now.getFullYear();
+        let mm = now.getMonth() + 1; 
+        const dd = now.getDate();
+        const formatToday = dd + '/' + mm + '/' + yyyy;
+    
+        console.log(formatToday);
+    
+        var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+        console.log(todayDate);
+    
+        // 90 days from today 
+        var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
+        console.log(ninetyDays);
+    
+        
+        // Convert format
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+        const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+        var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+        console.log(ninetyDaysFromNow);
+
+        //Today's date
+        const year = req.session.data['example-year'];
+        const month = req.session.data['example-month'];
+        const day = req.session.data['example-day'];
+        const formatDob = day + '/' + month + '/' + year;
+    
+        console.log(formatDob);
+    
+        var dobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+        console.log(dobDate);
+    
+        // Convert format
+        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
+        var dobDateFormatted = dobDateTimeFormat.format(dobDate);
+        console.log(dobDateFormatted);
+    
+        //Dependant DOB 
+        const depYear = req.session.data['dependant-year'];
+        const depMonth = req.session.data['dependant-month'];
+        const depDay = req.session.data['dependant-day'];
+        const formatDepDob = depDay + '/' + depMonth + '/' + depYear;
+    
+        if(depYear){
+            console.log(formatDepDob);
+    
+            var depDobDate = new Date(formatDepDob.split('/')[2], formatDepDob.split('/')[1] - 1, formatDepDob.split('/')[0]);
+            console.log(depDobDate);
+    
+            // Convert format
+            const depDobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+    
+            const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
+            var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
+            console.log(depDobDateFormatted);
+         }
+        
+        res.render('mvp/eligibility/submit', {ninetyDaysFromNow: ninetyDaysFromNow, depDobDateFormatted: depDobDateFormatted});
+    }) 
 })
 
 // Does [dependant name] live at the same address as you?
@@ -1532,18 +1616,26 @@ router.post([/dependant-address/, /dependant-address-error/, /dependant-address-
 
 router.post([/more-dependants-check/, /more-dependants-check-error/], function(req, res){
     var moreDependantsCheck = req.session.data['moreDependantsCheck'];
-    var euStatePension = req.session.data['euStatePension'];
+    //var euStatePension = req.session.data['euStatePension'];
 
-    if(moreDependantsCheck == 'No' && euStatePension == 'Yes') {
-        res.redirect('../upload/index-1');
-    } else if(moreDependantsCheck == 'No' && euStatePension == 'No') {
-        res.redirect('submit');
+    if(moreDependantsCheck == 'No') {
+        res.redirect('dependant-cya');
     } else if (moreDependantsCheck == 'Yes') {
         res.redirect('dependant-name');
     } else {
         res.redirect('more-dependants-check-error');
     }
 })
+
+// router.get(/dependant-cya/, function(req, res) {
+//     var euStatePension = req.session.data['euStatePension'];
+
+//     if (euStatePension == 'Yes'){
+//         res.redirect('../upload/index-1')
+//     } else if (euStatePension == 'No'){
+//         res.redirect('../apply/submit');
+//     }
+// })
 
 router.post(/cya/, function(req, res){
     var euStatePension = req.session.data['euStatePension'];

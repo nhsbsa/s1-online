@@ -133,11 +133,19 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
     {% endif %}
     </dl>
 
-    <a href="application-dependant-cya">
+    {% if data['euStatePension'] == 'Yes' %}
+    <a href="../upload/index-1">
       <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
         Continue
       </button>
     </a>
+    {% elseif %}
+    <a href="../apply/submit">
+      <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+        Continue
+      </button>
+    </a>
+    {% endif %}
 
 
   </div>
