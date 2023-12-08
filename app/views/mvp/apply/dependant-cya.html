@@ -84,7 +84,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Does {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }} live at the same address as you?
         </dt>
         <dd class="nhsuk-summary-list__value">
-          {{ data['depenantAddressCheck']}}
+          {{ data['dependantAddressCheck']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
           <a href="#dependant-address-check">
@@ -93,7 +93,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         </dd>
       </div>
 
-      {% if data['depenantAddressCheck'] == 'No' %}
+      {% if data['dependantAddressCheck'] == 'No' %}
       <div class="nhsuk-summary-list__row">
         <dt class="nhsuk-summary-list__key">
           What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s address?
@@ -139,14 +139,14 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
         Continue
       </button>
     </a>
-    {% elseif %}
+    {% else %}
     <a href="../apply/submit">
       <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
         Continue
       </button>
     </a>
     {% endif %}
-
+  
 
   </div>
 </div>
