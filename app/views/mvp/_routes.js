@@ -506,6 +506,7 @@ router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-sta
 
     var euCountryPension = req.session.data['myInputsEUSP'];
     var countrySOne = req.session.data['countrySOne'];
+    var moveCheck = req.session.data['moveCheck'];
 
     // arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true
     // arraysContainSame(euCountryPension, ['Iceland']) === true
@@ -557,20 +558,34 @@ router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-sta
 
     if (euCountryPension.includes(countrySOne) === true ){
         return res.redirect('kickout/ineligible-sone-state-pension');
-    } else if (euCountryPension.includes('Iceland') === true || euCountryPension.includes('Liechtenstein') === true  || euCountryPension.includes('Norway') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Austria') === true || euCountryPension.includes('Belgium') === true || euCountryPension.includes('Bulgaria') === true || euCountryPension.includes('Denmark') === true){
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Czech Republic') === true || euCountryPension.includes('Estonia') === true || euCountryPension.includes('Finland') === true || euCountryPension.includes('France') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Germany') === true || euCountryPension.includes('Greece') === true || euCountryPension.includes('Hungary') === true || euCountryPension.includes('Ireland') === true || euCountryPension.includes('Italy') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Latvia') === true || euCountryPension.includes('Lithuania') === true || euCountryPension.includes('Luxemburg') === true || euCountryPension.includes('Malta') === true || euCountryPension.includes('Montenegro') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Netherlands') === true || euCountryPension.includes('Poland') === true || euCountryPension.includes('Portugal') === true || euCountryPension.includes('Romania') === true || euCountryPension.includes('Slovakia') === true || euCountryPension.includes('Switzerland') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
-    } else if (euCountryPension.includes('Slovenia') === true || euCountryPension.includes('Spain') === true || euCountryPension.includes('Sweden') === true) {
-        return res.redirect('eligibility-eu-state-pension-amount');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Iceland') === true || euCountryPension.includes('Liechtenstein') === true  || euCountryPension.includes('Norway') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Iceland') === true || euCountryPension.includes('Liechtenstein') === true  || euCountryPension.includes('Norway') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Austria') === true || euCountryPension.includes('Belgium') === true || euCountryPension.includes('Bulgaria') === true || euCountryPension.includes('Denmark') === true)){
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Austria') === true || euCountryPension.includes('Belgium') === true || euCountryPension.includes('Bulgaria') === true || euCountryPension.includes('Denmark') === true)){
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Czech Republic') === true || euCountryPension.includes('Estonia') === true || euCountryPension.includes('Finland') === true || euCountryPension.includes('France') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Czech Republic') === true || euCountryPension.includes('Estonia') === true || euCountryPension.includes('Finland') === true || euCountryPension.includes('France') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Germany') === true || euCountryPension.includes('Greece') === true || euCountryPension.includes('Hungary') === true || euCountryPension.includes('Ireland') === true || euCountryPension.includes('Italy') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Germany') === true || euCountryPension.includes('Greece') === true || euCountryPension.includes('Hungary') === true || euCountryPension.includes('Ireland') === true || euCountryPension.includes('Italy') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Latvia') === true || euCountryPension.includes('Lithuania') === true || euCountryPension.includes('Luxemburg') === true || euCountryPension.includes('Malta') === true || euCountryPension.includes('Montenegro') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Latvia') === true || euCountryPension.includes('Lithuania') === true || euCountryPension.includes('Luxemburg') === true || euCountryPension.includes('Malta') === true || euCountryPension.includes('Montenegro') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Netherlands') === true || euCountryPension.includes('Poland') === true || euCountryPension.includes('Portugal') === true || euCountryPension.includes('Romania') === true || euCountryPension.includes('Slovakia') === true || euCountryPension.includes('Switzerland') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Netherlands') === true || euCountryPension.includes('Poland') === true || euCountryPension.includes('Portugal') === true || euCountryPension.includes('Romania') === true || euCountryPension.includes('Slovakia') === true || euCountryPension.includes('Switzerland') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
+    } else if (moveCheck == 'No' && (euCountryPension.includes('Slovenia') === true || euCountryPension.includes('Spain') === true || euCountryPension.includes('Sweden') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-1');
+    } else if (moveCheck == 'Yes' && (euCountryPension.includes('Slovenia') === true || euCountryPension.includes('Spain') === true || euCountryPension.includes('Sweden') === true)) {
+        return res.redirect('../eligibility/eligibility-cya-2');
     } else if (euCountryPension == ''){
         return res.redirect('eligibility-eu-country-state-pension-error');
     } else {
@@ -922,6 +937,13 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
     dt2 = dobDate;
     const diffDate = diff_years(dt1, dt2);
     console.log(diffDate);
+
+    // Validation for under 67 pension age
+    // } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate < 67) {
+    //     res.redirect('applicant-dob-ineligible-error');
+    // } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate >= 67) {
+    //     res.redirect('applicant-nino');
+    // }   
     
 
     if(day === '' && month === '' && year === '') {
@@ -948,9 +970,9 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
         res.redirect('applicant-dob-day-year-error');
     } else if(day !== '' && dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
         res.redirect('applicant-dob-year-error');
-    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate < 67) {
+    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate < 18) {
         res.redirect('applicant-dob-ineligible-error');
-    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate >= 67) {
+    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year) && diffDate >= 18) {
         res.redirect('applicant-nino');
     }   
 
