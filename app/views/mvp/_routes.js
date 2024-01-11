@@ -1442,8 +1442,6 @@ router.post(/additional-file-2/, function(req,res){
 })
 
 
-
-
 // Check your details - main applicant
 // applicant-cya-personal
 
@@ -1452,14 +1450,11 @@ router.post(/additional-file-2/, function(req,res){
 
 router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
     var dependantCheck = req.session.data['dependantCheck'];
-    var euStatePension = req.session.data['euStatePension'];
 
     if(dependantCheck == 'Yes') {
       res.redirect('dependant-name');
-    } else if(dependantCheck == 'No' && euStatePension == 'Yes') {
-      res.redirect('../upload/index-1');
-    } else if(dependantCheck == 'No' && euStatePension == 'No') {
-        res.redirect('submit');
+    } else if(dependantCheck == 'No') {
+      res.redirect('submit');
     } else {
         res.redirect('dependant-check-error');
     }
