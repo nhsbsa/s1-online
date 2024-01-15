@@ -454,14 +454,14 @@ router.post([/eligibility-state-pension-check/, /eligibility-state-pension-check
     var statePensionCheck = req.session.data['statePensionCheck'];
     var countrySOne = req.session.data['countrySOne'];
 
-    if (statePensionCheck == 'Yes'){
+    if (!statePensionCheck) {
+        res.redirect('eligibility-state-pension-check-error');
+    } else if (statePensionCheck == 'Yes'){
         res.redirect('kickout/ineligible-sone-state-pension');
-    } if (statePensionCheck == 'No' && countrySOne == 'Germany'){
+    } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
         res.redirect('eligibility-germany-contributions');
-    } if (statePensionCheck == 'No' && countrySOne != 'Germany'){
+    } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
         res.redirect('eligibility-other-eu-state-pension');
-    } else {
-        res.redirect('eligibility-state-pension-check-error')
     }
 })
 
@@ -475,7 +475,7 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
         res.redirect('kickout/ineligible-germany-contributions');
     } if (germanyCountributions == 'No') {
         res.redirect('eligibility-other-eu-state-pension');
-    } else {
+    } else if (!germanyCountributions) {
         res.redirect('eligibility-germany-contributions-error');
     }
 })
@@ -1242,13 +1242,15 @@ function arraysContainSame(a, b) {
 
 // What is your National Insurance number? 
 
-router.post([/applicant-nino/, /applicant-nino-error/, /applicant-nino-invalid/], function (req,res) {
+router.post([/applicant-nino/, /applicant-nino-error/], function (req,res) {
     console.log(req.body.nino);
   
     const ninoRegEx = /^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/;
     var moveCheck = req.session.data['moveCheck'];
 
-    if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
+    if (req.body.nino == ''){
+        res.redirect('applicant-nino-error');
+    } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
       res.redirect('applicant-nino-error');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino) && moveCheck == 'Yes'){
       res.redirect('applicant-residential-address');
@@ -1442,8 +1444,6 @@ router.post(/additional-file-2/, function(req,res){
 })
 
 
-
-
 // Check your details - main applicant
 // applicant-cya-personal
 
@@ -1452,14 +1452,11 @@ router.post(/additional-file-2/, function(req,res){
 
 router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
     var dependantCheck = req.session.data['dependantCheck'];
-    var euStatePension = req.session.data['euStatePension'];
 
     if(dependantCheck == 'Yes') {
       res.redirect('dependant-name');
-    } else if(dependantCheck == 'No' && euStatePension == 'Yes') {
-      res.redirect('../upload/index-1');
-    } else if(dependantCheck == 'No' && euStatePension == 'No') {
-        res.redirect('submit');
+    } else if(dependantCheck == 'No') {
+      res.redirect('submit');
     } else {
         res.redirect('dependant-check-error');
     }
