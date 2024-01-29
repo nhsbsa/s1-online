@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Do you live in the UK?
+{% endblock %}
+
+{% block beforeContent %}
+
+  <!-- Phase banner -->
+  <!-- <div class="app-phase-banner">
+    <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+        <strong class="nhsuk-tag app-phase-banner__tag">
+          Prototype
+        </strong>
+        <span class="app-phase-banner__text">
+        This is a prototype - your <a href="#">feedback</a> will help us improve it.
+        </span>
+      </p>
+    </div>
+  </div> -->
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+      <!-- <span class="nhsuk-caption-l nhsuk-caption--bottom">Check your eligibility</span> -->
+      <form action="uk-address" method="post">
+
+        <h2>Does {{ data['upload-firstname'] }} live in the UK?</h2>
+
+        {% call fieldset({
+          legend: {
+            text: "",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        <!-- <p>If you have previously lived in another country, they may have given you an S1 form that entitles you to healthcare cover in the UK. For example, if you're receiving state pension or benefits from that country.</p> -->
+
+        <!-- <p>If you have previously lived in another country, they may have given you a certificate that entitles you to healthcare cover in the UK. For example, if you're receiving state pension or benefits from that country.</p> -->
+
+        {{ radios({
+          "idPrefix": "uk-address",
+          "name": "ukAddress",
+          "items": [
+            {
+              "value": "Yes",
+              "text": "Yes"
+            },
+            {
+              "value": "No",
+              "text": "No"
+            }
+          ]
+        }) }}
+
+        {% endcall %}
+
+
+ <!--        {{ details({
+          "text": "What is an S1, E121, E106 or E109?",
+          "HTML": "
+          <p>An S1, E121, E106 or E109 certificate issued by an EU country, Norway, Iceland, Liechtenstein or Switzerland for a person living in the UK entitles them to NHS cover on the same basis as a resident of the UK. You may be entitled to one of these documents if you:</p>
+
+        <ul>
+          <li>receive a qualifying benefit or state pension from one of the above countries, and do not receive a UK State Pension</li>
+          <li>are a frontier worker (someone who lives in the UK and works in one of those countries)</li>
+          <li>are the family member of someone who has been awarded an S1, E121 or E106 certificate</li>
+        </ul>
+        <p>If you are entitled to an S1, E121, E106 or E109 certificate, answer yes. You should ask the country who issued this certificate for healthcare cover, such as an EHIC, if you intend to visit another EU country, Norway, Iceland, Liechtenstein or Switzerland.</p>
+        <p>If you have been provided with an S1, E121, E106 or E109 certificate that you have not yet registered with the NHS, you should also answer yes. However, you must ensure the certificate is forwarded to Cost Recovery, Overseas Healthcare Services, NHSBSA, Bridge House, 152 Pilgrim Street, Newcastle upon Tyne, NE1 6SN, UK.
+</p>
+          "
+        }) }} -->
+
+
+        {{ button({
+          "text": "Continue"
+        }) }}
+
+      </form>
+
+
+
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}

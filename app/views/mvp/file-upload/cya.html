@@ -1,0 +1,315 @@
+{% extends "layout.html" %}
+{% block pageTitle %}
+
+   Check your details are correct
+
+{% endblock %}
+{% block beforeContent %}
+<!-- Phase banner -->
+<!-- <div class="app-phase-banner">
+   <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+         <strong class="nhsuk-tag app-phase-banner__tag">
+         Prototype
+         </strong>
+         <span class="app-phase-banner__text">
+         This is a prototype - your <a href="#">feedback</a> will help us improve it.
+         </span>
+      </p>
+   </div>
+</div> -->
+{% endblock %}
+{% block content %}
+<div class="nhsuk-grid-row">
+   <div class="nhsuk-grid-column-three-quarters">
+      <form action="app-complete" method="post">
+         <h1 class="nhsuk-heading-l">
+            Check the applicant's details are correct
+         </h1>
+         <h2 class="nhsuk-heading-m">
+            Applicant's details
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                 OHS reference number
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  00123456
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+               </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  Name
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  {{ data['upload-firstname'] }} {{ data['upload-lastname'] }}
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+               </dd>
+            </div>
+
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  Date of birth
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  {{ data['replace-dob-day'] }} / {{ data['replace-dob-month'] }} / {{ data['replace-dob-year'] }}
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+               </dd>
+            </div>
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  Address
+               </dt>
+
+               {% if data['uk-address'] == "yes" %}
+                  <dd class="nhsuk-summary-list__value">
+                     72 Roman Rd<br>
+                     Leeds <br>
+                     LS2 5ZN<br>
+                     UK
+                  </dd>
+               {% endif %}
+
+               {% if data['uk-address'] == "no" %}
+                  <dd class="nhsuk-summary-list__value">
+                     {{ data['address-eu-line-1'] }}, <br>
+                     {{ data['address-eu-line-2'] }}, <br>
+                     {{ data['address-eu-line-3'] }}, <br>
+                     {{ data['address-eu-line-4'] }}, <br>
+                     {{ data['address-eu-line-5'] }}, <br>
+                     {{ data['address-eu-line-6'] }} <br>
+                  </dd>
+               {% endif %}
+
+               <dd class="nhsuk-summary-list__actions">
+               </dd>
+            </div>
+         </dl>
+
+
+
+
+   {% if data['provide-RTR'] == "yes" %}
+
+         <h2 class="nhsuk-heading-m">
+            Evidence of the applicant's right to reside in the UK
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+
+         {% if data['evidence-type'] == "document" %}
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  {{ data['file-type-1'] }}
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  example_file_name_01.jpg, 2MB
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="upload-reside-another2">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+
+            {% if data['add-evid-right'] == "yes" %}
+               <div class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                     {{ data['file-type-2'] }}
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                     example_file_name_02.jpg, 2MB
+                  </dd>
+                  <dd class="nhsuk-summary-list__actions">
+                     <a class="nhsuk-link" href="upload-reside-another2">
+                     Change <span class="nhsuk-u-visually-hidden"></span>
+                     </a>
+                  </dd>
+               </div>
+            {% endif %}
+
+         {% endif %}
+
+         {% if data['evidence-type'] == "sharecode" %}
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  EU settled status share code
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  {{ data['sharecode'] }}
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="upload-reside-another2">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+         {% endif %} 
+
+         </dl>
+
+   {% endif %} 
+
+
+
+   {% if data['provide-dual'] == "yes" %}
+
+         <h2 class="nhsuk-heading-m">
+            Evidence of the applicant's dual nationality
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  Dual nationality information
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  {{ data['dual-nat-info'] }}
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="dual-nationality-info">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+         </dl>
+
+   {% endif %} 
+
+
+
+   {% if data['provide-uk-res'] == "yes" %}
+
+         <h2 class="nhsuk-heading-m">
+            Evidence of the applicant's UK residency
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  {{ data['file-type-3'] }}
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  example_file_name_03.jpg, 2MB
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="upload-res-uk-another2">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+
+            {% if data['add-evid-res-uk'] == "yes" %}
+               <div class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                     {{ data['file-type-4'] }}
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                     example_file_name_04.jpg, 2MB
+                  </dd>
+                  <dd class="nhsuk-summary-list__actions">
+                     <a class="nhsuk-link" href="upload-res-uk-another2">
+                     Change <span class="nhsuk-u-visually-hidden"></span>
+                     </a>
+                  </dd>
+               </div>
+            {% endif %} 
+         </dl>
+
+   {% endif %} 
+
+
+
+   {% if data['provide-student'] == "yes" %}
+
+         <h2 class="nhsuk-heading-m">
+            Evidence of the applicant's studies abroad
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  {{ data['file-type-5'] }}
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  example_file_name_05.jpg, 2MB
+               </dd>
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="upload-student-another2">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+
+            {% if data['add-evid-student'] == "yes" %}
+               <div class="nhsuk-summary-list__row">
+                  <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                     {{ data['file-type-6'] }}
+                  </dt>
+                  <dd class="nhsuk-summary-list__value">
+                     example_file_name_06.jpg, 2MB
+                  </dd>
+                  <dd class="nhsuk-summary-list__actions">
+                     <a class="nhsuk-link" href="upload-student-another2">
+                     Change <span class="nhsuk-u-visually-hidden"></span>
+                     </a>
+                  </dd>
+               </div>
+            {% endif %}
+
+         </dl>
+
+         {% endif %} 
+
+
+   {% if data['evidence-yn'] == "no" %}
+         <h2 class="nhsuk-heading-m">
+            Alternative evidence
+         </h2>
+
+         <dl class="nhsuk-summary-list">
+
+            <div class="nhsuk-summary-list__row">
+               <dt class="nhsuk-summary-list__key nhsuk-!-width-one-third">
+                  Reason for alternative evidence
+               </dt>
+               <dd class="nhsuk-summary-list__value">
+                  {{ data['additional-info'] }}
+               <dd class="nhsuk-summary-list__actions">
+                  <a class="nhsuk-link" href="additional-info">
+                  Change <span class="nhsuk-u-visually-hidden"></span>
+                  </a>
+               </dd>
+            </div>
+      {% endif %} 
+
+         </dl>
+
+         <h2>Before you submit the applicant's evidence</h2>
+         <p>By submitting the applicant's evidence, you are confirming that the information you’ve given us is correct. If you knowingly provide incorrect information, you could be prosecuted or face civil proceedings.</p>
+
+         <p>You can <a href="https://www.nhsbsa.nhs.uk/our-policies/privacy" target="_blank">find out more about how we use your information on our website</a>.</p>
+
+
+         {{ insetText({
+           "HTML": "<p>It can take some time for the evidence you submit to upload. You will get confirmation when the upload is complete. </p> <p>Do not close your browser or select ‘Agree and send’ more than once.</p>"
+         }) }}
+
+         {{ button({
+         "text": "Agree and send"
+         }) }}
+      </form>
+      
+      <!-- {{ backLink({
+         "href": "add-another-yn",
+         "text": "Change my previous answer"
+         }) }} -->
+   </div>
+</div>
+{% endblock %}

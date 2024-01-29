@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  If you cannot provide the evidence we asked for, tell us why
+{% endblock %}
+
+{% block beforeContent %}
+
+  <!-- Phase banner -->
+  <!-- <div class="app-phase-banner">
+    <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+        <strong class="nhsuk-tag app-phase-banner__tag">
+          Prototype
+        </strong>
+        <span class="app-phase-banner__text">
+        This is a prototype - your <a href="#">feedback</a> will help us improve it.
+        </span>
+      </p>
+    </div>
+  </div> -->
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+      <form action="additional-info" method="post">
+
+        {% call fieldset({
+          legend: {
+            text: "If you cannot provide the evidence we asked for, tell us why",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        <!-- <p>If you have provided all the requested evidence, select continue.</p> -->
+
+
+        {{ textarea({
+          "name": "addInfo",
+          "id": "example",
+          "label": {
+            "text": ""
+          },
+          "hint": {
+            "text": ""
+          }
+        }) }}
+
+        <!-- Explain any missing documents or  -->
+
+        {% endcall %}
+
+
+        {{ button({
+          "text": "Continue"
+        }) }}
+
+      </form>
+
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

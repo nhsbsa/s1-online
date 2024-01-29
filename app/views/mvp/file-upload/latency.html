@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+   Latency test page
+{% endblock %}
+
+{% block beforeContent %}
+
+<style type="text/css">
+  
+  .latency {
+   text-align: center;
+   }
+   .latencyImg {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   width: 50px;
+   height: auto;
+   }
+   
+</style>
+
+<head>
+  <!-- <meta http-equiv="refresh" content="1.5; provide-rtr-evid"> -->
+  <meta http-equiv="refresh" content="1.5; evidence">
+</head>
+
+  <!-- Phase banner -->
+  <!-- <div class="app-phase-banner">
+    <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+        <strong class="nhsuk-tag app-phase-banner__tag">
+          Prototype
+        </strong>
+        <span class="app-phase-banner__text">
+        This is a prototype - your <a href="#">feedback</a> will help us improve it.
+        </span>
+      </p>
+    </div>
+  </div> -->
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+        <!-- <div class="nhsuk-grid-column-two-thirds"> -->
+        <div class="nhsuk-grid-column-full">
+
+          <!-- <div class="nhsuk-panel nhsuk-panel--confirmation nhsuk-u-margin-bottom-4">
+            <h1 class="nhsuk-panel__title">
+                Latency test page
+              </h1>
+            </div> -->
+
+            <div class="form-group">
+                  <div class="grid-row">
+                     <div class="grid-row">
+                        <div class="column-full">
+                           <div class="heading-group">
+                              <h1 class="heading-xlarge latency">Checking details</h1>
+                           </div>
+                           <p class="latency">This may take a moment.</p>
+                           <br>
+                           <br>
+                           <img class="latencyImg" src="/images/spinner.gif">
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            
+        </div>
+      </div>
+{% endblock %}

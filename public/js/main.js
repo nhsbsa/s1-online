@@ -12,6 +12,12 @@ if (document.querySelector('#eu-live-location-picker')) {
   });
 }
 
+if (document.querySelector('#eea-location-picker')) {
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: document.querySelector('#eea-location-picker')
+  });
+}
+
 if (document.querySelector('#eu-location-picker')) {
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: document.querySelector('#eu-location-picker')
@@ -78,6 +84,41 @@ function addInputEU(el) {
 function removeInputEU(btn) {
   btn.parentNode.parentNode.remove();
   return false;
+} /// EEA 
+
+
+var eeaCountries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia (Czech Republic)", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxemburg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"];
+
+function generateSelectList(countryArray) {
+  let selectListOptions = '';
+  countryArray.forEach(element => {
+    selectListOptions += `<option value='${element}'>${element}</option>`;
+  });
+  return selectListOptions;
+}
+
+function addInputEEA(el) {
+  var newFieldEEA = document.createElement('div'); // Count current amount of inputs in section
+
+  var inputCountEEA = el.closest('div').getElementsByTagName('select').length;
+  console.log(inputCountEEA); // Create ID for new select we're going to add
+
+  var newSelectID = `${el.previousElementSibling.className}-${inputCountEEA}`;
+  let generatedOptionList = generateSelectList(eeaCountries);
+  newFieldEEA.innerHTML = `<br><a href='#' style="float: right;" type='button' value='-' onClick='return removeInputEEA(this);'>- Remove country</a><label class='nhsuk-label' for='${newSelectID}'>Country name</label><select id='${newSelectID}' name='myInputsEEA[]' type='text'><option value=''></option>${generatedOptionList}</select></div>`;
+  document.getElementById('appendableEEA').appendChild(newFieldEEA); // Use ID of new select to initilise autcomplete for our new select
+
+  let select = document.querySelector(`#${newSelectID}`);
+  accessibleAutocomplete.enhanceSelectElement({
+    selectElement: select,
+    source: eeaCountries
+  });
+  return false;
+}
+
+function removeInputEEA(btn) {
+  btn.parentNode.remove();
+  return false;
 } //Other
 
 
@@ -103,17 +144,10 @@ function addInputOther(el) {
 function removeInputOther(btn) {
   btn.parentNode.remove();
   return false;
-}
+} // EUSP
+
 
 var spEuCountries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Czechia (Czech Republic)", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Ireland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxemburg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland", "United Kingdom"];
-
-function generateSelectList(countryArray) {
-  let selectListOptions = '';
-  countryArray.forEach(element => {
-    selectListOptions += `<option value='${element}'>${element}</option>`;
-  });
-  return selectListOptions;
-}
 
 function addInputEUSP(el) {
   var newFieldOther = document.createElement('div'); // Count current amount of inputs in section
