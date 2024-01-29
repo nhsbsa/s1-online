@@ -103,7 +103,7 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     ///// Validate date input values using regular expressions
     var yearReg = /^(202[3-4])$/;            ///< Allows a number between 2023 and 2024
     var monthReg = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
-    var dayReg = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    var dayReg = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
 
     if (dayReg.test(futureDay) && monthReg.test(futureMonth) && yearReg.test(futureYear) && fullFutureDate > ninetyDaysFromNow) {
       res.redirect('kickout/ineligible-ninety-date-kickout');
@@ -214,7 +214,7 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
     ///// Validate date input values using regular expressions
     var yearReg = /^(200[0-9]|201[0-9]|202[0-4])$/;     ///< Allows a number between 2000 and 2024
     var monthReg = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
-    var dayReg = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    var dayReg = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
 
     // var firstJan = new Date("1/1/2021");
     // console.log(firstJan);
@@ -300,12 +300,12 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
 //     b = Array.isArray(b) ? b : [];
 //     return a.length === b.length && a.every(el => b.includes(el));
 //   }
-  
+
 //   router.post(/nationality-status/, function (req, res) {
-  
+
 //     var nationalityStatus = req.session.data['nationalityStatus'];
 //     console.log(nationalityStatus);
-  
+
 //     if (arraysContainSame(nationalityStatus, ['UK', 'Other']) == true) {
 //       res.redirect('studying-uk-citizen')
 //     }
@@ -331,7 +331,6 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
 //       res.redirect('nationality')
 //     }
 //   })
-  
 
 
 // Did you move in [Country] before 1 January 2021?
@@ -756,23 +755,23 @@ router.get(/application-dependant-cya/, function(req, res){
         console.log(liveDateFormatted);
     }
 
-      //Today's date
-      const year = req.session.data['dependant-year'];
-      const month = req.session.data['dependant-month'];
-      const day = req.session.data['dependant-day'];
-      const formatDob = day + '/' + month + '/' + year;
-  
-      console.log(formatDob);
-  
-      var depDobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
-      console.log(depDobDate);
-  
-      // Convert format
-      const depDobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-  
-      const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
-      var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
-      console.log(depDobDateFormatted);
+    //Today's date
+    const year = req.session.data['dependant-year'];
+    const month = req.session.data['dependant-month'];
+    const day = req.session.data['dependant-day'];
+    const formatDob = day + '/' + month + '/' + year;
+
+    console.log(formatDob);
+
+    var depDobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+    console.log(depDobDate);
+
+    // Convert format
+    const depDobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+    const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
+    var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
+    console.log(depDobDateFormatted);
 
     res.render('mvp/apply/application-dependant-cya', { moveDateFormatted: moveDateFormatted, liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow, depDobDateFormatted: depDobDateFormatted});
 })
@@ -881,17 +880,17 @@ router.get(/application-nodependant-cya/, function(req, res){
 router.post([/applicant-name/, /applicant-firstname-error/, /applicant-surname-error/, /applicant-name-error/], function (req,res) {
     console.log(req.body.firstName);
     console.log(req.body.surname);
-  
+
     if(req.body.firstName === '' && req.body.surname === '') {
-      res.redirect('applicant-name-error');
+        res.redirect('applicant-name-error');
     } else if (req.body.firstName !== '' && req.body.surname === '') {
         res.redirect('applicant-firstname-error');
     } else if (req.body.firstName === '' && req.body.surname !== '') {
         res.redirect('applicant-surname-error');
     } else if(req.body.firstName !== '' && req.body.surname !== '') {
-      res.redirect('applicant-dob');
+        res.redirect('applicant-dob');
     } 
-  })
+})
 
 
 // What is your date of birth?
@@ -906,7 +905,7 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
     
     var yearRegEx = /^(19[1-9][0-9])$/;            ///< Allows a number between 2021 and 2022
     var monthRegEx = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
-    var dayRegEx = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    var dayRegEx = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
     
     //wip
 
@@ -926,13 +925,13 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
 
     function diff_years(dt2, dt1) 
     {
-   
-     var diff =(dt2.getTime() - dt1.getTime()) / 1000;
-      diff /= (60 * 60 * 24);
-     return Math.abs(Math.round(diff/365.25));
-      
+
+    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+        diff /= (60 * 60 * 24);
+        return Math.abs(Math.round(diff/365.25));
+
     }
-   
+
     dt1 = ninetyDays;
     dt2 = dobDate;
     const diffDate = diff_years(dt1, dt2);
@@ -995,7 +994,7 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
         const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
         var dobDateFormatted = dateTimeFormat.format(dobDate);
         console.log(dobDateFormatted);
-      
+
         res.render('mvp/apply/applicant-cya-personal', {dobDateFormatted: dobDateFormatted});
     })
 
@@ -1061,9 +1060,9 @@ router.post([/applicant-dob/, /applicant-dob-error/, /applicant-dob-day-error/, 
             const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
             var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
             console.log(depDobDateFormatted);
-         }
+        }
         
-      
+
         res.render('mvp/eligibility/submit', {ninetyDaysFromNow: ninetyDaysFromNow, dobDateFormatted: dobDateFormatted, depDobDateFormatted: depDobDateFormatted});
     })
 })
@@ -1105,7 +1104,7 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
     
     var yearRegEx = /^(19[1-9][0-9])$/;            ///< Allows a number between 2021 and 2022
     var monthRegEx = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
-    var dayRegEx = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    var dayRegEx = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
     
     //wip
 
@@ -1125,18 +1124,17 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
 
     function diff_years(dt2, dt1) 
     {
-   
-     var diff =(dt2.getTime() - dt1.getTime()) / 1000;
+
+    var diff =(dt2.getTime() - dt1.getTime()) / 1000;
       diff /= (60 * 60 * 24);
-     return Math.abs(Math.round(diff/365.25));
-      
+        return Math.abs(Math.round(diff/365.25));
+
     }
-   
+
     dt1 = ninetyDays;
     dt2 = dobDate;
     const diffDate = diff_years(dt1, dt2);
     console.log(diffDate);
-    
 
     if(day === '' && month === '' && year === '') {
         res.redirect('applicant-dob-error');
@@ -1174,12 +1172,11 @@ function arraysContainSame(a, b) {
     a = Array.isArray(a) ? a : [];
     b = Array.isArray(b) ? b : [];
     return a.length === b.length && a.every(el => b.includes(el));
-  }
+}
 
 // What is your nationality?
-  
-  router.post([/nationality/, /nationality-error/, /nationality-eu-error/, /nationality-eu-other-error/, /nationality-other-error/], function (req, res) {
-  
+
+router.post([/nationality/, /nationality-error/, /nationality-eu-error/, /nationality-eu-other-error/, /nationality-other-error/], function (req, res) {
     var nationality = req.session.data['nationality'];
     console.log(nationality);
 
@@ -1238,26 +1235,25 @@ function arraysContainSame(a, b) {
     else {
         res.redirect('nationality-error')
     }
-  })
+})
 
 // What is your National Insurance number? 
 
 router.post([/applicant-nino/, /applicant-nino-error/], function (req,res) {
-    console.log(req.body.nino);
-  
+
     const ninoRegEx = /^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/;
     var moveCheck = req.session.data['moveCheck'];
 
     if (req.body.nino == ''){
         res.redirect('applicant-nino-error');
     } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
-      res.redirect('applicant-nino-error');
+        res.redirect('applicant-nino-error');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino) && moveCheck == 'Yes'){
-      res.redirect('applicant-residential-address');
+        res.redirect('applicant-residential-address');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino) && moveCheck == 'No'){
-        res.redirect('applicant-current-residential-address');
+        res.redirect('applicant-residential-address');
     }
-  })
+})
 
 // Residential address (in S1 country)
 ,
@@ -1266,15 +1262,15 @@ router.post([/applicant-residential-address/, /applicant-residential-address-err
     var city = req.session.data['city']
     var postcode = req.session.data['postcode']
     var country = req.session.data['country']
-  
+
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-correspondence-address-check');
+        res.redirect('applicant-correspondence-address-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-residential-address-line-error');
+        res.redirect('applicant-residential-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-      res.redirect('applicant-residential-address-city-error');
+        res.redirect('applicant-residential-address-city-error');
     } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-      res.redirect('applicant-residential-address-postcode-error');
+        res.redirect('applicant-residential-address-postcode-error');
     } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
         res.redirect('applicant-residential-address-country-error');
     } else {
@@ -1288,15 +1284,15 @@ router.post([/applicant-current-residential-address/, /applicant-current-residen
     var city = req.session.data['city']
     var postcode = req.session.data['postcode']
     var country = req.session.data['country']
-  
+
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-correspondence-address-check');
+        res.redirect('applicant-correspondence-address-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-current-residential-address-line-error');
+        res.redirect('applicant-current-residential-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-      res.redirect('applicant-current-residential-address-city-error');
+        res.redirect('applicant-current-residential-address-city-error');
     } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-      res.redirect('applicant-current-residential-address-postcode-error');
+        res.redirect('applicant-current-residential-address-postcode-error');
     } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
         res.redirect('applicant-current-residential-address-country-error');
     } else {
@@ -1309,11 +1305,11 @@ router.post([/applicant-current-residential-address/, /applicant-current-residen
 
 router.post([/applicant-correspondence-address-check/, /applicant-correspondence-address-check-error/], function (req,res) {
     var correspondenceAddressCheck = req.session.data['correspondenceAddressCheck']
-  
+
     if(correspondenceAddressCheck == 'Yes') {
-      res.redirect('applicant-email');
+        res.redirect('applicant-email');
     } else if(correspondenceAddressCheck == 'No') {
-      res.redirect('applicant-correspondence-address');
+        res.redirect('applicant-correspondence-address');
     } else {
         res.redirect('applicant-correspondence-address-check-error');
     }
@@ -1326,15 +1322,15 @@ router.post([/applicant-correspondence-address/, /applicant-correspondence-addre
     var city = req.session.data['city']
     var postcode = req.session.data['postcode']
     var country = req.session.data['country']
-  
+
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-correspondence-address-check');
+        res.redirect('applicant-correspondence-address-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-      res.redirect('applicant-correspondence-address-line-error');
+        res.redirect('applicant-correspondence-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-      res.redirect('applicant-correspondence-address-city-error');
+        res.redirect('applicant-correspondence-address-city-error');
     } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-      res.redirect('applicant-correspondence-address-postcode-error');
+        res.redirect('applicant-correspondence-address-postcode-error');
     } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
         res.redirect('applicant-correspondence-address-country-error');
     } else {
@@ -1350,15 +1346,15 @@ router.post([/applicant-email/, /applicant-email-error/], function (req,res) {
     var email = req.session.data['email'];
 
     const emailRegEx = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
-  
+
     if(email != '' && emailRegEx.test(email)) {
-      res.redirect('applicant-phone');
+        res.redirect('applicant-phone');
     } else if(email == '') {
-      res.redirect('applicant-email-error');
+        res.redirect('applicant-email-error');
     } else if(email != '' && !emailRegEx.test(email)) {
         res.redirect('applicant-email-error');
     }
-  })
+})
 
 
 // Phone
@@ -1367,26 +1363,26 @@ router.post([/applicant-phone/, /applicant-phone-error/], function (req,res) {
     console.log(req.body.phone);
     
     const phoneRegEx = /^0([1-6][0-9]{8,10}|7[0-9]{9})$/;
-  
+
     if(req.body.phone !== '' && phoneRegEx.test(req.body.phone)) {
-      res.redirect('applicant-send-letter-check');
+        res.redirect('applicant-send-letter-check');
     } else if(req.body.phone !== '' && !phoneRegEx.test(req.body.phone)) {
-      res.redirect('applicant-phone-error');
+        res.redirect('applicant-phone-error');
     } else {
-      res.redirect('applicant-send-letter-check');
+        res.redirect('applicant-send-letter-check');
     }
-  })
-  
+})
+
 
 // Do you want a copy of your S1 certificate to be sent by letter?
 
 router.post([/applicant-send-letter-check/, /applicant-send-letter-check-error/], function (req,res) {
     var sendCopyLetter = req.session.data['sendCopyLetter'];
-  
+
     if(sendCopyLetter == 'Yes') {
-      res.redirect('applicant-cya-personal');
+        res.redirect('applicant-cya-personal');
     } else if(sendCopyLetter == 'No') {
-      res.redirect('applicant-cya-personal');
+        res.redirect('applicant-cya-personal');
     } else {
         res.redirect('applicant-send-letter-check-error');
     }
@@ -1454,9 +1450,9 @@ router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
     var dependantCheck = req.session.data['dependantCheck'];
 
     if(dependantCheck == 'Yes') {
-      res.redirect('dependant-name');
+        res.redirect('dependant-name');
     } else if(dependantCheck == 'No') {
-      res.redirect('submit');
+        res.redirect('submit');
     } else {
         res.redirect('dependant-check-error');
     }
@@ -1467,19 +1463,18 @@ router.post([/dependant-check/, /dependant-check-error/], function (req,res) {
 router.post([/dependant-name/, /dependant-firstname-error/, /dependant-surname-error/, /dependant-name-error/], function (req,res) {
     console.log(req.body.dependantFirstName);
     console.log(req.body.dependantSurname);
-  
+
     if(req.body.dependantFirstName === '' && req.body.dependantSurname === '') {
-      res.redirect('dependant-name-error');
+        res.redirect('dependant-name-error');
     } else if (req.body.dependantFirstName !== '' && req.body.dependantSurname === '') {
         res.redirect('dependant-firstname-error');
     } else if (req.body.dependantFirstName === '' && req.body.dependantSurname !== '') {
         res.redirect('dependant-surname-error');
     } else if(req.body.dependantFirstName !== '' && req.body.dependantSurname !== '') {
-      res.redirect('dependant-dob');
+        res.redirect('dependant-dob');
     } 
 })
 
-//
 // What is [dependant name]'s date of birth?
 
 router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, /dependant-dob-day-month-error/, /dependant-dob-month-error/, /dependant-dob-month-year-error/, /dependant-dob-day-year-error/, /dependant-dob-year-error/], function (req, res) {
@@ -1489,7 +1484,7 @@ router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, 
     
     var yearRegEx = /^([1-2][0-9][0-9][0-9])$/;           ///< Allows a number between 2021 and 2022
     var monthRegEx = /^(0?[1-9]|1[0-2])$/;             ///< Allows a number between 00 and 12
-    var dayRegEx = /^([1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    var dayRegEx = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
         
     if(depDay === '' && depMonth === '' && depYear === '') {
         res.redirect('dependant-dob-error');
@@ -1587,7 +1582,7 @@ router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, 
             const depDobDateTimeFormat = new Intl.DateTimeFormat('en-GB', depDobOptions);
             var depDobDateFormatted = depDobDateTimeFormat.format(depDobDate);
             console.log(depDobDateFormatted);
-         }
+        }
         
         res.render('mvp/eligibility/submit', {ninetyDaysFromNow: ninetyDaysFromNow, depDobDateFormatted: depDobDateFormatted});
     }) 
@@ -1597,11 +1592,11 @@ router.post([/dependant-dob/, /dependant-dob-error/, /dependant-dob-day-error/, 
 
 router.post([/dependant-address-check/, /dependant-address-check-error/], function (req,res) {
     var dependantAddressCheck = req.session.data['dependantAddressCheck'];
-  
+
     if(dependantAddressCheck == 'Yes') {
-      res.redirect('more-dependants-check');
+        res.redirect('more-dependants-check');
     } else if(dependantAddressCheck == 'No') {
-      res.redirect('dependant-address');
+        res.redirect('dependant-address');
     } else {
         res.redirect('dependant-address-check-error');
     }
@@ -1615,15 +1610,15 @@ router.post([/dependant-address/, /dependant-address-error/, /dependant-address-
     var city = req.session.data['dependantCity'];
     var postcode = req.session.data['dependantPostcode'];
     var country = req.session.data['dependantCountry'];
-  
+
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-      res.redirect('dependant-more-check');
+        res.redirect('dependant-more-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-      res.redirect('dependant-address-line-error');
+        res.redirect('dependant-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-      res.redirect('dependant-address-city-error');
+        res.redirect('dependant-address-city-error');
     } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-      res.redirect('dependant-address-postcode-error');
+        res.redirect('dependant-address-postcode-error');
     } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
         res.redirect('adependant-address-country-error');
     } else {
@@ -1663,6 +1658,322 @@ router.post(/cya/, function(req, res){
         res.redirect('../apply/submit');
     }
 })
+
+
+//// Evidence File Upload
+
+// What is your OHS reference number?
+router.post([/ohs-number/, /ohs-number-error/, /ohs-number-invalid/], function (req, res) {
+    var ohs = req.session.data['ohs'];
+    const ohsRegEx = /^[0-9]{8}$/;
+
+    if (ohs == '') {
+        res.redirect('ohs-number-error');
+    }
+    else if (ohs != '' && !ohsRegEx.test(ohs)){
+        res.redirect('ohs-number-invalid');
+    }
+    else if (ohs != '' && ohsRegEx.test(ohs)) {
+        res.redirect('full-name');
+    }
+})
+
+// What is your name?
+router.post([/full-name/, /full-name-first-error/, /full-name-last-error/, /full-name-error/], function (req, res) {
+    var first = req.session.data['upload-firstname'];
+    var last = req.session.data['upload-lastname'];
+
+    if (first != '' && last != '') {
+        res.redirect('dob');
+    }
+    else if (first == '' && last != ''){
+        res.redirect('full-name-first-error');
+    }
+    else if (first != '' && last == ''){
+        res.redirect('full-name-last-error');
+    }
+    else if (first == '' && last == ''){
+        res.redirect('full-name-error');
+    }
+})
+
+// What is your date of birth?
+router.post([/dob/, /dob-error/, /dob-day-error/, /dob-day-month-error/, /dob-month-error/, /dob-month-year-error/, /dob-day-year-error/, /dob-year-error/], function (req, res) {
+    const day = req.session.data['upload-day'];
+    const month = req.session.data['upload-month'];
+    const year =req.session.data['upload-year'];
+
+    var yearRegEx = /^(19[1-9][0-9])$/;            ///< Allows a number between 1910 and 1999
+    var monthRegEx = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
+    var dayRegEx = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+
+    if(day === '' && month === '' && year === '') {
+        res.redirect('dob-error');
+    } else if(day === '' && month !== '' && year !== ''){
+        res.redirect('dob-day-error');
+    } else if(day === '' && month === '' && year !== ''){
+        res.redirect('dob-day-month-error');
+    } else if(day === '' && month !== '' && year === ''){
+        res.redirect('dob-day-year-error');
+    } else if(day !== '' && month !== '' && year === ''){
+        res.redirect('dob-year-error');
+    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+        res.redirect('dob-error');
+    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+        res.redirect('dob-day-error');
+    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+        res.redirect('dob-day-month-error');
+    } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
+        res.redirect('dob-month-error');
+    } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+        res.redirect('dob-month-year-error');
+    } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+        res.redirect('dob-day-year-error');
+    } else if(day !== '' && dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
+        res.redirect('dob-year-error');
+    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year)) {
+        res.redirect('evidence');
+    }   
+})
+
+// // Do you live in the UK? - uk-address.html
+// router.post(/uk-address/, function (req, res) {
+//     var ukAddress = req.session.data['ukAddress']
+
+//     if (ukAddress == "Yes") {
+//       res.redirect('address-lookup')
+//     }
+//     else if (ukAddress == "No") {
+//       res.redirect('address-eu')
+//     }
+//     else {
+//       res.redirect('uk-address')
+//     }
+//   })
+
+// Do you have the evidence we asked for? - evidence.html
+router.post([/evidence/, /evidence-error/], function (req, res) {
+    var evidenceYN = req.session.data['evidenceYn'];
+
+    if (evidenceYN == "Yes") {
+        res.redirect('provide-eea-pension-evid');
+    }
+    else if (evidenceYN == "No") {
+        res.redirect('additional-info');
+    }
+    else if (evidenceYN == '') {
+        res.redirect('evidence-error');
+    }
+})
+
+// If you cannot provide the evidence we asked for, tell us why
+router.post([/additional-info/, /additional-info-error/], function (req, res) {
+    var addInfo = req.session.data['addInfo'];
+
+    if (addInfo == '') {
+        res.redirect('additional-info-error');
+    }
+    else if (addInfo != '') {
+        res.redirect('cya-1');
+    }
+})
+
+router.get(/cya-1/, function (req, res) {
+
+    //Date of birth
+    const year = req.session.data['upload-year'];
+    const month = req.session.data['upload-month'];
+    const day = req.session.data['upload-day'];
+    const formatDob = day + '/' + month + '/' + year;
+
+    console.log(formatDob);
+
+    if(year){
+        console.log(formatDob);
+
+        var dobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+        console.log(dobDate);
+
+        // Convert format
+        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
+        var uploadDobDateFormatted = dobDateTimeFormat.format(dobDate);
+        console.log(uploadDobDateFormatted);
+    }
+
+    res.render('mvp/file-upload/cya-1', { uploadDobDateFormatted: uploadDobDateFormatted });
+})
+
+router.get(/cya-eea/, function (req, res) {
+
+    //Date of birth
+    const year = req.session.data['upload-year'];
+    const month = req.session.data['upload-month'];
+    const day = req.session.data['upload-day'];
+    const formatDob = day + '/' + month + '/' + year;
+
+    if(year){
+        console.log(formatDob);
+
+        var dobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+        console.log(dobDate);
+
+        // Convert format
+        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
+        var uploadDobDateFormatted = dobDateTimeFormat.format(dobDate);
+        console.log(uploadDobDateFormatted);
+    }
+
+    res.render('mvp/file-upload/cya-eea', { uploadDobDateFormatted: uploadDobDateFormatted });
+})
+
+router.get(/cya-uk/, function (req, res) {
+
+    //Date of birth
+    const year = req.session.data['upload-year'];
+    const month = req.session.data['upload-month'];
+    const day = req.session.data['upload-day'];
+    const formatDob = day + '/' + month + '/' + year;
+
+    console.log(formatDob);
+
+    if(year){
+        console.log(formatDob);
+
+        var dobDate = new Date(formatDob.split('/')[2], formatDob.split('/')[1] - 1, formatDob.split('/')[0]);
+        console.log(dobDate);
+
+        // Convert format
+        const dobOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+
+        const dobDateTimeFormat = new Intl.DateTimeFormat('en-GB', dobOptions);
+        var uploadDobDateFormatted = dobDateTimeFormat.format(dobDate);
+        console.log(uploadDobDateFormatted);
+    }
+
+    res.render('mvp/file-upload/cya-uk', { uploadDobDateFormatted: uploadDobDateFormatted });
+})
+
+// Have you been asked to give evidence for the years you paid pension contributions to the UK or to other countries?
+router.post([/provide-eea-pension-evid/, /provide-eea-pension-evid-error/], function (req, res) {
+    var provideEEAPensEvid = req.session.data['provideEEAPensEvid'];
+
+    if (provideEEAPensEvid == "Yes") {
+        res.redirect('eea-countries');
+    } else if (provideEEAPensEvid == "No") {
+        res.redirect('provide-uk-pension-evid');
+    } else if (provideEEAPensEvid == "") {
+        res.redirect('provide-eea-pension-evid-error');
+    }
+})
+
+// Which countries have you been asked to give evidence for, other than the UK?
+router.post([/eea-countries/, /eea-countries-error/], function (req, res) {
+    var eeaCountries = req.session.data['eeaCountries'];
+    console.log(eeaCountries);
+
+    if (eeaCountries == 'Iceland' || eeaCountries == 'Liechtenstein' || eeaCountries == 'Norway' || eeaCountries == 'Switzerland') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Austria' || eeaCountries == 'Belgium' || eeaCountries == 'Bulgaria' || eeaCountries == 'Denmark') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Czech Republic' || eeaCountries == 'Estonia' || eeaCountries == 'Finland' || eeaCountries == 'France') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Germany' || eeaCountries == 'Greece' || eeaCountries == 'Hungary' || eeaCountries == 'Ireland' || eeaCountries == 'Italy') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Latvia' || eeaCountries == 'Lithuania' || eeaCountries == 'Luxemburg' || eeaCountries == 'Malta' || eeaCountries == 'Montenegro') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Netherlands' || eeaCountries == 'Poland' || eeaCountries == 'Portugal' || eeaCountries == 'Romania' || eeaCountries == 'Slovakia') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == 'Slovenia' || eeaCountries == 'Spain' || eeaCountries == 'Sweden') {
+        res.redirect('upload-eea-evidence');
+    } else if (eeaCountries == '') {
+        res.redirect('eea-countries-error');
+    } 
+})
+
+// Have you been asked to give evidence that you paid a UK State Pension?
+router.post([/provide-uk-pension-evid/, /provide-uk-pension-evid-error/], function (req, res) {
+    var provideUKPensEvid = req.session.data['provideUKPensEvid'];
+
+    if (provideUKPensEvid == "Yes") {
+        res.redirect('upload-uk-evidence');
+    } else if (provideUKPensEvid == "No") {
+        res.redirect('cya-uk');
+    } else if (provideUKPensEvid == '') {
+        res.redirect('provide-uk-pension-evid-error');
+    }
+})
+
+//    // Do you need to add more evidence for [first name]'s paid State Pension contributions in EEA countries or Switzerland?
+// router.post([/upload-eea-evidence/, /upload-eea-evidence-error/], function (req, res) {
+//     var addEvidEEA = req.session.data['addEvidEEA'];
+
+//     if (addEvidEEA == "Yes") {
+//       res.redirect('upload-eea-evidence-another');
+//     } else if (addEvidEEA == "No") {
+//       res.redirect('cya')
+//     } else if (addEvidEEA == "") {
+//       res.redirect('upload-eea-evidence-another-error');
+//     }
+//   })
+
+
+//   // Do you need to add more evidence for [first name]'s paid UK State Pension contributions?
+// router.post([/upload-uk-evidence-another/,/upload-uk-evidence-another-error/], function (req, res) {
+//     var addEvidUK = req.session.data['addEvidUK'];
+
+//     if (addEvidUK == "Yes") {
+//       res.redirect('upload-uk-evidence-another-two');
+//     } else if (addEvidUK == "No") {
+//       res.redirect('cya')
+//     } else if (addEvidUK == ""){
+//       res.redirect('upload-uk-evidence-another-error');
+//     }
+//   })
+
+// // Do you need to add more evidence for [first name]'s paid UK State Pension contributions?
+// router.post([/upload-uk-evidence-another-two/, /upload-uk-evidence-another-two-error/], function (req, res) {
+//     var addEvidUKTwo = req.session.data['addEvidUKTwo'];
+
+//     if (addEvidUKTwo == "Yes") {
+//       res.redirect('upload-uk-evidence-another-two');
+//     } else if (addEvidUKTwo == "No") {
+//       res.redirect('cya');
+//     } else if (addEvidUKTwo == "") {
+//       res.redirect('upload-uk-evidence-another-two-error');
+//     }
+//   })
+
+//  // Do you need to add more evidence for [first name]'s paid State Pension contributions in EEA countries or Switzerland?
+// router.post([/upload-eea-evidence-another/, /upload-eea-evidence-another-error/], function (req, res) {
+//     var addEvidEEA = req.session.data['addEvidEEA'];
+
+//     if (addEvidEEA == "Yes") {
+//       // res.redirect('upload-reside')
+//       res.redirect('upload-eea-evidence-another-two')
+//     } else if (addEvidEEA == "No") {
+//       res.redirect('cya')
+//     } else if (addEvidEEA == "") {
+//       res.redirect('upload-eea-evidence-another-error')
+//     }
+//   })
+
+//    // Do you need to add more evidence for [first name]'s paid State Pension contributions in EEA countries or Switzerland?
+// router.post([/upload-eea-evidence-another-two/, /upload-eea-evidence-another-two-error/], function (req, res) {
+//     var addEvidEEATwo = req.session.data['addEvidEEATwo'];
+
+//     if (addEvidEEATwo == "Yes") {
+//       res.redirect('upload-eea-evidence-another-two');
+//     } else if (addEvidEEATwo == "No") {
+//       res.redirect('cya')
+//     } else if (addEvidEEATwo == "") {
+//       res.redirect('upload-eea-evidence-another-two-error');
+//     }
+//   })
+
 
 
 ////////////////////// 

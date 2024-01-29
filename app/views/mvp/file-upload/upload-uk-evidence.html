@@ -1,0 +1,146 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What evidence are you uploading for {{ data['upload-firstname'] }}’s right to reside in the UK?
+{% endblock %}
+
+{% block beforeContent %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+   const chooseFile = document.getElementById('choose-file');
+   const fileChosen = document.getElementById('file-chosen');
+    chooseFile.addEventListener('change', 
+      function(){
+      fileChosen.textContent = this.files[0].name
+    })
+
+</script>
+
+<style>
+    #file-chosen {
+      margin: 0 10px;
+      position: relative;
+      top: 16px;
+      font-size: 18px;
+    }
+</style>
+
+<!-- Phase banner -->
+<!-- <div class="app-phase-banner">
+  <div class="nhsuk-width-container app-phase-banner__container">
+    <p class="app-phase-banner__content">
+      <strong class="nhsuk-tag app-phase-banner__tag">
+        Prototype
+      </strong>
+      <span class="app-phase-banner__text">
+      This is a prototype - your <a href="#">feedback</a> will help us improve it.
+      </span>
+    </p>
+  </div>
+</div> -->
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+       <!-- <form action="upload-reside-file-type" method="post"> -->
+       <!-- <form action="upload-uk-evidence-another" method="post"> -->
+        <!-- <span class="nhsuk-caption-l nhsuk-caption--bottom">Step 1</span> -->
+
+      <h2>Upload evidence for all the years {{ data['upload-firstname'] }} paid State Pension contribution for the UK</h2>
+<!-- 
+        {% call fieldset({
+          legend: {
+            text: "",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %} -->
+
+        <!-- {{ radios({
+          "idPrefix": "file-type-1",
+          "name": "file-type-1",
+          "items": [
+            {
+              "value": "Passport",
+              "text": "Passport"
+            },
+            {
+              "value": "Residence certificate or biometric permit",
+              "text": "Residence certificate or biometric permit"
+            },
+            {
+              "value": "Certificate of Naturalization",
+              "text": "Certificate of Naturalization"
+            },
+            {
+              "value": "Birth Certificate",
+              "text": "Birth Certificate"
+            },
+            {
+              "value": "National identification card",
+              "text": "National identification card"
+            },
+            {
+              "value": "Other",
+              "text": "Other"
+            }
+          ]
+        }) }} -->
+
+        <!-- {% endcall %} -->
+
+        <!-- <p>Evidence should be a scanned copy, photo or screenshot of the original documents.</p>
+        <p>Uploaded attachments must be:</p>
+        <ul>
+          <li>jpg, jpeg, bmp, png or pdf</li>
+          <li>no larger than 10MB in size</li>
+        </ul> -->
+
+        <!-- <h3>Upload file</h3> -->
+
+        <div class="nhsuk-form-group">
+
+        <!-- <p>The file must be in jpeg, jpg, png, or pdf format and must not be bigger than 10MB.</p> -->
+
+        <div>
+          <label for="choose-file" class="nhsuk-button nhsuk-button--secondary">Choose files</label>
+          <input id="choose-file" style="display:none;" type="file">
+          <span id="file-chosen">No files chosen</span>
+        </div>
+
+        </div>
+
+        <a href="cya-uk">    
+          <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
+              Continue
+          </button>
+        </a>
+
+      
+      <!--  <br><br>
+
+        {{ details({
+          "text": "I don't have evidence",
+          "HTML": "
+          "
+        }) }} -->
+
+
+
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

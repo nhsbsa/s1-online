@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  What is {{ data['upload-firstname'] }}'s address?
+{% endblock %}
+
+{% block beforeContent %}
+
+  <!-- Phase banner -->
+  <!-- <div class="app-phase-banner">
+    <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+        <strong class="nhsuk-tag app-phase-banner__tag">
+          Prototype
+        </strong>
+        <span class="app-phase-banner__text">
+        This is a prototype - your <a href="#">feedback</a> will help us improve it.
+        </span>
+      </p>
+    </div>
+  </div> -->
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+      <!-- <form action="email-address" method="post"> -->
+      <form action="latency" method="post">
+
+        <h2>What is {{ data['upload-firstname'] }}'s address?</h2>
+
+        {% call fieldset({
+          legend: {
+            text: "",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        <!-- <h3>Postcode</h3>
+        <p>SW1A 1AA</p> -->
+        <h3>Select an address</h3>
+
+        {{ select({
+          "id": "select-1",
+          "name": "select-1",
+          "label": {
+          },
+          "items": [
+            {
+              "value": 1,
+              "text": "20 addresses found",
+              "selected": true
+            },
+            {
+              "value": 2,
+              "text": "70 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 3,
+              "text": "71 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 4,
+              "text": "72 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 5,
+              "text": "73 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 6,
+              "text": "74 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 7,
+              "text": "75 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 8,
+              "text": "76 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 9,
+              "text": "77 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 10,
+              "text": "78 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 11,
+              "text": "79 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 12,
+              "text": "80 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 13,
+              "text": "81 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 14,
+              "text": "82 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 15,
+              "text": "83 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 16,
+              "text": "84 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 17,
+              "text": "85 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 18,
+              "text": "86 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 19,
+              "text": "87 Roman Rd, Leeds LS2 5ZN"
+            },
+            {
+              "value": 20,
+              "text": "88 Roman Rd, Leeds LS2 5ZN"
+            }
+            ,
+            {
+              "value": 21,
+              "text": "89 Roman Rd, Leeds LS2 5ZN"
+            }
+          ]
+        }) }}
+      
+        {% endcall %}
+
+
+        {{ button({
+          "text": "Continue"
+        }) }}
+
+        <p>
+          <a href="address-manual">I can't find my address in the list</a>
+        </p>
+
+      </form>
+
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Proof of paid State Pension contributions in EEA countries or Switzerland evidence uploaded
+{% endblock %}
+
+{% block beforeContent %}
+
+  <!-- Phase banner -->
+  <!-- <div class="app-phase-banner">
+    <div class="nhsuk-width-container app-phase-banner__container">
+      <p class="app-phase-banner__content">
+        <strong class="nhsuk-tag app-phase-banner__tag">
+          Prototype
+        </strong>
+        <span class="app-phase-banner__text">
+        This is a prototype - your <a href="#">feedback</a> will help us improve it.
+        </span>
+      </p>
+    </div>
+  </div> -->
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-three-quarters">
+      <!-- <span class="nhsuk-caption-l nhsuk-caption--bottom">Step 2</span> -->
+      <form action="upload-eea-evidence-another" method="post">
+
+        {% call fieldset({
+          legend: {
+            text: "Proof of paid State Pension contributions in EEA countries or Switzerland evidence uploaded",
+            classes: "nhsuk-fieldset__legend--l",
+            isPageHeading: true
+          }
+        }) %}
+
+        <!-- <p>We need 2 of the documents we asked for in the email we sent you as proof of residency in the UK. If you cannot provide 2 of the documents listed, upload all alternative evidence that you have available.</p> -->
+
+        <p>You’ll get a chance to tell us why you couldn’t provide the documents we asked for.</p>
+        
+        <br>
+
+        <h3>Files added</h3>
+
+
+        <dl class="nhsuk-summary-list">
+
+        <div class="nhsuk-summary-list__row">
+          <dt class="nhsuk-summary-list__key">
+            <!-- Passport -->
+            {{ data['file-type-3'] }}
+          </dt>
+          <dd class="nhsuk-summary-list__value">
+            <a href="">example_file_name_01.jpg</a>, 2MB
+          </dd>
+          <dd class="nhsuk-summary-list__actions">
+            <a href="upload-eea-evidence">
+              Delete<span class="nhsuk-u-visually-hidden"> </span>
+            </a>
+          </dd>
+        </div>
+      </dl>
+
+        <h3>Do you need to add more evidence for {{ data['upload-firstname'] }}'s paid State Pension contributions in EEA countries or Switzerland?</h3>
+
+        <!-- <p>You must upload 2 documents as proof of residency in the UK.</p> -->
+
+        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras neque purus, ullamcorper et iaculis ut, egestas ornare leo.</p> -->
+
+        {{ radios({
+          "idPrefix": "add-evid-res-uk",
+          "name": "addEvidEEA",
+          "classes": "nhsuk-radios--inline",
+          "items": [
+            {
+              "value": "Yes",
+              "text": "Yes"
+            },
+            {
+              "value": "No",
+              "text": "No"
+            }
+          ]
+        }) }}
+
+        {% endcall %}
+
+        {{ button({
+          "text": "Continue"
+        }) }}
+
+      </form>
+
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
+      
+    </div>
+  </div>
+{% endblock %}
