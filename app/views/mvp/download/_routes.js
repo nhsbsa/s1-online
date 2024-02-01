@@ -10,23 +10,23 @@ const router = express.Router()
 //// Evidence File Upload
 
 // What is your OHS reference number?
-router.post([/ohs-number/, /ohs-number-error/, /ohs-number-invalid/], function (req, res) {
+router.post([/download-ohs-number/, /download-ohs-number-error/, /download-ohs-number-invalid/], function (req, res) {
     var ohs = req.session.data['ohs'];
     const ohsRegEx = /^[0-9]{8}$/;
 
     if (ohs == '') {
-        res.redirect('ohs-number-error');
+        res.redirect('download-ohs-number-error');
     }
     else if (ohs != '' && !ohsRegEx.test(ohs)){
-        res.redirect('ohs-number-invalid');
+        res.redirect('download-ohs-number-invalid');
     }
     else if (ohs != '' && ohsRegEx.test(ohs)) {
-        res.redirect('full-name');
+        res.redirect('../download/download-full-name');
     }
 })
 
 // What is your name?
-router.post([/full-name/, /full-name-first-error/, /full-name-last-error/, /full-name-error/], function (req, res) {
+router.post([/download-full-name/, /download-full-name-first-error/, /download-full-name-last-error/, /dowanload-full-name-error/], function (req, res) {
     var first = req.session.data['upload-firstname'];
     var last = req.session.data['upload-lastname'];
 

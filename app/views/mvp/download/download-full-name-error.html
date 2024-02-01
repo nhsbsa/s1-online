@@ -26,7 +26,23 @@
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
-      <form action="full-name" method="post">
+      <form action="download-full-name-error" method="post">
+
+        <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
+          <h2 class="nhsuk-error-summary__title" id="error-summary-title">
+            There is a problem
+          </h2>
+          <div class="nhsuk-error-summary__body">
+            <ul class="nhsuk-list nhsuk-error-summary__list">
+              <li>
+                <a href="#upload-firstname">Enter your first name</a>
+              </li>
+              <li>
+                <a href="#upload-lastname">Enter your last name</a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
         {% call fieldset({
           legend: {
@@ -42,18 +58,24 @@
           "label": {
             "text": "First name"
           },
+          "errorMessage": {
+            "text": "Enter your first name"
+          },
           "id": "input-width-30",
           "name": "upload-firstname",
-          "classes": "nhsuk-input--width-30"
+          "classes": "nhsuk-input--width-30 nhsuk-input--error"
         }) }}
 
         {{ input({
           "label": {
             "text": "Last name"
           },
+          "errorMessage": {
+            "text": "Enter your last name"
+          },
           "id": "input-width-30",
           "name": "upload-lastname",
-          "classes": "nhsuk-input--width-30"
+          "classes": "nhsuk-input--width-30 nhsuk-input--error"
         }) }}
 
 
