@@ -29,30 +29,31 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-uk-state-pension" method="post">
+        <form action="check-state-pension" method="post">
             <div class="nhsuk-form-group">
                 <fieldset class="nhsuk-fieldset">
                     <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                         <h1 class="nhsuk-fieldset__heading">
                             <span class="nhsuk-caption-l">Eligibility</span>
-                            Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow }}?
+                            Do you get a State Pension from {{ data['countrySOne']}}?
+
                         </h1>
                     </legend>
 
                     <div class="nhsuk-radios nhsuk-radios">
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="uk-state-pension-yes" name="ukStatePension" type="radio"
+                            <input class="nhsuk-radios__input" id="state-pension-check-yes" name="statePensionCheck" type="radio"
                                 value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-yes">
+                            <label class="nhsuk-label nhsuk-radios__label" for="state-pension-check-yes">
                                 Yes
                             </label>
                         </div>
 
                         <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="uk-state-pension-no" name="ukStatePension" type="radio"
+                            <input class="nhsuk-radios__input" id="state-pension-check-no" name="statePensionCheck" type="radio"
                                 value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-no">
+                            <label class="nhsuk-label nhsuk-radios__label" for="state-pension-check-no">
                                 No
                             </label>
                         </div>
@@ -78,5 +79,4 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
     </div>
 </div>
-<script src="/public/js/jquery-3.5.1.min.js"></script>
 {% endblock %}

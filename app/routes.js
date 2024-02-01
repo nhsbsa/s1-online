@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.use('/mvp', require('./views/mvp/_routes'));
 router.use('/mvp', require('./views/mvp/file-upload/_routes'));
+router.use('/mvp', require('./views/mvp/download/_routes'));
 
 // router.use('/current', require('./views/current/_routes'));
 

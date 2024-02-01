@@ -3,7 +3,7 @@
 <!-- Extends the layout from /views/layout.html -->
 {% extends 'layout.html' %}
 <!-- 
-In /views/layout.html you can:
+  In /views/layout.html you can:
     - change the header and footer 
     - add custom CSS and JavaScript
 -->
@@ -29,37 +29,21 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
 
-        <form action="eligibility-uk-state-pension" method="post">
+        <form action="applicant-nino" method="post">
+
             <div class="nhsuk-form-group">
-                <fieldset class="nhsuk-fieldset">
-                    <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
-                        <h1 class="nhsuk-fieldset__heading">
-                            <span class="nhsuk-caption-l">Eligibility</span>
-                            Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow }}?
-                        </h1>
-                    </legend>
+                <h1 class="nhsuk-label-wrapper">
+                  <label class="nhsuk-label nhsuk-label--l" for="example-heading">
+                    What is your National Insurance number?
+                  </label>
+                </h1>
+                <div class="nhsuk-hint">It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C'.</div>
+                <label class="nhsuk-label" for="example-heading">
+                  National Insurance number
+                </label>
+                <input class="nhsuk-input" id="example-heading" name="nino" type="text">
+              </div>
 
-                    <div class="nhsuk-radios nhsuk-radios">
-
-                        <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="uk-state-pension-yes" name="ukStatePension" type="radio"
-                                value="Yes">
-                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-yes">
-                                Yes
-                            </label>
-                        </div>
-
-                        <div class="nhsuk-radios__item">
-                            <input class="nhsuk-radios__input" id="uk-state-pension-no" name="ukStatePension" type="radio"
-                                value="No">
-                            <label class="nhsuk-label nhsuk-radios__label" for="uk-state-pension-no">
-                                No
-                            </label>
-                        </div>
-
-                    </div>
-                </fieldset>
-            </div>
 
             <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
                 Continue
@@ -78,5 +62,4 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
 
     </div>
 </div>
-<script src="/public/js/jquery-3.5.1.min.js"></script>
 {% endblock %}
