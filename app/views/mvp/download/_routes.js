@@ -31,7 +31,7 @@ router.post([/full-name/, /full-name-first-error/, /full-name-last-error/, /full
     var last = req.session.data['upload-lastname'];
 
     if (first != '' && last != '') {
-        res.redirect('dob');
+        res.redirect('../download/upload-dob');
     }
     else if (first == '' && last != ''){
         res.redirect('full-name-first-error');
@@ -79,7 +79,7 @@ router.post([/upload-dob/, /upload-dob-error/, /upload-dob-day-error/, /upload-d
     } else if(day !== '' && dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
         res.redirect('upload-dob-year-error');
     } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year)) {
-        res.redirect('nino');
+        res.redirect('../download/nino');
     }   
 })
 
@@ -94,7 +94,7 @@ router.post([/nino/, /nino-error/], function (req,res) {
     } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
         res.redirect('nino-error');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino)){
-        res.redirect('application-outcome-found');
+        res.redirect('../download/application-outcome-found');
     } 
 })
 
