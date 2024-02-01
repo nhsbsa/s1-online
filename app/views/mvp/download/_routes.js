@@ -54,47 +54,47 @@ router.post([/upload-dob/, /upload-dob-error/, /upload-dob-day-error/, /upload-d
     var monthRegEx = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
     var dayRegEx = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
 
-    if(day === '' && month === '' && year === '') {
-        res.redirect('upload-dob-error');
+    if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year)) {
+        return res.redirect('download-nino');
+    } else if(day === '' && month === '' && year === '') {
+        return res.redirect('upload-dob-error');
     } else if(day === '' && month !== '' && year !== ''){
-        res.redirect('upload-dob-day-error');
+        return res.redirect('upload-dob-day-error');
     } else if(day === '' && month === '' && year !== ''){
-        res.redirect('upload-dob-day-month-error');
+        return res.redirect('upload-dob-day-month-error');
     } else if(day === '' && month !== '' && year === ''){
-        res.redirect('upload-dob-day-year-error');
+        return res.redirect('upload-dob-day-year-error');
     } else if(day !== '' && month !== '' && year === ''){
-        res.redirect('upload-dob-year-error');
+        return res.redirect('upload-dob-year-error');
     } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
-        res.redirect('upload-dob-error');
+        return res.redirect('upload-dob-error');
     } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
-        res.redirect('upload-dob-day-error');
+        return res.redirect('upload-dob-day-error');
     } else if(day !== '' && !dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
-        res.redirect('upload-dob-day-month-error');
+        return res.redirect('upload-dob-day-month-error');
     } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && yearRegEx.test(year)) {
-        res.redirect('upload-dob-month-error');
+        return res.redirect('upload-dob-month-error');
     } else if(day !== '' && dayRegEx.test(day) && month !== '' && !monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
-        res.redirect('upload-dob-month-year-error');
+        return res.redirect('upload-dob-month-year-error');
     } else if(day !== '' && !dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
-        res.redirect('upload-dob-day-year-error');
+        return res.redirect('upload-dob-day-year-error');
     } else if(day !== '' && dayRegEx.test(day) && month !== '' && monthRegEx.test(month) && year !== '' && !yearRegEx.test(year)) {
-        res.redirect('upload-dob-year-error');
-    } else if(req.body.dateOfBirth !== '' && dayRegEx.test(day) && monthRegEx.test(month) && yearRegEx.test(year)) {
-        res.redirect('../download/nino');
-    }   
+        return res.redirect('upload-dob-year-error');
+    }
 })
 
 // What is your National Insurance number? 
 
-router.post([/nino/, /nino-error/], function (req,res) {
+router.post([/download-nino/, /download-nino-error/], function (req,res) {
 
     const ninoRegEx = /^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/;
 
     if (req.body.nino == ''){
-        res.redirect('nino-error');
+        return res.redirect('download-nino-error');
     } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
-        res.redirect('nino-error');
+        return res.redirect('download-nino-error');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino)){
-        res.redirect('../download/application-outcome-found');
+        return res.redirect('../download/application-outcome-found');
     } 
 })
 

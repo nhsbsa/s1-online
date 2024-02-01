@@ -451,7 +451,7 @@ router.post([/check-state-pension/, /check-state-pension-error/], function(req, 
 
 // Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 days from today]?
 
-router.post([/eligibility-uk-state-pension/, /state-pension-error/], function(req, res){
+router.post([/eligibility-uk-state-pension/, /eligibility-uk-state-pension-error/], function(req, res){
     var ukStatePension = req.session.data['ukStatePension'];
 
     if (ukStatePension == 'Yes'){
@@ -459,7 +459,7 @@ router.post([/eligibility-uk-state-pension/, /state-pension-error/], function(re
     } else if (ukStatePension == 'No'){
         res.redirect('kickout/ineligible-no-uk-state-pension');
     } else if (!ukStatePension){
-        res.redirect('state-pension-error');
+        res.redirect('eligibility-uk-state-pension-error');
     }
 })
 
@@ -481,33 +481,18 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
 
 // Do you also get a State Pension from an EU or EFTA country?
 
-router.post([/eligibility-other-eu-state-pension/], function (req, res){
+router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-pension-error/], function (req, res){
     var euStatePension = req.session.data['euStatePension'];
     var moveCheck = req.session.data['moveCheck'];
 
-    if (!euStatePension) {
-        res.redirect('eligibility-other-eu-state-pension-error');
+    if (!euStatePension){
+        return res.redirect('eligibility-other-eu-state-pension-error');
     } else if (euStatePension == 'Yes'){
-        res.redirect('eligibility-eu-country-state-pension');
+        return res.redirect('eligibility-eu-country-state-pension');
     } else if (euStatePension == 'No' && moveCheck == 'No'){
-        res.redirect('eligibility-cya-1');
+        return res.redirect('eligibility-cya-1');
     } else if (euStatePension == 'No' && moveCheck == 'Yes'){
-        res.redirect('eligibility-cya-2');
-    }
-})
-
-router.post([/eligibility-other-eu-state-pension-error/], function (req, res){
-    var euStatePension = req.session.data['euStatePension'];
-    var moveCheck = req.session.data['moveCheck'];
-
-    if (!euStatePension) {
-        res.redirect('eligibility-other-eu-state-pension-error');
-    } else if (euStatePension == 'Yes'){
-        res.redirect('eligibility-eu-country-state-pension');
-    } else if (euStatePension == 'No' && moveCheck == 'No'){
-        res.redirect('eligibility-cya-1');
-    } else if (euStatePension == 'No' && moveCheck == 'Yes'){
-        res.redirect('eligibility-cya-2');
+        return res.redirect('eligibility-cya-2');
     }
 })
 
@@ -519,54 +504,6 @@ router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-sta
     var euCountryPension = req.session.data['myInputsEUSP'];
     var countrySOne = req.session.data['countrySOne'];
     var moveCheck = req.session.data['moveCheck'];
-
-    // arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true
-    // arraysContainSame(euCountryPension, ['Iceland']) === true
-
-    // if (euCountryPension == countrySOne){
-    //     return res.redirect('kickout/ineligible-sone-state-pension');
-    // } else if (euCountryPension == 'Iceland' || euCountryPension == 'Liechtenstein' || euCountryPension == 'Norway'){
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Austria' || euCountryPension == 'Belgium' || euCountryPension == 'Bulgaria' || euCountryPension == 'Denmark'){
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Czech Republic' || euCountryPension == 'Estonia' || euCountryPension == 'Finland' || euCountryPension == 'France') {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Germany' || euCountryPension == 'Greece' || euCountryPension == 'Hungary' || euCountryPension == 'Ireland' || euCountryPension == 'Italy') {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Latvia' || euCountryPension == 'Lithuania' || euCountryPension == 'Luxemburg' || euCountryPension == 'Malta' || euCountryPension == 'Montenegro') {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Netherlands' || euCountryPension == 'Poland' || euCountryPension == 'Portugal' || euCountryPension == 'Romania' || euCountryPension == 'Slovakia' || euCountryPension == 'Switzerland') {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == 'Slovenia' || euCountryPension == 'Spain' || euCountryPension == 'Sweden') {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == ''){
-    //     return res.redirect('eligibility-eu-country-state-pension-error');
-    // } else {
-    //     return res.redirect('eligibility-eu-country-state-pension-other-error');
-    // }
-
-
-    // if (euCountryPension == countrySOne){
-    //     return res.redirect('kickout/ineligible-sone-state-pension');
-    // } else if (arraysContainSame(euCountryPension, ['Iceland']) === true || arraysContainSame(euCountryPension, ['Liechtenstein']) === true  || arraysContainSame(euCountryPension, ['Norway']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Austria']) === true || arraysContainSame(euCountryPension, ['Belgium']) === true || arraysContainSame(euCountryPension, ['Bulgaria']) === true || arraysContainSame(euCountryPension, ['Denmark']) === true){
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Czech Republic']) === true || arraysContainSame(euCountryPension, ['Estonia']) === true || arraysContainSame(euCountryPension, ['Finland']) === true || arraysContainSame(euCountryPension, ['France']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Germany']) === true || arraysContainSame(euCountryPension, ['Greece']) === true || arraysContainSame(euCountryPension, ['Hungary']) === true || arraysContainSame(euCountryPension, ['Ireland']) === true || arraysContainSame(euCountryPension, ['Italy']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Latvia']) === true || arraysContainSame(euCountryPension, ['Lithuania']) === true || arraysContainSame(euCountryPension, ['Luxemburg']) === true || arraysContainSame(euCountryPension, ['Malta']) === true || arraysContainSame(euCountryPension, ['Montenegro']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Netherlands']) === true || arraysContainSame(euCountryPension, ['Poland']) === true || arraysContainSame(euCountryPension, ['Portugal']) === true || arraysContainSame(euCountryPension, ['Romania']) === true || arraysContainSame(euCountryPension, ['Slovakia']) === true || arraysContainSame(euCountryPension, ['Switzerland']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (arraysContainSame(euCountryPension, ['Slovenia']) === true || arraysContainSame(euCountryPension, ['Spain']) === true || arraysContainSame(euCountryPension, ['Sweden']) === true) {
-    //     return res.redirect('eligibility-eu-state-pension-amount');
-    // } else if (euCountryPension == ''){
-    //     return res.redirect('eligibility-eu-country-state-pension-error');
-    // } else {
-    //     return res.redirect('eligibility-eu-country-state-pension-other-error');
-    // }
 
     if (euCountryPension.includes(countrySOne) === true ){
         return res.redirect('kickout/ineligible-sone-state-pension');
@@ -1180,93 +1117,94 @@ router.post(/applicant-dob-ineligible-error/, function (req, res){
     }   
 })
 
-
-function arraysContainSame(a, b) {
-    a = Array.isArray(a) ? a : [];
-    b = Array.isArray(b) ? b : [];
-    return a.length === b.length && a.every(el => b.includes(el));
-}
-
-// What is your nationality?
-
-router.post([/nationality/, /nationality-error/, /nationality-eu-error/, /nationality-eu-other-error/, /nationality-other-error/], function (req, res) {
-    var nationality = req.session.data['nationality'];
-    console.log(nationality);
-
-    console.log(req.body.nationality);
-    console.log(req.body.myInputsEURT);
-    console.log(req.body.myInputsOtherRT);
-    
-    if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther === '') {
-        return res.redirect('nationality-eu-other-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT !== '' && req.body.myInputsOther === '') {
-        return res.redirect('nationality-eu-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther !== '') {
-        return res.redirect('nationality-other-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther === '') {
-        return res.redirect('nationality-eu-other-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT !== '' && req.body.myInputsOther === '') {
-        return res.redirect('nationality-other-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther !== '') {
-        return res.redirect('nationality-eu-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA']) === true && req.body.myInputsEURT === '') {
-        return res.redirect('nationality-eu-error');
-    }
-    else if (req.body.nationality === 'EU, EEA' && req.body.myInputsEURT === '') {
-        return res.redirect('nationality-eu-error');
-    }
-    else if (arraysContainSame(req.body.nationality, ['UK', 'Other']) === true && req.body.myInputsOtherRT === '') {
-        return res.redirect('nationality-other-error');
-    }
-    else if (req.body.nationality === 'Other' && req.body.myInputsOtherRT === '') {
-        return res.redirect('nationality-other-error');
-    }
-    else if (nationality == 'UK') {
-        res.redirect('applicant-nino')
-    }
-    else if (arraysContainSame(nationality, ['UK', 'EU, EEA or Swiss', 'Other']) == true) {
-        res.redirect('applicant-nino')
-    }
-    else if (arraysContainSame(nationality, ['EU, EEA or Swiss', 'Other']) == true) {
-        res.redirect('applicant-nino')
-    }
-    else if (nationality == 'EU, EEA or Swiss') {
-        res.redirect('applicant-nino')
-    }
-    else if (nationality == 'Other') {
-        res.redirect('kickout/ineligible-nationality-kickout')
-    }
-    else if (arraysContainSame(nationality, ['UK', 'EU, EEA or Swiss']) == true) {
-        res.redirect('applicant-nino')
-    }
-    else {
-        res.redirect('nationality-error')
-    }
-})
-
 // What is your National Insurance number? 
 
 router.post([/applicant-nino/, /applicant-nino-error/], function (req,res) {
 
     const ninoRegEx = /^(?!BG)(?!GB)(?!NK)(?!KN)(?!TN)(?!NT)(?!ZZ)(?:[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z])(?:\s*\d\s*){6}([A-D]|\s)$/;
     var moveCheck = req.session.data['moveCheck'];
+    var nino = req.session.data['nino'];
 
-    if (req.body.nino == ''){
-        res.redirect('applicant-nino-error');
-    } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
-        res.redirect('applicant-nino-error');
-    } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino) && moveCheck == 'Yes'){
-        res.redirect('applicant-residential-address');
-    } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino) && moveCheck == 'No'){
-        res.redirect('applicant-residential-address');
+    if (nino == ''){
+        return res.redirect('applicant-nino-error');
+    } else if(nino !== '' && !ninoRegEx.test(nino)) {
+        return res.redirect('applicant-nino-error');
+    } else if (nino !== '' && ninoRegEx.test(nino) && moveCheck == 'Yes'){
+        return res.redirect('applicant-residential-address');
+    } else if (nino !== '' && ninoRegEx.test(nino) && moveCheck == 'No'){
+        return res.redirect('applicant-residential-address');
     }
 })
+
+// function arraysContainSame(a, b) {
+//     a = Array.isArray(a) ? a : [];
+//     b = Array.isArray(b) ? b : [];
+//     return a.length === b.length && a.every(el => b.includes(el));
+// }
+
+// // What is your nationality?
+
+// router.post([/nationality/, /nationality-error/, /nationality-eu-error/, /nationality-eu-other-error/, /nationality-other-error/], function (req, res) {
+//     var nationality = req.session.data['nationality'];
+//     console.log(nationality);
+
+//     console.log(req.body.nationality);
+//     console.log(req.body.myInputsEURT);
+//     console.log(req.body.myInputsOtherRT);
+    
+//     if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther === '') {
+//         return res.redirect('nationality-eu-other-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT !== '' && req.body.myInputsOther === '') {
+//         return res.redirect('nationality-eu-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther !== '') {
+//         return res.redirect('nationality-other-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther === '') {
+//         return res.redirect('nationality-eu-other-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT !== '' && req.body.myInputsOther === '') {
+//         return res.redirect('nationality-other-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['EU, EEA', 'Other']) === true && req.body.myInputsEURT === '' && req.body.myInputsOther !== '') {
+//         return res.redirect('nationality-eu-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['UK', 'EU, EEA']) === true && req.body.myInputsEURT === '') {
+//         return res.redirect('nationality-eu-error');
+//     }
+//     else if (req.body.nationality === 'EU, EEA' && req.body.myInputsEURT === '') {
+//         return res.redirect('nationality-eu-error');
+//     }
+//     else if (arraysContainSame(req.body.nationality, ['UK', 'Other']) === true && req.body.myInputsOtherRT === '') {
+//         return res.redirect('nationality-other-error');
+//     }
+//     else if (req.body.nationality === 'Other' && req.body.myInputsOtherRT === '') {
+//         return res.redirect('nationality-other-error');
+//     }
+//     else if (nationality == 'UK') {
+//         res.redirect('applicant-nino')
+//     }
+//     else if (arraysContainSame(nationality, ['UK', 'EU, EEA or Swiss', 'Other']) == true) {
+//         res.redirect('applicant-nino')
+//     }
+//     else if (arraysContainSame(nationality, ['EU, EEA or Swiss', 'Other']) == true) {
+//         res.redirect('applicant-nino')
+//     }
+//     else if (nationality == 'EU, EEA or Swiss') {
+//         res.redirect('applicant-nino')
+//     }
+//     else if (nationality == 'Other') {
+//         res.redirect('kickout/ineligible-nationality-kickout')
+//     }
+//     else if (arraysContainSame(nationality, ['UK', 'EU, EEA or Swiss']) == true) {
+//         res.redirect('applicant-nino')
+//     }
+//     else {
+//         res.redirect('nationality-error')
+//     }
+// })
+
 
 // Residential address (in S1 country)
 ,
