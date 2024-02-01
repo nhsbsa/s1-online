@@ -27,20 +27,8 @@
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
       <!-- <form action="add-another-yn" method="post"> -->
-      <form action="ohs-number-error" method="post">
+      <form action="download-ohs-number" method="post">
 
-        <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
-          <h2 class="nhsuk-error-summary__title" id="error-summary-title">
-            There is a problem
-          </h2>
-          <div class="nhsuk-error-summary__body">
-            <ul class="nhsuk-list nhsuk-error-summary__list">
-              <li>
-                <a href="#ohs">Enter your OHS reference number</a>
-              </li>
-            </ul>
-          </div>
-        </div>
 
         {% call fieldset({
           legend: {
@@ -56,12 +44,11 @@
           "label": {
             "text": "OHS reference number"
           },
-          "errorMessage": {
-            "text": "Enter your OHS reference number"
-          },
+
+        
           "id": "input-width-10",
           "name": "ohs",
-          "classes": "nhsuk-input--width-10 nhsuk-input--error"
+          "classes": "nhsuk-input--width-10"
         }) }}
 
 
@@ -74,7 +61,7 @@
 
       </form>
 
-      <!-- {{ backLink({
+    <!-- {{ backLink({
         "href": "dob",
         "text": "Change my previous answer"
       }) }} -->
@@ -85,6 +72,6 @@
 
 
 <!-- 
-  hint: {
+ hint: {
             html: "For example, ‘1’."
           }, -->
