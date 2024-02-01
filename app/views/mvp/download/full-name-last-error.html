@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block pageTitle %}
-  What is your OHS reference number?
+  Who are you uploading evidence for?
 {% endblock %}
 
 {% block beforeContent %}
@@ -26,8 +26,7 @@
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
-      <!-- <form action="add-another-yn" method="post"> -->
-      <form action="ohs-number-error" method="post">
+      <form action="full-name-last-error" method="post">
 
         <div class="nhsuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1">
           <h2 class="nhsuk-error-summary__title" id="error-summary-title">
@@ -36,7 +35,7 @@
           <div class="nhsuk-error-summary__body">
             <ul class="nhsuk-list nhsuk-error-summary__list">
               <li>
-                <a href="#ohs">Enter your OHS reference number</a>
+                <a href="#upload-lastname">Enter your last name</a>
               </li>
             </ul>
           </div>
@@ -44,29 +43,37 @@
 
         {% call fieldset({
           legend: {
-            text: "What is your OHS reference number?",
+            text: "What is your name?",
             classes: "nhsuk-fieldset__legend--l",
             isPageHeading: true
           }
         }) %}
 
-        <p>You can find your OHS reference number on the email we have sent you</p>
+        <!-- <p>If you’re uploading evidence for yourself, this is your name.</p> -->
 
         {{ input({
           "label": {
-            "text": "OHS reference number"
+            "text": "First name"
+          },
+          "id": "input-width-30",
+          "name": "upload-firstname",
+          "classes": "nhsuk-input--width-30"
+        }) }}
+
+        {{ input({
+          "label": {
+            "text": "Last name"
           },
           "errorMessage": {
-            "text": "Enter your OHS reference number"
+            "text": "Enter your last name"
           },
-          "id": "input-width-10",
-          "name": "ohs",
-          "classes": "nhsuk-input--width-10 nhsuk-input--error"
+          "id": "input-width-30",
+          "name": "upload-lastname",
+          "classes": "nhsuk-input--width-30 nhsuk-input--error"
         }) }}
 
 
         {% endcall %}
-        <!-- <p><a href="nhs-number">I don't have a National Insurance number</a></p> -->
 
         {{ button({
           "text": "Continue"
@@ -74,17 +81,15 @@
 
       </form>
 
-      <!-- {{ backLink({
-        "href": "dob",
-        "text": "Change my previous answer"
-      }) }} -->
+      <div class="nhsuk-back-link">
+        <a href="javascript:history.back()">
+        <button class="nhsuk-back-link__link">
+          <svg class="nhsuk-icon nhsuk-icon__chevron-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" height="24" width="24">
+            <path d="M8.5 12c0-.3.1-.5.3-.7l5-5c.4-.4 1-.4 1.4 0s.4 1 0 1.4L10.9 12l4.3 4.3c.4.4.4 1 0 1.4s-1 .4-1.4 0l-5-5c-.2-.2-.3-.4-.3-.7z"></path>
+          </svg>
+          Change my previous answer</button></a>
+      </div>
 
     </div>
   </div>
 {% endblock %}
-
-
-<!-- 
-  hint: {
-            html: "For example, ‘1’."
-          }, -->

@@ -9,8 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <script>
-   const chooseFile = document.getElementById('choose-file');
-   const fileChosen = document.getElementById('file-chosen');
+    const chooseFile = document.getElementById('choose-file');
+    const fileChosen = document.getElementById('file-chosen');
     chooseFile.addEventListener('change', 
       function(){
       fileChosen.textContent = this.files[0].name
@@ -47,11 +47,11 @@
 
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-three-quarters">
-       <!-- <form action="upload-reside-file-type" method="post"> -->
-       <!-- <form action="upload-uk-evidence-another" method="post"> -->
+        <!-- <form action="upload-reside-file-type" method="post"> -->
+        <!-- <form action="upload-uk-evidence-another" method="post"> -->
         <!-- <span class="nhsuk-caption-l nhsuk-caption--bottom">Step 1</span> -->
 
-      <h2>Upload evidence for all the years {{ data['upload-firstname'] }} paid State Pension contribution for the UK</h2>
+      <h2>Upload evidence that you are being paid a UK State Pension</h2>
 <!-- 
         {% call fieldset({
           legend: {
@@ -106,13 +106,15 @@
         <div class="nhsuk-form-group">
 
         <!-- <p>The file must be in jpeg, jpg, png, or pdf format and must not be bigger than 10MB.</p> -->
+        <p>Upload a letter from the Department for Work and Pensions showing the date you started being paid your UK State Pension.</p>
+      
+
+        <!-- start -->
 
         <div>
           <label for="choose-file" class="nhsuk-button nhsuk-button--secondary">Choose files</label>
           <input id="choose-file" style="display:none;" type="file">
           <span id="file-chosen">No files chosen</span>
-        </div>
-
         </div>
 
         <a href="cya-uk">    

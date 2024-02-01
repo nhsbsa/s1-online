@@ -57,9 +57,9 @@ router.post([/eligibility-move-check/, /eligibility-move-check-error/], function
 
     if (moveCheck == 'Yes') {
         res.redirect('eligibility-move-date');
-    } if (moveCheck == 'No') {
+    } else if (moveCheck == 'No') {
         res.redirect('eligibility-move-date-plan');
-    } else {
+    } else if (!moveCheck){
         res.redirect('eligibility-move-check-error');
     }
 })
@@ -106,7 +106,7 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     var dayReg = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
 
     if (dayReg.test(futureDay) && monthReg.test(futureMonth) && yearReg.test(futureYear) && fullFutureDate > ninetyDaysFromNow) {
-      res.redirect('kickout/ineligible-ninety-date-kickout');
+        res.redirect('kickout/ineligible-ninety-date-kickout');
     } else if (dayReg.test(futureDay) && monthReg.test(futureMonth) && yearReg.test(futureYear) && fullFutureDate <= ninetyDaysFromNow) {
         res.redirect('eligibility-uk-state-pension');
     } else if (futureDay == '' && monthReg.test(futureMonth) && yearReg.test(futureYear)) {
@@ -432,35 +432,34 @@ router.get(/dependant-cya/, function (req, res) {
     res.render('mvp/apply/dependant-cya', {depDobDateFormatted: depDobDateFormatted});
 })
 
-// Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 days from today]?
-
-router.post([/eligibility-uk-state-pension/, /eligibility-uk-state-pension-error/], function(req, res){
-    var ukStatePension = req.session.data['ukStatePension'];
-
-    if (ukStatePension == 'Yes'){
-        res.redirect('eligibility-state-pension-check');
-    } if (ukStatePension == 'No'){
-        res.redirect('kickout/ineligible-no-uk-state-pension');
-    } else {
-        res.redirect('eligibility-uk-state-pension-error');
-    }
-})
-
-
 // Do you get a State Pension from country you’re moving to?
 
-router.post([/eligibility-state-pension-check/, /eligibility-state-pension-check-error/], function(req, res){
+router.post([/check-state-pension/, /check-state-pension-error/], function(req, res){
     var statePensionCheck = req.session.data['statePensionCheck'];
     var countrySOne = req.session.data['countrySOne'];
 
-    if (!statePensionCheck) {
-        res.redirect('eligibility-state-pension-check-error');
-    } else if (statePensionCheck == 'Yes'){
-        res.redirect('kickout/ineligible-sone-state-pension');
+    if (statePensionCheck == 'Yes'){
+        res.redirect('../eligibility/kickout/ineligible-sone-state-pension');
     } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
-        res.redirect('eligibility-germany-contributions');
+        res.redirect('../eligibility/eligibility-germany-contributions');
     } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
-        res.redirect('eligibility-other-eu-state-pension');
+        res.redirect('../eligibility/eligibility-other-eu-state-pension');
+    } if (!statePensionCheck){
+        res.redirect('check-state-pension-error');
+    }
+})
+
+// Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 days from today]?
+
+router.post([/eligibility-uk-state-pension/, /state-pension-error/], function(req, res){
+    var ukStatePension = req.session.data['ukStatePension'];
+
+    if (ukStatePension == 'Yes'){
+        res.redirect('../apply/check-state-pension');
+    } else if (ukStatePension == 'No'){
+        res.redirect('kickout/ineligible-no-uk-state-pension');
+    } else if (!ukStatePension){
+        res.redirect('state-pension-error');
     }
 })
 
@@ -482,21 +481,35 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
 
 // Do you also get a State Pension from an EU or EFTA country?
 
-router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-pension-error/], function (req, res){
+router.post([/eligibility-other-eu-state-pension/], function (req, res){
     var euStatePension = req.session.data['euStatePension'];
     var moveCheck = req.session.data['moveCheck'];
 
-    if (euStatePension == 'Yes'){
-        res.redirect('eligibility-eu-country-state-pension');
-    } if (euStatePension == 'No' && moveCheck == 'No'){
-        res.redirect('eligibility-cya-1');
-    } if (euStatePension == 'No' && moveCheck == 'Yes'){
-        res.redirect('eligibility-cya-2');
-    } else {
+    if (!euStatePension) {
         res.redirect('eligibility-other-eu-state-pension-error');
+    } else if (euStatePension == 'Yes'){
+        res.redirect('eligibility-eu-country-state-pension');
+    } else if (euStatePension == 'No' && moveCheck == 'No'){
+        res.redirect('eligibility-cya-1');
+    } else if (euStatePension == 'No' && moveCheck == 'Yes'){
+        res.redirect('eligibility-cya-2');
     }
 })
 
+router.post([/eligibility-other-eu-state-pension-error/], function (req, res){
+    var euStatePension = req.session.data['euStatePension'];
+    var moveCheck = req.session.data['moveCheck'];
+
+    if (!euStatePension) {
+        res.redirect('eligibility-other-eu-state-pension-error');
+    } else if (euStatePension == 'Yes'){
+        res.redirect('eligibility-eu-country-state-pension');
+    } else if (euStatePension == 'No' && moveCheck == 'No'){
+        res.redirect('eligibility-cya-1');
+    } else if (euStatePension == 'No' && moveCheck == 'Yes'){
+        res.redirect('eligibility-cya-2');
+    }
+})
 
 // Which countries do you get a State Pension from, other than the UK?
 
@@ -1781,4 +1794,4 @@ router.post(/cya/, function(req, res){
 
 // })
 
-module.exports = router
+module.exports = router;
