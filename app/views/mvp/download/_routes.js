@@ -34,13 +34,13 @@ router.post([/download-full-name/, /download-full-name-first-error/, /download-f
         res.redirect('../download/upload-dob');
     }
     else if (first == '' && last != ''){
-        res.redirect('full-name-first-error');
+        res.redirect('download-full-name-first-error');
     }
     else if (first != '' && last == ''){
-        res.redirect('full-name-last-error');
+        res.redirect('download-full-name-last-error');
     }
     else if (first == '' && last == ''){
-        res.redirect('full-name-error');
+        res.redirect('download-full-name-error');
     }
 })
 
