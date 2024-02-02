@@ -22,7 +22,6 @@ router.post([/eligibility-country-check/, /eligibility-country-check-error/], fu
     }
 })
 
-
 //  Which country do you need an S1 for?
 
 router.post([/eligibility-country/, /eligibility-country-error/], function (req, res){
@@ -82,7 +81,6 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     console.log(futureDate);
     console.log(fullFutureDate);
 
-
     //Today's date
     const now = new Date();
     const yyyy = now.getFullYear();
@@ -98,7 +96,6 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     // 90 days from today 
     var ninetyDaysFromNow = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
     console.log(ninetyDaysFromNow);
-
 
     ///// Validate date input values using regular expressions
     var yearReg = /^(202[3-4])$/;            ///< Allows a number between 2023 and 2024
@@ -1215,17 +1212,17 @@ router.post([/applicant-residential-address/, /applicant-residential-address-err
     var country = req.session.data['country']
 
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-        res.redirect('applicant-correspondence-address-check');
+        return res.redirect('applicant-correspondence-address-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-        res.redirect('applicant-residential-address-line-error');
+        return res.redirect('applicant-residential-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-        res.redirect('applicant-residential-address-city-error');
+        return res.redirect('applicant-residential-address-city-error');
     } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-        res.redirect('applicant-residential-address-postcode-error');
+        return res.redirect('applicant-residential-address-postcode-error');
     } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
-        res.redirect('applicant-residential-address-country-error');
+        return res.redirect('applicant-residential-address-country-error');
     } else {
-        res.redirect('applicant-residential-address-error');
+        return res.redirect('applicant-residential-address-error');
     }
 })
 
@@ -1269,26 +1266,25 @@ router.post([/applicant-correspondence-address-check/, /applicant-correspondence
 // Correspondence address
 
 router.post([/applicant-correspondence-address/, /applicant-correspondence-address-error/, /applicant-correspondence-address-error/, /applicant-correspondence-address-city-error/, /applicant-correspondence-address-postcode-error/, /applicant-correspondence-address-country-error/], function (req,res) {
-    var addressLineOne = req.session.data['addressLineOne']
-    var city = req.session.data['city']
-    var postcode = req.session.data['postcode']
-    var country = req.session.data['country']
+    var corrAddressLineOne = req.session.data['corrAddressLineOne'];
+    var corrCity = req.session.data['corrCity'];
+    var corrPostcode = req.session.data['corrPostcode'];
+    var corrCountry = req.session.data['corrCountry'];
 
-    if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-        res.redirect('applicant-correspondence-address-check');
-    } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
-        res.redirect('applicant-correspondence-address-line-error');
-    } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {
-        res.redirect('applicant-correspondence-address-city-error');
-    } else if(addressLineOne != '' && city != '' && postcode == '' && country != '') {
-        res.redirect('applicant-correspondence-address-postcode-error');
-    } else if(addressLineOne != '' && city != '' && postcode != '' && country == '') {
-        res.redirect('applicant-correspondence-address-country-error');
-    } else {
-        res.redirect('applicant-correspondence-address-error');
+    if(corrAddressLineOne != '' && corrCity != '' && corrPostcode != '' && corrCountry != '') {
+        return res.redirect('applicant-email');
+    } else if(corrAddressLineOne == '' && corrCity != '' && corrPostcode != '' && corrCountry != '') {
+        return res.redirect('applicant-correspondence-address-line-error');
+    } else if(corrAddressLineOne != '' && corrCity == '' && corrPostcode != '' && corrCountry != '') {
+        return res.redirect('applicant-correspondence-address-city-error');
+    } else if(corrAddressLineOne != '' && corrCity != '' && corrPostcode == '' && corrCountry != '') {
+        return res.redirect('applicant-correspondence-address-postcode-error');
+    } else if(corrAddressLineOne != '' && corrCity != '' && corrPostcode != '' && corrCountry == '') {
+        return res.redirect('applicant-correspondence-address-country-error');
+    } else if (corrAddressLineOne == '' && corrCity == '' && corrPostcode == '' && corrCountry == '') {
+        return res.redirect('applicant-correspondence-address-error');
     }
 })
-
 
 // Email
 
@@ -1307,7 +1303,6 @@ router.post([/applicant-email/, /applicant-email-error/], function (req,res) {
     }
 })
 
-
 // Phone
 
 router.post([/applicant-phone/, /applicant-phone-error/], function (req,res) {
@@ -1323,7 +1318,6 @@ router.post([/applicant-phone/, /applicant-phone-error/], function (req,res) {
         res.redirect('applicant-send-letter-check');
     }
 })
-
 
 // Do you want a copy of your S1 certificate to be sent by letter?
 
@@ -1389,7 +1383,6 @@ router.post(/additional-file-2/, function(req,res){
         res.redirect('../apply/dependant-check');
     }
 })
-
 
 // Check your details - main applicant
 // applicant-cya-personal
@@ -1553,7 +1546,6 @@ router.post([/dependant-address-check/, /dependant-address-check-error/], functi
     }
 })
 
-
 // Dependant address
 
 router.post([/dependant-address/, /dependant-address-error/, /dependant-address-line-error/, /dependant-address-city-error/, /dependant-address-postcode-error/, /dependant-address-country-error/], function (req,res) {
@@ -1563,7 +1555,7 @@ router.post([/dependant-address/, /dependant-address-error/, /dependant-address-
     var country = req.session.data['dependantCountry'];
 
     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
-        res.redirect('dependant-more-check');
+        res.redirect('more-dependants-check');
     } else if(addressLineOne == '' && city != '' && postcode != '' && country != '') {
         res.redirect('dependant-address-line-error');
     } else if(addressLineOne != '' && city == '' && postcode != '' && country != '') {

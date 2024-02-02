@@ -358,7 +358,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           </dd>
         </div>
   
-       
+      
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">
             What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s date of birth?
@@ -387,7 +387,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           </dd>
         </div>
   
-        {% if data['depenantAddressCheck'] == 'No' %}
+        {% if data['dependantAddressCheck'] == 'No' %}
         <div class="nhsuk-summary-list__row">
           <dt class="nhsuk-summary-list__key">
             What is {{ data['dependantFirstName'] }} {{ data['dependantSurname'] }}'s address?
@@ -458,12 +458,20 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
             <fieldset class="nhsuk-fieldset" aria-describedby="example-hint">
               <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
                 <h1 class="nhsuk-fieldset__heading">
-                  Declaration
+                  Submit your application
                 </h1>
               </legend>
 
-        
-              <div class="nhsuk-checkboxes">
+              <p>The information that you give us in this application will be used to check your eligibility. This means we may share your information with:</p>
+
+              <ul>
+                <li>The Department for Work and Pensions (DWP) who will check to confirm a UK state pension is in payment.</li>
+              </ul>
+
+              <p>We might also share you information with third parties to help us prevent and investigate fraud and error. You can find out more about how we use your information <a href="https://www.nhsbsa.nhs.uk/contact-overseas-healthcare-services">on our website.</a></p>
+              <p>By submitting your application, you are confirming that the information you’ve given us is correct. If you knowingly provide incorrect information, you could be prosecuted or face civil proceedings.</p>
+              
+              <!-- <div class="nhsuk-checkboxes">
         
                 <div class="nhsuk-checkboxes__item">
                   <input class="nhsuk-checkboxes__input" id="example-1" name="example" type="checkbox" value="email">
@@ -471,17 +479,15 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
                     I declare that the above information is true to the best of my knowledge
                   </label>
                 </div>
-        
-                
-        
-              </div>
+              </div> -->
+
             </fieldset>
         
           </div>
 
 
         <button class="nhsuk-button" data-module="nhsuk-button" type="submit">
-            Submit application
+            Accept and submit
         </button>
 
     </form>
