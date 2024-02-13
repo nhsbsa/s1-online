@@ -1308,11 +1308,10 @@ router.post([/applicant-email/, /applicant-email-error/], function (req,res) {
 router.post([/applicant-phone/, /applicant-phone-error/], function (req,res) {
     console.log(req.body.phone);
     
-    const phoneRegEx = /^0([1-6][0-9]{8,10}|7[0-9]{9})$/;
 
-    if(req.body.phone !== '' && phoneRegEx.test(req.body.phone)) {
+    if(req.body.phone !== '' ) {
         res.redirect('applicant-send-letter-check');
-    } else if(req.body.phone !== '' && !phoneRegEx.test(req.body.phone)) {
+    } else if(req.body.phone !== '') {
         res.redirect('applicant-phone-error');
     } else {
         res.redirect('applicant-send-letter-check');
