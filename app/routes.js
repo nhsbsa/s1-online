@@ -14,4 +14,9 @@ router.use('/mvp/download-unsuccess', require('./views/mvp/download-unsuccess/_r
 
 router.use('/discovery', require('./views/discovery/_routes'));
 
+router.get('/data', function (req, res) {
+    console.log(req.session.data);
+    return res.render('data', {data: req.session.data});
+})
+
 module.exports = router;
