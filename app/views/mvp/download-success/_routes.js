@@ -17,11 +17,11 @@ router.post([/download-ohs-number/, /download-ohs-number-error/, /download-ohs-n
     if (ohs == '') {
         res.redirect('download-ohs-number-error');
     }
-    else if (ohs != '' && !ohsRegEx.test(ohs)){
-        res.redirect('download-ohs-number-invalid');
-    }
+    // else if (ohs != '' && !ohsRegEx.test(ohs)){
+    //     res.redirect('download-ohs-number-invalid');
+    // }
     else if (ohs != '' && ohsRegEx.test(ohs)) {
-        res.redirect('../download/download-full-name');
+        res.redirect('download-full-name');
     }
 })
 
@@ -31,7 +31,7 @@ router.post([/download-full-name/, /download-full-name-first-error/, /download-f
     var last = req.session.data['upload-lastname'];
 
     if (first != '' && last != '') {
-        res.redirect('../download/upload-dob');
+        res.redirect('upload-dob');
     }
     else if (first == '' && last != ''){
         res.redirect('download-full-name-first-error');
@@ -94,7 +94,7 @@ router.post([/download-nino/, /download-nino-error/], function (req,res) {
     } else if(req.body.nino !== '' && !ninoRegEx.test(req.body.nino)) {
         return res.redirect('download-nino-error');
     } else if (req.body.nino !== '' && ninoRegEx.test(req.body.nino)){
-        return res.redirect('../download/application-outcome-found');
+        return res.redirect('application-outcome-found');
     } 
 })
 

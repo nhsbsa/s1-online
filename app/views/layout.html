@@ -41,8 +41,8 @@ S1 Onine - Overseas Healthcare Services - NHSBSA
         "label": "Home"
       },
       {
-        "URL": "/page-example",
-        "label": "Example page"
+        "URL": "../examples/passing-data/clear-data",
+        "label": "Clear data"
       }
     ]
   })}}
@@ -55,5 +55,7 @@ S1 Onine - Overseas Healthcare Services - NHSBSA
     <!-- For adding page specific JavsScript -->
 
     {% block pageScripts %}{% endblock %}
+    {{ data | log }}
+
   {% endblock %}
 {% endblock %}
