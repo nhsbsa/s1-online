@@ -1,0 +1,8 @@
+{% if not hideBackLink %}
+  {% from 'back-link/macro.njk' import backLink %}
+
+    {{ backLink({
+      "href": "javascript:history.go(-1)",
+      html: backText if backText else 'Change my previous answer'
+    }) }}
+{% endif %}

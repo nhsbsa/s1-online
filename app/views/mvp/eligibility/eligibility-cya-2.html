@@ -46,7 +46,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Yes
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-country-check">
             Change<span class="nhsuk-u-visually-hidden"> if the applicant permanently living or moving outside the UK</span>
           </a>
         </dd>
@@ -60,7 +60,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           {{ data['countrySOne']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-country">
             Change<span class="nhsuk-u-visually-hidden"> which country is the applicant applying for?</span>
           </a>
         </dd>
@@ -74,7 +74,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Yes
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-move-check">
             Change<span class="nhsuk-u-visually-hidden"> has the applicant already moved to {{ data['countrySOne']}}?</span>
           </a>
         </dd>
@@ -88,7 +88,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           {{ moveDateFormatted }}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-move-date">
             Change<span class="nhsuk-u-visually-hidden"> what date did the applicant move to France?</span>
           </a>
         </dd>
@@ -103,7 +103,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           Yes
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-uk-state-pension">
             Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a UK State pension, or will they receive this within the next {{ ninetyDaysFromNow }}?</span>
           </a>
         </dd>
@@ -119,7 +119,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
             {{ data['germanyContributions']}}
           </dd>
           <dd class="nhsuk-summary-list__actions">
-            <a href="#">
+            <a href="eligibility-germany-contributions">
               Change<span class="nhsuk-u-visually-hidden"> if the applicant has paid Statutory Health Contributions to Germany</span>
             </a>
           </dd>
@@ -134,7 +134,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           No
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="../apply/check-state-pension">
             Change<span class="nhsuk-u-visually-hidden"> does the applicant receive a State pension from {{ data['countrySOne'] }}?</span>
           </a>
         </dd>
@@ -148,7 +148,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           {{ data['euStatePension']}}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-other-eu-state-pension">
             Change<span class="nhsuk-u-visually-hidden"> does the applicant get a state pension from a EEA country or Switzerland?</span>
           </a>
         </dd>
@@ -165,7 +165,7 @@ Apply for an S1 form - Overseas Healthcare Services - NHSBSA
           {% endfor %}
         </dd>
         <dd class="nhsuk-summary-list__actions">
-          <a href="#">
+          <a href="eligibility-eu-country-state-pension">
             Change<span class="nhsuk-u-visually-hidden"> does the applicant get a state pension from a EEA country or Switzerland?</span>
           </a>
         </dd>

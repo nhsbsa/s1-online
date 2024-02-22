@@ -1,0 +1,39 @@
+<!-- 
+  This is the main layout where you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Extends the layout from /docs/views/template.html -->
+{% extends "layouts/layout.html" %}
+
+{% block content %}
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+
+    <form {{formActionHtml | safe }} method="post" novalidate spellcheck="false">
+      <div class="nhsuk-form-group">
+        <fieldset class="nhsuk-fieldset">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+              <h1 class="nhsuk-fieldset__heading">
+                  <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>
+                  {{ title or 'h1 Header' }}
+              </h1>
+          </legend>
+
+        {% block form %}{% endblock %}
+
+      </fieldset>
+      </div>
+        {% if not hideButton %}
+        {{ button({
+          html: buttonText if buttonText else 'Continue'
+        }) }}
+      {% endif %}
+      {% include 'includes/_back.html' %}
+      </form>
+
+
+  </div>
+</div>
+{% endblock %}
