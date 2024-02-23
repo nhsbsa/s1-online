@@ -1,0 +1,23 @@
+{% extends 'layouts/main.html' %}
+{% set title = data.ineligible %}
+{% set caption = data.eligibilityCaption %}
+{% set backLink = true %}
+
+
+
+{% block form %}
+
+  <p>You cannot get an S1 for healthcare cover when living abroad. This is because you need to be either:</p>
+  <ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+      getting paid your UK State Pension
+    </li>
+    <li>
+      entitled to start getting paid your UK State Pension in the next 90 days 
+    </li>
+  </ul>
+
+
+{% endblock %}
+
+

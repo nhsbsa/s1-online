@@ -6,6 +6,26 @@ const router = express.Router()
 
 //// Alpha S1 V.2 /////
 //////////////////////
+// addFilter('isoDateFromDateInput', function(object) {
+//     try {
+//       const year = parseInt(object.year) || new Date().getFullYear()
+//       const month = parseInt(object.month)
+  
+//       if (!object.day) {
+//         return DateTime.local(year, month).toFormat('yyyy-LL')
+//       } else {
+//         const day = parseInt(object.day)
+  
+//         return DateTime.local(year, month, day).toISODate()
+//       }
+//     } catch (error) {
+//       return error.message.split(':')[0]
+//     }
+//   })
+  
+//   addFilter('date', function(date) {
+//     return DateTime.fromISO(date).toFormat('d MMMM yyyy')
+//   })
 
 
 // 	Are you permanently living or moving outside the UK?

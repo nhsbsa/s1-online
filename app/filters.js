@@ -5,8 +5,12 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
    * gov.uk core filters by creating filter methods of the same name.
    * @type {Object}
    */
-  const filters = {};
+  const filters = {
 
+    
+  };
+
+  
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
@@ -41,5 +45,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
+  
+  
   return filters;
 };

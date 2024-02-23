@@ -1,0 +1,33 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}When did you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set caption = data.eligibilityCaption %}
+
+
+
+{% block form %}
+{{ dateInput({
+  "id": "eligibility-move-date",
+  "hint": {
+    "text": "For example, 15 3 2023"
+  },
+  "items": [
+    {
+      "name": "move-day",
+      "label": "day",
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "move-month",
+      "label": "month",
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "move-year",
+      "label": "year",
+      "classes": "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{% endblock %}

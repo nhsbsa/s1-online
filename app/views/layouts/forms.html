@@ -9,8 +9,11 @@
 
 {% block content %}
 <div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
-
+  {% if not fullWidth %}
+    <div class="nhsuk-grid-column-two-thirds">
+     {% else %}
+      <div class="nhsuk-grid-column-full">
+    {% endif %}
     <form {{formActionHtml | safe }} method="post" novalidate spellcheck="false">
       <div class="nhsuk-form-group">
         <fieldset class="nhsuk-fieldset">

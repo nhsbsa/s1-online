@@ -7,21 +7,23 @@
 {% block form %}
 {{ dateInput({
   "id": "eligibility-move-date-plan",
-  "namePrefix": "example",
   "hint": {
     "text": "For example, 15 3 2023"
   },
   "items": [
     {
-      "name": "day",
+      "name": "futureDay",
+      "label": "day",
       "classes": "nhsuk-input--width-2"
     },
     {
-      "name": "month",
+      "name": "futureMonth",
+      "label": "month",
       "classes": "nhsuk-input--width-2"
     },
     {
-      "name": "year",
+      "name": "futureYear",
+      "label": "year",
       "classes": "nhsuk-input--width-4"
     }
   ]

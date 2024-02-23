@@ -1,0 +1,26 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Have you paid Statutory Health Contributions to Germany?{% endset %}
+{% set caption = data.eligibilityCaption %}
+{% set hideBackLink = true %}
+
+
+
+{% block form %}
+{{ radios({
+    "idPrefix": "eligibility-germany-contributions",
+    "name": "germanyContributions",
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+
+
+{% endblock %}

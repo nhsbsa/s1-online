@@ -12,9 +12,9 @@ const router = express.Router()
 router.post([/eligibility-country-check/, /eligibility-country-check-error/], function(req, res){
     var liveEU = req.session.data['liveEU'];
 
-    if (liveEU == 'yes'){
+    if (liveEU == 'Yes'){
         res.redirect('eligibility-country');
-    } else if (liveEU == 'no'){
+    } else if (liveEU == 'No'){
         res.redirect('eligibility-country-check-fail');
     } else {
         res.redirect('eligibility-country-check-error');
@@ -22,13 +22,7 @@ router.post([/eligibility-country-check/, /eligibility-country-check-error/], fu
 })
 
 
-router.post('/eligibility-country-check', (req, res) => { 
-    if(req.session.data['liveEU'] == 'Yes') {
-      res.redirect('/auth/trn')
-    } else {
-      res.redirect('/auth/have-qts')
-    }
-  })
+
 
 //  Which country do you need an S1 for?
 
@@ -111,29 +105,29 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
     var dayReg = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
 
     if (dayReg.test(futureDay) && monthReg.test(futureMonth) && yearReg.test(futureYear) && fullFutureDate > ninetyDaysFromNow) {
-        res.redirect('kickout/ineligible-ninety-date-kickout');
+        res.redirect('eligibility-move-date-plan-fail');
     } else if (dayReg.test(futureDay) && monthReg.test(futureMonth) && yearReg.test(futureYear) && fullFutureDate <= ninetyDaysFromNow) {
         res.redirect('eligibility-uk-state-pension');
     } else if (futureDay == '' && monthReg.test(futureMonth) && yearReg.test(futureYear)) {
-        res.redirect('eligibility-move-date-plan-day-error');
-    } else if (dayReg.test(futureDay) && futureMonth == '' && yearReg.test(futureYear)) {
-        res.redirect('eligibility-move-date-plan-month-error');
-    } else if (dayReg.test(futureDay) && monthReg.test(futureMonth) && futureYear == '') {
-        res.redirect('eligibility-move-date-plan-year-error');
-    } else if (futureDay == '' && futureMonth == '' && yearReg.test(futureYear)) {
-        res.redirect('eligibility-move-date-plan-day-month-error');
-    } else if (dayReg.test(futureDay) && futureMonth == '' && futureYear == '') {
-        res.redirect('eligibility-move-date-plan-month-year-error');
-    } else if (futureDay == '' && monthReg.test(futureMonth) && futureYear == '') {
-        res.redirect('eligibility-move-date-plan-day-year-error');
-    } else if (futureDay == '' && futureMonth == '' && futureYear == '') {
-        res.redirect('eligibility-move-date-plan-error');
+    //     res.redirect('eligibility-move-date-plan-day-error');
+    // } else if (dayReg.test(futureDay) && futureMonth == '' && yearReg.test(futureYear)) {
+    //     res.redirect('eligibility-move-date-plan-month-error');
+    // } else if (dayReg.test(futureDay) && monthReg.test(futureMonth) && futureYear == '') {
+    //     res.redirect('eligibility-move-date-plan-year-error');
+    // } else if (futureDay == '' && futureMonth == '' && yearReg.test(futureYear)) {
+    //     res.redirect('eligibility-move-date-plan-day-month-error');
+    // } else if (dayReg.test(futureDay) && futureMonth == '' && futureYear == '') {
+    //     res.redirect('eligibility-move-date-plan-month-year-error');
+    // } else if (futureDay == '' && monthReg.test(futureMonth) && futureYear == '') {
+    //     res.redirect('eligibility-move-date-plan-day-year-error');
+    // } else if (futureDay == '' && futureMonth == '' && futureYear == '') {
+    //     res.redirect('eligibility-move-date-plan-error');
     } else {
-        res.redirect('eligibility-move-date-plan-invalid-error');
+        res.redirect('eligibility-uk-state-pension');
     }
 
     // Eligibility Check Your Answers
-    router.get(/eligibility-cya-1/, function (req, res) {
+    router.get(/check-your-answers/, function (req, res) {
 
         //Today's date
         const now = new Date();
@@ -179,7 +173,7 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
         // var liveDateFormatted = "1 March 2021"
         console.log(liveDateFormatted);
 
-        res.render('mvp/eligibility/eligibility-cya-1', {liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
+        res.render('v1/eligibility/check-your-answers', {liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
     })
 })
 
@@ -220,6 +214,7 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
     var yearReg = /^(200[0-9]|201[0-9]|202[0-4])$/;     ///< Allows a number between 2000 and 2024
     var monthReg = /^(0?[1-9]|1[0-2])$/;               ///< Allows a number between 00 and 12
     var dayReg = /^(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$/;   ///< Allows a number between 00 and 31
+    req.session.data['moveDate'] = `${req.body['move-day']} ${req.body['move-month']} ${req.body['move-year']}`
 
     // var firstJan = new Date("1/1/2021");
     // console.log(firstJan);
@@ -230,22 +225,22 @@ router.post([/eligibility-move-date/, /eligibility-move-date-day-error/, /eligib
 
     if (dayReg.test(moveDay) && monthReg.test(moveMonth) && yearReg.test(moveYear)) {
         res.redirect('eligibility-uk-state-pension');
-    } if (moveDay == '' && monthReg.test(moveMonth) && yearReg.test(moveYear)) {
-        res.redirect('eligibility-move-date-day-error');
-    } if (dayReg.test(moveDay) && moveMonth == '' && yearReg.test(moveYear)) {
-        res.redirect('eligibility-move-date-month-error');
-    } if (dayReg.test(moveDay) && monthReg.test(moveMonth) && moveYear == '') {
-        res.redirect('eligibility-move-date-year-error');
-    } if (moveDay == '' && moveMonth == '' && yearReg.test(moveYear)) {
-        res.redirect('eligibility-move-date-day-month-error');
-    } if (dayReg.test(moveDay) && moveMonth == '' && moveYear == '') {
-        res.redirect('eligibility-move-date-month-year-error');
-    } if (moveDay == '' && monthReg.test(moveMonth) && moveYear == '') {
-        res.redirect('eligibility-move-date-day-year-error');
-    } if (moveDay == '' && moveMonth == '' && moveYear == '') {
-        res.redirect('eligibility-move-date-error');
+    // } if (moveDay == '' && monthReg.test(moveMonth) && yearReg.test(moveYear)) {
+    //     res.redirect('eligibility-move-date-day-error');
+    // } if (dayReg.test(moveDay) && moveMonth == '' && yearReg.test(moveYear)) {
+    //     res.redirect('eligibility-move-date-month-error');
+    // } if (dayReg.test(moveDay) && monthReg.test(moveMonth) && moveYear == '') {
+    //     res.redirect('eligibility-move-date-year-error');
+    // } if (moveDay == '' && moveMonth == '' && yearReg.test(moveYear)) {
+    //     res.redirect('eligibility-move-date-day-month-error');
+    // } if (dayReg.test(moveDay) && moveMonth == '' && moveYear == '') {
+    //     res.redirect('eligibility-move-date-month-year-error');
+    // } if (moveDay == '' && monthReg.test(moveMonth) && moveYear == '') {
+    //     res.redirect('eligibility-move-date-day-year-error');
+    // } if (moveDay == '' && moveMonth == '' && moveYear == '') {
+    //     res.redirect('eligibility-move-date-error');
     } if (!dayReg.test(moveDay) || !monthReg.test(moveMonth) || !yearReg.test(moveYear)) {
-        res.redirect('eligibility-move-date-invalid-error');
+        res.redirect('eligibility-uk-state-pension');
     }
 
     router.get(/eligibility-cya-2/, function (req, res) {
@@ -371,44 +366,60 @@ router.post([/eligibility-move-check/, /eligibility-move-check-error/], function
 
 /// TO DO: work out separate input dates ///
 
-router.get(/eligibility-uk-state-pension/, function (req, res) {
+// router.get(/eligibility-uk-state-pension/, function (req, res) {
     
-    //Today's date
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    let mm = now.getMonth() + 1; 
-    const dd = now.getDate();
-    const formatToday = dd + '/' + mm + '/' + yyyy;
+//     //Today's date
+//     const now = new Date();
+//     const yyyy = now.getFullYear();
+//     let mm = now.getMonth() + 1; 
+//     const dd = now.getDate();
+//     const formatToday = dd + '/' + mm + '/' + yyyy;
 
-    console.log(formatToday);
+//     console.log(formatToday);
 
-    var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
-    console.log(todayDate);
+//     var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
+//     console.log(todayDate);
 
-    // 90 days from today 
-    //var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
-    var ninetyDays = new Date(todayDate.getTime() + ( 90 * 24 * 60 * 60 * 1000));
-    console.log(ninetyDays);
+//     // 90 days from today 
+//     //var ninetyDays = new Date(todayDate.getTime() + (92 * 86400000));
+//     var ninetyDays = new Date(todayDate.getTime() + ( 90 * 24 * 60 * 60 * 1000));
+  
 
-    // Code to add 90 days to input Time
-    // let ut = document.getElementById("updatedTime")
-    // function add() {
-    //    setInterval(() => {
-    //       let currentTime = new Date().getTime();
-    //       let updatedTIme = new Date(currentTime + 2 * 24 * 60 * 60 * 1000);
-    //       ut.innerText = "Updated Date : " + updatedTIme.toLocaleDateString()
-    //    }, 1000)
-    // }
+//     // Code to add 90 days to input Time
+//     // let ut = document.getElementById("updatedTime")
+//     // function add() {
+//     //    setInterval(() => {
+//     //       let currentTime = new Date().getTime();
+//     //       let updatedTIme = new Date(currentTime + 2 * 24 * 60 * 60 * 1000);
+//     //       ut.innerText = "Updated Date : " + updatedTIme.toLocaleDateString()
+//     //    }, 1000)
+//     // }
 
-    // Convert format
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+//     // Convert format
+//     const options = { year: 'numeric', month: 'long', day: 'numeric' };
 
-    const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
-    var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
-    console.log(ninetyDaysFromNow);
+//     const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
+//     var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
+//     console.log(ninetyDaysFromNow);
     
-    res.render('mvp/eligibility/eligibility-uk-state-pension', {ninetyDaysFromNow: ninetyDaysFromNow});
+//     res.render('v1/eligibility/eligibility-uk-state-pension', {ninetyDaysFromNow: ninetyDaysFromNow});
+// })
+
+
+// Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 days from today]?
+
+router.post([/eligibility-uk-state-pension/, /eligibility-uk-state-pension-error/], function(req, res){
+    var ukStatePension = req.session.data['ukStatePension'];
+
+    if (ukStatePension == 'Yes'){
+        res.redirect('eligibility-check-state-pension');
+    } else if (ukStatePension == 'No'){
+        res.redirect('eligibility-uk-state-pension-fail');
+    } else if (!ukStatePension){
+        res.redirect('eligibility-uk-state-pension-error');
+    }
 })
+
 
 
 router.get(/dependant-cya/, function (req, res) {
@@ -437,14 +448,17 @@ router.get(/dependant-cya/, function (req, res) {
     res.render('mvp/apply/dependant-cya', {depDobDateFormatted: depDobDateFormatted});
 })
 
+
+
+
 // Do you get a State Pension from country you’re moving to?
 
-router.post([/check-state-pension/, /check-state-pension-error/], function(req, res){
+router.post([/eligibility-check-state-pension/, /check-state-pension-error/], function(req, res){
     var statePensionCheck = req.session.data['statePensionCheck'];
     var countrySOne = req.session.data['countrySOne'];
 
     if (statePensionCheck == 'Yes'){
-        res.redirect('../eligibility/kickout/ineligible-sone-state-pension');
+        res.redirect('eligibility-check-state-pension-fail');
     } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
         res.redirect('../eligibility/eligibility-germany-contributions');
     } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
@@ -454,19 +468,6 @@ router.post([/check-state-pension/, /check-state-pension-error/], function(req, 
     }
 })
 
-// Are you being paid a UK State Pension, or will you be paid your UK State Pension before [90 days from today]?
-
-router.post([/eligibility-uk-state-pension/, /eligibility-uk-state-pension-error/], function(req, res){
-    var ukStatePension = req.session.data['ukStatePension'];
-
-    if (ukStatePension == 'Yes'){
-        res.redirect('../apply/check-state-pension');
-    } else if (ukStatePension == 'No'){
-        res.redirect('kickout/ineligible-no-uk-state-pension');
-    } else if (!ukStatePension){
-        res.redirect('eligibility-uk-state-pension-error');
-    }
-})
 
 
 // Have you paid Statutory Health Contributions to Germany?
@@ -475,7 +476,7 @@ router.post([/eligibility-germany-contributions/, /eligibility-germany-contribut
     var germanyCountributions = req.session.data['germanyContributions'];
 
     if (germanyCountributions == 'Yes'){
-        res.redirect('kickout/ineligible-germany-contributions');
+        res.redirect('eligibility-germany-contributions');
     } if (germanyCountributions == 'No') {
         res.redirect('eligibility-other-eu-state-pension');
     } else if (!germanyCountributions) {
@@ -495,9 +496,9 @@ router.post([/eligibility-other-eu-state-pension/, /eligibility-other-eu-state-p
     } else if (euStatePension == 'Yes'){
         return res.redirect('eligibility-eu-country-state-pension');
     } else if (euStatePension == 'No' && moveCheck == 'No'){
-        return res.redirect('eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (euStatePension == 'No' && moveCheck == 'Yes'){
-        return res.redirect('eligibility-cya-2');
+        return res.redirect('check-your-answers');
     }
 })
 
@@ -511,35 +512,35 @@ router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-sta
     var moveCheck = req.session.data['moveCheck'];
 
     if (euCountryPension.includes(countrySOne) === true ){
-        return res.redirect('kickout/ineligible-sone-state-pension');
+        return res.redirect('eligibility-check-state-pension-fail');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Iceland') === true || euCountryPension.includes('Liechtenstein') === true  || euCountryPension.includes('Norway') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Iceland') === true || euCountryPension.includes('Liechtenstein') === true  || euCountryPension.includes('Norway') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Austria') === true || euCountryPension.includes('Belgium') === true || euCountryPension.includes('Bulgaria') === true || euCountryPension.includes('Denmark') === true)){
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Austria') === true || euCountryPension.includes('Belgium') === true || euCountryPension.includes('Bulgaria') === true || euCountryPension.includes('Denmark') === true)){
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Czech Republic') === true || euCountryPension.includes('Estonia') === true || euCountryPension.includes('Finland') === true || euCountryPension.includes('France') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Czech Republic') === true || euCountryPension.includes('Estonia') === true || euCountryPension.includes('Finland') === true || euCountryPension.includes('France') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Germany') === true || euCountryPension.includes('Greece') === true || euCountryPension.includes('Hungary') === true || euCountryPension.includes('Ireland') === true || euCountryPension.includes('Italy') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Germany') === true || euCountryPension.includes('Greece') === true || euCountryPension.includes('Hungary') === true || euCountryPension.includes('Ireland') === true || euCountryPension.includes('Italy') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Latvia') === true || euCountryPension.includes('Lithuania') === true || euCountryPension.includes('Luxemburg') === true || euCountryPension.includes('Malta') === true || euCountryPension.includes('Montenegro') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Latvia') === true || euCountryPension.includes('Lithuania') === true || euCountryPension.includes('Luxemburg') === true || euCountryPension.includes('Malta') === true || euCountryPension.includes('Montenegro') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Netherlands') === true || euCountryPension.includes('Poland') === true || euCountryPension.includes('Portugal') === true || euCountryPension.includes('Romania') === true || euCountryPension.includes('Slovakia') === true || euCountryPension.includes('Switzerland') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Netherlands') === true || euCountryPension.includes('Poland') === true || euCountryPension.includes('Portugal') === true || euCountryPension.includes('Romania') === true || euCountryPension.includes('Slovakia') === true || euCountryPension.includes('Switzerland') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'No' && (euCountryPension.includes('Slovenia') === true || euCountryPension.includes('Spain') === true || euCountryPension.includes('Sweden') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-1');
+        return res.redirect('check-your-answers');
     } else if (moveCheck == 'Yes' && (euCountryPension.includes('Slovenia') === true || euCountryPension.includes('Spain') === true || euCountryPension.includes('Sweden') === true)) {
-        return res.redirect('../eligibility/eligibility-cya-2');
+        return res.redirect('check-your-answers');
     } else if (euCountryPension == ''){
         return res.redirect('eligibility-eu-country-state-pension-error');
     } else {
@@ -549,31 +550,31 @@ router.post([/eligibility-eu-country-state-pension/, /eligibility-eu-country-sta
 
 // Is your State Pension from [country] more than your UK State Pension? 
 
-router.post([/eligibility-eu-state-pension-amount/, /eligibility-eu-state-pension-amount-error/], function(req, res){
-    var euPensionAmount = req.session.data['euPensionAmount'];
-    var moveCheck = req.session.data['moveCheck'];
+// router.post([/eligibility-eu-state-pension-amount/, /eligibility-eu-state-pension-amount-error/], function(req, res){
+//     var euPensionAmount = req.session.data['euPensionAmount'];
+//     var moveCheck = req.session.data['moveCheck'];
 
-    if (euPensionAmount == 'Yes'){
-        res.redirect('kickout/ineligible-other-pension-amount');
-    } else if (euPensionAmount == 'No' && moveCheck == 'No') {
-        res.redirect('../eligibility/eligibility-cya-1');
-    } else if (euPensionAmount == 'No' && moveCheck == 'Yes') {
-        res.redirect('../eligibility/eligibility-cya-2');
-    } else {
-        res.redirect('eligibility-eu-state-pension-amount-error');
-    }
-})
+//     if (euPensionAmount == 'Yes'){
+//         res.redirect('kickout/ineligible-other-pension-amount');
+//     } else if (euPensionAmount == 'No' && moveCheck == 'No') {
+//         res.redirect('../eligibility/eligibility-cya-1');
+//     } else if (euPensionAmount == 'No' && moveCheck == 'Yes') {
+//         res.redirect('../eligibility/eligibility-cya-2');
+//     } else {
+//         res.redirect('eligibility-eu-state-pension-amount-error');
+//     }
+// })
 
 // Check Your Answers
-router.post(/cya/, function(req, res){
-    var moveCheck = req.session.data['moveCheck'];
+// router.post(/cya/, function(req, res){
+//     var moveCheck = req.session.data['moveCheck'];
 
-    if (moveCheck == 'No') {
-        res.redirect('../eligibility/eligibility-cya-1');
-    } else if (moveCheck == 'Yes') {
-        res.redirect('../eligibility/eligibility-cya-2');
-    }
-})
+//     if (moveCheck == 'No') {
+//         res.redirect('../eligibility/eligibility-cya-1');
+//     } else if (moveCheck == 'Yes') {
+//         res.redirect('../eligibility/eligibility-cya-2');
+//     }
+// })
 
 // Eligibility Check Your Answers
 // router.get(/eligibility-cya-2/, function (req, res) {

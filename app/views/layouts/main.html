@@ -4,7 +4,11 @@
 
 {% block content %}
 <div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
+  {% if not fullWidth %}
+    <div class="nhsuk-grid-column-two-thirds">
+     {% else %}
+      <div class="nhsuk-grid-column-full">
+    {% endif %}
 
     <h1 class="nhsuk-heading-l">
       <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>

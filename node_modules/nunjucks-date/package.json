@@ -1,0 +1,56 @@
+{
+  "name": "nunjucks-date",
+  "version": "1.5.0",
+  "description": "Plugin for nunjucks of momentjs format date",
+  "main": "src/index.js",
+  "scripts": {
+    "pretest:ci": "echo 'PRETEST' && greenkeeper-lockfile-update",
+    "posttest:ci": "echo 'POSTTEST' && greenkeeper-lockfile-upload",
+    "cz": "git-cz",
+    "lint": "semistandard --verbose | snazzy",
+    "test": "jest --coverage",
+    "test:ci": "jest --coverage --ci --runInBand",
+    "coverage": "cat ./coverage/lcov.info | coveralls"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://techmsi@github.com/techmsi/nunjucks-date.git"
+  },
+  "tonicExampleFilename": "example/example.js",
+  "keywords": [
+    "nunjucks",
+    "date"
+  ],
+  "author": "techmsi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/techmsi/nunjucks-date/issues"
+  },
+  "homepage": "https://github.com/techmsi/nunjucks-date",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "*",
+    "coveralls": "*",
+    "cz-conventional-changelog": "*",
+    "greenkeeper-lockfile": "^1.x",
+    "jest": "*",
+    "jest-junit": "*",
+    "semistandard": "*",
+    "snazzy": "*"
+  },
+  "dependencies": {
+    "moment": "*",
+    "nunjucks": "^3.x"
+  }
+}

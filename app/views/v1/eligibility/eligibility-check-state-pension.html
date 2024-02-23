@@ -1,0 +1,26 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Do you get a State Pension from {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set caption = data.eligibilityCaption %}
+{% set hideBackLink = true %}
+
+
+
+{% block form %}
+{{ radios({
+    "idPrefix": "check-state-pension",
+    "name": "statePensionCheck",
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+
+
+{% endblock %}
