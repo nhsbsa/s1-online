@@ -85,7 +85,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         html: locationDate
       },
       value: {
-        html: data['moveDate'] or '31 March 2011'
+        html: data['moveDate' | isoDateFromDateInput] or '31 June 2011'
       },
       actions: {
         items: [
@@ -102,7 +102,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         html: locationDateMove
       },
       value: {
-        html: data['moveDate'] or '31 March 2024'
+        html: data['moveDate' | isoDateFromDateInput] or '31 March 2024'
       },
       actions: {
         items: [

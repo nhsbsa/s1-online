@@ -5,12 +5,25 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
    * gov.uk core filters by creating filter methods of the same name.
    * @type {Object}
    */
-  const filters = {
-
-    
-  };
-
+  const filters = {};
+  filters.isoDateFromDateInput = function(object) { // code
   
+    try {
+      const year = parseInt(object.year) || new Date().getFullYear()
+      const month = parseInt(object.month)
+  
+      if (!object.day) {
+        return DateTime.local(year, month).toFormat('yyyy-LL')
+      } else {
+        const day = parseInt(object.day)
+  
+        return DateTime.local(year, month, day).toISODate()
+      }
+    } catch (error) {
+      return error.message.split(':')[0]
+    }
+  
+  }
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
@@ -45,7 +58,5 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
   ------------------------------------------------------------------ */
-  
-  
   return filters;
 };
