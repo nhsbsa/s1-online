@@ -126,55 +126,13 @@ router.post([/eligibility-move-date-plan/, /eligibility-move-date-plan-day-error
         res.redirect('eligibility-uk-state-pension');
     }
 
-    // Eligibility Check Your Answers
-    router.get(/check-your-answers/, function (req, res) {
+})
 
-        //Today's date
-        const now = new Date();
-        const yyyy = now.getFullYear();
-        let mm = now.getMonth() + 1; 
-        const dd = now.getDate();
-        const formatToday = dd + '/' + mm + '/' + yyyy;
+// Eligibility Check Your Answers
+router.get(/check-your-answers/, function (req, res) {
+    var dateObject = new Date(req.session.data['futureYear'], req.session.data['futureMonth']-1, req.session.data['futureDay']);
 
-        // console.log(formatToday);
-
-        var todayDate = new Date(formatToday.split('/')[2], formatToday.split('/')[1] - 1, formatToday.split('/')[0]);
-        // console.log(todayDate);
-
-        // 90 days from today 
-        var ninetyDays = new Date(todayDate.getTime() + (90 * 24 * 60 * 60 * 1000));
-        // console.log(ninetyDays);
-
-        // Convert format
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-        const dateTimeFormat = new Intl.DateTimeFormat('en-GB', options);
-        var ninetyDaysFromNow = dateTimeFormat.format(ninetyDays);
-        console.log(ninetyDaysFromNow);
-
-        const futureYear = req.session.data['futureYear'];
-        console.log(futureYear);
-        const futureMonth = req.session.data['futureMonth'];
-        const futureDay = req.session.data['futureDay'];
-        //When did you start living in S1 country?
-                
-        const formatLiveDate = futureDay + '/' + futureMonth + '/' + futureYear;
-
-        console.log(formatLiveDate);
-
-        var liveDate = new Date(formatLiveDate.split('/')[2], formatLiveDate.split('/')[1] - 1, formatLiveDate.split('/')[0]);
-        console.log(liveDate);
-
-        //Convert format
-        const liveOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-
-        const liveDateTimeFormat = new Intl.DateTimeFormat('en-GB', liveOptions);
-        var liveDateFormatted = liveDateTimeFormat.format(liveDate);
-        // var liveDateFormatted = "1 March 2021"
-        console.log(liveDateFormatted);
-
-        res.render('v1/eligibility/check-your-answers', {liveDateFormatted: liveDateFormatted, ninetyDaysFromNow: ninetyDaysFromNow});
-    })
+    res.render('v1/eligibility/check-your-answers', {dateObject: dateObject});
 })
 
 // When did you move to [Country] ?

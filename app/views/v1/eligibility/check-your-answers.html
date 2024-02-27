@@ -82,38 +82,21 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
     },
     {
       key: {
-        html: locationDate
+        html: locationDate if data['moveCheck'] == "Yes" else locationDateMove
       },
       value: {
-        html: data['moveDate' | isoDateFromDateInput] or '31 June 2011'
+        html: dateObject | date if dateObject | isNaN else '31 March 2024'
       },
       actions: {
         items: [
           {
             href: "eligibility-move-date",
             text: "Change",
-            visuallyHiddenText: "when you moved to the country"
+            visuallyHiddenText: "when you moved to the country" if data['moveCheck'] == "Yes" else "when you will move to the country"
           }
         ]
       }
-    } if data['moveCheck'] == 'Yes',
-    {
-      key: {
-        html: locationDateMove
-      },
-      value: {
-        html: data['moveDate' | isoDateFromDateInput] or '31 March 2024'
-      },
-      actions: {
-        items: [
-          {
-            href: "eligibility-move-date-plan",
-            text: "Change",
-            visuallyHiddenText: "when you will move to the country"
-          }
-        ]
-      }
-    } if data['moveCheck'] == 'No',
+    },
     {
       key: {
         text: 'Are you being paid a UK State Pension, or will you be paid your UK State Pension before 23 May 2024?	'

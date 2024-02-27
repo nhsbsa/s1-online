@@ -6,23 +6,21 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
    * @type {Object}
    */
   const filters = {};
-  filters.isoDateFromDateInput = function(object) { // code
-  
+
+  filters.isNaN = function(num) {
+    if (isNaN(num)){
+      return false;
+    }
+    return true;
+  }
+
+  filters.date = function(date) {
+    console.log(date);
     try {
-      const year = parseInt(object.year) || new Date().getFullYear()
-      const month = parseInt(object.month)
-  
-      if (!object.day) {
-        return DateTime.local(year, month).toFormat('yyyy-LL')
-      } else {
-        const day = parseInt(object.day)
-  
-        return DateTime.local(year, month, day).toISODate()
-      }
+      return new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: 'long', day: 'numeric'}).format(date);
     } catch (error) {
       return error.message.split(':')[0]
     }
-  
   }
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
