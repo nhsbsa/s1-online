@@ -9,15 +9,36 @@
      {% else %}
       <div class="nhsuk-grid-column-full">
     {% endif %}
-
+   
+    {% if showTitle %}
     <h1 class="nhsuk-heading-l">
       <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>
       {{ title or 'h1 Header' }}
     </h1>
+    {% endif %}
+
+    {% if showCard %}
+    <div class="nhsuk-card confirmation">
+      <div class="nhsuk-card__content">
+        <h1 class="nhsuk-card__heading">
+          {{ cardTitle or 'cardTitle' }}  
+        </h1>
+        <br /> 
+        <h2><span class="nhsuk-caption-l">Overseas Healthcare Services (OHS) reference number:</span>25001275</h3>
+      </div>
+    </div>
+  {% endif %}
 
       {% block form %}{% endblock %}
-
-      {% include 'includes/_back.html' %}
+   
+    {% if showButton %}
+        {{ button({
+          html: buttonText if buttonText else 'Continue',
+          href: buttonHref if buttonText else '#'
+        }) }}
+    {% endif %}
+    
+    {% include 'includes/_back.html' %}
 
   </div>
 </div>

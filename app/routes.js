@@ -22,4 +22,6 @@ router.get('/data', function (req, res) {
     return res.render('data', {data: req.session.data});
 })
 
+
+
 module.exports = router;

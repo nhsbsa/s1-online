@@ -1,0 +1,40 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Who do you want to add to your application?{% endset %}
+{% set hintText = true %}
+{% set hintTextCopy = 'Give their name as it appears in your passport. This will help when they registering their S1 certificate.' %}
+{% set caption = data.familyCaption %}
+{% set inputError = true %}
+{% set idPrefix %}dependant-name{% endset -%}
+
+
+{% set errorMessage %}
+    <p>Enter your first name</p>
+    <p>Enter your last name</p>
+{% endset %}
+
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "First or given names"
+    },
+    "id": "dependant-first-name",
+    "name": "dependantFirstName",
+    "errorMessage": {
+      "html": 'Enter your first name'
+    } if data['error'] == 'true'
+  }) }}
+
+  {{ input({
+    "label": {
+      "text": "Last or family name"
+    },
+    "id": "dependant-surname",
+    "name": "dependantSurname",
+    "errorMessage": {
+      "html": 'Enter your last name'
+    } if data['error'] == 'true'
+  }) }}
+
+{% endblock %}

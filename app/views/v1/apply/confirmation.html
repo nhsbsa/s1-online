@@ -1,0 +1,21 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %} Your S1 form application has been submitted {% endset %}
+
+{% block form %}
+
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>We have sent an email to the address you gave us.</p>
+<p>We will now check your information and let you know if your application is successful.</p>
+
+<h2 class="nhsuk-heading-l">Evidence</h2>
+<p>We will contact you if you need to send us any evidence.</p>
+
+<h2 class="nhsuk-heading-l">Your healthcare cover</h2>
+<p>If your application is successful, your healthcare cover in {{ data['countrySOne'] or 'Germany'}} will start when you register your S1 form with the relevant health authority there. This may take some time and we advise you to think about getting private medical insurance to help with the cost of any treatment you may need before your S1 is registered.</p>
+
+
+{% endblock %}

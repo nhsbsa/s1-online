@@ -1,10 +1,12 @@
-<!-- 
-  This is the main layout where you can:
-    - change the header and footer 
-    - add custom CSS and JavaScript
--->
+{% set id %}
+{% if data['error'] == 'true' %}
+  {% if data['inputError'] != 'true' %}
+    id=formError
+{% endif %}
 
-<!-- Extends the layout from /docs/views/template.html -->
+{% endif %}
+{% endset -%}
+
 {% extends "layouts/layout.html" %}
 
 {% block content %}
@@ -15,14 +17,33 @@
       <div class="nhsuk-grid-column-full">
     {% endif %}
     <form {{formActionHtml | safe }} method="post" novalidate spellcheck="false">
+      {%- if data['error'] == 'true' -%}
+        {{ errorSummary({
+          "titleText": "There is a problem",
+          "errorList": [
+            {
+              "html": errorMessage,
+              "href": '#' + idPrefix + '-error'
+            }
+          ]
+        } ) }}
+
+      {%- endif -%}
+
+
       <div class="nhsuk-form-group">
         <fieldset class="nhsuk-fieldset">
-          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" {{ id }}>
               <h1 class="nhsuk-fieldset__heading">
                   <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>
                   {{ title or 'h1 Header' }}
               </h1>
           </legend>
+          {% if hintText %}
+            <div class="nhsuk-hint" id="hint-text">
+                {{ hintTextCopy }}
+            </div>
+          {% endif %}
 
         {% block form %}{% endblock %}
 

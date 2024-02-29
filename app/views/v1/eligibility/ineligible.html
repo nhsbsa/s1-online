@@ -1,0 +1,49 @@
+{% extends 'layouts/main.html' %}
+{% set title = data.ineligibleTitle %}
+{% set caption = data.eligibilityCaption %}
+{% set showTitle = true %}
+
+
+
+{% block form %}
+
+{%- if data['ineligible'] == 'country-check-fail' -%}
+  <p>To be entitled to an S1 for healthcare cover while living abroad, you must be permanently moving or living in an EU country, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+
+{%- elif  data['ineligible'] == 'country-fail' -%}
+  <p> An S1 does not cover you for healthcare in {{ data.countrySOne or 'Germany'}}.</p>
+  <p>You can only apply for an S1 for healthcare cover if you are living or moving to an EU country, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+
+{%- elif  data['ineligible'] == 'uk-state-pension-fail' -%}
+  <p>You cannot get an S1 for healthcare cover when living abroad. This is because you need to be either:</p>
+  <ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+      getting paid your UK State Pension
+    </li>
+    <li>
+      entitled to start getting paid your UK State Pension in the next 90 days 
+    </li>
+  </ul>
+
+{%- elif  data['ineligible'] == 'check-state-pension-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you get a State Pension from {{ data.countrySOne or 'Germany'}}.</p>
+  <p>You should contact the health authorities in {{ data.countrySOne or 'Germany'}} because they are responsible for your healthcare.</p>
+
+{%- elif  data['ineligible'] == 'germany-contributions-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you paid Statutory Health Contributions to Germany.</p>
+  <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
+
+  {%- else  -%}
+  <p>Other</p>
+{%- endif -%}
+
+
+
+
+
+
+
+
+{% endblock %}
+
+

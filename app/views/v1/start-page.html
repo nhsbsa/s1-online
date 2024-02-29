@@ -1,13 +1,16 @@
 {% extends "layouts/main.html" %}
+{% set showButton = true %}
+{% set buttonText = 'Start now' %}
+{% set buttonHref %}eligibility/eligibility-country-check {% endset %} 
+{% set hideBackLink = true %}
 
-{% block content %}
-  <div class="nhsuk-grid-row">
-    <div class="nhsuk-grid-column-two-thirds">
+
+{% block form %}
+
       <h1>
         {{serviceName}}      
       </h1>
       <p>Apply for a certificate of entitlement called an S1 form to get healthcare cover when living or moving abroad.</p>
-      <!-- <p>You can also <a href="#">contact us to apply for an S1 form by phone</a>.</p> -->
 
       {{ warningCallout({
         "heading": "Important",
@@ -26,10 +29,10 @@
     <!-- Start of who can use this service -->
     <h2>Who can use this online service?</h2>
     <p>To apply for an S1 form online, you must be:
-        <ul>
-            <li>permanently living in or moving to an EU country in the next 90 days</li>
-            <li>getting paid your UK State Pension or entitled to start getting paid your UK State Pension in the next 90 days</li>
-          </ul>
+    <ul>
+      <li>permanently living in or moving to an EU country in the next 90 days</li>
+      <li>getting paid your UK State Pension or entitled to start getting paid your UK State Pension in the next 90 days</li>
+    </ul>
     </p>
     <p>If you are moving to Switzerland, Norway, Iceland or Liechtenstein, you may be eligible for an S1 form, but you cannot apply online. Please <a href="https://www.nhsbsa.nhs.uk/contact-overseas-healthcare-services">contact us to apply</a>.</p>
     <p>You can apply for yourself or make an application for someone else.</p>
@@ -64,11 +67,6 @@
   }) }}
   <!-- End of warning callout -->
 
-    <a class="nhsuk-button" href="../eligibility/eligibility-country-check" role="button" draggable="false">Start now</a>
 
-    <!-- End of before you start -->
-
-    </div>
-  </div>
 {% endblock %}
 

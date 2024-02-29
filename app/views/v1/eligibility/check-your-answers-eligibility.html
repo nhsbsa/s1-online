@@ -1,6 +1,6 @@
 {% extends 'layouts/forms.html' %}
 {% set title = 'Check your answers' %}
-{% set caption = 'Eligibility' %}
+{% set caption = data.eligibilityCaption %}
 {% set fullWidth = true %}
 {% set hideBackLink = true %}
 
@@ -8,7 +8,7 @@
   Are you already living in {{ data.countrySOne or 'Germany' }}?
 {% endset %}
 {% set locationDate %}
-  When did you move to {{ data.countrySOne or 'Germany' }}?
+  When did you move to {{ data.countrySOne or 'Germany' }}? 
 {% endset %}
 {% set locationDateMove %}
   When will you move to {{ data.countrySOne or 'Germany' }}?
@@ -51,7 +51,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         text: "Which country are you living in or moving to?"
       },
       value: {
-        html: data['countrySOne'] or 'France'
+        html: data['countrySOne'] or 'Germany'
       },
       actions: {
         items: [
@@ -85,19 +85,19 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         html: locationDate if data['moveCheck'] == "Yes" else locationDateMove
       },
       value: {
-        html: dateObject | date if dateObject | isNaN else '31 March 2024'
+        html: data['moveDate'] if data['moveCheck'] == "Yes" else data['futureDate'] or '31 January 2011'
       },
       actions: {
         items: [
           {
-            href: "eligibility-move-date",
+            href: "eligibility-move-date" if data['moveCheck'] == "Yes" else "eligibility-move-date-plan" or "eligibility-move-date",
             text: "Change",
             visuallyHiddenText: "when you moved to the country" if data['moveCheck'] == "Yes" else "when you will move to the country"
           }
         ]
       }
     },
-    {
+    { 
       key: {
         text: 'Are you being paid a UK State Pension, or will you be paid your UK State Pension before 23 May 2024?	'
       },
@@ -171,7 +171,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         text: 'Which countries do you get a State Pension from, other than the UK?'
       },
       value: {
-        html: countries
+        html: 'None' or countries
       },
       actions: {
         items: [

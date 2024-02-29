@@ -1,14 +1,18 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}Do you already live in {{ data.countrySOne or 'Germany'}}?{% endset %}
 {% set caption = data.eligibilityCaption %}
-{% set hideBackLink = true %}
+{% set errorMessage %}Select yes if you already live in {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set idPrefix %}eligibility-country-check{% endset -%}
 
 
 
 {% block form %}
 {{ radios({
-    "idPrefix": "eligibility-country-check",
+    "idPrefix": idPrefix,
     "name": "moveCheck",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
 
     "items": [
       {

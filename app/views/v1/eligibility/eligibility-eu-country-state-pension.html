@@ -1,12 +1,27 @@
 {% extends 'layouts/forms.html' %}
 {% set title = 'Which countries do you get a State Pension from, other than the UK?' %}
 {% set caption = 'Eligibility' %}
-
+{% set errorMessage = 'The countries must be EU countries, Switzerland, Norway, Iceland or Liechtenstein' %}
+{% set idPrefix %}location{% endset -%}
 
 
 {% block form %}
 
-  
+{%- if data['error'] == 'true' -%}
+<div class="nhsuk-form-group form-group nhsuk-form-group--error" id="appendableEURT">
+
+{%- else -%}
+<div class="nhsuk-form-group form-group" id="appendableEURT">
+
+   
+   {%- endif -%}
+
+{%- if data['error'] == 'true' -%}
+
+<span class="nhsuk-error-message" id="location-error">
+  <span class="nhsuk-u-visually-hidden">Error:</span> {{ errorMessage }}
+</span>
+{%- endif -%}
 
 <div class="nhsuk-hint">Enter an EU country, Switzerland, Norway, Iceland or Liechtenstein.</div>
 

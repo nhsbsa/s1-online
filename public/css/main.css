@@ -7562,9 +7562,30 @@ b {
   }
 }
 
+#formError {
+  border-left: 4px solid #d5281b;
+  padding-left: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 0;
+}
+
+.nhsuk-form-group--error .nhsuk-input {
+  border: 2px solid #d5281b;
+}
+
+.nhsuk-card.confirmation {
+  background: #005eb8;
+  color: #ffffff;
+  text-align: center;
+}
+
+.nhsuk-card.confirmation .nhsuk-caption-l {
+  color: #ffffff;
+}
+
 .autocomplete__wrapper {
   position: relative;
-  background-color: #fff;
+  background-color: #ffffff;
 }
 
 .autocomplete__hint,
@@ -7633,6 +7654,10 @@ b {
   padding: 0;
   width: 100%;
   width: calc(100% - 4px);
+}
+
+.nhsuk-form-group--error .autocomplete__input {
+  border: 2px solid #d5281b;
 }
 
 .autocomplete__menu--visible {

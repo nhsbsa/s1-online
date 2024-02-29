@@ -1,0 +1,11 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Check your answers' %}
+{% set caption = data.mainCaption %}
+{% set fullWidth = true %}
+{% set hideBackLink = true %}
+
+
+{% block form %}
+  {% include 'v1/apply/_applicant-answers.html' %}
+{% endblock %}
+

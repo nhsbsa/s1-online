@@ -1,0 +1,26 @@
+{% extends 'layouts/forms.html' %}
+{% set caption = data.mainCaption %}
+{% set title %}What is your National Insurance number?{% endset %}
+{% set hintTextCopy %}It’s on your National Insurance card, benefit letter, payslip or P60. For example, ‘QQ 12 34 56 C'.{% endset %}
+{% set hintText = true %}
+
+
+{% set errorMessage %}Enter a National Insurance number in the correct format{% endset %}
+
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "National Insurance number"
+    },
+    "id": "applicant-nino",
+    "name": "nino",
+    "errorMessage": {
+      "html": 'Enter your first name'
+    } if data['error'] == 'true'
+  }) }}
+
+
+
+{% endblock %}

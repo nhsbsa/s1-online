@@ -1,0 +1,49 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is {{ data.dependantName or 'John Smith' }}'s date of birth?{% endset %}
+{% set caption = data.familyCaption %}
+{% set errorMessage %}
+<ul class="nhsuk-list">
+  <li>
+    Date of birth must include a valid day
+  </li>
+  <li>
+    Date of birth must include a valid month
+  </li>
+  <li>
+    Date of birth must include a valid year
+  </li>
+</ul>
+{% endset %}
+{% set idPrefix %}eligibility-move-date-plan{% endset -%}
+
+ 
+{% block form %}
+{{ dateInput({
+  "id": idPrefix,
+  "hint": {
+    "text": "For example, 15 3 1984"
+  },
+  "errorMessage": {
+    "html": 'Date of birth must include a valid day, month and year '
+  } if data['error'] == 'true',
+  "items": [
+    {
+      "name": "dependant-day",
+      "label": "day",
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "dependant-month",
+      "label": "month",
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "dependant-year",
+      "label": "year",
+      "classes": "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{% endblock %}

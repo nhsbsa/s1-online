@@ -1,0 +1,32 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Is this also your correspondence address?' %}
+{% set caption = data.eligibilityCaption %}
+{% set errorMessage = 'Select yes if this is also your correspondence address' %}
+{% set idPrefix %}applicant-correspondence-address-check{% endset -%}
+{% set hintText = true %}
+
+{% block form %}
+<p>Your correspondence address is the address we'll send your S1 to, if you want us to post a copy. It's also the address we'll use if we need to send you any important information in future. Your correspondence address can be in any country, including the UK.</p>
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "correspondenceAddressCheck",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+ 
+ 
+
+{% endblock %}

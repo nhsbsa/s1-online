@@ -1,15 +1,18 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}Have you paid Statutory Health Contributions to Germany?{% endset %}
 {% set caption = data.eligibilityCaption %}
-{% set hideBackLink = true %}
+{% set idPrefix %}eligibility-germany-contributions{% endset -%}
+{% set errorMessage %}Select yes if you have paid Statutory Health Contributions to Germany{% endset -%}
 
 
 
 {% block form %}
 {{ radios({
-    "idPrefix": "eligibility-germany-contributions",
+    "idPrefix": idPrefix,
     "name": "germanyContributions",
-
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
     "items": [
       {
         "value": "Yes",

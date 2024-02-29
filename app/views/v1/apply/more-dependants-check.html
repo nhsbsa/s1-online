@@ -1,0 +1,51 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Do you want to add another family member?{% endset %}
+{% set caption = data.familyCaption %}
+{% set errorMessage = 'Select yes if you want to add any family members to your S1 application' %}
+{% set idPrefix %}dependant-first-name{% endset -%}
+{% set hintTextCopy %}
+{% set hideBackLink = true %}
+
+<p>You can add your:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    spouse or civil parter
+  </li>
+  <li>
+    partner
+  </li>
+  <li>
+    children
+  </li>
+</ul>
+<p>There are different rules on who can be added to your S1 certificate, depending on the country you're living in. We cannot guarantee any S1 forms we issue to your family members will be accepted by the country you're moving to.</p>
+
+{% endset %}
+
+{% block form %}
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "hint": {
+      "html": hintTextCopy
+    },
+    "name": "moreDependantsCheck",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+ 
+ 
+
+{% endblock %}
