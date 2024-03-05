@@ -1,10 +1,7 @@
 {% set id %}
-{% if data['error'] == 'true' %}
-  {% if data['inputError'] != 'true' %}
-    id=formError
-{% endif %}
-
-{% endif %}
+  {% if data['error'] == 'true' %}
+      id=formError
+  {% endif %}
 {% endset -%}
 
 {% extends "layouts/layout.html" %}
@@ -33,8 +30,13 @@
 
       <div class="nhsuk-form-group">
         <fieldset class="nhsuk-fieldset">
-          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" {{ id }}>
-              <h1 class="nhsuk-fieldset__heading">
+          {%- if hideErrorMarkup -%}
+          <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
+            {% else %}
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" {{ id }}>
+            {% endif %}
+
+            <h1 class="nhsuk-fieldset__heading">
                   <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>
                   {{ title or 'h1 Header' }}
               </h1>

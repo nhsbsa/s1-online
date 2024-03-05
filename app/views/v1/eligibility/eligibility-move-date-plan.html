@@ -3,10 +3,17 @@
 {% set caption = data.eligibilityCaption %}
 {% set errorMessage %}
 
-<p>Date of moving must include a day</p>
-<p>Date of moving must include a month</p>
-<p>Date of moving must include a year</p>
-
+<ul class="nhsuk-list">
+  <li>
+    Date of moving must include a day
+  </li>
+  <li>
+    Date of moving must include a month
+  </li>
+  <li>
+    Date of moving must include a year
+  </li>
+</ul>
 {% endset %}
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
 
@@ -23,17 +30,17 @@
   "items": [
     {
       "name": "futureDay",
-      "label": "day",
+      "label": "Day",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "futureMonth",
-      "label": "month",
+      "label": "Month",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "futureYear",
-      "label": "year",
+      "label": "Year",
       "classes": "nhsuk-input--width-4"
     }
   ]

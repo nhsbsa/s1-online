@@ -3,12 +3,19 @@
 {% set hintText = true %}
 {% set hintTextCopy = 'Give your name as it appears in your passport. This will help when you are registering your S1 certificate.' %}
 {% set caption = data.mainCaption %}
-{% set inputError = true %}
+{% set hideErrorMarkup = true %}
 
 
 {% set errorMessage %}
-    <p>Enter your first name</p>
-    <p>Enter your last name</p>
+<ul class="nhsuk-list">
+  <li>
+    Enter your first name
+  </li>
+  <li>
+    Enter your last name
+  </li>
+</ul>
+
 {% endset %}
 
 {% set idPrefix %}applicant-name{% endset -%}

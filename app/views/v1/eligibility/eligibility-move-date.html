@@ -2,10 +2,17 @@
 {% set title %}When did you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
 {% set caption = data.eligibilityCaption %}
 {% set errorMessage %}
-
-<p>Date of moving must include a day</p>
-<p>Date of moving must include a month</p>
-<p>Date of moving must include a year</p>
+<ul class="nhsuk-list">
+  <li>
+    Date of moving must include a day
+  </li>
+  <li>
+    Date of moving must include a month
+  </li>
+  <li>
+    Date of moving must include a year
+  </li>
+</ul>
 
 {% endset %}
 {% set idPrefix %}eligibility-move-date{% endset -%}
@@ -24,17 +31,17 @@
   "items": [
     {
       "name": "moveDay",
-      "label": "day",
+      "label": "Day",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "moveMonth",
-      "label": "month",
+      "label": "Month",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "moveYear",
-      "label": "year",
+      "label": "Year",
       "classes": "nhsuk-input--width-4"
     }
   ]

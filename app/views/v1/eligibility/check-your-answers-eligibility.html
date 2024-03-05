@@ -171,7 +171,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
         text: 'Which countries do you get a State Pension from, other than the UK?'
       },
       value: {
-        html: 'None' or countries
+        html: countries
       },
       actions: {
         items: [
@@ -182,7 +182,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
           }
         ]
       }
-    }       
+    } if data['euStatePension'] == 'Yes'       
   ] 
 }) }}
 

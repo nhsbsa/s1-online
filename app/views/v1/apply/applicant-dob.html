@@ -2,10 +2,17 @@
 {% set title %}What is your date of birth?{% endset %}
 {% set caption = data.mainCaption %}
 {% set errorMessage %}
-
-<p>Date of birth must include a valid day</p>
-<p>Date of birth must include a valid month</p>
-<p>Date of birth must include a valid year</p>
+<ul class="nhsuk-list">
+  <li>
+    Date of birth must include a valid day
+  </li>
+  <li>
+    Date of birth must include a valid month
+  </li>
+  <li>
+    Date of birth must include a valid year
+  </li>
+</ul>
 
 {% endset %}
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
@@ -23,17 +30,17 @@
   "items": [
     {
       "name": "example-day",
-      "label": "day",
+      "label": "Day",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "example-month",
-      "label": "month",
+      "label": "Month",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "example-year",
-      "label": "year",
+      "label": "Year",
       "classes": "nhsuk-input--width-4"
     }
   ]

@@ -233,7 +233,6 @@ router.post([/eligibility-germany-contributions/], function(req, res) {
 
 router.post([/eligibility-other-eu-state-pension/], function (req, res){
     var euStatePension = req.session.data['euStatePension'];
-    var moveCheck = req.session.data['moveCheck'];
     const data = req.session.data;
 
     if (!euStatePension){
@@ -242,23 +241,35 @@ router.post([/eligibility-other-eu-state-pension/], function (req, res){
     } else if (euStatePension == 'Yes'){
         data.error = 'false';
         return res.redirect('eligibility-eu-country-state-pension');
-    } else if (euStatePension == 'No' && moveCheck == 'No'){
+    } else if (euStatePension == 'No' ){
         data.error = 'false';
         return res.redirect('check-your-answers-eligibility');
-    } else if (euStatePension == 'No' && moveCheck == 'Yes'){
+    } 
+})
+
+// Which countries do you get a State Pension from, other than the UK?
+
+router.post([/eligibility-eu-country-state-pension/], function(req, res) {
+    console.log(req.session.data);
+    const data = req.session.data;
+
+    var euCountryPension = req.session.data['myInputsEUSP'];
+   
+    if (euCountryPension == ''){
+        data.error = 'true';
+        return res.redirect('eligibility-eu-country-state-pension');
+    } else {
         data.error = 'false';
         return res.redirect('check-your-answers-eligibility');
     }
-})
-
+})  
 
 // End of eligibility
 router.post([/check-your-answers-eligibility/], function (req,res) {
-    const data = req.session.data;
     res.redirect('../apply/applicant-name') 
 })
 
-
+ 
 router.post([/applicant-name/], function (req,res) {
     console.log(req.body.firstName);
     console.log(req.body.lastName);
@@ -581,11 +592,11 @@ router.post([/dependant-address-check/], function (req,res) {
         res.redirect('dependant-address-check');
     }
 })
-
+ 
 // Dependant address
 
 router.post([/dependant-address/], function (req,res) {
-    var addressLineOne = req.session.data['dependantAddressLine'];
+    var addressLineOne = req.session.data['dependantAddressLineOne'];
     var city = req.session.data['dependantCity'];
     var postcode = req.session.data['dependantPostcode'];
     var country = req.session.data['dependantCountry'];
@@ -596,7 +607,7 @@ router.post([/dependant-address/], function (req,res) {
         res.redirect('more-dependants-check');
     } else {
         data.error = 'true';
-        res.redirect('dependant-address-check');
+        res.redirect('dependant-address');
     }
 }) 
 

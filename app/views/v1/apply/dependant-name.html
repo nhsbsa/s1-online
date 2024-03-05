@@ -5,11 +5,19 @@
 {% set caption = data.familyCaption %}
 {% set inputError = true %}
 {% set idPrefix %}dependant-name{% endset -%}
+{% set hideErrorMarkup = true %}
 
 
 {% set errorMessage %}
-    <p>Enter your first name</p>
-    <p>Enter your last name</p>
+<ul class="nhsuk-list">
+  <li>
+    Enter your family member's first name
+  </li>
+  <li>
+    Enter your family member's last name
+  </li>
+</ul>
+
 {% endset %}
 
 
@@ -22,7 +30,7 @@
     "id": "dependant-first-name",
     "name": "dependantFirstName",
     "errorMessage": {
-      "html": 'Enter your first name'
+      "html": "Enter your family member's first name"
     } if data['error'] == 'true'
   }) }}
 
@@ -33,7 +41,7 @@
     "id": "dependant-surname",
     "name": "dependantSurname",
     "errorMessage": {
-      "html": 'Enter your last name'
+      "html": "Enter your family member's last name"
     } if data['error'] == 'true'
   }) }}
 

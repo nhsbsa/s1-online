@@ -1,6 +1,7 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is {{ data.dependantName or 'John Smith' }}'s date of birth?{% endset %}
 {% set caption = data.familyCaption %}
+
 {% set errorMessage %}
 <ul class="nhsuk-list">
   <li>
@@ -29,17 +30,17 @@
   "items": [
     {
       "name": "dependant-day",
-      "label": "day",
+      "label": "Day",
       "classes": "nhsuk-input--width-2"
-    },
+    }, 
     {
       "name": "dependant-month",
-      "label": "month",
-      "classes": "nhsuk-input--width-2"
+      "label": "Month",
+      "classes": "nhsuk-input--width-2" 
     },
     {
       "name": "dependant-year",
-      "label": "year",
+      "label": "Year",
       "classes": "nhsuk-input--width-4"
     }
   ]
