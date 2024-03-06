@@ -160,7 +160,6 @@ function addInputEUSP(el) {
   document.getElementById('appendableEUSP').appendChild(newFieldOther); // Use ID of new select to initilise autcomplete for our new select
 
   let select = document.querySelector(`#${newSelectID}`);
-  console.log(newSelectID);
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: select,
     source: spEuCountries

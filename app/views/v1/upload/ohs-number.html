@@ -1,0 +1,22 @@
+{% extends 'layouts/forms.html' %}
+{% set caption = data.uploadCaption %}
+{% set title = 'What is your OHS reference number?' %}
+{% set hideBackLink = true %}
+{% set errorMessage %}Enter your OHS reference number{% endset %}
+
+{% block form %}
+<p>You can find your OHS reference number on the email we have sent you</p>
+{{ input({
+    "label": {
+      "text": "OHS reference number"
+    },
+    "id": "ohsNumber",
+    "name": "ohsNumber",
+    "value": data.ohsNumber,
+    "classes": "nhsuk-input--width-10",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true'
+  }) }}
+
+{% endblock %}

@@ -1,19 +1,18 @@
+{% extends "layouts/layout.html" %}
+
 {% set id %}
   {% if data['error'] == 'true' %}
       id=formError
   {% endif %}
 {% endset -%}
 
-{% extends "layouts/layout.html" %}
+
 
 {% block content %}
 <div class="nhsuk-grid-row">
 
-  {% if not fullWidth %}
-    <div class="nhsuk-grid-column-two-thirds">
-     {% else %}
-      <div class="nhsuk-grid-column-full">
-    {% endif %}
+  <div class="{% if not fullWidth %}nhsuk-grid-column-two-thirds{% else %}nhsuk-grid-column-full{% endif %}">
+
 
     <form {{formActionHtml | safe }} method="post" novalidate spellcheck="false">
       {%- if data['error'] == 'true' -%}
@@ -28,17 +27,18 @@
         } ) }}
         {%- endif -%}
 
-
       <div class="nhsuk-form-group">
         <fieldset class="nhsuk-fieldset">
           {%- if hideErrorMarkup -%}
           <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l">
             {% else %}
-            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--l" {{ id }}>
+            <legend class="nhsuk-fieldset__legend {% if showFontXl %}nhsuk-fieldset__legend--xl{% else %}nhsuk-fieldset__legend--l{% endif %}" {{ id }}> 
             {% endif %}
 
             <h1 class="nhsuk-fieldset__heading">
+              {%- if not hidecaption -%}
                 <span class="nhsuk-caption-l">{{ caption or 'Subcaption' }} </span>
+              {% endif %}
                 {{ title or 'h1 Header' }}
             </h1>
           </legend>

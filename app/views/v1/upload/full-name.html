@@ -1,0 +1,47 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your name?{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}upload-firstname{% endset -%}
+
+
+{% set errorMessage %}
+<ul class="nhsuk-list">
+  <li>
+    Enter your first name
+  </li>
+  <li>
+    Enter your last name
+  </li>
+</ul>
+
+{% endset %}
+
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "First or given names"
+    },
+    "id": "upload-firstname",
+    "name": "upload-firstname",
+    "value": data.upload-firstname,  
+    "errorMessage": {
+      "html": 'Enter your first name'
+    } if data['error'] == 'true'
+  }) }}
+
+  {{ input({
+    "label": {
+      "text": "Last or family name"
+    },
+    "id": "upload-lastname",
+    "name": "upload-lastname",
+    "value": data.upload-lastname,
+    "errorMessage": {
+      "html": 'Enter your last name'
+    } if data['error'] == 'true'
+  }) }}
+
+{% endblock %}

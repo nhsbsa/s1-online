@@ -1,0 +1,19 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}If you cannot provide the evidence we asked for, tell us why{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}upload-firstname{% endset -%}
+{% set errorMessage %}Tell us why you cannot provide the evidence{% endset %}
+
+
+
+{% block form %}
+
+{{ textarea({
+  "name": "addInfo",
+  "id": "addInfo",    
+  "errorMessage": {
+    "html": errorMessage
+  } if data['error'] == 'true'
+}) }}
+{% endblock %}
