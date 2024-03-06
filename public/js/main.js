@@ -152,15 +152,15 @@ var spEuCountries = ["Austria", "Belgium", "Bulgaria", "Croatia", "Cyprus", "Cze
 function addInputEUSP(el) {
   var newFieldOther = document.createElement('div'); // Count current amount of inputs in section
 
-  var inputCountOther = el.closest('div').getElementsByTagName('select').length;
-  console.log(inputCountOther); // Create ID for new select we're going to add
+  var inputCountOther = el.closest('div').getElementsByTagName('select').length; // Create ID for new select we're going to add
 
-  var newSelectID = `${el.previousElementSibling.className}-${inputCountOther}`;
+  var newSelectID = `${el.previousElementSibling.id}-${inputCountOther}`;
   let generatedOptionList = generateSelectList(spEuCountries);
   newFieldOther.innerHTML = `<br><a href='#' style="float: right;" type='button' value='-' onClick='return removeInputOther(this);'>- Remove State Pension country</a><label class='nhsuk-label' for='${newSelectID}'>Country name</label><select id='${newSelectID}' name='myInputsEUSP[]' type='text'><option value=''></option>${generatedOptionList}</select></div>`;
   document.getElementById('appendableEUSP').appendChild(newFieldOther); // Use ID of new select to initilise autcomplete for our new select
 
   let select = document.querySelector(`#${newSelectID}`);
+  console.log(newSelectID);
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: select,
     source: spEuCountries
