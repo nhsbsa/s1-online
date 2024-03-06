@@ -250,8 +250,6 @@ function removeInputEEA(btn){
   // Use ID of new select to initilise autcomplete for our new select
   let select = document.querySelector(`#${newSelectID}`)
 
-  console.log(newSelectID);
-
   accessibleAutocomplete.enhanceSelectElement({
     selectElement: select,
     source: spEuCountries,
