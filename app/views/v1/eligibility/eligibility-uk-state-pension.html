@@ -1,8 +1,8 @@
 {% extends 'layouts/forms.html' %}
-{% set title %}Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ ninetyDaysFromNow or '22 May 2024'}}?{% endset %}
+{% set title %}Are you being paid a UK State Pension, or will you be paid your UK State Pension before  {{ '22 May 2024' | ninetyDaysFromNow }}?{% endset %}
 {% set caption = data.eligibilityCaption %}
 {% set errorMessage = '' %}
-{% set errorMessage %}Select yes if you are being paid a UK State Pension, or will be paid your UK State Pension before {{ ninetyDaysFromNow or '22 May 2024'}}{% endset -%}
+{% set errorMessage %}Select yes if you are being paid a UK State Pension, or will be paid your UK State Pension before {{ '22 May 2024' | ninetyDaysFromNow }}{% endset -%}
 {% set idPrefix %}ukStatePension{% endset -%}
 
 
@@ -17,11 +17,13 @@
     "items": [
       {
         "value": "Yes",
-        "text": "Yes"
+        "text": "Yes",
+        "checked": data.ukStatePension === 'Yes'
       },
       {
         "value": "No",
-        "text": "No"
+        "text": "No",
+        "checked": data.ukStatePension === 'No'
       }
     ]
   }) }}

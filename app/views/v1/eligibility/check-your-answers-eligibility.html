@@ -13,8 +13,11 @@
 {% set locationDateMove %}
   When will you move to {{ data.countrySOne or 'Germany' }}?
 {% endset %}
+{% set ukStatePension %}
+  Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ '22 May 2024' | ninetyDaysFromNow }}?
+{% endset %}
 {% set foreignPension %}
-Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
+  Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
 {% endset %}
 {% set germanyContributions %}
   Have you paid Statutory Health Contributions to Germany?
@@ -99,7 +102,7 @@ Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
     },
     { 
       key: {
-        text: 'Are you being paid a UK State Pension, or will you be paid your UK State Pension before 23 May 2024?	'
+        html: ukStatePension
       },
       value: {
         html: data['ukStatePension'] or 'Yes'

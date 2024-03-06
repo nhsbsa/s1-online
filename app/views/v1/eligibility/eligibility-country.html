@@ -3,7 +3,6 @@
 {% set caption = 'Eligibility' %}
 {% set errorMessage = 'Enter the country you are living in or moving to' %}
 {% set idPrefix %}location{% endset -%}
-{% set hideBackLink = true %}
 
 
 
@@ -34,7 +33,7 @@
         <span class="nhsuk-u-visually-hidden">Error:</span> Enter the country you are living in or moving to
       </span>
       {%- endif -%}
-
+ 
       <select id="eu-efta-location-picker" class="eu-efta-eligibility-country nhsuk-input" name="countrySOne" type="text">
         <option value=""></option>
         {% for country in countryList %}

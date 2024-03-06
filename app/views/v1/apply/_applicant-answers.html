@@ -1,57 +1,6 @@
-
-
-
 {% set location %}
   What is your address in {{ data.countrySOne or 'Germany' }}?
 {% endset %}
-{% set applicantAddress %}
-<ul class="nhsuk-list">
-  <li>
-    {{ data.addressLineOne or 'address line 1' }}
-  </li>
-  <li>
-    {{ data.addressLineTwo }}
-  </li>
-  <li>
-    {{ data.city }}
-  </li>
-  <li>
-    {{ data.county }}
-  </li>
-  <li>
-    {{ data.postcode }}
-  </li>
-  <li>
-    {{ data.country }}
-  </li>
-</ul>
-
-{% endset %}
-{% set correspondenceAddress %}
-<ul class="nhsuk-list">
-  <li>
-    {{ data.corrAddressLineOne or 'address line 1' }}
-  </li>
-  <li>
-    {{ data.corrAddressLineTwo }}
-  </li>
-  <li>
-    {{ data.corrCity }}
-  </li>
-  <li>
-    {{ data.corrCounty }}
-  </li>
-  <li>
-    {{ data.corrPostcode }}
-  </li>
-  <li>
-    {{ data.corrCountry }}
-  </li>
-</ul>
-
-{% endset %}
-
-
 
 
 {{ summaryList({
@@ -112,7 +61,7 @@
         html: location
       },
       value: {
-        html: applicantAddress or 'address'
+        html: data['fullAddress'] or 'address'
       },
       actions: {
         items: [
@@ -146,7 +95,7 @@
         text: 'What is your correspondence address?'
       },
       value: {
-        html: correspondenceAddress or 'correspondence address'
+        html: data['corrFullAddress'] or 'address'
       },
       actions: {
         items: [

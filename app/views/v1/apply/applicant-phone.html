@@ -12,7 +12,6 @@
 {% endset %}
 
 {% set idPrefix %}applicant-name{% endset -%}
-{% set hideBackLink = true %}
 
 
 {% block form %}
@@ -22,6 +21,7 @@
     },
     "id": "phone",
     "name": "phone",
+    "value": data.phone,
     "errorMessage": {
       "html": errorMessage
     } if data['error'] == 'true'

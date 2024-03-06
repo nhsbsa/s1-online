@@ -22,6 +22,7 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
       return error.message.split(':')[0]
     }
   }
+  
   /* ------------------------------------------------------------------
     add your methods to the filters obj below this comment block:
     @example:
@@ -52,6 +53,57 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     documentation.
 
   ------------------------------------------------------------------ */
+  filters.todayDate = function() {
+    try {
+        const today = new Date();
+        return new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(today);
+    } catch (error) {
+        return error.message.split(':')[0];
+    }
+};
+filters.sayHi = function(name,tone) {
+  return (tone == 'formal' ? 'Greetings' : 'Hi') + ' ' + name + '!'
+}
+filters.ninetyDaysFromNow = function() {
+  try {
+      const today = new Date();
+      const ninetyDaysLater = new Date(today.setDate(today.getDate() + 90));
+
+      return new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(ninetyDaysLater);
+  } catch (error) {
+      return error.message.split(':')[0];
+  }
+};
+filters.formatDate = function(dateString) {
+  try {
+      // Split the input date string into day, month, and year
+      const [day, month, year] = dateString.split(' ');
+
+      // Convert numerical month to letters
+      const monthInLetters = getMonthInLetters(month);
+
+      // Return the formatted date
+      return `${day} ${monthInLetters} ${year}`;
+  } catch (error) {
+      return error.message.split(':')[0];
+  }
+};
+
+function getMonthInLetters(month) {
+  // Convert numerical month to letters
+  const monthsInLetters = [
+      'January', 'February', 'March', 'April', 'May', 'June',
+      'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+
+  // Ensure month is a valid number
+  const monthIndex = parseInt(month, 10);
+  if (isNaN(monthIndex) || monthIndex < 1 || monthIndex > 12) {
+      throw new Error('Invalid month');
+  }
+
+  return monthsInLetters[monthIndex - 1];
+}
 
   /* ------------------------------------------------------------------
     keep the following line to return your filters to the app

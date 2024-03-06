@@ -7,23 +7,8 @@
 
 
 {% set errorMessage %}
-<ul class="nhsuk-list">
-  <li>
-    Enter a valid first line
-  </li>
-  <li>
-    Enter a valid city
-  </li>
-  <li>
-    Enter a valid county, province or region
-  </li>
-  <li>
-    Enter valid postcode
-  </li>
-  <li>
-    Enter a valid country
-  </li>
-</ul>
+{% include 'v1/apply/_error-address-content.html' %}
+
 {% endset %}
 
 
@@ -40,6 +25,7 @@
   },
   "id": "address-line-one",
   "name": "addressLineOne",
+  "value": data.addressLineOne,
   "errorMessage": {
     "html": 'Enter a valid first line'
   } if data['error'] == 'true'
@@ -49,7 +35,8 @@
     "html": 'Address line 2 (optional)'
   },
   "id": "address-line-two",
-  "name": "addressLineTwo"
+  "name": "addressLineTwo",
+  "value": data.addressLineTwo
 }) }}
 
 
@@ -60,6 +47,7 @@
   "classes": "nhsuk-u-width-two-thirds",
   "id": "city",
   "name": "city",
+  "value": data.city,
   "errorMessage": {
     "html": 'Enter a valid city'
   } if data['error'] == 'true'
@@ -72,6 +60,7 @@
   "classes": "nhsuk-u-width-two-thirds",
   "id": "county",
   "name": "county",
+  "value": data.county,
   "errorMessage": {
     "html": 'Enter a valid county, province or region'
   } if data['error'] == 'true'
@@ -84,6 +73,7 @@
   "classes": "nhsuk-input--width-10",
   "id": "postcode",
   "name": "postcode",
+  "value": data.postcode,
   "errorMessage": {
     "html": 'Enter valid postcode'
   } if data['error'] == 'true'
@@ -96,6 +86,7 @@
   "id": "country",
   "classes": "nhsuk-u-width-two-thirds",
   "name": "country",
+  "value": data.country,
   "errorMessage": {
     "html": 'Enter a valid country'
   } if data['error'] == 'true'
