@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const countryService = require('../../service/referenceData');
 // const axios = require('axios');
 
 
@@ -31,40 +31,39 @@ router.post([/eligibility-country-check/], function(req, res){
 
 
 //  Which country do you need an S1 for?
+router.get([/eligibility-country/], function (req, res){
+    const countryList = countryService.getCountries();
+    
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.render('v1/eligibility/eligibility-country', {countryList: countryList});
+})
 
 router.post([/eligibility-country/], function (req, res){
     var countrySOne = req.session.data['countrySOne'];
     console.log(countrySOne);
     const data = req.session.data
+    data.error = 'false'
 
     if (countrySOne == 'Iceland' || countrySOne == 'Liechtenstein' || countrySOne == 'Norway' || countrySOne == 'Switzerland') {
-        data.error = 'false';
-        res.redirect('kickout/ineligible-efta-country-kickout');
+        return res.redirect('kickout/ineligible-efta-country-kickout');
     } if (countrySOne == 'Austria' || countrySOne == 'Belgium' || countrySOne == 'Bulgaria' || countrySOne == 'Denmark') {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     } if (countrySOne == 'Czech Republic' || countrySOne == 'Estonia' || countrySOne == 'Finland' || countrySOne == 'France') {
-        data.error = 'false'; 
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     } if (countrySOne == 'Germany' || countrySOne == 'Greece' || countrySOne == 'Hungary' || countrySOne == 'Ireland' || countrySOne == 'Italy') {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     } if (countrySOne == 'Latvia' || countrySOne == 'Lithuania' || countrySOne == 'Luxemburg' || countrySOne == 'Malta' || countrySOne == 'Montenegro') {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     }  if (countrySOne == 'Netherlands' || countrySOne == 'Poland' || countrySOne == 'Portugal' || countrySOne == 'Romania' || countrySOne == 'Slovakia') {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     }  if (countrySOne == 'Slovenia' || countrySOne == 'Spain' || countrySOne == 'Sweden') {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
+        return res.redirect('eligibility-move-check');
     }  if (countrySOne == '') {
-        data.error = 'true',
-        res.redirect('eligibility-country');
+        data.error = 'true'
+        return res.redirect('eligibility-country');
     } else {
-         data.error = 'false';
         data.ineligible = 'country-fail'
-       res.redirect('ineligible');
+        return res.redirect('ineligible');
     }
 })
 
