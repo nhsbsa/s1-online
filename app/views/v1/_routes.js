@@ -10,22 +10,28 @@ const router = express.Router()
 
 
 // 	Are you permanently living or moving outside the UK?
-router.post([/eligibility-country-check/], function(req, res){
-    var liveEU = req.session.data['liveEU'];
-    const data = req.session.data
-    
-    if (liveEU == 'Yes'){
-        data.error = 'false'
-        res.redirect('eligibility-country');
-    } else if (liveEU == 'No'){
-        data.error = 'false'
-        data.ineligible = 'country-check-fail'
-        res.redirect('ineligible');
-    } else {
-        data.error = 'true'
-        res.redirect('eligibility-country-check');
+router.post([/eligibility-country-check/], function(req, res) {
+    const liveEU = req.session.data['liveEU'];
+    const data = req.session.data;
+
+    switch (liveEU) {
+        case 'Yes':
+            data.error = 'false';
+            res.redirect('eligibility-country');
+            break;
+
+        case 'No':
+            data.error = 'false';
+            data.ineligible = 'country-check-fail';
+            res.redirect('ineligible');
+            break;
+
+        default:
+            data.error = 'true';
+            res.redirect('eligibility-country-check');
+            break;
     }
-})
+});
 
 
 
@@ -39,7 +45,8 @@ router.post([/eligibility-country/], function (req, res){
 
     if (countrySOne == 'Iceland' || countrySOne == 'Liechtenstein' || countrySOne == 'Norway' || countrySOne == 'Switzerland') {
         data.error = 'false';
-        res.redirect('kickout/ineligible-efta-country-kickout');
+        data.ineligible = 'country-fail-efta'
+        res.redirect('ineligible');
     } if (countrySOne == 'Austria' || countrySOne == 'Belgium' || countrySOne == 'Bulgaria' || countrySOne == 'Denmark') {
         data.error = 'false';
         res.redirect('eligibility-move-check');
@@ -88,32 +95,71 @@ router.post([/eligibility-move-check/], function(req, res){
 
 // When will you move to [Country] ?
 
+// router.post([/eligibility-move-date-plan/], function (req, res){
+//     const data = req.session.data
+
+//     // Get the Move Date values from the (dd / mm / yyyy) separate date inputs 
+//     var day = req.session.data['futureDay'];
+//     var month = req.session.data['futureMonth'];
+//     var year = req.session.data['futureYear'];
+
+//     req.session.data['futureDate'] = `${req.body['futureDay']} ${req.body['futureMonth']} ${req.body['futureYear']}`
+
+//     // Convert numerical month to letters
+//     const monthInLetters = getMonthInLetters(month);
+
+//     // Set the applicantDob in the desired format
+//     req.session.data['futureDate'] = `${day} ${monthInLetters} ${year}`;
+
+//     if (day == '' && month == '' && year == '' ) {
+//         data.error = 'true'
+//         res.redirect('eligibility-move-date-plan');
+//     } else { 
+//         data.error = 'false'
+//         res.redirect('eligibility-uk-state-pension');
+//     }
+
+// })
+
 router.post([/eligibility-move-date-plan/], function (req, res){
-    const data = req.session.data
+    const data = req.session.data;
 
     // Get the Move Date values from the (dd / mm / yyyy) separate date inputs 
     var day = req.session.data['futureDay'];
     var month = req.session.data['futureMonth'];
     var year = req.session.data['futureYear'];
 
-    req.session.data['futureDate'] = `${req.body['futureDay']} ${req.body['futureMonth']} ${req.body['futureYear']}`
+    // Store the futureDate in the session data
+    req.session.data['futureDate'] = `${req.body['futureDay']} ${req.body['futureMonth']} ${req.body['futureYear']}`;
 
     // Convert numerical month to letters
     const monthInLetters = getMonthInLetters(month);
 
-    // Set the applicantDob in the desired format
+    // Set the futureDate in the desired format
     req.session.data['futureDate'] = `${day} ${monthInLetters} ${year}`;
 
-    if (day == '' && month == '' && year == '' ) {
-        data.error = 'true'
+    // Check if day, month, and year are empty
+    if (day == '' && month == '' && year == '') {
+        data.error = 'true';
         res.redirect('eligibility-move-date-plan');
-    } else { 
-        data.error = 'false'
-        res.redirect('eligibility-uk-state-pension');
+    } else {
+        // Check if the selected date is more than 90 days in the future
+        const selectedDate = new Date(`${month} ${day} ${year}`);
+        const today = new Date();
+        const ninetyDaysFromNow = new Date(today.setDate(today.getDate() + 90));
+
+        if (selectedDate > ninetyDaysFromNow) {
+            // Date is more than 90 days in the future
+            data.error = 'false';
+            data.ineligible = 'country-fail-efta'
+            res.redirect('ineligible');
+        } else {
+            // Date is not more than 90 days in the future
+            data.error = 'false';
+            res.redirect('eligibility-uk-state-pension');
+        }
     }
-
-})
-
+});
 
 
 
@@ -345,23 +391,41 @@ router.post([/applicant-nino/], function (req,res) {
 
 
 // Residential address (in S1 country)
-,
-router.post([/applicant-residential-address/], function (req,res) {
-    var addressLineOne = req.session.data['addressLineOne']
-    var city = req.session.data['city']
-    var postcode = req.session.data['postcode']
-    var country = req.session.data['country']
+
+// router.post([/applicant-residential-address/], function (req,res) {
+//     var addressLineOne = req.session.data['addressLineOne']
+//     var city = req.session.data['city']
+//     var postcode = req.session.data['postcode']
+//     var country = req.session.data['country']
+//     const data = req.session.data;
+
+//     if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
+//         data.error = 'false';
+//         return res.redirect('applicant-correspondence-address-check');
+//     } else if(addressLineOne == '' && city == '' && postcode == '' && country == '') {
+//         data.error = 'true';
+//         return res.redirect('applicant-residential-address');
+//     } 
+// })
+router.post([/applicant-residential-address/], function (req, res) {
+    var addressLineOne = req.session.data['addressLineOne'];
+    var city = req.session.data['city'];
+    var postcode = req.session.data['postcode'];
+    var country = req.session.data['country'];
     const data = req.session.data;
 
-    if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
+    if (addressLineOne !== '' && city !== '' && postcode !== '' && country !== '') {
+        // Combine address elements into a single data point with new lines
+        data.fullAddress = `${addressLineOne}<br>${city}<br>${postcode}<br>${country}`;
         data.error = 'false';
         return res.redirect('applicant-correspondence-address-check');
-    } else if(addressLineOne == '' && city == '' && postcode == '' && country == '') {
+    } else if (addressLineOne === '' && city === '' && postcode === '' && country === '') {
         data.error = 'true';
         return res.redirect('applicant-residential-address');
-    } 
-})
- 
+    }
+});
+
+
 
 
 // Is this also your correspondence address?
@@ -391,15 +455,16 @@ router.post([/applicant-correspondence-address/], function (req,res) {
     var corrCountry = req.session.data['corrCountry'];
     const data = req.session.data;
 
-
-    if(corrAddressLineOne != '' && corrCity != '' && corrPostcode != '' && corrCountry != '') {
+    if (corrAddressLineOne !== '' && corrCity !== '' && corrPostcode !== '' && corrCountry !== '') {
+        // Combine correspondence address elements with HTML line breaks
+        data.corrFullAddress = `${corrAddressLineOne}<br>${corrCity}<br>${corrPostcode}<br>${corrCountry}`;
         data.error = 'false';
         return res.redirect('applicant-email');
-    } else if (corrAddressLineOne == '' && corrCity == '' && corrPostcode == '' && corrCountry == '') {
+    } else if (corrAddressLineOne === '' && corrCity === '' && corrPostcode === '' && corrCountry === '') {
         data.error = 'true';
         return res.redirect('applicant-correspondence-address');
     }
-})
+});
 
 // Email
 
@@ -595,21 +660,24 @@ router.post([/dependant-address-check/], function (req,res) {
  
 // Dependant address
 
-router.post([/dependant-address/], function (req,res) {
-    var addressLineOne = req.session.data['dependantAddressLineOne'];
-    var city = req.session.data['dependantCity'];
-    var postcode = req.session.data['dependantPostcode'];
-    var country = req.session.data['dependantCountry'];
+router.post([/dependant-address/], function (req, res) {
+    var dependantAddressLineOne = req.session.data['dependantAddressLineOne'];
+    var dependantCity = req.session.data['dependantCity'];
+    var dependantPostcode = req.session.data['dependantPostcode'];
+    var dependantCountry = req.session.data['dependantCountry'];
     const data = req.session.data;
 
-    if(addressLineOne != '' && city != '' && postcode != '' && country != '') {
+    if (dependantAddressLineOne !== '' && dependantCity !== '' && dependantPostcode !== '' && dependantCountry !== '') {
+        // Combine dependent address elements with HTML line breaks
+        data.dependantFullAddress = `${dependantAddressLineOne}<br>${dependantCity}<br>${dependantPostcode}<br>${dependantCountry}`;
         data.error = 'false';
-        res.redirect('more-dependants-check');
+        return res.redirect('more-dependants-check');
     } else {
         data.error = 'true';
-        res.redirect('dependant-address');
+        return res.redirect('dependant-address');
     }
-}) 
+});
+
 
 // Add more dependants?
 

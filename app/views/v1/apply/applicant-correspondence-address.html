@@ -7,27 +7,10 @@
 
 
 {% set errorMessage %}
-<ul class="nhsuk-list">
-  <li>
-    Enter a valid first line
-  </li>
-  <li>
-    Enter a valid city
-  </li>
-  <li>
-    Enter a valid county, province or region
-  </li>
-  <li>
-    Enter valid postcode
-  </li>
-  <li>
-    Enter a valid country
-  </li>
-</ul>
+  {% include 'v1/apply/_error-address-content.html' %}
 {% endset %}
 
 {% set idPrefix %}address-line-one{% endset -%}
-{% set hideBackLink = true %}
 
 
 {% block form %}
@@ -39,6 +22,7 @@
   },
   "id": "corrAddressLineOne",
   "name": "corrAddressLineOne",
+  "value": data.corrAddressLineOne,
   "errorMessage": {
     "html": 'Enter a valid first line'
   } if data['error'] == 'true'
@@ -48,7 +32,8 @@
     "html": 'Address line 2 (optional)'
   },
   "id": "corrAddressLineTwo",
-  "name": "corrAddressLineTwo"
+  "name": "corrAddressLineTwo",
+  "value": data.corrAddressLineTwo
 }) }}
 
 
@@ -59,6 +44,7 @@
   "classes": "nhsuk-u-width-two-thirds",
   "id": "corrCity",
   "name": "corrCity",
+  "value": data.corrCity,
   "errorMessage": {
     "html": 'Enter a valid city'
   } if data['error'] == 'true'
@@ -71,6 +57,7 @@
   "classes": "nhsuk-u-width-two-thirds",
   "id": "corrCounty",
   "name": "corrCounty",
+  "value": data.corrCounty,
   "errorMessage": {
     "html": 'Enter a valid county, province or region'
   } if data['error'] == 'true'
@@ -83,6 +70,7 @@
   "classes": "nhsuk-input--width-10",
   "id": "corrPostcode",
   "name": "corrPostcode",
+  "value": data.corrPostcode,
   "errorMessage": {
     "html": 'Enter valid postcode'
   } if data['error'] == 'true'
@@ -95,6 +83,7 @@
   "id": "corrCountry",
   "classes": "nhsuk-u-width-two-thirds",
   "name": "corrCountry",
+  "value": data.corrCountry,
   "errorMessage": {
     "html": 'Enter a valid country'
   } if data['error'] == 'true'

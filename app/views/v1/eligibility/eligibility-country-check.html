@@ -3,10 +3,10 @@
 {% set caption = data.eligibilityCaption %}
 {% set errorMessage = 'Select yes if you are permanently living or moving outside of the UK' %}
 {% set idPrefix %}eligibility-country-check{% endset -%}
-{% set hintText = true %}
 {% set hideBackLink = true %}
 
 {% block form %}
+
 {{ radios({
     "idPrefix": idPrefix,
     "name": "liveEU",
@@ -15,15 +15,17 @@
     } if data['error'] == 'true',
 
     "items": [
-      {
+    {
         "value": "Yes",
-        "text": "Yes"
-      },
-      {
+        "text": "Yes",
+        "checked": data.liveEU === 'Yes'
+    },
+    {
         "value": "No",
-        "text": "No"
-      }
-    ]
+        "text": "No",
+        "checked": data.liveEU === 'No'
+    }
+  ]
   }) }}
  
  

@@ -9,32 +9,6 @@
   What is {{ data.dependantName or 'John Smith' }}'s address?	
 {% endset %}
 
-{% set dependantLocation %}
-<ul class="nhsuk-list">
-  <li>
-    {{ data.dependantAddressLineOne or 'address line 1' }}
-  </li>
-  <li>
-    {{ data.dependantAddressLineTwo }}
-  </li>
-  <li>
-    {{ data.dependantCity }}
-  </li>
-  <li>
-    {{ data.dependantCounty }}
-  </li>
-  <li>
-    {{ data.dependantPostcode }}
-  </li>
-  <li>
-    {{ data.dependantCountry }}
-  </li>
-</ul>
-
-{% endset %}
-
-
-
 
 {{ summaryList({
   rows: [
@@ -111,7 +85,7 @@
         html: dependantAddress
       },
       value: {
-        html: dependantLocation or 'address'
+        html: data['dependantFullAddress'] or 'address'
       },
       actions: {
         items: [

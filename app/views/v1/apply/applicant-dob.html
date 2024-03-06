@@ -1,21 +1,10 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is your date of birth?{% endset %}
 {% set caption = data.mainCaption %}
-{% set errorMessage %}
-<ul class="nhsuk-list">
-  <li>
-    Date of birth must include a valid day
-  </li>
-  <li>
-    Date of birth must include a valid month
-  </li>
-  <li>
-    Date of birth must include a valid year
-  </li>
-</ul>
-
-{% endset %}
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
+{% set errorMessage %}
+  {% include 'v1/apply/_error-dob-content.html' %}
+{% endset %}
 
 
 {% block form %}
@@ -30,16 +19,19 @@
   "items": [
     {
       "name": "example-day",
+      "value": data['example-day'],
       "label": "Day",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "example-month",
+      "value": data['example-month'],
       "label": "Month",
       "classes": "nhsuk-input--width-2"
     },
     {
       "name": "example-year",
+      "value": data['example-year'],
       "label": "Year",
       "classes": "nhsuk-input--width-4"
     }
