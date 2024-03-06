@@ -156,7 +156,7 @@ function addInputEUSP(el) {
 
   var newSelectID = `${el.previousElementSibling.id}-${inputCountOther}`;
   let generatedOptionList = generateSelectList(spEuCountries);
-  newFieldOther.innerHTML = `<br><a href='#' style="float: right;" type='button' value='-' onClick='return removeInputOther(this);'>- Remove State Pension country</a><label class='nhsuk-label' for='${newSelectID}'>Country name</label><select id='${newSelectID}' name='myInputsEUSP[]' type='text'><option value=''></option>${generatedOptionList}</select></div>`;
+  newFieldOther.innerHTML = `<br><a href='#' style="float: right;" type='button' value='-' onClick='return removeInputOther(this);'>Remove country</a><label class='nhsuk-label' for='${newSelectID}'>Country name</label><select id='${newSelectID}' name='myInputsEUSP[]' type='text'><option value=''></option>${generatedOptionList}</select></div>`;
   document.getElementById('appendableEUSP').appendChild(newFieldOther); // Use ID of new select to initilise autcomplete for our new select
 
   let select = document.querySelector(`#${newSelectID}`);
