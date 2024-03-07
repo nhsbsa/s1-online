@@ -2,7 +2,7 @@
 {% set title %}If you cannot provide the evidence we asked for, tell us why{% endset %}
 {% set caption = data.uploadCaption %}
 {% set hideErrorMarkup = true %}
-{% set idPrefix %}upload-firstname{% endset -%}
+{% set idPrefix %}addInfo{% endset -%}
 {% set errorMessage %}Tell us why you cannot provide the evidence{% endset %}
 
 
@@ -11,7 +11,8 @@
 
 {{ textarea({
   "name": "addInfo",
-  "id": "addInfo",    
+  "id": "addInfo",  
+  "value": data.addInfo,  
   "errorMessage": {
     "html": errorMessage
   } if data['error'] == 'true'

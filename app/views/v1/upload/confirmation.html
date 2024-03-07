@@ -1,0 +1,24 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle = 'Response sumbitted' if data['evidence'] == 'No' else 'Evidence submitted' %}
+
+{% block form %}
+
+{%- if data['evidence'] == 'No' -%}
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>We will review your response and contact you to let you know what you need to do next.</p>
+{%- else -%}
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>We will review your evidence and let you know if your S1 application has been successful..</p>
+<p> If you need to send any more information, we will let you know
+
+{%- endif -%}
+<p></p>
+{{ button({
+    text: "Finish"
+}) }}
+{% endblock %}

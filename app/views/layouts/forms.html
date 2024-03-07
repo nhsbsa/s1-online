@@ -49,15 +49,17 @@
           {% endif %}
 
         {% block form %}{% endblock %}
-
-      </fieldset>
-      </div>
+   
+    </fieldset>
         {% if not hideButton %}
         {{ button({
+          "classes": "nhsuk-u-margin-top-4",
           html: buttonText if buttonText else 'Continue'
         }) }}
       {% endif %}
       {% include 'includes/_back.html' %}
+      </div>
+
       </form>
   </div>
 </div>
