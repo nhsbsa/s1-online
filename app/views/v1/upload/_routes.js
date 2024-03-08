@@ -101,7 +101,7 @@ router.post([/have-evidence/], function (req, res) {
         res.redirect('additional-info');
     } else {
         data.error = 'true';
-        res.redirect('evidence');
+        res.redirect('have-evidence');
     }
 })
  
