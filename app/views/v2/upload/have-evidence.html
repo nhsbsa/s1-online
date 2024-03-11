@@ -1,0 +1,34 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Do you have the evidence we asked for?{% endset %}
+{% set caption = data.uploadCaption %}
+{% set errorMessage %}Select yes if have the evidence we asked for{% endset %}
+{% set idPrefix %}eligibility-country-check{% endset -%}
+{% set hideErrorMarkup = true %}
+
+
+
+{% block form %}
+<p>If you cannot give the evidence we asked for, select no.</p>
+{{ radios({
+    "idPrefix": evidence,
+    "name": "evidence",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.evidence === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.evidence === 'No'
+      }
+    ]
+  }) }}
+
+
+{% endblock %}

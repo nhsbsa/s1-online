@@ -1,0 +1,149 @@
+<!-- ADDING CUSTOM CSS - Add your custom CSS or Sass in /app/assets/sass/main.scss -->
+
+<!-- Extends the layout from /views/layout.html -->
+{% extends 'layout.html' %}
+<!-- 
+  In /views/layout.html you can:
+    - change the header and footer 
+    - add custom CSS and JavaScript
+-->
+
+<!-- Set the page title -->
+{% block pageTitle %}
+Apply for an S1 form - Overseas Healthcare Services - NHSBSA
+{% endblock %}
+
+<!-- For adding a breadcrumb -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/breadcrumbs -->
+{% block beforeContent %}
+{% endblock %}
+
+<!-- For adding a back link -->
+<!-- Code examples can be found at https://service-manual.nhs.uk/design-system/components/back-link -->
+{% block outerContent %}
+{% endblock %}
+
+<!-- For adding page content -->
+<!-- Page layout code can be found at https://service-manual.nhs.uk/design-system/styles/layout -->
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+      <h1>
+        Overseas Healthcare Services
+        <span class="nhsuk-caption-xl nhsuk-caption--bottom">S1 Online</span>
+      </h1>
+      <hr>
+
+      <h2>
+        Alpha
+      </h2>
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+            <details class="nhsuk-details">
+                <summary class="nhsuk-details__summary">
+                  <span class="nhsuk-details__summary-text">
+                    11 Mar 2024 
+                  </span>- (V2)
+                </summary>
+                <div class="nhsuk-details__text">
+                  <h3>Aims</h3>
+                  <ul>
+                    <li>The next interation of the alpha S1 prototype</li>
+                  </ul>
+                  <h3>Prototypes</h3>
+                  
+                    <ul>
+                      <li><a href="/v2/apply/start-page">Apply for S1 form</li>
+                          <li><a href="/v2/upload/start-page">Upload required evidence</a></li>
+                          <li><a href="/mvp/download-success/index">Download certificate upon successful application</a></li>
+                    </ul>
+              
+                </div>
+              </details>
+      
+        </div>
+      </div>
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+            <details class="nhsuk-details">
+                <summary class="nhsuk-details__summary">
+                  <span class="nhsuk-details__summary-text">
+                    25 February 2024 
+                  </span>- (V1)
+                </summary>
+                <div class="nhsuk-details__text">
+                  <h3>Aims</h3>
+                  <ul>
+                    <li>The next interation of the alpha S1 prototype</li>
+                  </ul>
+                  <h3>Prototypes</h3>
+                  
+                    <ul>
+                      <li><a href="/v1/apply/start-page">Apply for S1 form</li>
+                          <li><a href="/v1/upload/start-page">Upload required evidence</a></li>
+                          <li><a href="/mvp/download-success/index">Download certificate upon successful application</a></li>
+                    </ul>
+              
+                </div>
+              </details>
+      
+        </div>
+      </div>
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+            <details class="nhsuk-details">
+                <summary class="nhsuk-details__summary">
+                  <span class="nhsuk-details__summary-text">
+                    7 February 2024
+                  </span>
+                </summary>
+                <div class="nhsuk-details__text">
+                  <h3>Aims</h3>
+                  <ul>
+                    <li>The prototypes were utilised during the usability testing of the Alpha prototype</li>
+                    <li>findings from usability testing are available on <a target="_blank" href='https://miro.com/app/board/uXjVN4tMLe8=/'>miro</a></li>
+                  </ul>
+                  <h3>Prototypes</h3>
+                  
+                    <ul>
+                      <li><a href="/mvp/apply/index">Apply for S1 form</li>
+                          <li><a href="/mvp/file-upload/start">Upload required evidence</a></li>
+                          <li><a href="/mvp/download-success/index">Download certificate upon successful application</a></li>
+                    </ul>
+              
+                </div>
+              </details>
+      
+        </div>
+      </div>
+
+      <div class="nhsuk-card">
+        <div class="nhsuk-card__content">
+            <details class="nhsuk-details">
+                <summary class="nhsuk-details__summary">
+                  <span class="nhsuk-details__summary-text">
+                    14 September 2023
+                  </span>
+                </summary>
+                <div class="nhsuk-details__text">
+                  <h3>Aims</h3>
+                  <ul>
+                    <li>To provide UI recommendations for the discovery report</li>
+                  </ul>
+                  <h3>Prototypes</h3>
+                  <ul>
+                    <li><a href="../discovery/apply/index">Apply for S1 form</li>
+                        <li><a href="../discovery/upload/index">Upload required evidence</a></li>
+                        <li><a href="../discovery/download/index">Download certificate upon successful application</a></li>
+                  </ul>
+              
+                </div>
+              </details>
+      
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+{% endblock %}

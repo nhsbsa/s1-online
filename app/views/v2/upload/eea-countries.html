@@ -1,0 +1,29 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Which countries have you been asked to give evidence for, other than the UK?{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}upload-firstname{% endset -%}
+
+
+
+{% block form %}
+<p>Upload a letter from the Department for Work and Pensions showing the date you started being paid your UK State Pension.</p>
+
+{{ input({
+  "label": {
+    "text": "Country name"
+  },
+  "id": "country-name",
+  "name": "add-country",
+  "value": data.add-country,  
+  "errorMessage": {
+    "html": 'Enter country name'
+  } if data['error'] == 'true'
+}) }}
+
+{{ button({
+  "text": "Add another country",
+  "classes": "nhsuk-button--secondary nhsuk-u-margin-top-3 nhsuk-u-margin-bottom-3"
+}) }}
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your correspondence address?{% endset %}
+{% set caption = data.mainCaption %}
+{% set inputError = true %}
+{% set idPrefix %}applicant-name{% endset -%}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+  {% include 'v2/apply/_error-address-content.html' %}
+{% endset %}
+
+{% set idPrefix %}address-line-one{% endset -%}
+
+
+{% block form %}
+
+
+{{ input({
+  label: {
+    "html": 'Address line 1'
+  },
+  "id": "corrAddressLineOne",
+  "name": "corrAddressLineOne",
+  "value": data.corrAddressLineOne,
+  "errorMessage": {
+    "html": 'Enter a valid first line'
+  } if data['error'] == 'true'
+}) }}
+{{ input({
+  label: {
+    "html": 'Address line 2 (optional)'
+  },
+  "id": "corrAddressLineTwo",
+  "name": "corrAddressLineTwo",
+  "value": data.corrAddressLineTwo
+}) }}
+
+
+{{ input({
+  label: {
+    "text": "Town or city"
+  },
+  "classes": "nhsuk-u-width-two-thirds",
+  "id": "corrCity",
+  "name": "corrCity",
+  "value": data.corrCity,
+  "errorMessage": {
+    "html": 'Enter a valid city'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  label: {
+    "text": "County, province or region"
+  },
+  "classes": "nhsuk-u-width-two-thirds",
+  "id": "corrCounty",
+  "name": "corrCounty",
+  "value": data.corrCounty,
+  "errorMessage": {
+    "html": 'Enter a valid county, province or region'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  label: {
+    "text": "Postcode"
+  },
+  "classes": "nhsuk-input--width-10",
+  "id": "corrPostcode",
+  "name": "corrPostcode",
+  "value": data.corrPostcode,
+  "errorMessage": {
+    "html": 'Enter valid postcode'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  label: {
+    "html": 'Country'
+  },
+  "id": "corrCountry",
+  "classes": "nhsuk-u-width-two-thirds",
+  "name": "corrCountry",
+  "value": data.corrCountry,
+  "errorMessage": {
+    "html": 'Enter a valid country'
+  } if data['error'] == 'true'
+}) }}
+{% endblock %}

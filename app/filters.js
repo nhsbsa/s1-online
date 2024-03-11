@@ -53,17 +53,8 @@ module.exports = function (env) { /* eslint-disable-line no-unused-vars */
     documentation.
 
   ------------------------------------------------------------------ */
-  filters.todayDate = function() {
-    try {
-        const today = new Date();
-        return new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(today);
-    } catch (error) {
-        return error.message.split(':')[0];
-    }
-};
-filters.sayHi = function(name,tone) {
-  return (tone == 'formal' ? 'Greetings' : 'Hi') + ' ' + name + '!'
-}
+
+
 filters.ninetyDaysFromNow = function() {
   try {
       const today = new Date();

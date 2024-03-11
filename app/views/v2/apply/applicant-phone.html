@@ -1,0 +1,31 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your phone number? (optional){% endset %}
+{% set hintText = true %}
+{% set hintTextCopy %}For international numbers, include the country code.{% endset %}
+{% set caption = data.mainCaption %}
+{% set inputError = true %}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+ Enter a valid telephone or mobile number
+{% endset %}
+
+{% set idPrefix %}applicant-name{% endset -%}
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "Phone number"
+    },
+    "id": "phone",
+    "name": "phone",
+    "value": data.phone,
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true'
+  }) }}
+
+
+{% endblock %}

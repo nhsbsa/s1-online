@@ -1,0 +1,106 @@
+
+{% set dependantDob %}
+  What is {{ data.dependantName or 'John Smith' }}'s date of birth?	
+{% endset %}
+{% set dependantAddressCheck %}
+  Does {{ data.dependantName or 'John Smith' }}'s live at the same address as you?	
+{% endset %}
+{% set dependantAddress %}
+  What is {{ data.dependantName or 'John Smith' }}'s address?	
+{% endset %}
+
+
+{{ summaryList({
+  rows: [
+  {
+    key: {
+      text: "Do you want to add any family members to your S1 application?"
+    },
+    value: {
+      html: data['dependantCheck'] or 'Yes'
+    },
+    actions: {
+      items: [
+        {
+          href: "dependant-check",
+          text: "Change",
+          visuallyHiddenText: "if you want add any family members to your S1 application"
+        }
+      ]
+    }
+  },
+    {
+      key: {
+        text: "Who do you want to add to your application?"
+      },
+      value: {
+        html: data['dependantName'] or 'John Smith'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-name",
+            text: "Change",
+            visuallyHiddenText: "dependents name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: dependantDob
+      },
+      value: {
+        html: data['dependantDob'] or '23 June 1980'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-dob",
+            text: "Change",
+            visuallyHiddenText: "dependants date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: dependantAddressCheck
+      },
+      value: {
+        html: data['dependantAddressCheck'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-address-check",
+            text: "Change",
+            visuallyHiddenText: "if dependant live at the same address?"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: dependantAddress
+      },
+      value: {
+        html: data['dependantFullAddress'] or 'address'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-address",
+            text: "Change",
+            visuallyHiddenText: "dependant address"
+          }
+        ]
+      }
+    } if data['dependantAddressCheck'] == 'No' 
+        
+  ] 
+}) }}
+
+
+
+

@@ -1,0 +1,34 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Have you been asked to give evidence that you are being paid a UK State Pension?{% endset %}
+{% set caption = data.uploadCaption %}
+{% set errorMessage %}Select yes if you been asked to give evidence that you are being paid a UK State Pension?{% endset %}
+{% set idPrefix %}provideUKPensEvid{% endset -%}
+{% set hideErrorMarkup = true %}
+
+
+
+{% block form %}
+<p>Select yes if the email we sent you asks for a letter from the Department of Work and Pensions showing the date you started being paid your UK State Pension.</p>
+{{ radios({
+    "id": idPrefix,
+    "name": "provideUKPensEvid",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.provideUKPensEvid === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.provideUKPensEvid === 'No'
+      }
+    ]
+  }) }}
+
+
+{% endblock %}

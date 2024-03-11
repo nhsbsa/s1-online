@@ -1,0 +1,50 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Which country are you living in or moving to?' %}
+{% set caption = 'Eligibility' %}
+{% set errorMessage = 'Enter the country you are living in or moving to' %}
+{% set idPrefix %}location{% endset -%}
+
+
+
+
+{% block form %}
+
+{%- if data['error'] == 'true' -%}
+<div class="nhsuk-form-group form-group nhsuk-form-group--error" id="appendableEURT">
+
+{%- else -%}
+<div class="nhsuk-form-group form-group" id="appendableEURT">
+
+   
+   {%- endif -%}
+
+    <div class="nhsuk-hint">
+      Enter the country you need S1 healthcare cover for.
+    </div>
+
+    <div class="autocomplete-container" id="autocomplete-container">
+
+      <label class="nhsuk-label" for="eu-efta-eligibility-country">
+        Country
+      </label>
+      {%- if data['error'] == 'true' -%}
+
+      <span class="nhsuk-error-message" id="location-error">
+        <span class="nhsuk-u-visually-hidden">Error:</span> Enter the country you are living in or moving to
+      </span>
+      {%- endif -%}
+ 
+      <select id="eu-efta-location-picker" class="eu-efta-eligibility-country nhsuk-input" name="countrySOne" type="text">
+        <option value=""></option>
+        {% for country in countryList %}
+          <option value="{{ country.name }}" {% if data.countrySOne in country.name %}selected{% endif %}>{{ country.name }}</option>
+        {% endfor %}
+      </select>
+     
+    </div>
+   
+
+</div>
+
+
+{% endblock %}

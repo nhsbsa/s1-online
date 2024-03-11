@@ -1,0 +1,32 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Do you already live in {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set caption = data.eligibilityCaption %}
+{% set errorMessage %}Select yes if you already live in {{ data.countrySOne or 'Germany'}}{% endset %}
+{% set idPrefix %}eligibility-country-check{% endset -%}
+
+
+
+{% block form %}
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "moveCheck",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.moveCheck === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.moveCheck === 'No'
+      }
+    ]
+  }) }}
+
+
+{% endblock %}

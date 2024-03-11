@@ -1,0 +1,42 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Check your answers' %}
+{% set caption = data.mainCaption %}
+{% set fullWidth = true %}
+{% set hideBackLink = true %}
+{% set buttonText = 'Accept and submit' %}
+
+
+
+{% block form %}
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Personal details</h2>
+<hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+{% include 'v2/apply/_applicant-answers.html' %}
+
+{%- if data['dependantCheck'] == 'Yes' -%}
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Dependant details</h2>
+  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+  {% include 'v2/apply/_dependant-answers.html' %}
+
+{% endif %}
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <h2 class="nhsuk-heading-m">Submit your application</h2>
+
+
+    <p>The information that you give us in this application will be used to check your eligibility. This means we may share your information with:</p>
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>
+        The Department for Work and Pensions (DWP) who will check to confirm a UK state pension is in payment.
+      </li>
+    </ul>
+    </ul>
+    <p>We might also share you information with third parties to help us prevent and investigate fraud and error. You can find out more about how we use your information <a href="https://www.nhsbsa.nhs.uk/contact-overseas-healthcare-services">on our website.</a></p>
+    <p>By submitting your application, you are confirming that the information you’ve given us is correct. If you knowingly provide incorrect information, you could be prosecuted or face civil proceedings.</p>
+      </div>
+</div>
+
+
+
+{% endblock %}

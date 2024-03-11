@@ -1,0 +1,15 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Upload evidence that you are being paid a UK State Pension{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}upload-firstname{% endset -%}
+
+
+{% block form %}
+  <p>Upload a letter from the Department for Work and Pensions showing the date you started being paid your UK State Pension.</p>
+  {{ button({
+    "text": "Choose files",
+    "classes": "nhsuk-button--secondary nhsuk-u-margin-top-3  nhsuk-u-margin-bottom-3"
+  }) }}
+
+{% endblock %}

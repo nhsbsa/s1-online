@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
+const countryService = require('../../service/referenceData');
 // const axios = require('axios');
 
 
@@ -31,36 +31,42 @@ router.post([/eligibility-country-check/], function(req, res){
 
 
 //  Which country do you need an S1 for?
+router.get([/eligibility-country/], function (req, res){
+    const countryList = countryService.getCountries();
 
-router.post([/eligibility-country/], function (req, res) {
-    const countrySOne = req.session.data['countrySOne'];
-    const data = req.session.data;
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.render('v1/eligibility/eligibility-country', {countryList: countryList});
+})
 
-    const eftaCountries = ['Iceland', 'Liechtenstein', 'Norway', 'Switzerland'];
-    const moveCheckCountries = [
-        'Austria', 'Belgium', 'Bulgaria', 'Denmark', 'Czech Republic', 'Estonia',
-        'Finland', 'France', 'Germany', 'Greece', 'Hungary', 'Ireland', 'Italy',
-        'Latvia', 'Lithuania', 'Luxemburg', 'Malta', 'Montenegro', 'Netherlands',
-        'Poland', 'Portugal', 'Romania', 'Slovakia', 'Slovenia', 'Spain', 'Sweden'
-    ];
+router.post([/eligibility-country/], function (req, res){
+    var countrySOne = req.session.data['countrySOne'];
+    console.log(countrySOne);
+    const data = req.session.data
+    data.error = 'false'
 
-    if (eftaCountries.includes(countrySOne)) {
-        data.error = 'false';
-        data.ineligible = 'country-fail-efta';
-        res.redirect('ineligible');
-    } else if (moveCheckCountries.includes(countrySOne)) {
-        data.error = 'false';
-        res.redirect('eligibility-move-check');
-    } else if (countrySOne === '') {
-        data.error = 'true';
-        res.redirect('eligibility-country');
+    if (countrySOne == 'Iceland' || countrySOne == 'Liechtenstein' || countrySOne == 'Norway' || countrySOne == 'Switzerland') {
+        data.ineligible = 'country-fail-efta'
+        return res.redirect('ineligible');
+    } if (countrySOne == 'Austria' || countrySOne == 'Belgium' || countrySOne == 'Bulgaria' || countrySOne == 'Denmark') {
+        return res.redirect('eligibility-move-check');
+    } if (countrySOne == 'Czech Republic' || countrySOne == 'Estonia' || countrySOne == 'Finland' || countrySOne == 'France') {
+        return res.redirect('eligibility-move-check');
+    } if (countrySOne == 'Germany' || countrySOne == 'Greece' || countrySOne == 'Hungary' || countrySOne == 'Ireland' || countrySOne == 'Italy') {
+        return res.redirect('eligibility-move-check');
+    } if (countrySOne == 'Latvia' || countrySOne == 'Lithuania' || countrySOne == 'Luxemburg' || countrySOne == 'Malta' || countrySOne == 'Montenegro') {
+        return res.redirect('eligibility-move-check');
+    }  if (countrySOne == 'Netherlands' || countrySOne == 'Poland' || countrySOne == 'Portugal' || countrySOne == 'Romania' || countrySOne == 'Slovakia') {
+        return res.redirect('eligibility-move-check');
+    }  if (countrySOne == 'Slovenia' || countrySOne == 'Spain' || countrySOne == 'Sweden') {
+        return res.redirect('eligibility-move-check');
+    }  if (countrySOne == '') {
+        data.error = 'true'
+        return res.redirect('eligibility-country');
     } else {
-        data.error = 'false';
-        data.ineligible = 'country-fail';
-        res.redirect('ineligible');
+        data.ineligible = 'country-fail'
+        return res.redirect('ineligible');
     }
-});
-
+})
 
 // Do you already live in [Country]?
 
@@ -272,7 +278,7 @@ router.post([/eligibility-eu-country-state-pension/], function(req, res) {
 
 // End of eligibility
 router.post([/check-your-answers-eligibility/], function (req,res) {
-    res.redirect('applicant-name') 
+    res.redirect('../apply/applicant-name') 
 })
 
  
@@ -342,6 +348,7 @@ router.post([/applicant-nino/], function (req,res) {
 
     if (nino == ''){
         data.error = 'true';
+
         return res.redirect('applicant-nino');
     } else if (nino !== '' ){
         data.error = 'false';
@@ -655,5 +662,6 @@ router.post([/check-your-answers-dependant/], function (req,res) {
 router.post([/check-your-answers-all/], function (req,res) {
     res.redirect('confirmation') 
 })
+
 
 module.exports = router;
