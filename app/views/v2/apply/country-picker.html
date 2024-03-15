@@ -1,0 +1,13 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Which countries do you get a State Pension from, other than the UK?' %}
+{% set caption = 'Eligibility' %}
+{% set errorMessage = 'Enter the countries you get a State Pension from, other than the UK' %}
+{% set idPrefix %}location{% endset -%}
+
+
+{% block form %}
+<label for="autocomplete-default">Select your country</label>
+<div id="tt-default" class="autocomplete-wrapper"></div>
+
+
+{% endblock %}

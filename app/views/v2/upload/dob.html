@@ -3,9 +3,9 @@
 {% set caption = data.uploadCaption %}
 {% set idPrefix %}example-day{% endset -%}
 {% set errorMessage %}
-  {% include 'v2/apply/_error-dob-content.html' %}
+  {% include '../apply/_error-dob-content.html' %}
 {% endset %}
-
+ 
 
 {% block form %}
 {{ dateInput({

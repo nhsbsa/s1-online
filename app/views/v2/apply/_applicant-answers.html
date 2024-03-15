@@ -1,6 +1,7 @@
 {% set location %}
   What is your address in {{ data.countrySOne or 'Germany' }}?
 {% endset %}
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Personal details</h2>
 
 
 {{ summaryList({
@@ -129,7 +130,7 @@
         text: 'What is your phone number? (optional)'
       },
       value: {
-        html: data['phone'] or '07911245491'
+        html: data['phone'] or 'Not given'
       },
       actions: {
         items: [
@@ -157,7 +158,24 @@
           }
         ]
       }
-    }    
+    },
+    {
+      key: {
+        text: 'Do you want to add any family members to your S1 application?'
+      },
+      value: {
+        html: data['dependantCheck'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-check",
+            text: "Change",
+            visuallyHiddenText: "if you want to add any family members to your S1 application?"
+          }
+        ]
+      }
+    }     
   ] 
 }) }}
 

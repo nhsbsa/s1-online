@@ -7,7 +7,7 @@
 
 
 {% set errorMessage %}
-{% include 'v2/apply/_error-address-content.html' %}
+{% include '../apply/_error-address-content.html' %}
 
 {% endset %}
 
@@ -55,28 +55,22 @@
 
 {{ input({
   label: {
-    "text": "County, province or region"
+    "text": "County, province or region (optional)"
   },
   "classes": "nhsuk-u-width-two-thirds",
   "id": "county",
   "name": "county",
-  "value": data.county,
-  "errorMessage": {
-    "html": 'Enter a valid county, province or region'
-  } if data['error'] == 'true'
+  "value": data.county
 }) }}
 
 {{ input({
   label: {
-    "text": "Postcode"
+    "text": "Postcode (optional)"
   },
   "classes": "nhsuk-input--width-10",
   "id": "postcode",
   "name": "postcode",
-  "value": data.postcode,
-  "errorMessage": {
-    "html": 'Enter valid postcode'
-  } if data['error'] == 'true'
+  "value": data.postcode'
 }) }}
 
 {{ input({

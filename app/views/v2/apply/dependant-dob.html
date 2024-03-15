@@ -1,10 +1,10 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is {{ data.dependantName or 'John Smith' }}'s date of birth?{% endset %}
-{% set caption = data.familyCaption %}
+{% set caption = data.mainCaption %}
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
 
 {% set errorMessage %}
-  {% include 'v2/apply/_error-dob-content.html' %}
+  {% include '../apply/_error-dob-content.html' %}
 {% endset %}
 
  

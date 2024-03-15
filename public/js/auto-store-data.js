@@ -3,7 +3,6 @@
 // all form data on the server, including checkboxes that are checked, then
 // later unchecked
 const forms = document.querySelectorAll("form");
-
 for (let form of forms) {
   form.addEventListener("submit", () => {
     const checkboxes = form.querySelectorAll("input[type='checkbox']");

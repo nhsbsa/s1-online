@@ -1,13 +1,13 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is {{ data.dependantName or 'John Smith' }}'s address?{% endset %}
-{% set caption = data.familyCaption %}
+{% set caption = data.mainCaption %}
 {% set inputError = true %}
 {% set idPrefix %}address-line-one{% endset -%}
 {% set hideErrorMarkup = true %}
 
 
 {% set errorMessage %}
-{% include 'v2/apply/_error-address-content.html' %}
+{% include '../apply/_error-address-content.html' %}
 {% endset %}
 
 
@@ -54,28 +54,22 @@
 
 {{ input({
   label: {
-    "text": "County, province or region"
+    "text": "County, province or region (optional)"
   },
   "classes": "nhsuk-u-width-two-thirds",
   "id": "dependantCounty",
   "name": "dependantCounty",
-  "value": data.dependantCounty,
-  "errorMessage": {
-    "html": 'Enter a valid county, province or region'
-  } if data['error'] == 'true'
+  "value": data.dependantCounty
 }) }}
 
 {{ input({
   label: {
-    "text": "Postcode"
+    "text": "Postcode (optional)"
   },
   "classes": "nhsuk-input--width-10",
   "id": "dependantPostcode",
   "name": "dependantPostcode",
-  "value": data.dependantPostcode,
-  "errorMessage": {
-    "html": 'Enter valid postcode'
-  } if data['error'] == 'true'
+  "value": data.dependantPostcode
 }) }}
 
 {{ input({

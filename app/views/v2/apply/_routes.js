@@ -453,10 +453,10 @@ router.post([/applicant-send-letter-check/], function (req,res) {
 
     if(sendCopyLetter == 'Yes') {
         data.error = 'false';
-        res.redirect('check-your-answers-applicant');
+        res.redirect('dependant-check');
     } else if(sendCopyLetter == 'No') {
         data.error = 'false';
-        res.redirect('check-your-answers-applicant');
+        res.redirect('dependant-check');
     } else {
         data.error = 'true';
         res.redirect('applicant-send-letter-check');
@@ -470,59 +470,6 @@ router.post([/check-your-answers-applicant/], function (req,res) {
 })
 
 
-/// ../upload/index-1
-
-// Upload evidence
-router.post(/index-1/, function(req,res){
-    const checked = req.session.data['noEvidence'];
-    
-    if (!checked) {
-        res.redirect('../upload/additional-file-1');
-    } else if (checked) {
-        res.redirect('../apply/dependant-check');
-    }
-})
-
-// Upload evidence
-router.post(/index-2/, function(req,res){
-    const checked = req.session.data['noEvidence'];
-    
-    if (!checked) {
-        res.redirect('../upload/additional-file-2');
-    } else if (checked) {
-        res.redirect('../apply/dependant-check');
-    }
-})
-
-// Upload additional evidence (check)
-router.post(/additional-file-1/, function(req,res){
-    const additionalUpload = req.session.data['additionalUpload'];
-
-    if (additionalUpload == 'Yes') {
-        res.redirect('../upload/index-2');
-    } else if (additionalUpload == "No" ) {
-        res.redirect('../upload/cya');
-    } else {
-        res.redirect('../apply/dependant-check');
-    }
-})
-
-
-// Upload additional evidence 2
-router.post(/additional-file-2/, function(req,res){
-    const additionalUploadTwo = req.session.data['additionalUploadTwo'];
-
-    if (additionalUploadTwo == 'Yes') {
-        res.redirect('../upload/index');
-    } else if (additionalUploadTwo == "No" ) {
-        res.redirect('../upload/cya');
-    } else {
-        res.redirect('../apply/dependant-check');
-    }
-})
-
-// Check your details - main applicant
-// applicant-cya-personal
 
 // Do you want to add any family members to your S1 application?
 // dependantCheck
@@ -546,8 +493,7 @@ router.post([/dependant-check/], function (req,res) {
 // Who do you want to add to your application?
 
 router.post([/dependant-name/], function (req,res) {
-    console.log(req.body.dependantFirstName);
-    console.log(req.body.dependantSurname);
+
     const data = req.session.data;
 
     if(req.body.dependantFirstName === '' && req.body.dependantSurname === '') {
@@ -557,6 +503,21 @@ router.post([/dependant-name/], function (req,res) {
         data.dependantName = `${req.body['dependantFirstName']} ${req.body['dependantSurname']}`
         data.error = 'false';
         res.redirect('dependant-dob');
+    } 
+})
+// Who do you want to add to your application?
+
+router.post([/dependant-2-name/], function (req,res) {
+
+    const data = req.session.data;
+
+    if(req.body.dependantFirstName2 === '' && req.body.dependantSurname2 === '') {
+        data.error = 'true';
+        res.redirect('dependant-2-name');
+    } else if(req.body.dependantFirstName2 !== '' && req.body.dependantSurname2 !== '') {
+        data.dependantName2 = `${req.body['dependantFirstName2']} ${req.body['dependantSurname2']}`
+        data.error = 'false';
+        res.redirect('dependant-2-dob');
     } 
 })
 
@@ -587,6 +548,31 @@ router.post([/dependant-dob/], function (req, res) {
 
 })
 
+ 
+router.post([/dependant-2-dob/], function (req, res) {
+    const day = req.session.data['dependant-day2']
+    const month = req.session.data['dependant-month2']
+    const year =req.session.data['dependant-year2']
+    const data = req.session.data;
+    data.dependantDob2 = `${req.body['dependant-day2']} ${req.body['dependant-month2']}  ${req.body['dependant-year2']}`
+
+    // Convert numerical month to letters
+    const monthInLetters = getMonthInLetters(month);
+
+    // Set the applicantDob in the desired format
+    req.session.data['dependantDob2'] = `${day} ${monthInLetters} ${year}`;
+  
+    if(day === '' && month === '' && year === '') {
+        data.error = 'true';
+        res.redirect('dependant-2-dob');
+
+    } else {
+        data.error = 'false';
+        res.redirect('dependant-2-address-check');
+    }  
+ 
+
+})
 // Does [dependant name] live at the same address as you?
 
 router.post([/dependant-address-check/], function (req,res) {
@@ -604,7 +590,21 @@ router.post([/dependant-address-check/], function (req,res) {
         res.redirect('dependant-address-check');
     }
 })
- 
+router.post([/dependant-2-address-check/], function (req,res) {
+    var dependantAddressCheck = req.session.data['dependantAddressCheck2'];
+    const data = req.session.data;
+
+    if(dependantAddressCheck == 'Yes') {
+        data.error = 'false';
+        res.redirect('more-dependants-check');
+    } else if(dependantAddressCheck == 'No') {
+        data.error = 'false';
+        res.redirect('dependant-2-address');
+    } else {
+        data.error = 'true';
+        res.redirect('dependant-2-address-check');
+    }
+})
 // Dependant address
 
 router.post([/dependant-address/], function (req, res) {
@@ -624,7 +624,23 @@ router.post([/dependant-address/], function (req, res) {
         return res.redirect('dependant-address');
     }
 });
+router.post([/dependant-2-address/], function (req, res) {
+    var dependantAddressLineOne2 = req.session.data['dependantAddressLineOne2'];
+    var dependantCity2 = req.session.data['dependantCity2'];
+    var dependantPostcode2 = req.session.data['dependantPostcode2'];
+    var dependantCountry2 = req.session.data['dependantCountry2'];
+    const data = req.session.data;
 
+    if (dependantAddressLineOne2 !== '' && dependantCity2 !== '' && dependantPostcode2 !== '' && dependantCountry2 !== '') {
+        // Combine dependent address elements with HTML line breaks
+        data.dependantFullAddress2 = `${dependantAddressLineOne2}<br>${dependantCity2}<br>${dependantPostcode2}<br>${dependantCountry2}`;
+        data.error = 'false';
+        return res.redirect('more-dependants-check');
+    } else {
+        data.error = 'true';
+        return res.redirect('dependant-2-address');
+    }
+});
 
 // Add more dependants?
 
@@ -634,10 +650,11 @@ router.post([/more-dependants-check/], function(req, res){
 
     if(moreDependantsCheck == 'No') {
         data.error = 'false';
-        res.redirect('check-your-answers-dependant');
+        res.redirect('check-your-answers-all');
     } else if (moreDependantsCheck == 'Yes') {
         data.error = 'false';
-        res.redirect('dependant-name');
+        data.dependant2 = 'true';
+        res.redirect('dependant-2-name');
     } else {
         data.error = 'true';
         res.redirect('more-dependants-check');
@@ -653,6 +670,10 @@ router.post([/check-your-answers-dependant/], function (req,res) {
 })
 
 router.post([/check-your-answers-all/], function (req,res) {
+    res.redirect('submit-application') 
+})
+
+router.post([/submit-application/], function (req,res) {
     res.redirect('confirmation') 
 })
 

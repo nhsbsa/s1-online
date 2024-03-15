@@ -1,6 +1,6 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}Does {{ data.dependantName or 'John Smith' }} live at the same address as you?{% endset -%}
-{% set caption = data.familyCaption %}
+{% set caption = data.mainCaption %}
 {% set errorMessage %}Select yes if {{ data.dependantName or 'John Smith' }} lives at the same address as you{% endset -%}
 {% set idPrefix %}location{% endset -%}
 
