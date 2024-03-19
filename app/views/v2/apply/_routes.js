@@ -111,7 +111,7 @@ router.post([/eligibility-move-date-plan/], function (req, res){
         if (selectedDate > ninetyDaysFromNow) {
             // Date is more than 90 days in the future
             data.error = 'false';
-            data.ineligible = 'country-fail-efta'
+            data.ineligible = 'date-future'
             res.redirect('ineligible');
         } else {
             // Date is not more than 90 days in the future

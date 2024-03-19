@@ -2,7 +2,7 @@
 {% set title %}What is {{ data.dependantName or 'John Smith' }}'s address?{% endset %}
 {% set caption = data.mainCaption %}
 {% set inputError = true %}
-{% set idPrefix %}address-line-one{% endset -%}
+{% set idPrefix %}dependantAddressLineOne{% endset -%}
 {% set hideErrorMarkup = true %}
 
 
@@ -22,7 +22,7 @@
   label: {
     "html": 'Address line 1'
   },
-  "id": "dependantAddressLineOne",
+  "id": idPrefix,
   "name": "dependantAddressLineOne",
   "value": data.dependantAddressLineOne,
   "errorMessage": {
@@ -54,12 +54,15 @@
 
 {{ input({
   label: {
-    "text": "County, province or region (optional)"
+    "text": "County, province or region"
   },
   "classes": "nhsuk-u-width-two-thirds",
   "id": "dependantCounty",
   "name": "dependantCounty",
-  "value": data.dependantCounty
+  "value": data.dependantCounty,
+  "errorMessage": {
+    "html": 'Enter a valid county, province or region'
+  } if data['error'] == 'true'
 }) }}
 
 {{ input({

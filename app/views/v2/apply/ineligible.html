@@ -1,7 +1,7 @@
 {% extends 'layouts/main.html' %}
-{% set title = data.ineligibleTitle %}
-{% set caption = data.eligibilityCaption %}
 {% set showTitle = true %}
+{% set caption = data.eligibilityCaption %}
+{% set title = data.ineligibleTitle + (' today' if data['ineligible'] == 'date-future' else '') %}
 
 
 
@@ -13,6 +13,11 @@
 {%- elif  data['ineligible'] == 'country-fail' -%}
   <p> An S1 does not cover you for healthcare in {{ data.countrySOne or 'Germany'}}.</p>
   <p>You can only apply for an S1 for healthcare cover if you are living or moving to an EU country, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+
+  {%- elif  data['ineligible'] == 'date-future' -%}
+
+  <p> You may be entitled to an S1 for healthcare cover while living abroad. However, you cannot apply today.</p>
+  <p>This is because you are moving more than 90 days from today. You can apply for an S1 from {{ '22 May 2024' | ninetyDaysFromNow }}.</p>
 
 {%- elif  data['ineligible'] == 'country-fail-efta' -%}
   <p> You may be entitled to an S1 for healthcare cover while living abroad. However, you cannot apply online.</p>
@@ -29,7 +34,6 @@
       entitled to start getting paid your UK State Pension in the next 90 days 
     </li>
   </ul>
-
 {%- elif  data['ineligible'] == 'check-state-pension-fail' -%}
   <p>You are not entitled to an S1 issued by the UK. This is because you get a State Pension from {{ data.countrySOne or 'Germany'}}.</p>
   <p>You should contact the health authorities in {{ data.countrySOne or 'Germany'}} because they are responsible for your healthcare.</p>

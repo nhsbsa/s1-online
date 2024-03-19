@@ -2,7 +2,7 @@
 {% set title %}What is your correspondence address?{% endset %}
 {% set caption = data.mainCaption %}
 {% set inputError = true %}
-{% set idPrefix %}applicant-name{% endset -%}
+{% set idPrefix %}corrAddressLineOne{% endset -%}
 {% set hideErrorMarkup = true %}
 
 
@@ -20,7 +20,7 @@
   label: {
     "html": 'Address line 1'
   },
-  "id": "corrAddressLineOne",
+  "id": idPrefix,
   "name": "corrAddressLineOne",
   "value": data.corrAddressLineOne,
   "errorMessage": {
@@ -52,12 +52,15 @@
 
 {{ input({
   label: {
-    "text": "County, province or region (optional)"
+    "text": "County, province or region"
   },
   "classes": "nhsuk-u-width-two-thirds",
   "id": "corrCounty",
   "name": "corrCounty",
-  "value": data.corrCounty
+  "value": data.corrCounty,
+  "errorMessage": {
+    "html": 'Enter a valid county, province or region'
+  } if data['error'] == 'true'
 }) }}
 
 {{ input({

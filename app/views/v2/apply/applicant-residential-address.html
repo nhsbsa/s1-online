@@ -55,12 +55,15 @@
 
 {{ input({
   label: {
-    "text": "County, province or region (optional)"
+    "text": "County, province or region "
   },
   "classes": "nhsuk-u-width-two-thirds",
   "id": "county",
   "name": "county",
-  "value": data.county
+  "value": data.county,
+  "errorMessage": {
+    "html": 'Enter a valid county, province or region'
+  } if data['error'] == 'true'
 }) }}
 
 {{ input({

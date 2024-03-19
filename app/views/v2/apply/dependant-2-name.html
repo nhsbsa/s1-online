@@ -4,7 +4,7 @@
 {% set hintTextCopy = 'Give their name as it appears in your passport. This will help when they registering their S1 certificate.' %}
 {% set caption = data.mainCaption %}
 {% set inputError = true %}
-{% set idPrefix %}dependant-name{% endset -%}
+{% set idPrefix %}dependant-first-name2{% endset -%}
 {% set hideErrorMarkup = true %}
 
 
@@ -27,7 +27,7 @@
     "label": {
       "text": "First or given names"
     },
-    "id": "dependant-first-name2",
+    "id": idPrefix,
     "name": "dependantFirstName2",
     "value": data.dependantFirstName2,
     "errorMessage": {
