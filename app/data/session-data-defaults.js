@@ -5,7 +5,8 @@ module.exports = {
     'eligibilityCaption': 'Eligibility',
     'mainCaption': 'Main application',
     'familyCaption': 'Add family members',
-    'uploadCaption': 'Upload evidence'
+    'uploadCaption': 'Upload evidence',
+    'downloadCertificate': 'Download S1 certificate'
     
   
   }      

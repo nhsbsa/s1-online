@@ -1,6 +1,6 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is your name?{% endset %}
-{% set caption = data.uploadCaption %}
+{% set caption = data.downloadCertificate %}
 {% set hideErrorMarkup = true %}
 {% set idPrefix %}upload-firstname{% endset -%}
 
@@ -20,8 +20,6 @@
 
 
 {% block form %}
-
 {% include '../upload/_name.html' %}
-
 
 {% endblock %}
