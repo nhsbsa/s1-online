@@ -1,10 +1,56 @@
-{% extends "layouts/layout.html" %}
+{% extends "layouts/layout.html" %} {% block content %}
+<style>
+  .nhsuk-header__container{
+  display: none;
+}
+.next {
+  width: 70%;
+    margin: 20px auto;
+      text-align: right;
+}
+</style>
+<div class="container">
+  <table>
+    <tr>
+      <td>From</td>
+      <td>Overseas Healthcare Services (OHS)</td>
+    </tr>
+    <tr>
+      <td>To</td>
+      <td>{{ data.email or "johnsmith@gmail.com"}}</td>
+    </tr>
+    <tr>
+      <td>Subject</td>
+      <td>{{ emailSubject or "Your S1 application was successful"}}</td>
+    </tr>
+  </table>
+  <div class="content">
+    <img src="/images/nhs.png" height="54" width="135" />
 
+    <h2 class="nhsuk-heading-m">{{ emailSubject or "Your S1 application was successful"}}</h2>
+    <p>OHS reference number: {{ data.OHS }}</p>
+    <p>Dear {{ data.applicantName or 'John Smith' }}</p>
 
+    {% block form %}{% endblock %}
 
+    <h2 class="nhsuk-heading-m">Further information</h2>
+    <p>For general enquiries you can use the <a href="https://nhsbsa-live.powerappsportals.com/knowledgebase/category/?id=CAT-01007" target="_blank">Knowledge Base on our website</a>, visit our <a href="https://www.facebook.com/NHSOverseasHealthcareServices/" target="_blank">Facebook page</a> or <a href="https://twitter.com/NHSBSA_OHS" target="_blank">follow us on X</a>.</p>
 
+    <p>You can also <a href="https://www.nhsbsa.nhs.uk/overseas-healthcare-services" target="_blank">find out more about your data rights and how we use your information on the NHSBSA website</a>.</p>
 
-{% block content %}
+    <p>Kind regards,</p>
 
+    <p>Overseas Healthcare Services</p>
+    <p class="nhsuk-u-font-weight-bold">This email was sent from an automated email address. You cannot reply to this email.</p>
+  </div>
+</div>
+<div class="next">
 
+{% if showButton %}
+
+<a class="nhsuk-link" href="{{ buttonHref if buttonHref else '#' }}">
+  {{ buttonText if buttonText else 'Continue' }}
+</a>
+{% endif %}
+</div>
 {% endblock %}

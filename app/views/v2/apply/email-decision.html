@@ -1,0 +1,19 @@
+{% extends "layouts/emails.html" %}
+
+{% set emailSubject %}S1 application confirmation{% endset -%}
+{% set buttonHref = '../apply/email-upload' %}
+{% set showButton = true %}
+
+
+{% block form %}
+<p>We’ve sent you this email to confirm that we got your online application for an S1 form.</p>
+        
+<h2 class="nhsuk-heading-m">What happens next</h2>
+
+<p>If your application is successful, you’ll get another email today with a digital copy of your S1 form attached.</p>
+
+<h2 class="nhsuk-heading-m">Evidence</h2>
+<p>If you need to send us any evidence to support your application, you’ll get an email today telling you what to send and how to send it.</p>
+
+
+{% endblock %}
