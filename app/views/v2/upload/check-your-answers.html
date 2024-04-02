@@ -8,176 +8,29 @@
 
 
 {% block form %}
-<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Your details</h2>
-<hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Your evidence</h2>
 
 {{ summaryList({
   rows: [
     {
       key: {
-        text: 'OHS reference number	'
+        text: 'Files uploaded	'
       },
       value: {
-        html: data['ohsNumber'] or '25001275'
+        html: data['ohsNumber'] or 'pension-document.png'
       },
       actions: {
         items: [
           {
-            href: "ohs-number",
+            href: "upload-evidence",
             text: "Change",
             visuallyHiddenText: "your OHS reference number"
           }
         ]
       }
-    },   
-    {
-      key: {
-        text: "Name"
-      },
-      value: {
-        html: data['applicantName'] or 'John Smith'
-      },
-      actions: {
-        items: [
-          {
-            href: "full-name",
-            text: "Change",
-            visuallyHiddenText: "your name"
-          }
-        ]
-      }
-    },
-    {
-      key: {
-        text: "Date of birth"
-      },
-      value: {
-        html: data['applicantDob'] or '23 June 1980'
-      },
-      actions: {
-        items: [
-          {
-            href: "dob",
-            text: "Change",
-            visuallyHiddenText: "your date of birth"
-          }
-        ]
-      }
-    } 
+    }
   ] 
 }) }}
-
-
-<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Your evidence</h2>
-<hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
-{{ summaryList({
-  rows: [
-    {
-      key: {
-        text: 'Do you have the evidence we asked for?'
-      },
-      value: {
-        html: data['evidence'] or 'Yes'
-      },
-      actions: {
-        items: [
-          {
-            href: "have-evidence",
-            text: "Change",
-            visuallyHiddenText: "if you have the evidence we asked for"
-          }
-        ]
-      }
-    },  
-    {
-      key: {
-        text: 'Reason for not sending evidence'
-      },
-      value: {
-        html: data['addInfo'] or 'Reason'
-      },
-      actions: {
-        items: [
-          {
-            href: "additional-info",
-            text: "Change",
-            visuallyHiddenText: "if you have the evidence we asked for"
-          }
-        ]
-      }
-    } if data['evidence'] == 'No' ,   
-    {
-      key: {
-        text: 'Have you been asked to give evidence of the years you paid pension contributions to the UK and to other countries?'
-      },
-      value: {
-        html: data['provideEEPensEvid'] or Yes
-      },
-      actions: {
-        items: [
-          {
-            href: "provide-eea-pension-evid",
-            text: "Change",
-            visuallyHiddenText: "if you been asked to give evidence that you are being paid a UK State Pension?"
-          }
-        ]
-      }
-    } if data['evidence'] == 'Yes' ,
-    {
-      key: {
-        text: 'Have you been asked to give evidence that you are being paid a UK State Pension?'
-      },
-      value: {
-        html: data['provideUKPensEvid'] or Yes
-      },
-      actions: {
-        items: [
-          {
-            href: "provide-uk-pension-evid",
-            text: "Change",
-            visuallyHiddenText: "if you been asked to give evidence that you are being paid a UK State Pension?"
-          }
-        ]
-      }
-    } if data['provideEEPensEvid'] == 'No'  and data['evidence'] == 'Yes',
-
-    {
-      key: {
-        text: 'Which countries have you been asked to give evidence for, other than the UK?'
-      },
-      value: {
-        html: data['countries'] or 'France'
-      },
-      actions: {
-        items: [
-          {
-            href: "eea-countries",
-            text: "Change",
-            visuallyHiddenText: "if you been asked to give evidence that you are being paid a UK State Pension?"
-          }
-        ]
-      }
-    } if data['evidence'] == 'Yes' and data['provideEEPensEvid'] == 'Yes',
-    {
-      key: {
-        text: 'Upload evidence that you are being paid a UK State Pension' if data['provideEEPensEvid'] == 'No' else 'Upload evidence showing how many years you have paid pension contributions to the UK and to other countries'
-      },
-      value: {
-        html: 'uk-example_file_name_01.jpg' if data['provideEEPensEvid'] == 'No' else 'eu-example_file_name_01.jpg, 2MB'
-      },
-      actions: {
-        items: [
-          {
-            href: "upload-uk-evidence" if data['provideEEPensEvid'] == 'Yes' else "eea-countries",
-            text: "Change",
-            visuallyHiddenText: "the evidence that you are being paid a UK State Pension"
-          }
-        ]
-      }
-    } if  data['evidence'] == 'Yes' and  data['provideUKPensEvid'] == 'Yes' 
-  ] 
-}) }}
-
 
 
 
