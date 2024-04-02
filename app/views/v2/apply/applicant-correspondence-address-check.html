@@ -7,8 +7,9 @@
 {% set hideErrorMarkup = true %}
 
 {% block form %}
-<p>Your correspondence address is the address we'll send your S1 to, if you want us to post a copy. It's also the address we'll use if we need to send you any important information in future. Your correspondence address can be in any country, including the UK.</p>
- 
+<p>Your correspondence address is the address we'll send your S1 to if you want us to post a copy. It's also the address we'll use if we need to send you any important information in future.</p>
+<p>Your correspondence address can be in any country, including the UK.</p>
+
 {{ radios({
     "idPrefix": idPrefix,
     "name": "correspondenceAddressCheck",

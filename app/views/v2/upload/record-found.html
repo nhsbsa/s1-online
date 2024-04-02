@@ -1,14 +1,13 @@
 {% extends 'layouts/forms.html' %}
-{% set title %}We have found your record{% endset %}
+{% set title %}We’ve found your record{% endset %}
 {% set caption = data.uploadCaption %}
 {% set hideBackLink = true %}
+{% set hidecaption = true %}
 
  
 
 {% block form %}
 
-{{ insetText({
-  "HTML": "<p> Continue to upload your evidence.</p>"
-}) }}
+<p>You can continue to upload your evidence.</p>
 
 {% endblock %}

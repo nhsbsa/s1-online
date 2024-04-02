@@ -4,22 +4,20 @@
 {% set showCard = true %}
 {% set showButton = true %}
 {% set showButton = true %}
-{% set cardTitle = 'Response sumbitted' if data['evidence'] == 'No' else 'Evidence submitted' %}
+{% set cardTitle = 'Evidence submitted' %}
 {% set buttonText = 'finish' %}
 {% set buttonHref = 'email-confirmation' %}
 
 {% block form %}
 
 {%- if data['evidence'] == 'No' -%}
-
     <h2 class="nhsuk-heading-l">What happens next</h2>
     <p>We will review your response and contact you to let you know what you need to do next.</p>
     {%- else -%}
-
+    <p>Your evidence has been submitted successfully.</p>
     <h2 class="nhsuk-heading-l">What happens next</h2>
-    <p>We will review your evidence and let you know if your S1 application has been successful..</p>
-    <p> If you need to send any more information, we will let you know</p>
-
+    <p>We’ll review your evidence and send you an email with an update on your application.</p>
+    <p>If you need to send us any more information, we’ll let you know.</p>
 {%- endif -%}
 
 {% endblock %}
