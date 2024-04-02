@@ -63,7 +63,8 @@ router.post([/dob/], function (req, res) {
     if(day === '' && month === '' && year === '') {
         data.error = 'true';
         res.redirect('dob');
-
+    } else if (parseInt(year) > 1960) { // Check if dateOfBirth is after 1960
+        res.redirect('record-not-found');
     } else if(req.body.dateOfBirth !== '' ) {
         data.error = 'false';
         res.redirect('record-found');
