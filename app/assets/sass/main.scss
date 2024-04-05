@@ -12,6 +12,14 @@
 //  *************************************
 //  error styles
 //  *************************************
+
+#file-chosen {
+  margin: 0 10px;
+  position: relative;
+  top: 16px;
+  font-size: 18px;
+}
+
 #formError {
   border-left: 4px solid  $color_nhsuk-red;
   padding-left: 16px;

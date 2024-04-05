@@ -5,7 +5,18 @@
 {% set hidecaption = true %}
 
 
+{% set files %}
+<ul class="nhsuk-list">
+  <li>
+    {{ data.hiddenFileChosen1 or 'File-name1' }}<br>
+  </li>
+  <li>
+    {{ data.hiddenFileChosen2 }}
+  </li>
 
+</ul>
+
+{% endset %}
 {% block form %}
 <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Your evidence</h2>
 
@@ -13,10 +24,10 @@
   rows: [
     {
       key: {
-        text: 'File name	'
+        text: 'Uploaded files'
       },
       value: {
-        html: data['hiddenFileChosen1'] or 'File-name1'
+        html: files
       },
       actions: {
         items: [
@@ -27,28 +38,7 @@
           }
         ]
       }
-    },    
-    {
-      key: {
-        text: 'File name	',
-      classes: 'File-name2-row'
-
-      },
-      
-      value: {
-        html: data['hiddenFileChosen2'] or 'File-name2'
-      },
-      actions: {
-        items: [
-          {
-            classes: 'remove-row',
-            href: "review-file",
-            text: "Change",
-            visuallyHiddenText: "your uploaded file"
-          }
-        ]
-      }
-    } if data['hiddenFileChosen2'] 
+    }
   ] 
 }) }}
 

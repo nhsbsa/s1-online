@@ -1,11 +1,16 @@
 {% extends 'layouts/forms.html' %}
-{% set title = 'Evidence uploaded' %}
+{% set title = 'Uploaded evidence' %}
 {% set hideBackLink = true %}
 {% set hidecaption = true %}
 
 
 
 {% block form %}
+<style>
+  .nhsuk-summary-list__row:empty {
+    display: none;
+}
+</style>
 <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Files added</h2>
 
 {{ summaryList({
@@ -51,22 +56,7 @@
   ] 
 }) }}
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const removeLinks = document.querySelectorAll('.nhsuk-summary-list__row a[href="#"]');
-    removeLinks.forEach(function(link) {
-      link.addEventListener('click', function(event) {
-        event.preventDefault();
-        const parentRow = this.closest('.nhsuk-summary-list__row');
-        if (parentRow) {
-          parentRow.remove();
-          // Set value of hiddenFileChosen2 to empty
-          document.getElementById('hiddenFileChosen2').value = '';
-        }
-      });
-    });
-  });
-</script>
+
 
 
 
@@ -91,5 +81,22 @@
       }
     ]
   }) }}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const removeLinks = document.querySelectorAll('.nhsuk-summary-list__row a[href="#"]');
+      removeLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const parentRow = this.closest('.nhsuk-summary-list__row');
+          if (parentRow) {
+            parentRow.remove();
+            // Set value of hiddenFileChosen2 to empty
+            document.getElementById('hiddenFileChosen2').value = '';
+          }
+        });
+      });
+    });
 
+  
+  </script>
 {% endblock %}

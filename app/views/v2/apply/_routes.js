@@ -674,7 +674,14 @@ router.post([/check-your-answers-all/], function (req,res) {
 })
 
 router.post([/submit-application/], function (req,res) {
-    res.redirect('confirmation') 
+    const data = req.session.data;
+    var evidenceNeeded = req.session.data['evidenceNeeded'];
+
+    if(evidenceNeeded == 'Yes') {
+        res.redirect('confirmation-evidence');
+    } else {
+        res.redirect('confirmation') 
+    }
 })
 
 module.exports = router;

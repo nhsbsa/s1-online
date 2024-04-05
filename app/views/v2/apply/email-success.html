@@ -1,0 +1,23 @@
+{% extends "layouts/emails.html" %} 
+{% set emailSubject %}Your S1 application was successful{% endset -%} 
+
+{% block form %}
+<p>Your application for an S1 form was successful.</p>
+<p>We’ve attached a digital copy of your S1 form to this email. We’ve also attached a letter with more details including:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    how to register your S1 form
+  </li>
+  <li>
+    your healthcare entitlement in other countries and in the UK
+  </li>
+  <li>
+    how to tell us about any changes in your circumstances
+  </li>
+</ul>
+
+<h2 class="nhsuk-heading-m">Paper copy of your S1 form</h2>
+<p>If you asked for a paper copy of your S1 form, you’ll get this in the post within 15 working days. </p>
+
+
+{% endblock %}

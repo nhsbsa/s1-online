@@ -7623,6 +7623,13 @@ td:nth-child(1) {
   width: 10%;
 }
 
+#file-chosen {
+  margin: 0 10px;
+  position: relative;
+  top: 16px;
+  font-size: 18px;
+}
+
 #formError {
   border-left: 4px solid #d5281b;
   padding-left: 16px;

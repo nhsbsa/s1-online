@@ -8,27 +8,10 @@
 {% endset %}
 
 {% block form %}
-  <style>
-    #file-chosen {
-      margin: 0 10px;
-      position: relative;
-      top: 16px;
-      font-size: 18px;
-    }
-  </style>
-  
-  <p>Upload evidence showing either:</p>
-  <ul class="nhsuk-list nhsuk-list--bullet">
-    <li>
-      your UK State Pension start date
-    </li>
-    <li>
-      the years you paid pension contributions to the UK and to other countries
-    </li>
-  </ul>
+{% include '../upload/_upload-content.html' %}
 
-  <h2 class="nhsuk-heading-m">Upload a file</h2>
-  <p>The file must be in jpeg, jpg, png, or pdf format and must not be bigger than 10MB.</p>
+
+
   <label for="file-input" class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button">
     Choose file
   </label>

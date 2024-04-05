@@ -1,0 +1,16 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %}We need more information to process your application{% endset %}
+{% set buttonText = 'finish' %}
+{% set buttonHref = '../apply/email-upload' %}
+{% set showButton = true %}
+
+{% block form %}
+<p>You need to send us some evidence before we can process your application for an S1 form.</p>
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>We’ve sent you an email telling you what evidence you need to send and how to send it to us. </p>
+
+{% endblock %}
