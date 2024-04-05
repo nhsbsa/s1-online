@@ -85,8 +85,10 @@ function getMonthInLetters(month) {
 }
 
 router.post([/dob/], function (req,res) {
-    res.redirect('confirmation') 
+    res.redirect('record-found') 
 })
 
-
+router.post([/record-found/], function (req,res) {
+    res.redirect('confirmation') 
+})
 module.exports = router
