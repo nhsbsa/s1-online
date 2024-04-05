@@ -90,8 +90,29 @@ function getMonthInLetters(month) {
 
 
 router.post([/record-found/], function (req,res) {
-    res.redirect('upload-evidence') 
+    res.redirect('upload-file') 
 })
+router.post([/upload-file/], function(req, res) {
+    res.redirect('review-file');
+});
+router.post([/upload-another-file/], function(req, res) {
+    res.redirect('review-file');
+});
+
+router.post([/review-file/], function (req,res) {
+    
+    var moreEvidence = req.session.data['moreEvidenceCheck'];
+    const data = req.session.data;
+
+
+    if (moreEvidence == 'Yes'){
+        res.redirect('upload-another-file');
+    } else if (moreEvidence == 'No'){
+        res.redirect('check-your-answers');
+    }
+})
+
+
 
 router.post([/upload-evidence/], function (req,res) {
     res.redirect('check-your-answers') 

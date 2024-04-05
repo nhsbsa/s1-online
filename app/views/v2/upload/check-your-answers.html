@@ -1,9 +1,8 @@
 {% extends 'layouts/forms.html' %}
 {% set title = 'Check your answers' %}
-{% set caption = data.uploadCaption %}
-{% set fullWidth = true %}
 {% set hideBackLink = true %}
 {% set buttonText = 'Accept and submit' %}
+{% set hidecaption = true %}
 
 
 
@@ -14,36 +13,49 @@
   rows: [
     {
       key: {
-        text: 'Files uploaded	'
+        text: 'File name	'
       },
       value: {
-        html: data['ohsNumber'] or 'pension-document.png'
+        html: data['hiddenFileChosen1'] or 'File-name1'
       },
       actions: {
         items: [
           {
-            href: "upload-evidence",
+            href: "review-file",
             text: "Change",
-            visuallyHiddenText: "your OHS reference number"
+            visuallyHiddenText: "your uploaded file"
           }
         ]
       }
-    }
+    },    
+    {
+      key: {
+        text: 'File name	',
+      classes: 'File-name2-row'
+
+      },
+      
+      value: {
+        html: data['hiddenFileChosen2'] or 'File-name2'
+      },
+      actions: {
+        items: [
+          {
+            classes: 'remove-row',
+            href: "review-file",
+            text: "Change",
+            visuallyHiddenText: "your uploaded file"
+          }
+        ]
+      }
+    } if data['hiddenFileChosen2'] 
   ] 
 }) }}
 
 
 
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-two-thirds">
     <h2 class="nhsuk-heading-m">Before you send your evidence</h2>
-
-
     <p>By submitting this evidence, you are confirming that the information you’ve given us is correct. If you knowingly provide incorrect information, you could be prosecuted or face civil proceedings.  </p>
-    <p>You can find <a target="_blank" href="https://www.nhsbsa.nhs.uk/our-policies/privacy"> out more about how we use your information on the NHSBSA website</a>.</p>
-  </div>
-</div>
-
-
+    <p>You can <a target="_blank" href="https://www.nhsbsa.nhs.uk/our-policies/privacy"> find out more about how we use your information on the NHSBSA website (opens in a new window)</a>.</p>
 
 {% endblock %}
