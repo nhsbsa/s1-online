@@ -223,7 +223,7 @@ router.post([/eligibility-germany-contributions/], function(req, res) {
 
     if (germanyCountributions == 'Yes'){
         data.error = 'false';
-        data.ineligible = 'check-state-pension-fail'
+        data.ineligible = 'check-state-contributions-fail'
         res.redirect('ineligible');
     } if (germanyCountributions == 'No') {
         data.error = 'false';

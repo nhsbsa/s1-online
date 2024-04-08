@@ -42,6 +42,10 @@
   <p>You are not entitled to an S1 issued by the UK. This is because you paid Statutory Health Contributions to Germany.</p>
   <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
 
+{%- elif  data['ineligible'] == 'check-state-contributions-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you have paid Statutory Health Contributions to Germany.</p>
+  <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
+
   {%- else  -%}
   <p>Other</p>
 {%- endif -%}

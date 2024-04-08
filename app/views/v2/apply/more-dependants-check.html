@@ -1,5 +1,5 @@
 {% extends 'layouts/forms.html' %}
-{% set title %}Check family member's details{% endset %}
+{% set title %}Check your family member’s details{% endset %}
 {% set caption = data.mainCaption %}
 {% set errorMessage = 'Select yes if you want to add any family members to your S1 application' %}
 {% set idPrefix %}dependant-first-name{% endset -%}
@@ -9,7 +9,7 @@
 
 {% include '../apply/_dependant-answers.html' %}
 
-<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Add another family member?</h2>
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Do you want to add another family member?</h2>
 
 {{ radios({
     "idPrefix": idPrefix,
