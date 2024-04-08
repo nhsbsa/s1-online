@@ -3,8 +3,11 @@
     - change the header and footer 
     - add custom CSS and JavaScript
 -->
+{% set serviceNameTitle %}
+    {{data.serviceNameTesting or 'Apply for an S1 form'}}
 
-<!-- Extends the layout from /docs/views/template.html -->
+{% endset -%}
+    <!-- Extends the layout from /docs/views/template.html -->
 {% extends "template.html" %}
 
 <!-- Add your custom CSS or Sass in /app/assets/sass/main.scss -->
@@ -14,7 +17,7 @@
 
 <!-- Set the page title -->
 {% block pageTitle %}
-  {{serviceName}}
+  {{data.serviceNameTesting or 'Apply for an S1 form'}}
 {% endblock %}
 
 
@@ -24,7 +27,7 @@
 {% block header %}
   {{ header({
     "service": {
-        "name": serviceName,
+        "name": serviceNameTitle,
         "href": "/"
       },
       "showNav": "false",

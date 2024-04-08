@@ -678,9 +678,9 @@ router.post([/submit-application/], function (req,res) {
     var evidenceNeeded = req.session.data['evidenceNeeded'];
 
     if(evidenceNeeded == 'Yes') {
-        res.redirect('confirmation-evidence');
+        res.redirect('confirmation');
     } else {
-        res.redirect('confirmation') 
+        res.redirect('confirmation-evidence') 
     }
 })
 
