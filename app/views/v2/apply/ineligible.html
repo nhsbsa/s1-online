@@ -1,6 +1,10 @@
 {% extends 'layouts/main.html' %}
 {% set showTitle = true %}
 {% set caption = data.eligibilityCaption %}
+{% set hideBackLink = true %}
+{% set buttonText = 'finish' %}
+{% set buttonHref = '../apply/start-page' %}
+{% set showButton = true %}
 {% set title = data.ineligibleTitle + (' today' if data['ineligible'] == 'date-future' else '') %}
 
 
@@ -49,13 +53,6 @@
   {%- else  -%}
   <p>Other</p>
 {%- endif -%}
-
-
-
-
-
-
-
 
 {% endblock %}
 
