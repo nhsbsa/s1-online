@@ -50,6 +50,10 @@ router.post([/eligibility-country/], function (req, res) {
         res.redirect('ineligible');
     } else if (moveCheckCountries.includes(countrySOne)) {
         data.error = 'false';
+        req.session.data['country'] = `${req.body['countrySOne']}`;
+        req.session.data['dependantCountry'] = `${req.body['countrySOne']}`;
+        req.session.data['dependantCountry2'] = `${req.body['countrySOne']}`;
+
         res.redirect('eligibility-move-check');
     } else if (countrySOne === '') {
         data.error = 'true';
@@ -353,13 +357,15 @@ router.post([/applicant-nino/], function (req,res) {
 
 router.post([/applicant-residential-address/], function (req, res) {
     var addressLineOne = req.session.data['addressLineOne'];
+    var addressLineTwo = req.session.data['addressLineTwo'];
     var city = req.session.data['city'];
     var postcode = req.session.data['postcode'];
+    var county = req.session.data['county'];
     var country = req.session.data['country'];
     const data = req.session.data;
 
     if (addressLineOne !== '' && city !== '' && postcode !== '' && country !== '') {
-        data.fullAddress = `${addressLineOne}<br>${city}<br>${postcode}<br>${country}`;
+        data.fullAddress = `<ul class="nhsuk-list"><li>${addressLineOne}</li><li>${addressLineTwo}</li><li>${city}</li><li>${postcode}</li><li>${county}</li><li>${country}</li></ul>`;
         data.error = 'false';
         return res.redirect('applicant-correspondence-address-check');
     } else if (addressLineOne === '' && city === '' && postcode === '' && country === '') {
@@ -393,14 +399,17 @@ router.post([/applicant-correspondence-address-check/], function (req,res) {
 
 router.post([/applicant-correspondence-address/], function (req,res) {
     var corrAddressLineOne = req.session.data['corrAddressLineOne'];
+    var corrAddressLineTwo = req.session.data['corrAddressLineTwo'];
     var corrCity = req.session.data['corrCity'];
     var corrPostcode = req.session.data['corrPostcode'];
     var corrCountry = req.session.data['corrCountry'];
+    var corrCounty = req.session.data['corrCounty'];
     const data = req.session.data;
 
     if (corrAddressLineOne !== '' && corrCity !== '' && corrPostcode !== '' && corrCountry !== '') {
         // Combine correspondence address elements with HTML line breaks
-        data.corrFullAddress = `${corrAddressLineOne}<br>${corrCity}<br>${corrPostcode}<br>${corrCountry}`;
+        data.corrFullAddress = `<ul class="nhsuk-list"><li>${corrAddressLineOne}</li><li>${corrAddressLineTwo}</li><li>${corrCity}</li><li>${corrPostcode}</li><li>${corrCounty}</li><li>${corrCountry}</li></ul>`;
+
         data.error = 'false';
         return res.redirect('applicant-email');
     } else if (corrAddressLineOne === '' && corrCity === '' && corrPostcode === '' && corrCountry === '') {
@@ -609,14 +618,17 @@ router.post([/dependant-2-address-check/], function (req,res) {
 
 router.post([/dependant-address/], function (req, res) {
     var dependantAddressLineOne = req.session.data['dependantAddressLineOne'];
+    var dependantAddressLineTwo = req.session.data['dependantAddressLineTwo'];
     var dependantCity = req.session.data['dependantCity'];
     var dependantPostcode = req.session.data['dependantPostcode'];
+    var dependantCounty = req.session.data['dependantCounty'];
     var dependantCountry = req.session.data['dependantCountry'];
     const data = req.session.data;
 
     if (dependantAddressLineOne !== '' && dependantCity !== '' && dependantPostcode !== '' && dependantCountry !== '') {
         // Combine dependent address elements with HTML line breaks
-        data.dependantFullAddress = `${dependantAddressLineOne}<br>${dependantCity}<br>${dependantPostcode}<br>${dependantCountry}`;
+        data.dependantFullAddress = `<ul class="nhsuk-list"><li>${dependantAddressLineOne}</li><li>${dependantAddressLineTwo}</li><li>${dependantCity}</li><li>${dependantPostcode}</li><li>${dependantCounty}</li><li>${dependantCountry}</li></ul>`;
+
         data.error = 'false';
         return res.redirect('more-dependants-check');
     } else {
@@ -626,14 +638,17 @@ router.post([/dependant-address/], function (req, res) {
 });
 router.post([/dependant-2-address/], function (req, res) {
     var dependantAddressLineOne2 = req.session.data['dependantAddressLineOne2'];
+    var dependantAddressLineTwo2 = req.session.data['dependantAddressLineTwo2'];
     var dependantCity2 = req.session.data['dependantCity2'];
     var dependantPostcode2 = req.session.data['dependantPostcode2'];
+    var dependantCounty2 = req.session.data['dependantCounty2'];
     var dependantCountry2 = req.session.data['dependantCountry2'];
     const data = req.session.data;
 
     if (dependantAddressLineOne2 !== '' && dependantCity2 !== '' && dependantPostcode2 !== '' && dependantCountry2 !== '') {
         // Combine dependent address elements with HTML line breaks
-        data.dependantFullAddress2 = `${dependantAddressLineOne2}<br>${dependantCity2}<br>${dependantPostcode2}<br>${dependantCountry2}`;
+        data.dependantFullAddress2 = `<ul class="nhsuk-list"><li>${dependantAddressLineOne2}</li><li>${dependantAddressLineTwo2}</li><li>${dependantCity2}</li><li>${dependantPostcode2}</li><li>${dependantCounty2}</li><li>${dependantCountry2}</li></ul>`;
+
         data.error = 'false';
         return res.redirect('more-dependants-check');
     } else {
