@@ -7568,6 +7568,13 @@ b {
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
+  word-wrap: break-word;
+}
+@media (max-width: 48.0525em) {
+  .container {
+    width: 100%;
+    padding: 20px;
+  }
 }
 
 .container img {
@@ -7805,116 +7812,53 @@ td:nth-child(1) {
     font-size: 19px;
     line-height: 1.31579;
   }
-  /* ==========================================================================
+}
+/* ==========================================================================
   #BETA-BANNER
   ========================================================================== */
-  .app-phase-banner__container {
-    border-bottom: 1px solid #d8dde0;
-    padding: 8px 0;
-  }
-  .app-phase-banner__content {
-    display: table;
-    margin-bottom: 0;
-  }
-  .app-phase-banner__content .app-phase-banner__tag {
-    display: block;
-    margin-right: 8px;
-  }
-  .app-phase-banner__text {
-    font-weight: 400;
-    font-size: 14px;
-    font-size: 0.875rem;
-    line-height: 1.2;
-    display: table-cell;
-    vertical-align: baseline;
-  }
+.app-phase-banner__container {
+  border-bottom: 1px solid #d8dde0;
+  padding: 8px 0;
 }
-@media (min-width: 641px) and (min-width: 40.0625em) {
+
+.app-phase-banner__content {
+  display: table;
+  margin-bottom: 0;
+}
+
+.app-phase-banner__content .app-phase-banner__tag {
+  display: block;
+  margin-right: 8px;
+}
+
+.app-phase-banner__text {
+  font-weight: 400;
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  display: table-cell;
+  vertical-align: baseline;
+}
+
+@media (min-width: 40.0625em) {
   .app-phase-banner__text {
     font-size: 16px;
     font-size: 1rem;
     line-height: 1.2;
   }
 }
-@media print and (min-width: 641px) {
+@media print {
   .app-phase-banner__text {
     font-size: 14pt;
     line-height: 1.2;
   }
 }
-@media (min-width: 641px) {
-  .nhsuk-related-nav {
-    border-top: 1px solid #d8dde0;
-  }
+.nhsuk-related-nav {
+  border-top: 1px solid #d8dde0;
 }
-@media (min-width: 641px) and (max-width: 48.0525em) {
+
+@media (max-width: 48.0525em) {
   .nhsuk-related-nav {
     margin-top: 48px;
-  }
-}
-@media (min-width: 641px) {
-  .nhsuk-related-nav__heading {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.2;
-    margin-bottom: 12px;
-    padding-top: 16px;
-  }
-}
-@media (min-width: 641px) and (min-width: 40.0625em) {
-  .nhsuk-related-nav__heading {
-    font-size: 19px;
-    font-size: 1.1875rem;
-    line-height: 1.2;
-  }
-}
-@media print and (min-width: 641px) {
-  .nhsuk-related-nav__heading {
-    font-size: 14pt;
-    line-height: 1.2;
-  }
-}
-@media (min-width: 641px) {
-  .nhsuk-related-nav__list {
-    font-size: 14px;
-    font-size: 0.875rem;
-    line-height: 1.71429;
-    list-style: none;
-    padding-left: 0;
-  }
-}
-@media (min-width: 641px) and (min-width: 40.0625em) {
-  .nhsuk-related-nav__list {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-}
-@media print and (min-width: 641px) {
-  .nhsuk-related-nav__list {
-    font-size: 14pt;
-    line-height: 1.2;
-  }
-}
-@media (min-width: 641px) {
-  .nhsuk-related-nav__list {
-    font-size: 14px;
-    font-size: 0.875rem;
-    line-height: 1.71429;
-    list-style: none;
-    padding-left: 0;
-  }
-}
-@media (min-width: 641px) and (min-width: 40.0625em) {
-  .nhsuk-related-nav__list {
-    font-size: 16px;
-    font-size: 1rem;
-    line-height: 1.5;
-  }
-}
-@media print and (min-width: 641px) {
-  .nhsuk-related-nav__list {
-    font-size: 14pt;
-    line-height: 1.2;
   }
 }

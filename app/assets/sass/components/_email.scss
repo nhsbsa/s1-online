@@ -5,7 +5,17 @@
       background-color: #fff;
       padding: 20px;
       border-radius: 5px;
+      word-wrap: break-word;
+      
+  @include mq($until: desktop) {
+    width: 100%;
+    padding: 20px;
+
   }
+      
+  }
+
+  
   .container img {
     margin: 0 0 1em 0
 
@@ -59,3 +69,4 @@ table {
             width: 10%;
           
         }
+
