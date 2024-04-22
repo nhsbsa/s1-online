@@ -1,0 +1,35 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Does {{ data.dependantName or 'John Smith' }} live at the same address as you?{% endset -%}
+{% set caption = data.mainCaption %}
+{% set errorMessage %}Select yes if {{ data.dependantName or 'John Smith' }} lives at the same address as you{% endset -%}
+{% set idPrefix %}location{% endset -%}
+
+{% block form %}
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "dependantAddressCheck",
+    "hint":  {
+      "text": "This address will appear on their S1 form."
+    },
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.dependantAddressCheck === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.dependantAddressCheck === 'No'
+      }
+    ]
+  }) }}
+ 
+ 
+
+{% endblock %}

@@ -1,0 +1,183 @@
+{% set location %}
+  What is your address in {{ data.countrySOne or 'Germany' }}?
+{% endset %}
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Personal details</h2>
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "What is your name?	"
+      },
+      value: {
+        html: data['applicantName'] or 'John Smith'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-name",
+            text: "Change",
+            visuallyHiddenText: "your name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "What is your date of birth?"
+      },
+      value: {
+        html: data['applicantDob'] or '23 June 1980'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-dob",
+            text: "Change",
+            visuallyHiddenText: "your date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: 'What is your National Insurance number?'
+      },
+      value: {
+        html: data['nino'] or 'SL002783E'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-nino",
+            text: "Change",
+            visuallyHiddenText: "your National Insurance number"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: location
+      },
+      value: {
+        html: data['fullAddress'] or 'address'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-residential-address",
+            text: "Change",
+            visuallyHiddenText: "your address"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Is this also your correspondence address?"	
+      },
+      value: {
+        html: data['correspondenceAddressCheck'] or 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-correspondence-address-check",
+            text: "Change",
+            visuallyHiddenText: "if this is also your correspondence address?"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: 'What is your correspondence address?'
+      },
+      value: {
+        html: data['corrFullAddress'] or 'address'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-correspondence-address",
+            text: "Change",
+            visuallyHiddenText: "your correspondence address"
+          }
+        ]
+      } 
+    } if data['correspondenceAddressCheck'] == 'No',
+    {
+      key: {
+        text: "What is your email address?"	
+      },
+      value: {
+        html: data['email'] or 'johnsmith@gmail.com'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-email",
+            text: "Change",
+            visuallyHiddenText: "your email address"
+          }
+        ]
+      }
+    } ,
+    {
+      key: {
+        text: 'What is your phone number? (optional)'
+      },
+      value: {
+        html: data['phone'] or 'Not given'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-phone",
+            text: "Change",
+            visuallyHiddenText: "your phone number"
+          }
+        ]
+      }
+    } ,
+    {
+      key: {
+        text: 'Do you need a paper copy of your S1 certificate?'
+      },
+      value: {
+        html: data['sendCopyLetter'] or 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: "applicant-send-letter-check",
+            text: "Change",
+            visuallyHiddenText: "if you need a paper copy of your S1 certificate??"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: 'Do you want to add any family members to your S1 application?'
+      },
+      value: {
+        html: data['dependantCheck'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-check",
+            text: "Change",
+            visuallyHiddenText: "if you want to add any family members to your S1 application?"
+          }
+        ]
+      }
+    }     
+  ] 
+}) }}
+
+
+

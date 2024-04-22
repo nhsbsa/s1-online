@@ -1,0 +1,151 @@
+{% set email = 'email@example.com' %}
+
+
+
+{% set family1 %}
+<ul class="nhsuk-list">
+  <li>
+    {{ data.dependantName or 'John Smith' }},<br>
+  </li>
+  <li>
+    {{ data.dependantDob or '23 June 1980' }},<br>
+  </li>
+  <li>
+    {% if data['dependantAddressCheck'] == "No" %}
+      {{ data.dependantAddressLineOne }}<br>
+      {{ data.dependantCity }}<br>
+      {{ data.dependantPostcode }}<br>
+      {{ data.dependantCountry }}
+    {% else %}
+    Lives at same address as you
+    {% endif %}  
+  </li>
+</ul>
+
+{% endset %}
+
+{% set family2 %}
+<ul class="nhsuk-list">
+  <li>
+    {{ data.dependantName2 or '6 Jane Smith' }}<br>
+  </li>
+  <li>
+    {{ data.dependantDob2 or '23 April 1977' }}<br>
+  </li>
+  <li>
+    {% if data['dependantAddressCheck'] == "No" %}
+      {{ data.dependantFullAddress2 }}
+    {% else %}
+    Lives at same address as applicant
+    {% endif %}  
+  </li>
+</ul>{% endset %}
+{{ summaryList({
+  rows: [
+
+    {
+      key: {
+        text: "Family member 1"
+      },
+      value: {
+        html: family1
+      },
+      actions: {
+        items: [
+          {
+            href: "more-dependants-check",
+            text: "Change",
+            visuallyHiddenText: "dependents name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: "Family member 2"
+      },
+      value: {
+        html: family2
+      },
+      actions: {
+        items: [
+          {
+            href: "more-dependants-check",
+            text: "Change",
+            visuallyHiddenText: "dependants date of birth"
+          }
+        ]
+      }
+    }
+        
+  ] 
+}) }}
+
+
+
+
+{%- if data['dependant2'] == 'true' -%}
+ 
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Family member 2</h2>
+{{ summaryList({
+  rows: [
+
+    {
+      key: {
+        text: "Name"
+      }, 
+      value: {
+        html: data['dependantName2'] or 'Jane Smith'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-2-name",
+            text: "Change",
+            visuallyHiddenText: "dependents name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: "Date of birth"
+      },
+      value: {
+        html: data['dependantDob2'] or '3 April 1977'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-2-dob",
+            text: "Change",
+            visuallyHiddenText: "dependants date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: data['dependantFullAddress2'] if data['dependantAddressCheck2'] == "No" else 'Same as applicant'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-2-address-check",
+            text: "Change",
+            visuallyHiddenText: "if dependant live at the same address?"
+          }
+        ]
+      }
+    }
+        
+  ] 
+}) }}
+
+{%- endif -%}
+
+
+

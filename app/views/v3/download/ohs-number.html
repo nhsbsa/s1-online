@@ -1,0 +1,12 @@
+{% extends 'layouts/forms.html' %}
+{% set hidecaption = true %}
+{% set title = 'What is your OHS reference number?' %}
+{% set hideBackLink = true %}
+{% set errorMessage %}Enter your OHS reference number{% endset %}
+{% set hideErrorMarkup = true %}
+
+{% block form %}
+
+{% include '../upload/_ohs-number.html' %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your name?{% endset %}
+{% set hintText = true %}
+{% set hintTextCopy = 'Give your name as it appears in your passport. This will help when you are registering your S1 certificate.' %}
+{% set caption = data.mainCaption %}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+<ul class="nhsuk-list">
+  <li>
+    Enter your first name
+  </li>
+  <li>
+    Enter your last name
+  </li>
+</ul>
+
+{% endset %}
+
+{% set idPrefix %}first-name{% endset -%}
+{% set hideBackLink = true %}
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "First or given names"
+    },
+    "id": "first-name",
+    "name": "firstName",
+    "value": data.firstName,  
+    "errorMessage": {
+      "html": 'Enter your first name'
+    } if data['error'] == 'true'
+  }) }}
+
+  {{ input({
+    "label": {
+      "text": "Last or family name"
+    },
+    "id": "last-name",
+    "name": "lastName",
+    "value": data.lastName,
+    "errorMessage": {
+      "html": 'Enter your last name'
+    } if data['error'] == 'true'
+  }) }}
+
+{% endblock %}

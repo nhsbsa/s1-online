@@ -1,0 +1,90 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is {{ data.dependantName2 or 'John Smith' }}'s address?{% endset %}
+{% set caption = data.mainCaption %}
+{% set inputError = true %}
+{% set idPrefix %}dependantAddressLineOne2{% endset -%}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+{% include 'v2/apply/_error-address-content.html' %}
+{% endset %}
+
+
+
+{% block form %}
+
+{{ insetText({
+  "HTML": "<p>You need to tell us the address they live at in. This address will appear on their S1 certificate. This can be a temporary address, but you'll need to contact both the NHS Business Services Authority and the relevant authority in the country you're living in to let them know if their address changes.</p>"
+}) }}
+
+{{ input({
+  label: {
+    "html": 'Address line 1'
+  },
+  "id": idPrefix,
+  "name": "dependantAddressLineOne2",
+  "value": data.dependantAddressLineOne2,
+  "errorMessage": {
+    "html": 'Enter a valid first line'
+  } if data['error'] == 'true'
+}) }}
+{{ input({
+  label: {
+    "html": 'Address line 2 (optional)'
+  },
+  "id": "dependantAddressLineTwo2",
+  "name": "dependantAddressLineTwo2",
+  "value": data.dependantAddressLineTwo2
+}) }}
+
+
+{{ input({
+  label: {
+    "text": "Town or city"
+  },
+  "classes": "nhsuk-u-width-two-thirds",
+  "id": "dependantCity2",
+  "name": "dependantCity2",
+  "value": data.dependantCity2,
+  "errorMessage": {
+    "html": 'Enter a valid city'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  label: {
+    "text": "County, province or region "
+  },
+  "classes": "nhsuk-u-width-two-thirds",
+  "id": "dependantCounty2",
+  "name": "dependantCounty2",
+  "value": data.dependantCounty2,
+  "errorMessage": {
+    "html": 'Enter a valid county, province or region'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  label: {
+    "text": "Postcode (optional)"
+  },
+  "classes": "nhsuk-input--width-10",
+  "id": "dependantPostcode2",
+  "name": "dependantPostcode2",
+  "value": data.dependantPostcode2
+}) }}
+
+{{ input({
+  label: {
+    "html": 'Country'
+  },
+  "id": "dependantCountry2",
+  "classes": "nhsuk-u-width-two-thirds",
+  "name": "dependantCountry2",
+  "value": data.dependantCountry2,
+  "errorMessage": {
+    "html": 'Enter a valid country'
+  } if data['error'] == 'true'
+}) }}
+{% endblock %}

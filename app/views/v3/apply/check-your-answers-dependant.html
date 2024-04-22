@@ -1,0 +1,10 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Check your family member's details{% endset %}
+{% set caption = data.familyCaption %}
+{% set fullWidth = true %}
+{% set hideBackLink = true %}
+
+
+{% block form %}
+  {% include '../apply/_dependant-answers.html' %}
+{% endblock %}

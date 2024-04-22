@@ -1,0 +1,44 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}When did you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set caption = data.eligibilityCaption %}
+{% set errorMessage %}
+{% include '../apply/_error-move-content.html' %}
+
+{% endset %}
+{% set idPrefix %}eligibility-move-date{% endset -%}
+
+
+
+{% block form %}
+{{ dateInput({
+  "id": 'idPrefix',
+  "hint": {
+    "text": "For example, 15 3 2023"
+  },
+    "errorMessage": {
+      "html": 'Date of moving must include a day, month and year'
+    } if data['error'] == 'true',
+  "items": [
+    {
+      "name": "moveDay",
+      "label": "Day",
+      "value": data['moveDay'],
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "moveMonth",
+      "label": "Month",
+      "value": data['moveMonth'],
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "moveYear",
+      "label": "Year",
+      "value": data['moveYear'],
+      "classes": "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{% endblock %}

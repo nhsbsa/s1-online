@@ -1,0 +1,20 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Submit your application' %}
+{% set caption = data.mainCaption %}
+{% set hideBackLink = true %}
+{% set buttonText = 'Accept and submit' %}
+
+
+
+{% block form %}
+
+    <p>The information that you give us in this application will be used to check your eligibility. This means we may share your information with: </p>
+    <ul class="nhsuk-list nhsuk-list--bullet">
+      <li>the Department for Work and Pensions (DWP) who will check to confirm you are being paid a UK State Pension </li>
+      <li>third parties to help us prevent and investigate fraud and error  </li>
+    </ul>
+    </ul>
+    <p>You can find out more about how we use your information on the <a target="_blank" href="https://www.nhsbsa.nhs.uk/our-policies/privacy">NHSBSA website (opens in new window)</a></p>
+    <p>By submitting your application, you are confirming that the information you’ve given us is correct. If you knowingly provide incorrect information, you could be prosecuted or face civil proceedings. </p>
+
+{% endblock %}

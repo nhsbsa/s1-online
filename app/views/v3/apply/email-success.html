@@ -1,0 +1,34 @@
+{% extends "layouts/emails.html" %} 
+{% set emailSubject %}Your S1 application was successful{% endset -%} 
+
+{% block form %}
+<p>Your application for an S1 form was successful. You can now download a digital copy of your S1 form and a letter explaining: </p>
+<p>We’ve attached a digital copy of your S1 form to this email. We’ve also attached a letter with more details including:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    how to register your S1 form
+  </li>
+  <li>
+    your healthcare entitlement in other countries and in the UK
+  </li>
+  <li>
+    how to tell us about any changes in your circumstances
+  </li>
+</ul>
+{{ insetText({
+    "HTML": "<p>Securely download your S1 form and letter at <a href=\"../download/start-page\" title=\"External website\">https://services.nhsbsa.nhs.uk/cra/download-s1</a>.</p>"
+  }) }}
+<h2 class="nhsuk-heading-m">To download these documents, you will need:</h2>
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+        your OHS reference number which we’ve included in this email
+    </li>
+    <li>
+        your National Insurance number
+    </li>
+  </ul>
+  <p>This link to download these documents will expire in 28 days. If you have not used the link to access your S1 by {{ '22 May 2024' | twoDaysFromNow }}, you’ll need to contact us to get a new link.</p>
+  <p>You may need to print a copy of your S1 form if you need to show it to local authorities. If you do, we recommend using a colour printer.</p>  
+  <h2 class="nhsuk-heading-m">Paper copy of your S1 form</h2>
+  <p>If you asked for a paper copy of your S1 form, you’ll get this in the post within 15 working days.</p> 
+{% endblock %}

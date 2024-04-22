@@ -1,0 +1,15 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your date of birth?{% endset %}
+{% set hidecaption = true %}
+{% set idPrefix %}example-day{% endset -%}
+{% set errorMessage %}
+  {% include '../apply/_error-dob-content.html' %}
+{% endset %}
+ 
+
+{% block form %}
+
+{% include '../upload/_dob.html' %}
+
+
+{% endblock %}

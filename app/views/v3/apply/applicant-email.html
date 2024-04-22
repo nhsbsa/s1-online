@@ -1,0 +1,31 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your email address?{% endset %}
+{% set hintText = true %}
+{% set hintTextCopy %}We'll use this to send you a copy of the S1 or if we need to ask you for any more information to support your application.{% endset %}
+{% set caption = data.mainCaption %}
+{% set inputError = true %}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+  Enter an email address in the correct format, like name@example.com
+{% endset %}
+
+{% set idPrefix %}email{% endset -%}
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "Email address"
+    },
+    "id": "email",
+    "name": "email",
+    "value": data.email,
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true'
+  }) }}
+
+
+{% endblock %}

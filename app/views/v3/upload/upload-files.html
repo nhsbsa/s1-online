@@ -1,0 +1,195 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Upload evidence{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideBackLink = true %}
+{% set hidecaption = true %}
+
+ 
+
+
+{% block form %}
+<style>
+  .upload-container {
+    outline: 3px dashed #0b0c0c;
+    display: flex;
+    text-align: center;
+    padding: 60px 15px;
+  }
+  .upload-container p {
+    margin-bottom: 0;
+    margin-right: 15px;
+    padding-top: 15px;
+  }
+  .upload-container button {
+    margin-bottom: 0;
+    display: inline-block;
+    width: auto;
+  }
+.uploaded-file-item{
+  padding-bottom: 8px;
+  border-bottom: 1px solid #d8dde0;
+}
+.percentage-display {
+  padding-left: .5em;
+}
+.active {
+  font-weight: 700;
+  color: #007f3b;
+}
+.nhsuk-button {
+  margin: 0;
+}
+.upload-container.drag-over {
+  outline: 3px dashed #005eb8;
+  background-color: #d8dde0;
+;
+}
+
+  </style>
+
+
+  
+<p>Upload evidence showing either:</p>
+  <ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+      your UK State Pension start date
+    </li>
+    <li>
+      the years you paid pension contributions to the UK and to other countries
+    </li>
+  </ul>
+
+  
+  <h2 class="nhsuk-heading-m">Files added</h2>
+<ul id="uploadedFiles" class="nhsuk-list">
+    <li id="noFilesAddedMessage" style="display: block;">No files added</li>
+</ul>
+
+<h2 class="nhsuk-heading-m">Upload files</h2>
+<input type="file" id="fileInput" style="display: none;" multiple />
+<div class="upload-container">
+
+    <p class="">Drag and drop files here or</p>
+    <label for="fileInput" class="choose-files-button nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button">Choose files</label>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const fileInput = document.getElementById('fileInput');
+      const uploadedFilesContainer = document.getElementById('uploadedFiles');
+      const noFilesAddedMessage = document.getElementById('noFilesAddedMessage');
+      const uploadContainer = document.querySelector('.upload-container');
+
+      // Add event listeners for dragover and drop events
+      uploadContainer.addEventListener('dragover', handleDragOver);
+      uploadContainer.addEventListener('dragleave', handleDragLeave);
+      uploadContainer.addEventListener('drop', handleDrop);
+
+      function handleDragOver(event) {
+          event.preventDefault();
+          event.dataTransfer.dropEffect = 'copy';
+          uploadContainer.classList.add('drag-over');
+      }
+
+      function handleDragLeave(event) {
+          event.preventDefault();
+          uploadContainer.classList.remove('drag-over');
+      }
+
+      function handleDrop(event) {
+          event.preventDefault();
+          uploadContainer.classList.remove('drag-over');
+          const files = event.dataTransfer.files;
+          handleFileSelect({ target: { files } });
+      }
+
+      fileInput.addEventListener('change', handleFileSelect);
+
+      function handleFileSelect(event) {
+          const files = event.target.files;
+
+          if (files.length > 0) {
+              // Hide the "No files added" message
+              noFilesAddedMessage.style.display = 'none';
+              for (let i = 0; i < files.length; i++) {
+                  const file = files[i];
+                  uploadFile(file);
+              }
+          }
+      }
+
+      function uploadFile(file) {
+          const uploadedFileItem = document.createElement('li');
+          uploadedFileItem.classList.add('uploaded-file-item');
+
+          const tickMark = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+          tickMark.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+          tickMark.setAttribute("viewBox", "0 -7 24 24");
+          tickMark.setAttribute("width", "24"); // Increase width to make the SVG larger
+          tickMark.setAttribute("height", "24"); // Increase height to make the SVG larger
+          tickMark.classList.add('tick-mark');
+          tickMark.style.display = 'none'; // Initially hide the tick mark
+
+          const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+          path.setAttribute("fill", "#007f3b");
+          path.setAttribute("d", "M9 16.17l-3.5-3.5a1 1 0 0 1 1.41-1.41L9 13.34l6.59-6.59a1 1 0 1 1 1.41 1.41L9 16.17z");
+
+          tickMark.appendChild(path);
+
+          const fileName = document.createElement('span');
+          fileName.textContent = file.name;
+          fileName.classList.add('file-name');
+
+          const percentageDisplay = document.createElement('span');
+          percentageDisplay.textContent = '0%';
+          percentageDisplay.classList.add('percentage-display');
+
+          const removeButton = document.createElement('a');
+          removeButton.textContent = 'Remove';
+          removeButton.href = '#'; // Set href to "#" to avoid page reload
+          removeButton.classList.add('remove-button', 'nhsuk-link');
+          removeButton.style.float = 'right'; // Align the remove button to the right
+          removeButton.style.display = 'none'; // Initially hide the remove button
+          removeButton.addEventListener('click', function(event) {
+              event.preventDefault(); // Prevent default behavior of navigating to "#" in href
+              uploadedFileItem.remove();
+              // If all files are removed, show the "No files added" message
+              if (uploadedFilesContainer.children.length === 1) { // Consider the message as a child
+                  noFilesAddedMessage.style.display = 'block';
+              }
+          });
+
+          uploadedFileItem.appendChild(tickMark);
+          uploadedFileItem.appendChild(fileName);
+          uploadedFileItem.appendChild(percentageDisplay);
+          uploadedFileItem.appendChild(removeButton);
+
+          uploadedFilesContainer.appendChild(uploadedFileItem);
+
+          simulateUploadProgress(percentageDisplay, tickMark, fileName, removeButton);
+      }
+
+      function simulateUploadProgress(percentageDisplay, tickMark, fileName, removeButton) {
+          let percentage = 0;
+          const interval = setInterval(function() {
+              percentage += 20; // Increment percentage by 20 every 500 milliseconds
+              percentageDisplay.textContent = percentage + '%';
+              if (percentage === 100) {
+                  clearInterval(interval); // Stop the interval when percentage reaches 100
+                  tickMark.style.display = 'inline'; // Set tick mark to display inline
+                  fileName.style.color = 'green';
+                  fileName.classList.add('active'); // Add 'active' class to fileName when percentage is 100%
+                  removeButton.style.display = 'inline'; // Show the remove button when percentage is 100%
+                  percentageDisplay.remove(); // Remove the percentage display when percentage is 100%
+                  fileName.textContent += ' successfully uploaded'; // Append "Successfully uploaded" to the file name
+
+              }
+          }, 500); // Repeat every 500 milliseconds
+      }
+  });
+</script>
+
+
+  
+
+  {% endblock %}

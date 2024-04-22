@@ -1,0 +1,102 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Uploaded evidence' %}
+{% set hideBackLink = true %}
+{% set hidecaption = true %}
+
+
+
+{% block form %}
+<style>
+  .nhsuk-summary-list__row:empty {
+    display: none;
+}
+</style>
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Files added</h2>
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: 'File name	'
+      },
+      value: {
+        html: data['hiddenFileChosen1'] or 'File-name1'
+      },
+      actions: {
+        items: [
+          {
+            href: "upload-file",
+            text: "Remove",
+            visuallyHiddenText: "your uploaded file"
+          }
+        ]
+      }
+    },    
+    {
+      key: {
+        text: 'File name	',
+      classes: 'File-name2-row'
+
+      },
+      
+      value: {
+        html: data['hiddenFileChosen2'] or 'File-name2'
+      },
+      actions: {
+        items: [
+          {
+            classes: 'remove-row',
+            href: "#",
+            text: "Remove",
+            visuallyHiddenText: "your uploaded file"
+          }
+        ]
+      }
+    } if data['hiddenFileChosen2'] 
+  ] 
+}) }}
+
+
+
+
+
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Upload more evidence</h2>
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "moreEvidenceCheck",
+    "classes": "nhsuk-radios--inline",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const removeLinks = document.querySelectorAll('.nhsuk-summary-list__row a[href="#"]');
+      removeLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+          event.preventDefault();
+          const parentRow = this.closest('.nhsuk-summary-list__row');
+          if (parentRow) {
+            parentRow.remove();
+            // Set value of hiddenFileChosen2 to empty
+            document.getElementById('hiddenFileChosen2').value = '';
+          }
+        });
+      });
+    });
+
+  
+  </script>
+{% endblock %}

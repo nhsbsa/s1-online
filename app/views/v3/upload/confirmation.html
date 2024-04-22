@@ -1,0 +1,22 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set showButton = true %}
+{% set cardTitle = 'Evidence submitted' %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../apply/email-success' %}
+
+{% block form %}
+
+{%- if data['evidence'] == 'No' -%}
+    <h2 class="nhsuk-heading-l">What happens next</h2>
+    <p>We will review your response and contact you to let you know what you need to do next.</p>
+    {%- else -%}
+    <p>Your evidence has been submitted successfully.</p>
+    <h2 class="nhsuk-heading-l">What happens next</h2>
+    <p>We’ll review your evidence and send you an email with an update on your application.</p>
+    <p>If you need to send us any more information, we’ll let you know.</p>
+{%- endif -%}
+
+{% endblock %}

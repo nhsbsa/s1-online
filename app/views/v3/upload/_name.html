@@ -1,0 +1,25 @@
+
+
+{{ input({
+  "label": {
+    "text": "First or given names"
+  },
+  "id": "upload-firstname",
+  "name": "upload-firstname",
+  "value": data.upload-firstname,  
+  "errorMessage": {
+    "html": 'Enter your first name'
+  } if data['error'] == 'true'
+}) }}
+
+{{ input({
+  "label": {
+    "text": "Last or family name"
+  },
+  "id": "upload-lastname",
+  "name": "upload-lastname",
+  "value": data.upload-lastname,
+  "errorMessage": {
+    "html": 'Enter your last name'
+  } if data['error'] == 'true'
+}) }}

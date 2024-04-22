@@ -1,0 +1,213 @@
+
+{% set dependantDob %}
+  What is {{ data.dependantName or 'John Smith' }}'s date of birth?	
+{% endset %}
+{% set dependantAddressCheck %}
+  Does {{ data.dependantName or 'John Smith' }}'s live at the same address as you?	
+{% endset %}
+{% set dependantAddress %}
+  What is {{ data.dependantName or 'John Smith' }}'s address?	
+{% endset %}
+
+{%- if dependantSummary -%}
+  <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 1</h3>
+
+  {% else %}
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 " style="display: inline-block;">Family member 1</h2>
+  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 " style="margin-left: 5%;">Remove family member</a>
+ <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+
+
+  {% endif %}
+
+{{ summaryList({
+  classes: 'familymember2',
+
+  rows: [
+
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: data['dependantName'] or 'John Smith'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-name",
+            text: "Change",
+            visuallyHiddenText: "dependents name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: "Date of birth"
+      },
+      value: {
+        html: data['dependantDob'] or '23 June 1980'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-dob",
+            text: "Change",
+            visuallyHiddenText: "dependants date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Address"
+      },
+      value: {
+        html: data['dependantFullAddress'] if data['dependantAddressCheck'] == "No" else 'Same as applicant'
+      },
+      actions: {
+        items: [
+          {
+            href: "dependant-address-check",
+            text: "Change",
+            visuallyHiddenText: "if dependant live at the same address?"
+          }
+        ]
+      }
+    }
+        
+  ] 
+}) }}
+
+
+
+{%- if data['dependant2'] == 'true' -%}
+<div class="updatemessage" style="display: none">
+
+  {{ insetText({
+    "HTML": "<p>Family member 2 has been deleted</p>"
+  }) }}
+  </div>
+  <div class="familymember1">
+
+{%- if dependantSummary -%}
+  <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 2</h3>
+
+  {% else %}
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 " style="display: inline-block;">Family member 2</h2>
+  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member" style="padding-left: 5%;">Remove family member</a> 
+  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0"> 
+  {% endif %}
+
+  {{ summaryList({
+    classes: 'familymember2',
+
+    rows: [
+
+      {
+        key: {
+          text: "Name"
+        },
+        value: {
+          html: data['dependantName2'] or 'Jane Smith'
+        },
+        actions: {
+          items: [
+            {
+              href: "dependant-2-name",
+              text: "Change",
+              visuallyHiddenText: "dependents name"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          html: "Date of birth"
+        },
+        value: {
+          html: data['dependantDob2'] or '3 April 1977'
+        },
+        actions: {
+          items: [
+            {
+              href: "dependant-2-dob",
+              text: "Change",
+              visuallyHiddenText: "dependants date of birth"
+            }
+          ]
+        }
+      },
+      {
+        key: {
+          text: "Address"
+        },
+        value: {
+          html: data['dependantFullAddress2'] if data['dependantAddressCheck2'] == "No" else 'Same as applicant'
+        },
+        actions: {
+          items: [
+            {
+              href: "dependant-2-address-check",
+              text: "Change",
+              visuallyHiddenText: "if dependant live at the same address?"
+            }
+          ]
+        }
+      }
+          
+    ] 
+  }) }}
+</div>
+
+  {%- endif -%}
+
+
+<script>
+// Add event listener to the delete button
+document.querySelector('.delete-member').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default action of link
+
+    // Code to remove family member summary
+    var familyMember = document.querySelector('.familymember1');
+    if (familyMember) {
+        familyMember.remove(); // Remove the family member summary
+    }
+
+    // Show the update message
+    var updateMessage = document.querySelector('.updatemessage');
+    if (updateMessage) {
+        updateMessage.style.display = 'block';
+    }
+
+    // Update the value of data.dependant2
+    data.dependant2 = 'false';
+
+    // Send the updated data to the server
+    fetch('/more-dependants-check', { // Adjusted URL
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ dependant2: data.dependant2 })
+    })
+    .then(response => {
+        // Handle response from server if needed
+    })
+    .catch(error => {
+        // Handle any errors
+        console.error('Error:', error);
+    });
+});
+document.querySelector('.nhsuk-link').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent default action of link
+
+    // Open the modal dialog
+    var modalDialog = document.querySelector('.modal-dialog');
+    if (modalDialog) {
+        modalDialog.style.display = 'block';
+    }
+});
+
+</script>

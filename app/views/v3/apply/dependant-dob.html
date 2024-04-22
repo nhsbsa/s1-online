@@ -1,0 +1,43 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is {{ data.dependantName or 'John Smith' }}'s date of birth?{% endset %}
+{% set caption = data.mainCaption %}
+{% set idPrefix %}eligibility-move-date-plan{% endset -%}
+
+{% set errorMessage %}
+  {% include '../apply/_error-dob-content.html' %}
+{% endset %}
+
+ 
+{% block form %}
+{{ dateInput({
+  "id": idPrefix,
+  "hint": {
+    "text": "For example, 15 3 1984"
+  },
+  "errorMessage": {
+    "html": 'Date of birth must include a valid day, month and year '
+  } if data['error'] == 'true',
+  "items": [
+    {
+      "name": "dependant-day",
+      "value": data['dependant-day'],
+      "label": "Day",
+      "classes": "nhsuk-input--width-2"
+    }, 
+    {
+      "name": "dependant-month",
+      "value": data['dependant-month'],
+      "label": "Month",
+      "classes": "nhsuk-input--width-2" 
+    },
+    {
+      "name": "dependant-year",
+      "value": data['dependant-year'],
+      "label": "Year",
+      "classes": "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{% endblock %}

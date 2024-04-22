@@ -1,0 +1,32 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Upload evidence for your S1 application' %}
+{% set hideBackLink = true %}
+{% set hidecaption = true %}
+{% set showFontXl = true %}
+{% set buttonText = 'Start now' %}
+
+{% block form %}
+<p>Use this service to send us evidence either:</p>
+
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+        of the date you started being paid your UK State Pension
+    </li>
+    <li>
+        of the years that you’ve paid pension contributions in the UK and other countries    
+    </li>
+</ul>
+<h2 class="nhsuk-heading-m">Before you start</h2>
+<p>You’ll need to give us some details to find your record, including:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+        your OHS reference number – you can find this on the email we sent you
+    </li>
+    <li>
+        your name    
+    </li>
+    <li>
+        your date of birth    
+    </li>
+</ul>
+{% endblock %}

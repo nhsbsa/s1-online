@@ -1,0 +1,14 @@
+
+<p>You can find it on the email we sent you.</p>
+{{ input({
+    "label": {
+      "text": "OHS reference number"
+    },
+    "id": "ohsNumber",
+    "name": "ohsNumber",
+    "classes": "nhsuk-input--width-10",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true'
+  }) }}
+

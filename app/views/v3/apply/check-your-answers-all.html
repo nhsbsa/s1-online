@@ -1,0 +1,24 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Check your answers' %}
+{% set caption = data.mainCaption %}
+{% set fullWidth = true %}
+{% set hideBackLink = true %}
+{% set dependantSummary = true %}
+{% set buttonText = 'Continue' %}
+
+
+
+{% block form %}
+{% include '../apply/_applicant-answers.html' %}
+
+{%- if data['dependantCheck'] == 'Yes' -%}
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 ">Family member details</h2>
+  {% include '../apply/_dependant-answers.html' %}
+{% endif %}
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Upload evidence{% endset %}
+{% set hidecaption = true %}
+{% set buttonText = 'Upload evidence' %}
+
+{% set errorMessage %}
+  {% include '../apply/_error-dob-content.html' %}
+{% endset %}
+
+{% block form %}
+
+{% include '../upload/_upload-content.html' %}
+
+
+
+  <label for="file-input" class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button">
+    Choose file
+  </label>
+  <input type="file" id="file-input" accept="image/jpeg, image/jpg, image/png, application/pdf" onchange="updateFileName()" style="display: none;">
+  <span name="fileChosen" id="file-chosen">No file chosen</span>
+
+  <!-- Hidden input field to store the value of the chosen file -->
+  <input type="hidden" id="hiddenFileChosen2" name="hiddenFileChosen2">
+
+  <script>
+    function updateFileName() {
+      const fileInput = document.getElementById('file-input');
+      const fileNameSpan = document.getElementById('file-chosen');
+      const hiddenInput = document.getElementById('hiddenFileChosen2');
+  
+      if (fileInput.files.length > 0) {
+        const fileName = fileInput.files[0].name;
+        fileNameSpan.textContent = fileName;
+        hiddenInput.value = fileName; // Set value of hidden input
+      } else {
+        fileNameSpan.textContent = 'No file chosen';
+        hiddenInput.value = ''; // Reset value of hidden input if no file chosen
+      }
+    }
+  
+    document.querySelector('.nhsuk-button').addEventListener('click', function(event) {
+      event.preventDefault(); // Prevent the default action of the label's click event
+      document.getElementById('file-input').click();
+    });
+  </script>
+  
+{% endblock %}

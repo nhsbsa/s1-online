@@ -1,0 +1,26 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %} Download a copy of your S1 certificate{% endset %}
+
+{% block form %}
+
+
+<p>You can download a copy of your S1 certificate and a covering letter as a PDF document.</p>
+
+<p>This may open in a new window, a new tab, or save to your downloads folder, depending on the browser or device you're using.</p>
+
+<p><a download href="/images/s1.pdf">Download your S1 certificate and covering letter (PDF, 493KB).</a></p>
+
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>Your covering letter will give you more information about your S1, as well as any next steps you may need to take.</p>
+
+<p>You may need to print a copy of this if you need to show it to local authorities. If you do, we recommend using a colour printer.</p>
+
+<p>If you've asked for a copy to be sent by post, you can use this when you receive it.</p>
+
+
+
+{% endblock %}

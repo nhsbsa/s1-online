@@ -1,0 +1,28 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}What is your name?{% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}upload-firstname{% endset -%}
+{% set hidecaption = true %}
+
+
+{% set errorMessage %}
+<ul class="nhsuk-list">
+  <li>
+    Enter your first name
+  </li>
+  <li>
+    Enter your last name
+  </li>
+</ul>
+
+{% endset %}
+
+
+
+{% block form %}
+
+{% include '../upload/_name.html' %}
+
+
+{% endblock %}
