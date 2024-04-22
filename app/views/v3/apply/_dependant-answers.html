@@ -8,6 +8,49 @@
 {% set dependantAddress %}
   What is {{ data.dependantName or 'John Smith' }}'s address?	
 {% endset %}
+<style>
+
+.govuk-notification-banner--success {
+    border-color: #00703c;
+    background-color: #00703c;
+}
+
+.govuk-notification-banner {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.25;
+    margin-top: 30px;
+    border: 5px solid #005eb8;
+    background-color: #005eb8;
+}
+.govuk-notification-banner__header {
+    padding: 2px 15px 5px;
+    border-bottom: 1px solid transparent;
+}
+.govuk-notification-banner__title {
+    font-size: 1rem;
+    line-height: 1.25;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+.govuk-notification-banner__heading {
+    font-size: 1.125rem;
+    line-height: 1.1111111111;
+    font-weight: 700;
+    margin: 0 0 15px;
+    padding: 0;
+}
+.govuk-notification-banner__content {
+    color: #0b0c0c;
+    padding: 15px;
+    background-color: #fff;
+}
+</style>
+
 
 {%- if dependantSummary -%}
   <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 1</h3>
@@ -82,29 +125,16 @@
 
 
 
-{%- if data['dependant2'] == 'true' -%}
-<div class="updatemessage" style="display: none">
 
-  {{ insetText({
-    "HTML": "<p>Family member 2 has been deleted</p>"
-  }) }}
-  </div>
-  <div class="familymember1">
 
-{%- if dependantSummary -%}
-  <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 2</h3>
-
-  {% else %}
-  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 " style="display: inline-block;">Family member 2</h2>
-  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member" style="padding-left: 5%;">Remove family member</a> 
-  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0"> 
-  {% endif %}
+<div class="familymember1">
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3" style="display: inline-block;">Family member 2</h2>
+  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member" style="padding-left: 5%;">Remove family member</a>
+  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
 
   {{ summaryList({
     classes: 'familymember2',
-
     rows: [
-
       {
         key: {
           text: "Name"
@@ -156,58 +186,144 @@
           ]
         }
       }
-          
     ] 
   }) }}
 </div>
 
-  {%- endif -%}
+<style>
+  /* Modal styles */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 9999; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal content */
+  .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 40%; /* Could be more or less, depending on screen size */
+        padding: 20px;
+        max-width: 80%;
+  }
+  .nhsuk-update-summary {
+    border: 4px solid #005eb8
+  }
+  /* Close button */
+  .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+  }
+
+  .modal-dialog {
+        display: none; /* Hide the modal by default */
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-dialog__inner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        max-width: 80%;
+    }
+
+    .cancel{
+      margin: 1em 0 0 1em;
+    display: inline-block;
+    }
+    
+  </style>
+  
+
+<!-- Modal -->
+
+
+
+<div class="modal-dialog" id="deleteModal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+      <h2 id="dialog-title" class="nhsuk-heading-l nhsuk-u-margin-bottom-4">Remove family member?</h2>
+      <div class="modal-dialog__inner__text" aria-live="polite">
+          <p>{{data.dependantName2 or "Jane Smith"}}</p>
+      <div class="modal-dialog__inner__block">
+        <a href="#" id="confirmDelete" class="nhsuk-button nhsuk-u-margin-bottom-2 modal-dialog__inner__button js-confirm">Confirm</a>
+        <a href="#" id="cancelDelete" class="cancel nhsuk-link">Cancel</a>
+      </div>
+  </div>
+</div>
+</div>
 
 
 <script>
-// Add event listener to the delete button
-document.querySelector('.delete-member').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default action of link
+  // Get the modal element
+  var modal = document.getElementById('deleteModal');
 
-    // Code to remove family member summary
-    var familyMember = document.querySelector('.familymember1');
-    if (familyMember) {
-        familyMember.remove(); // Remove the family member summary
+  // Get the button that opens the modal
+  var deleteBtn = document.querySelector('.delete-member');
+
+  // Get the <span> element that closes the modal
+  var closeBtn = document.querySelector('.close');
+
+  // Get the buttons inside the modal
+  var confirmBtn = document.getElementById('confirmDelete');
+  var cancelBtn = document.getElementById('cancelDelete');
+
+  // When the user clicks the delete button, open the modal
+  deleteBtn.onclick = function(event) {
+    event.preventDefault(); // Prevent default link behavior
+    modal.style.display = 'block';
+  }
+
+  // When the user clicks on <span> (x) or cancel button, close the modal
+  closeBtn.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  cancelBtn.onclick = function() {
+    modal.style.display = 'none';
+  }
+
+  // When the user clicks on confirm button, hide modal and show update message
+  confirmBtn.onclick = function(event) {
+    event.preventDefault(); // Prevent default button behavior
+    modal.style.display = 'none';
+    document.querySelector('.updatemessage').style.display = 'block';
+    document.querySelector('.familymember1').style.display = 'none';
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
     }
-
-    // Show the update message
-    var updateMessage = document.querySelector('.updatemessage');
-    if (updateMessage) {
-        updateMessage.style.display = 'block';
-    }
-
-    // Update the value of data.dependant2
-    data.dependant2 = 'false';
-
-    // Send the updated data to the server
-    fetch('/more-dependants-check', { // Adjusted URL
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ dependant2: data.dependant2 })
-    })
-    .then(response => {
-        // Handle response from server if needed
-    })
-    .catch(error => {
-        // Handle any errors
-        console.error('Error:', error);
-    });
-});
-document.querySelector('.nhsuk-link').addEventListener('click', function(event) {
-    event.preventDefault(); // Prevent default action of link
-
-    // Open the modal dialog
-    var modalDialog = document.querySelector('.modal-dialog');
-    if (modalDialog) {
-        modalDialog.style.display = 'block';
-    }
-});
-
+  }
 </script>
+
+
+  

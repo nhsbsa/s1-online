@@ -15,6 +15,10 @@ router.use('/v2/apply', require('./views/v2/apply/_routes'));
 router.use('/v2/upload', require('./views/v2/upload/_routes'));
 router.use('/v2/download', require('./views/v2/download/_routes'));
 
+router.use('/v3/apply', require('./views/v3/apply/_routes'));
+router.use('/v3/upload', require('./views/v3/upload/_routes'));
+router.use('/v3/download', require('./views/v3/download/_routes'));
+
 
 router.use('/mvp/file-upload', require('./views/mvp/file-upload/_routes'));
 router.use('/mvp/download-success', require('./views/mvp/download-success/_routes'));
