@@ -1,4 +1,3 @@
-
 {% set dependantDob %}
   What is {{ data.dependantName or 'John Smith' }}'s date of birth?	
 {% endset %}
@@ -8,66 +7,119 @@
 {% set dependantAddress %}
   What is {{ data.dependantName or 'John Smith' }}'s address?	
 {% endset %}
+
 <style>
+  /* Notification banner styles */
 
-.govuk-notification-banner--success {
-    border-color: #00703c;
-    background-color: #00703c;
-}
 
-.govuk-notification-banner {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.25;
+.nhs-notification-banner {
     margin-top: 30px;
     border: 5px solid #005eb8;
     background-color: #005eb8;
 }
-.govuk-notification-banner__header {
-    padding: 2px 15px 5px;
+
+.nhs-notification-banner__header, h4  {
+   padding: 0 0 0 5px ;
+    margin: 0 !important;
     border-bottom: 1px solid transparent;
+    color: #fff
 }
-.govuk-notification-banner__title {
-    font-size: 1rem;
-    line-height: 1.25;
-    font-weight: 700;
+
+.nhs-notification-banner__title {
     margin: 0;
     padding: 0;
     color: #fff;
 }
-.govuk-notification-banner__heading {
+
+.nhs-notification-banner__heading {
     font-size: 1.125rem;
     line-height: 1.1111111111;
     font-weight: 700;
     margin: 0 0 15px;
     padding: 0;
 }
-.govuk-notification-banner__content {
+
+.nhs-notification-banner__content {
     color: #0b0c0c;
     padding: 15px;
     background-color: #fff;
+    font-weight: 700;
 }
+.nhs-notification-banner__content h5 {
+  margin: 0;
+}
+
+  /* Modal and summary styles */
+
+  
+  /* Modal content */
+
+
+
+  .modal-dialog {
+    display: none; /* Hide the modal by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 40%; /* Could be more or less, depending on screen size */
+        padding: 25px;
+        max-width: 80%;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+ 
+  .nhsuk-update-summary {
+    border: 4px solid #005eb8;
+  }
+
+  .close {
+    color: #212b32;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1em;
+  }
+
+
+  .cancel {
+    margin: 1em 0 0 1em;
+    display: inline-block;
+  }
 </style>
 
-
-{%- if dependantSummary -%}
+{% if dependantSummary %}
   <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 1</h3>
+{% else %}
+<div class="familymember1">
 
-  {% else %}
-  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 " style="display: inline-block;">Family member 1</h2>
-  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 " style="margin-left: 5%;">Remove family member</a>
- <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
-
-
-  {% endif %}
+  <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3" style="display: inline-block;">Family member 1</h2>
+  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member1" style="margin-left: 5%;">Remove family member</a>
+  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+{% endif %}
 
 {{ summaryList({
-  classes: 'familymember2',
-
   rows: [
-
     {
       key: {
         text: "Name"
@@ -119,21 +171,27 @@
         ]
       }
     }
-        
   ] 
 }) }}
+{% if dependantSummary %}
+{% else %}
+</div>
+{% endif %}
 
 
-
-
-
-<div class="familymember1">
+{% if dependantSummary %}
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3" style="display: inline-block;">Family member 2</h2>
+{% else %}
+<div class="familymember2">
   <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3" style="display: inline-block;">Family member 2</h2>
-  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member" style="margin-left: 5%;">Remove family member</a>
-  <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+  <a href="#" class="nhsuk-link nhsuk-u-font-size-19 delete-member2" style="margin-left: 5%;">Remove family member</a>
+{% endif %}
+<hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+
+
 
   {{ summaryList({
-    classes: 'familymember2',
+    classes: '',
     rows: [
       {
         key: {
@@ -188,142 +246,108 @@
       }
     ] 
   }) }}
-</div>
-
-<style>
-  /* Modal styles */
-  .modal {
-      display: none; /* Hidden by default */
-      position: fixed; /* Stay in place */
-      z-index: 9999; /* Sit on top */
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto; /* Enable scroll if needed */
-      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-  
-  /* Modal content */
-  .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 40%; /* Could be more or less, depending on screen size */
-        padding: 20px;
-        max-width: 80%;
-  }
-  .nhsuk-update-summary {
-    border: 4px solid #005eb8
-  }
-  /* Close button */
-  .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-  }
-
-  .modal-dialog {
-        display: none; /* Hide the modal by default */
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-dialog__inner {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #fff;
-        padding: 20px;
-        max-width: 80%;
-    }
-
-    .cancel{
-      margin: 1em 0 0 1em;
-    display: inline-block;
-    }
-    
-  </style>
-  
-
-<!-- Modal -->
-
-
-
-<div class="modal-dialog" id="deleteModal">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-      <h2 id="dialog-title" class="nhsuk-heading-l nhsuk-u-margin-bottom-4">Remove family member?</h2>
-      <div class="modal-dialog__inner__text" aria-live="polite">
-          <p>{{data.dependantName2 or "Jane Smith"}}</p>
-      <div class="modal-dialog__inner__block">
-        <a href="#" id="confirmDelete" class="nhsuk-button nhsuk-u-margin-bottom-2 modal-dialog__inner__button js-confirm">Confirm</a>
-        <a href="#" id="cancelDelete" class="cancel nhsuk-link">Cancel</a>
-      </div>
+  {% if dependantSummary %}
+  {% else %}
   </div>
-</div>
-</div>
+  {% endif %}
+
+  <div class="no-dependants"  style="display: none;">
+    {{ insetText({
+      "HTML": "<p>You have removed all your family members.</p>"
+    }) }}
+  </div>
+
+  <div class="modal-dialog" id="deleteModal">
+    <div class="modal-content">
+      <span class="close">&times;<span class="sr-only">Close window</span></span>
+      <h2 id="dialog-title" class="nhsuk-heading-l nhsuk-u-margin-bottom-4">Remove {{data.dependantName or "John Smith"}}?</h2> <!-- Default title -->
+      <div class="modal-dialog__inner__text" aria-live="polite">
+  
+        <div class="modal-dialog__inner__block">
+          <a href="#" id="confirmDelete" class="nhsuk-button nhsuk-u-margin-bottom-2 modal-dialog__inner__button js-confirm">Confirm</a>
+          <a href="#" id="cancelDelete" class="cancel nhsuk-link">Cancel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  
 
 
-<script>
-  // Get the modal element
-  var modal = document.getElementById('deleteModal');
-
-  // Get the button that opens the modal
-  var deleteBtn = document.querySelector('.delete-member');
-
-  // Get the <span> element that closes the modal
-  var closeBtn = document.querySelector('.close');
-
-  // Get the buttons inside the modal
-  var confirmBtn = document.getElementById('confirmDelete');
-  var cancelBtn = document.getElementById('cancelDelete');
-
-  // When the user clicks the delete button, open the modal
-  deleteBtn.onclick = function(event) {
-    event.preventDefault(); // Prevent default link behavior
-    modal.style.display = 'block';
-  }
-
-  // When the user clicks on <span> (x) or cancel button, close the modal
-  closeBtn.onclick = function() {
-    modal.style.display = 'none';
-  }
-
-  cancelBtn.onclick = function() {
-    modal.style.display = 'none';
-  }
-
-  // When the user clicks on confirm button, hide modal and show update message
-  confirmBtn.onclick = function(event) {
-    event.preventDefault(); // Prevent default button behavior
-    modal.style.display = 'none';
-    document.querySelector('.updatemessage').style.display = 'block';
-    document.querySelector('.familymember1').style.display = 'none';
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
+  <script>
+    // Get the modal element
+    var modal = document.getElementById('deleteModal');
+  
+    // Get the delete buttons that open the modal
+    var deleteBtn1 = document.querySelector('.delete-member1');
+    var deleteBtn2 = document.querySelector('.delete-member2');
+  
+    // Get the <span> element that closes the modal
+    var closeBtn = document.querySelector('.close');
+  
+    // Get the buttons inside the modal
+    var confirmBtn = document.getElementById('confirmDelete');
+    var cancelBtn = document.getElementById('cancelDelete');
+  
+    // When the user clicks a delete button, open the modal and determine which family member to delete
+    deleteBtn1.onclick = function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      modal.style.display = 'block';
+      modal.dataset.member = 'familymember1'; // Set data attribute to identify which family member to delete
+      var dependantName = "{{data.dependantName or 'John Smith'}}";
+      document.getElementById('dialog-title').textContent = "Remove " + dependantName + "?"; // Update modal title
+    }
+  
+    deleteBtn2.onclick = function(event) {
+      event.preventDefault(); // Prevent default link behavior
+      modal.style.display = 'block';
+      modal.dataset.member = 'familymember2'; // Set data attribute to identify which family member to delete
+      var dependantName = "{{data.dependantName2 or 'Jane Smith'}}";
+      document.getElementById('dialog-title').textContent = "Remove " + dependantName + "?"; // Update modal title
+    }
+  
+    // When the user clicks on <span> (x) or cancel button, close the modal
+    closeBtn.onclick = cancelBtn.onclick = function() {
       modal.style.display = 'none';
     }
-  }
-</script>
+  
+    // When the user clicks on confirm button, hide modal, show update message, and hide the appropriate family member
+    confirmBtn.onclick = function(event) {
+      event.preventDefault(); // Prevent default button behavior
+      modal.style.display = 'none';
+      document.querySelector('.updatemessage').style.display = 'block';
+      var memberToDelete = modal.dataset.member; // Get the data attribute to identify which family member to delete
+      document.querySelector('.' + memberToDelete).style.display = 'none'; // Hide the appropriate family member
+      
+      // Show the notification banner
+      document.querySelector('.nhs-notification-banner').style.display = 'block';
 
+      // Update the updatemessage content based on the memberToDelete
+      var dependantName;
+      if (memberToDelete === 'familymember1') {
+        dependantName = "{{data.dependantName or 'John Smith'}}";
+      } else {
+        dependantName = "{{data.dependantName2 or 'Jane Smith'}}";
+      }
+      document.getElementById('dialog-title2').textContent = dependantName + " has been removed.";
+
+      // Check if both family members are hidden
+      if (document.querySelector('.familymember1').style.display === 'none' &&
+          document.querySelector('.familymember2').style.display === 'none') {
+        // Show the no-dependants div
+        document.querySelector('.no-dependants').style.display = 'block';
+      }
+
+      window.scrollTo(0, 0); // Scroll to the top of the page
+    }
+  
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    }
+</script>
 
   
