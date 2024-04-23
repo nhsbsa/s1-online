@@ -253,7 +253,7 @@
 
   <div class="no-dependants"  style="display: none;">
     {{ insetText({
-      "HTML": "<p>You have removed all your family members.</p>"
+      "HTML": "<p>You've removed all family members from your application.</p>"
     }) }}
   </div>
 
@@ -273,7 +273,6 @@
   
 
   
-
 
   <script>
     // Get the modal element
@@ -337,6 +336,8 @@
           document.querySelector('.familymember2').style.display === 'none') {
         // Show the no-dependants div
         document.querySelector('.no-dependants').style.display = 'block';
+        // Change the content of the h2 element
+        document.querySelector('.add-family-member-text').textContent = "Do you want to add any family members?";
       }
 
       window.scrollTo(0, 0); // Scroll to the top of the page
@@ -349,5 +350,3 @@
       }
     }
 </script>
-
-  
