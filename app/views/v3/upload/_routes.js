@@ -67,7 +67,7 @@ router.post([/dob/], function (req, res) {
         res.redirect('record-not-found');
     } else if(req.body.dateOfBirth !== '' ) {
         data.error = 'false';
-        res.redirect('record-found');
+        res.redirect('nino');
     }   
 }) 
 
@@ -88,6 +88,21 @@ function getMonthInLetters(month) {
     return '';
 }
 
+
+router.post([/nino/], function (req,res) {
+    
+    var nino = req.session.data['nino'];
+    const data = req.session.data;
+
+
+    if(nino != '' ) {
+        data.error = 'false';
+        res.redirect('record-found');
+    } else if(nino == '') {
+        data.error = 'true';
+        res.redirect('nino');
+    }
+})
 
 router.post([/record-found/], function (req,res) {
     res.redirect('upload-file') 
