@@ -1,19 +1,38 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}When will you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
 {% set caption = data.eligibilityCaption %}
+{% set hideErrorMarkup = true %}
+
 {% set errorMessage %}
-  {% include '../apply/_error-move-content.html' %}
+  {%- if  data['errortype'] == 'empty' -%}
+    {% include '../apply/_error-move-content.html' %}
+  {%- else  -%}
+  Date must be 90 days or less from today's date
+  {%- endif -%}
+
+ 
 {% endset %}
+
+{% set inlineError %}
+  {%- if  data['errortype'] == 'empty' -%}
+    Date of moving must include a day, month and year  
+  {%- else  -%}
+  Date must be 90 days or less from today's date
+  {%- endif -%}
+
+{% endset %}
+
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
 
 {% block form %}
+<p>This can be a date up to 90 days from today. For example {{ '22 May 2024' | ninetyDaysFromNow }}.</p>
 {{ dateInput({
   "id": idPrefix,
   "hint": {
-    "text": "For example, 15 3 2023"
+    "text": "For example, 15 8 2024"
   },
   "errorMessage": {
-    "html": 'Date of moving must include a day, month and year'
+    "html": inlineError
   } if data['error'] == 'true',
   "items": [
     {

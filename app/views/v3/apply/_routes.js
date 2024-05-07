@@ -105,6 +105,7 @@ router.post([/eligibility-move-date-plan/], function (req, res){
     // Check if day, month, and year are empty
     if (day == '' && month == '' && year == '') {
         data.error = 'true';
+        data.errortype = 'empty';
         res.redirect('eligibility-move-date-plan');
     } else {
         // Check if the selected date is more than 90 days in the future
@@ -114,9 +115,11 @@ router.post([/eligibility-move-date-plan/], function (req, res){
 
         if (selectedDate > ninetyDaysFromNow) {
             // Date is more than 90 days in the future
-            data.error = 'false';
+            data.error = 'true';
+            data.errortype = '90days';
+
             data.ineligible = 'date-future'
-            res.redirect('ineligible');
+            res.redirect('eligibility-move-date-plan');
         } else {
             // Date is not more than 90 days in the future
             data.error = 'false';
@@ -201,11 +204,11 @@ router.post([/eligibility-check-state-pension/], function(req, res){
     const data = req.session.data;
 
 
-    if (statePensionCheck == 'Yes'){
+    if (statePensionCheck == 'Yes' && countrySOne != 'Germany'){
         data.error = 'false';
         data.ineligible = 'check-state-pension-fail'
         res.redirect('ineligible');
-    } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
+    } else if (statePensionCheck == 'Yes' && countrySOne == 'Germany'){
         data.error = 'false';
         res.redirect('eligibility-germany-contributions');
     } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
