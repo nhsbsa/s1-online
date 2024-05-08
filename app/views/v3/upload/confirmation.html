@@ -9,14 +9,10 @@
 
 {% block form %}
 
-{%- if data['evidence'] == 'No' -%}
-    <h2 class="nhsuk-heading-l">What happens next</h2>
-    <p>We will review your response and contact you to let you know what you need to do next.</p>
-    {%- else -%}
     <p>Your evidence has been submitted successfully.</p>
     <h2 class="nhsuk-heading-l">What happens next</h2>
-    <p>We’ll review your evidence and send you an email with an update on your application.</p>
-    <p>If you need to send us any more information, we’ll let you know.</p>
-{%- endif -%}
+    <p>We’ll review your evidence and email you with an update on your application.</p>
+    <p>We aim to give you an update within 5 working days. </p>
+
 
 {% endblock %}

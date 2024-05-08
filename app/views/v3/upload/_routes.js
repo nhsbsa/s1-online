@@ -64,7 +64,7 @@ router.post([/dob/], function (req, res) {
         data.error = 'true';
         res.redirect('dob');
     } else if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
-        res.redirect('record-not-found');
+        res.redirect('nino');
     } else if(req.body.dateOfBirth !== '' ) {
         data.error = 'false';
         res.redirect('nino');
@@ -90,14 +90,23 @@ function getMonthInLetters(month) {
 
 
 router.post([/nino/], function (req,res) {
-    
+    const day = req.session.data['upload-day'];
+    const month = req.session.data['upload-month'];
+    const year =req.session.data['upload-year']; 
     var nino = req.session.data['nino'];
     const data = req.session.data;
+    data.applicantDob =  `${req.body['upload-day']} ${req.body['upload-month']}  ${req.body['upload-year']}`
+    const monthInLetters = getMonthInLetters(month);
 
-
-    if(nino != '' ) {
+    req.session.data['applicantDob'] = `${day} ${monthInLetters} ${year}`;
+   
+    if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
+        res.redirect('record-not-found');
+    } else if(nino != '' ) {
         data.error = 'false';
-        res.redirect('record-found');
+        res.redirect('upload-file');
+    } else if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
+        res.redirect('nino');
     } else if(nino == '') {
         data.error = 'true';
         res.redirect('nino');

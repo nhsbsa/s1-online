@@ -2,12 +2,13 @@
 {% set title %}When will you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
 {% set caption = data.eligibilityCaption %}
 {% set hideErrorMarkup = true %}
+{% set hint %}This can be a date up to 90 days from today. For example {{ '22 May 2024' | ninetyDaysFromNow }}.{% endset %}
 
 {% set errorMessage %}
   {%- if  data['errortype'] == 'empty' -%}
     {% include '../apply/_error-move-content.html' %}
   {%- else  -%}
-  Date must be 90 days or less from today's date
+  {% include '../apply/_error-move-90-content.html' %}
   {%- endif -%}
 
  
@@ -17,7 +18,7 @@
   {%- if  data['errortype'] == 'empty' -%}
     Date of moving must include a day, month and year  
   {%- else  -%}
-  Date must be 90 days or less from today's date
+  {% include '../apply/_error-move-90-content.html' %}
   {%- endif -%}
 
 {% endset %}
@@ -25,11 +26,10 @@
 {% set idPrefix %}eligibility-move-date-plan{% endset -%}
 
 {% block form %}
-<p>This can be a date up to 90 days from today. For example {{ '22 May 2024' | ninetyDaysFromNow }}.</p>
 {{ dateInput({
   "id": idPrefix,
   "hint": {
-    "text": "For example, 15 8 2024"
+    "text": hint
   },
   "errorMessage": {
     "html": inlineError
