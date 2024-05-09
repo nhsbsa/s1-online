@@ -1,21 +1,36 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}Upload your evidence{% endset %}
 {% set hidecaption = true %}
+{% set hideErrorMarkup = true %}
+{% set idPrefix %}file-input{% endset -%}
 
 {% set errorMessage %}
-  {% include '../apply/_error-dob-content.html' %}
+Choose a file to upload
 {% endset %}
 
 {% block form %}
-{% include '../upload/_upload-content.html' %}
 
 
+  <p>Upload a letter from the Department for Work and Pensions showing the date you started being paid your UK State Pension. </p>
+  {%- if data['error'] == 'true' -%}
+      <div id="formError">
+    {%- endif -%}
 
-  <label for="file-input" class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button">
+  <h2 class="nhsuk-heading-m">Upload a file</h2>
+  {%- if data['error'] == 'true' -%}
+    <p class="nhsuk-error-message" id="file-input-error">Choose a file to upload</p>
+  {%- endif -%}
+
+  <p>The file must not be bigger than 10MB.</p>
+ 
+  <p>The file must be in jpeg, jpg, png or pdf format.</p>  <label for="file-input" class="nhsuk-button nhsuk-button--secondary" data-module="nhsuk-button">
     Choose file
   </label>
   <input type="file" id="file-input" accept="image/jpeg, image/jpg, image/png, application/pdf" onchange="updateFileName()" style="display: none;">
-  <span name="fileChosen" id="file-chosen">No file chosen</span>
+  <span name="fileChosen" class="nhsuk-body" id="file-chosen">No file chosen</span>
+  {%- if data['error'] == 'true' -%}
+      </div>
+    {%- endif -%}
 
   <!-- Hidden input field to store the value of the chosen file -->
   <input type="hidden" id="hiddenFileChosen1" name="hiddenFileChosen1">

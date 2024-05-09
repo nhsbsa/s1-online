@@ -105,8 +105,6 @@ router.post([/nino/], function (req,res) {
     } else if(nino != '' ) {
         data.error = 'false';
         res.redirect('upload-file');
-    } else if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
-        res.redirect('nino');
     } else if(nino == '') {
         data.error = 'true';
         res.redirect('nino');
@@ -117,7 +115,17 @@ router.post([/record-found/], function (req,res) {
     res.redirect('upload-file') 
 })
 router.post([/upload-file/], function(req, res) {
-    res.redirect('review-file');
+    const data = req.session.data;
+
+    const file = req.session.data['hiddenFileChosen1'];
+
+    if(file != '' ) {
+        data.error = 'false';
+        res.redirect('review-file');
+    } else if(file == '') {
+        data.error = 'true';
+        res.redirect('upload-file');
+    }
 });
 router.post([/upload-another-file/], function(req, res) {
     res.redirect('review-file');
@@ -130,9 +138,14 @@ router.post([/review-file/], function (req,res) {
 
 
     if (moreEvidence == 'Yes'){
+        data.error = 'false';
         res.redirect('upload-another-file');
     } else if (moreEvidence == 'No'){
+        data.error = 'false';
         res.redirect('check-your-answers');
+    } else if (!moreEvidence ){
+        data.error = 'true';
+        res.redirect('review-file');
     }
 })
 
