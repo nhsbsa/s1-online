@@ -5,38 +5,43 @@
 <p>Thank you for your application for an S1 form.</p>
 <p>We need you to send us some evidence so we can process your application.</p>
 
-{%- if  data['euStatePension'] == 'Yes' -%} 
-
-  <h2 class="nhsuk-heading-m">Your pension contributions.</h2>
-  <p>You need to send us evidence showing a breakdown of the years you have paid pension contributions to the UK. For example, a letter from the Department for Work and Pensions (DWP).</p>
-  <p>You also need to send us evidence showing a breakdown of the years you have paid pension contributions to:</p>
-  <ul class="nhsuk-list nhsuk-list--bullet"> 
-  {% if not data['myInputsEUSP'] %}
-    <li>Iceland</li>
-    <li>Norway</li>
-  {% else %}
-  {% for i in data['myInputsEUSP'] %}
-      <li>{{ i }}</li>
-  {% endfor %}
-  {% endif %}
-</ul> 
-{%- else  -%}
-  <h2 class="nhsuk-heading-m">Your UK State Pension start date.</h2>
-  <p>When you apply for an S1, there is an automatic check to the Department for Work and Pensions (DWP) to confirm the date your UK State Pension started.</p>
-  <p>This check was not able to confirm your UK State Pension start date.</p>
-  <p>We need you to send us a letter from the DWP that shows the exact date your pension was first paid.</p>
-  <p>If the DWP cannot give you a letter with this information, you can ask them to send us an email notification called a HINT. This will give us the pension details we need. <a href="https://www.gov.uk/government/organisations/department-for-work-pensions" target="_blank">Find out how to contact the DWP on the GOV.UK website</a>.</p>
-  <p>If you know when the DWP sent us a HINT, tell us and we will look for it.</p>
-{%- endif -%}
+<h2 class="nhsuk-heading-m">What you need to send</h2>
+<p>You need to send us a letter from the Department for Work and Pensions (DWP) that shows the exact date you started getting paid your UK State Pension.</p>
+<p>We cannot process your application until we get this evidence.</p>
 
 
-<h2 class="nhsuk-heading-m">Sending your evidence</h2>
+
+<h2 class="nhsuk-heading-m">Send your evidence online</h2>
 <p>You can send us your evidence by taking a photo of it with a mobile phone or digital camera, or by scanning it.</p>
 
 {{ insetText({
   "HTML": "<p>Send us your evidence online at <a href=\"../upload/start-page\" title=\"External website\">https://services.nhsbsa.nhs.uk/cra/upload</a>.</p>"
 }) }}
-<p>If you cannot send your evidence this way, let us know by email at <a href="mailto:">S1applications@nhsbsa.nhs.uk</a>.  </p>
-<p>We cannot process your application until we get this evidence.</p>
+<p>You’ll need to give us your:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    National Insurance number
+  </li>
+  <li>
+    OHS reference number 
+  </li>
+  <li>
+    name
+  </li>
+  <li>
+    date of birth
+  </li>
+</ul>
+<p>This link will expire in 8 weeks. If you have not sent your evidence before {{ '22 May 2024' | ninetyDaysFromNow }}, you’ll need to contact us to ask for a new link. </p>
+<p>If you cannot send your evidence online, let us know by email at <a href="mailto:S1applications@nhsbsa.nhs.uk">S1applications@nhsbsa.nhs.uk</a>. </p>
+
+<h2 class="nhsuk-heading-m">What happens next</h2>
+<p>We’ll check your evidence and let you know if your application is successful or if you need to do anything else.</p>
+<p>We aim to send you an update on your application within 5 working days.</p>
+
+<h2 class="nhsuk-heading-m">If you do not have this evidence</h2>
+<p>If the DWP cannot give you a letter with this information, you can ask them to send us an email notification called a HINT. This will give us the details we need. <a href="https://www.gov.uk/government/organisations/department-for-work-pensions">Find out how to contact the DWP on the GOV.UK website</a>.</p>
+
+<p>If you know when the DWP sent us a HINT, tell us and we will look for it.</p>
 
 {% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layouts/emails.html" %} 
+{% set emailSubject %}More information needed to support your S1 application{% endset -%} 
+
+{% block form %}
+<p>Thank you for your application for an S1 form.</p>
+<p>We need you to send us some evidence so we can process your application.</p>
+
+<h2 class="nhsuk-heading-m">What you need to send</h2>
+<p>You told us that you get a State Pension from countries outside the UK as well as your UK State Pension.</p>
+<p>You need to send us: </p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    a letter from the Department for Work and Pensions (DWP) showing a breakdown of the years you paid pension contributions to the UK
+  </li>
+  <li>
+    a letter from the pension provider showing a breakdown of the years you paid pension contributions to {{ data.countrySOne or 'Germany'}}
+  </li>
+</ul>
+<p>We cannot process your application until we get this evidence.</p>
+
+<h2 class="nhsuk-heading-m">Sending your evidence</h2>
+<p>You can send us your evidence by taking a photo of it with a mobile phone or digital camera, or by scanning it.</p>
+
+{{ insetText({
+  "HTML": "<p>Send the photo or scanned image as an email attachment to <a href=mailto:\"../upload/start-page\" title=\"External website\">S1applications@nhsbsa.nhs.uk.</a>.</p>"
+}) }}
+<p>You must include these details in your email:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    OHS reference number
+  </li>
+  <li>
+    full name 
+  </li>
+  <li>
+    date of birth
+  </li>
+  <li>
+    home address, including postcode
+  </li>
+</ul>
+<p>If you cannot send your evidence this way, let us know by email at <a href="mailto:S1applications@nhsbsa.nhs.uk">S1applications@nhsbsa.nhs.uk</a>. </p>
+
+<h2 class="nhsuk-heading-m">What happens next</h2>
+<p>We’ll check your evidence and let you know if your application is successful or if you need to do anything else.</p>
+<p>We aim to send you an update on your application within 5 working days.</p>
+
+
+{% endblock %}
