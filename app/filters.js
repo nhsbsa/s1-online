@@ -65,6 +65,16 @@ filters.ninetyDaysFromNow = function() {
       return error.message.split(':')[0];
   }
 };
+filters.twelveWeeksFromNow = function() {
+  try {
+      const today = new Date();
+      const twelveWeekLater = new Date(today.setDate(today.getDate() + 84));
+
+      return new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }).format(twelveWeekLater);
+  } catch (error) {
+      return error.message.split(':')[0];
+  }
+};
 filters.twoDaysFromNow = function() {
   try {
       const today = new Date();
@@ -75,6 +85,7 @@ filters.twoDaysFromNow = function() {
       return error.message.split(':')[0];
   }
 };
+
 filters.formatDate = function(dateString) {
   try {
       // Split the input date string into day, month, and year

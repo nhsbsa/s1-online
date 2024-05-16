@@ -18,32 +18,11 @@
 </ul>
 <p>We cannot process your application until we get this evidence.</p>
 
-<h2 class="nhsuk-heading-m">Sending your evidence</h2>
-<p>You can send us your evidence by taking a photo of it with a mobile phone or digital camera, or by scanning it.</p>
 
-{{ insetText({
-  "HTML": "<p>Send the photo or scanned image as an email attachment to <a href=mailto:\"../upload/start-page\" title=\"External website\">S1applications@nhsbsa.nhs.uk.</a>.</p>"
-}) }}
-<p>You must include these details in your email:</p>
-<ul class="nhsuk-list nhsuk-list--bullet">
-  <li>
-    OHS reference number
-  </li>
-  <li>
-    full name 
-  </li>
-  <li>
-    date of birth
-  </li>
-  <li>
-    home address, including postcode
-  </li>
-</ul>
-<p>If you cannot send your evidence this way, let us know by email at <a href="mailto:S1applications@nhsbsa.nhs.uk">S1applications@nhsbsa.nhs.uk</a>. </p>
+<!-- what personal ID user needs to provide. -->
+{% include '../apply/_evidence-email.html' %}
 
-<h2 class="nhsuk-heading-m">What happens next</h2>
-<p>We’ll check your evidence and let you know if your application is successful or if you need to do anything else.</p>
-<p>We aim to send you an update on your application within 5 working days.</p>
-
+<!-- information on when individuals might expect to hear back. -->
+{% include '../apply/_sla.html' %}
 
 {% endblock %}
