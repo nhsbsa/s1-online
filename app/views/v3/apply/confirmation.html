@@ -2,7 +2,7 @@
 {% set hideTitle = true %}
 {% set hideBackLink = true %}
 {% set showCard = true %}
-{% set cardTitle %}You are entitled to an S1 form for healthcare cover{% endset %}
+{% set cardTitle %}Your S1 application was successful {% endset %}
 {% set buttonText = 'Finish' %}
 {% set buttonHref = '../apply/email-success' %}
 {% set showButton = true %}
@@ -11,9 +11,8 @@
 <p>You are entitled to an S1 form for healthcare cover.</p>
 
 <h2 class="nhsuk-heading-l">What happens next</h2>
-<p>We’ve sent you a confirmation email with a link to download your S1 form and a letter with information about registering and using your S1 form.</p>
+<p>We've sent confirmation by email to <strong>{{ data['email'] or 'johnsmith@gmail.com'}}</strong> with a link to download your S1 and a letter with information about registering and using your S1.</p>
 
 <h2 class="nhsuk-heading-l">Your healthcare cover</h2>
-<p>Your healthcare cover in {{ data['countrySOne'] or 'Germany'}} will start when you register your S1 form with the relevant health authority there. This may take some time and we advise you to think about getting private medical insurance to help with the cost of any treatment you may need before your S1 is registered. </p>
-
+<p>Your healthcare cover in {{ data['countrySOne'] or 'Germany'}} will start when you register your S1 with the relevant health authority there. This may take some time and we advise you to think about getting private medical insurance to help with the cost of any treatment you may need before your S1 is registered. </p>
 {% endblock %}

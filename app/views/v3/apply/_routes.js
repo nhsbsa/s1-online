@@ -426,14 +426,22 @@ router.post([/applicant-email/], function (req,res) {
     
     var email = req.session.data['email'];
     const data = req.session.data;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-    if(email != '' ) {
+    if (!email) {
+        // Case 1: Email is empty
+        data.error = 'true';
+        data.errorMessage = 'You must enter an email address';
+        res.redirect('applicant-email');
+    } else if (!emailRegex.test(email)) {
+        // Case 2: Email format is invalid
+        data.error = 'true';
+        data.errorMessage = 'Enter an email address in the correct format, like name@example.com';
+        res.redirect('applicant-email');
+    } else {
+        // Case 3: Email is valid
         data.error = 'false';
         res.redirect('applicant-phone');
-    } else if(email == '') {
-        data.error = 'true';
-        res.redirect('applicant-email');
     }
 })
 

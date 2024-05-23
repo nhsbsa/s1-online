@@ -1,14 +1,14 @@
 {% extends 'layouts/forms.html' %}
 {% set title %}What is your email address?{% endset %}
 {% set hintText = true %}
-{% set hintTextCopy %}We'll use this to send you a copy of the S1 or if we need to ask you for any more information to support your application.{% endset %}
+{% set hintTextCopy %}We'll use this to send you a copy of the S1 or if we need to ask you for any evidence to support your application.{% endset %}
 {% set caption = data.mainCaption %}
 {% set inputError = true %}
 {% set hideErrorMarkup = true %}
 
 
 {% set errorMessage %}
-  Enter an email address in the correct format, like name@example.com
+  {{ data.errorMessage or 'errorMessage'}}
 {% endset %}
 
 {% set idPrefix %}email{% endset -%}
