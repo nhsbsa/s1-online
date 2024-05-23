@@ -1,0 +1,161 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Cookies' %}
+{% set hideBackLink = true %}
+{% set hidecaption = true %}
+{% set showFontXl = true %}
+{% set hideButton = true %}
+
+{% block form %}
+
+<p>Our website places small files, known as cookies, onto your device.</p>
+
+<p>Cookies measure how you use our website so we can update and improve it based on your needs.</p>
+
+<p><a href="https://allaboutcookies.org/" target="_blank">Find out how to manage cookies</a> (opens in a new tab).</p>
+
+
+
+
+<h2 class="nhsuk-heading-l">What cookies we use and why</h2>
+<h2 class="nhsuk-heading-m">Google Analytics cookies</h2>
+<p>We use Google Analytics software to collect information about how you use our website.</p>
+
+<p>Google Analytics collects information about:</p>
+
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    the pages you visit and how long you spend on them
+  </li>
+  <li>
+    how you got to the service
+  </li>
+  <li>
+    what you click on when you’re using the service
+  </li>
+  <li>
+    You can <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">opt out of being tracked by Google Analytics</a>(opens in a new tab) across all websites.
+  </li>
+  
+</ul>
+
+<p>Google Analytics uses the following cookies:</p>
+
+
+{{ table({
+  panel: false,
+  caption: "Google analytic cookies table",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Cookie name"
+    },
+    {
+      text: "Purpose"
+    }
+    ,
+    {
+      text: "How long it stays on your device"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "_utma"
+      },
+      {
+        text: "To determine the number of unique visitors to our website	"
+      },
+      {
+        text: "2 years"
+      }
+    ],
+    [
+      {
+        text: "_utmb"
+      },
+      {
+        text: "To establish and continue your internet browser session on our website		"
+      },
+      {
+        text: "30 minutes"
+      }
+    ],
+    [
+      {
+        text: "_utmt"
+      },
+      {
+        text: "To manage data transfer volumes"
+      },
+      {
+        text: "10 minutes"
+      }
+    ]
+  ]
+}) }}
+
+
+<h2 class="nhsuk-heading-l">What our services use</h2>
+<p>Depending on which of our services you use, we also use other cookies. You can view the cookies for each service.</p>
+
+<h2 class="nhsuk-heading-m">Information Services</h2>
+<p>We use the following cookies for the Information Services Portal.</p>
+
+{{ table({
+  panel: false,
+  caption: "Cookies used for the Information Services Portal table",
+  firstCellIsHeader: false,
+  head: [
+    {
+      text: "Cookie name"
+    },
+    {
+      text: "Purpose"
+    }
+    ,
+    {
+      text: "How long it stays on your device"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "ISMServerTime"
+      },
+      {
+        text: "Stores the current time on the ISP server. This cookie is essential for this system to work.		"
+      },
+      {
+        text: "Until you close your browser"
+      }
+    ],
+    [
+      {
+        text: "ISMSessionExpiry	"
+      },
+      {
+        text: "Stores the time your current session will expire due to inactivity. This cookie is essential for this system to work."
+      },
+      {
+        text: "Until you close your browser"
+      }
+    ],
+    [
+      {
+        text: "JESSIONID"
+      },
+      {
+        text: "Stores your session ID used by the ISP server to distinguish you from others. This cookie is essential for this system to work.	"
+      },
+      {
+        text: "Until you close your browser"
+      }
+    ]
+  ]
+}) }}
+<h2 class="nhsuk-heading-l">Change your cookie settings</h2>
+<p>Depending on which of our services you use, we also use other cookies. You can view the cookies for each service.</p>
+<p>Some cookies, like those used to measure how you use our website, are not needed for our website to work.</p>
+
+<p>These cookies can help us make our website better, but we'll only use them if you say it's OK</p>
+{% endblock %}
