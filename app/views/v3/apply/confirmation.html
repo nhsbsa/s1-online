@@ -8,11 +8,11 @@
 {% set showButton = true %}
 
 {% block form %}
-<p>You are entitled to an S1 form for healthcare cover.</p>
+<p>You are entitled to an S1 for healthcare cover.</p>
 
 <h2 class="nhsuk-heading-l">What happens next</h2>
 <p>We've sent confirmation by email to <strong>{{ data['email'] or 'johnsmith@gmail.com'}}</strong> with a link to download your S1 and a letter with information about registering and using your S1.</p>
-
+<p>If you do not receive the email within a few minutes, check your spam or junk mail folder.</p>
 <h2 class="nhsuk-heading-l">Your healthcare cover</h2>
 <p>Your healthcare cover in {{ data['countrySOne'] or 'Germany'}} will start when you register your S1 with the relevant health authority there. This may take some time and we advise you to think about getting private medical insurance to help with the cost of any treatment you may need before your S1 is registered. </p>
 {% endblock %}

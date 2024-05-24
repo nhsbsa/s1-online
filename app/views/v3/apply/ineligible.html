@@ -12,7 +12,7 @@
 {% block form %}
 
 {%- if data['ineligible'] == 'country-check-fail' -%}
-  <p>To be entitled to an S1 for healthcare cover while living abroad, you must be permanently moving or living in an EU country, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+  <p>To be entitled to an S1 for healthcare cover for living abroad, you must be living or planning to live mainly in an EU country, Switzerland, Norway, Iceland or Liechtenstein. </p>
 
 {%- elif  data['ineligible'] == 'country-fail' -%}
   <p> An S1 does not cover you for healthcare in {{ data.countrySOne or 'Germany'}}.</p>
