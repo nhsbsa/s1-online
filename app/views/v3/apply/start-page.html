@@ -1,5 +1,5 @@
 {% extends "layouts/main.html" %}
-{% set showButton = true %}
+{% set showButton = false %}
 {% set buttonText = 'Start now' %}
 {% set buttonHref %}eligibility-country-check {% endset %} 
 {% set hideBackLink = true %}
@@ -11,7 +11,6 @@
         {{serviceName or "Apply for healthcare cover for living abroad"}}      
       </h1>
       <p>Use this service to apply for a certificate of entitlement called an S1 to get healthcare cover for living abroad.</p>
-      <p>You can also <a href="contact">contact us to get help with your application or apply by phone</a>.</p>
      
          <!-- Start of what is covered-->
     <h2>What an S1 covers</h2>
@@ -68,7 +67,11 @@
     "HTML": "<p>If you leave without submitting your application, it will time out without saving after 30 minutes. We’ll tell you before this happens.</p>"
   }) }}
   <!-- End of warning callout -->
+  {{ button({
+    "text": "Start now",
+    "href": "eligibility-country-check"
 
-
-{% endblock %}
+  }) }}
+  <p>You can also <a href="contact">contact us to get help with your application or apply by phone</a>.</p>
+  {% endblock %}
 
