@@ -545,3 +545,80 @@ var element = document.querySelector('#tt-default')
         }),
         element
       )
+
+      // Modal window for confirmation when removing files
+
+      // Get the modal element
+      var modal = document.getElementById('deleteModal');
+    
+      // Get the delete buttons that open the modal
+      var deleteBtn1 = document.querySelector('.delete-member1');
+      var deleteBtn2 = document.querySelector('.delete-member2');
+    
+      // Get the <span> element that closes the modal
+      var closeBtn = document.querySelector('.close');
+    
+      // Get the buttons inside the modal
+      var confirmBtn = document.getElementById('confirmDelete');
+      var cancelBtn = document.getElementById('cancelDelete');
+    
+      // When the user clicks a delete button, open the modal and determine which family member to delete
+      deleteBtn1.onclick = function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        modal.style.display = 'block';
+        modal.dataset.member = 'familymember1'; // Set data attribute to identify which family member to delete
+        var dependantName = "{{data.dependantName or 'John Smith'}}";
+        document.getElementById('dialog-title').textContent = "Remove " + dependantName + "?"; // Update modal title
+      }
+    
+      deleteBtn2.onclick = function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        modal.style.display = 'block';
+        modal.dataset.member = 'familymember2'; // Set data attribute to identify which family member to delete
+        var dependantName = "{{data.dependantName2 or 'Jane Smith'}}";
+        document.getElementById('dialog-title').textContent = "Remove " + dependantName + "?"; // Update modal title
+      }
+    
+      // When the user clicks on <span> (x) or cancel button, close the modal
+      closeBtn.onclick = cancelBtn.onclick = function() {
+        modal.style.display = 'none';
+      }
+    
+      // When the user clicks on confirm button, hide modal, show update message, and hide the appropriate family member
+      confirmBtn.onclick = function(event) {
+        event.preventDefault(); // Prevent default button behavior
+        modal.style.display = 'none';
+        document.querySelector('.updatemessage').style.display = 'block';
+        var memberToDelete = modal.dataset.member; // Get the data attribute to identify which family member to delete
+        document.querySelector('.' + memberToDelete).style.display = 'none'; // Hide the appropriate family member
+        
+        // Show the notification banner
+        document.querySelector('.nhs-notification-banner').style.display = 'block';
+  
+        // Update the updatemessage content based on the memberToDelete
+        var dependantName;
+        if (memberToDelete === 'familymember1') {
+          dependantName = "{{data.dependantName or 'John Smith'}}";
+        } else {
+          dependantName = "{{data.dependantName2 or 'Jane Smith'}}";
+        }
+        document.getElementById('dialog-title2').textContent = dependantName + " has been removed.";
+  
+        // Check if both family members are hidden
+        if (document.querySelector('.familymember1').style.display === 'none' &&
+            document.querySelector('.familymember2').style.display === 'none') {
+          // Show the no-dependants div
+          document.querySelector('.no-dependants').style.display = 'block';
+          // Change the content of the h2 element
+          document.querySelector('.add-family-member-text').textContent = "Do you want to add any family members?";
+        }
+  
+        window.scrollTo(0, 0); // Scroll to the top of the page
+      }
+    
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      }

@@ -8,105 +8,6 @@
   What is {{ data.dependantName or 'John Smith' }}'s address?	
 {% endset %}
 
-<style>
-  /* Notification banner styles */
-
-
-.nhs-notification-banner {
-    margin-top: 30px;
-    border: 5px solid #005eb8;
-    background-color: #005eb8;
-}
-
-.nhs-notification-banner__header, h4  {
-   padding: 0 0 0 5px ;
-    margin: 0 !important;
-    border-bottom: 1px solid transparent;
-    color: #fff
-}
-
-.nhs-notification-banner__title {
-    margin: 0;
-    padding: 0;
-    color: #fff;
-}
-
-.nhs-notification-banner__heading {
-    font-size: 1.125rem;
-    line-height: 1.1111111111;
-    font-weight: 700;
-    margin: 0 0 15px;
-    padding: 0;
-}
-
-.nhs-notification-banner__content {
-    color: #0b0c0c;
-    padding: 15px;
-    background-color: #fff;
-    font-weight: 700;
-}
-.nhs-notification-banner__content h5 {
-  margin: 0;
-}
-
-  /* Modal and summary styles */
-
-  
-  /* Modal content */
-
-
-
-  .modal-dialog {
-    display: none; /* Hide the modal by default */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    
-    background-color: rgba(0, 0, 0, 0.5);
-  }
-
-  .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto; /* 15% from the top and centered */
-      padding: 20px;
-      border: 1px solid #888;
-      width: 40%; /* Could be more or less, depending on screen size */
-        padding: 25px;
-        max-width: 80%;
-  }
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
- 
-  .nhsuk-update-summary {
-    border: 4px solid #005eb8;
-  }
-
-  .close {
-    color: #212b32;
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-    line-height: 1em;
-  }
-
-
-  .cancel {
-    margin: 1em 0 0 1em;
-    display: inline-block;
-  }
-</style>
 
 {% if dependantSummary %}
   <h3 class="nhsuk-u-font-size-22 nhsuk-u-margin-bottom-2 nhsuk-u-margin-top-4">Family member 1</h3>
@@ -178,6 +79,7 @@
 </div>
 {% endif %}
 
+{%- if data['dependant2'] == 'true' -%}
 
 {% if dependantSummary %}
 <h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3" style="display: inline-block;">Family member 2</h2>
@@ -188,7 +90,7 @@
 {% endif %}
 <hr class="nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
 
-
+ 
 
   {{ summaryList({
     classes: '',
@@ -250,6 +152,7 @@
   {% else %}
   </div>
   {% endif %}
+  {%- endif -%}
 
   <div class="no-dependants"  style="display: none;">
     {{ insetText({

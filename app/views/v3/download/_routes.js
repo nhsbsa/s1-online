@@ -63,7 +63,7 @@ router.post([/dob/], function (req, res) {
 
     } else if(req.body.dateOfBirth !== '' ) {
         data.error = 'false';
-        res.redirect('confirmation');
+        res.redirect('nino');
     }   
 }) 
 
@@ -84,8 +84,8 @@ function getMonthInLetters(month) {
     return '';
 }
 
-router.post([/dob/], function (req,res) {
-    res.redirect('record-found') 
+router.post([/nino/], function (req,res) {
+    res.redirect('confirmation') 
 })
 
 router.post([/record-found/], function (req,res) {
