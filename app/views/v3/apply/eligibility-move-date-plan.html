@@ -16,7 +16,7 @@
 
 {% set inlineError %}
   {%- if  data['errortype'] == 'empty' -%}
-    Date of moving must include a day, month and year  
+  {% include '../apply/_error-move-content.html' %}
   {%- else  -%}
   {% include '../apply/_error-move-90-content.html' %}
   {%- endif -%}
