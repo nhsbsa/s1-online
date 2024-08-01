@@ -211,12 +211,15 @@ router.post([/eligibility-check-state-pension/], function(req, res){
     } else if (statePensionCheck == 'Yes' && countrySOne == 'Germany'){
         data.error = 'false';
         res.redirect('eligibility-germany-contributions');
+    } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
+        data.error = 'false';
+        res.redirect('eligibility-other-eu-state-pension');
     } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
         data.error = 'false';
         res.redirect('eligibility-other-eu-state-pension');
     } if (!statePensionCheck){
         data.error = 'true';
-        res.redirect('eligibility-check-state-pension');
+        res.redirect('eligibility-other-eu-state-pension');
     }
 })
 
