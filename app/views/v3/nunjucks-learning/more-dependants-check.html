@@ -1,0 +1,65 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Check your family member’s details{% endset %}
+{% set caption = data.mainCaption %}
+{% set errorMessage = 'Select yes if you want to add any family members to your S1 application' %}
+{% set idPrefix %}dependant-first-name{% endset -%}
+{% set hideBackLink = true %}
+{% block beforeContent %}
+
+<div class="updatemessage" style="display: none;">
+<div class="nhsuk-width-container" >
+  
+  <div class="nhs-notification-banner" role="alert" aria-labelledby="nhs-notification-banner-title" data-module="nhs-notification-banner">
+    <div class="nhs-notification-banner__header">
+      <h4 class="nhsuk-heading-xs" >
+        Success
+      </h4>
+
+    </div>
+    <div class="nhs-notification-banner__content">
+      <h5 class="nhsuk-heading-xs" id="dialog-title2" >
+     {{data.dependantName2 or "Jane Smith"}} has been removed.
+    </h5>
+    </div>
+  </div>
+  
+  </div>
+
+</div>
+{% endblock %}
+{% block form %}
+
+{% include '../apply/_dependant-answers.html' %}
+
+
+<h2 class="nhsuk-heading-m nhsuk-u-margin-bottom-3 nhsuk-u-margin-top-3 add-family-member-text">Do you want to add another family member?</h2>
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "hint": {
+      "html": hintTextCopy
+    },
+    "name": "moreDependantsCheck",
+    "classes": "nhsuk-radios--inline",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes"
+      },
+      {
+        "value": "No",
+        "text": "No"
+      }
+    ]
+  }) }}
+  
+
+
+
+
+
+{% endblock %}

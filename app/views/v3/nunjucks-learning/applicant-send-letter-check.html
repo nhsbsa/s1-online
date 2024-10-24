@@ -1,0 +1,32 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Do you need a paper copy of your S1?' %}
+{% set caption = data.mainCaption %}
+{% set errorMessage = 'Select yes if you want a copy of your S1 to be sent to you by post, as well as email' %}
+{% set idPrefix %}applicant-correspondence-address-check{% endset -%}
+
+{% block form %}
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "sendCopyLetter",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.sendCopyLetter === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.sendCopyLetter === 'No'
+      }
+    ]
+  }) }}
+ 
+ 
+
+{% endblock %}

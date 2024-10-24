@@ -5,6 +5,7 @@ module.exports = {
     'OHS': '25001275',
     'eligibilityCaption': 'Eligibility',
     'mainCaption': 'Main application',
+    'testCaption': 'Test caption',
     'familyCaption': 'Add family members',
     'uploadCaption': 'Upload evidence',
     'downloadCertificate': 'Download S1 certificate'

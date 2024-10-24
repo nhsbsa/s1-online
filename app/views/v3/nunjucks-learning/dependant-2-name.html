@@ -1,0 +1,50 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Who do you want to add to your application?{% endset %}
+{% set hintText = true %}
+{% set hintTextCopy = 'Give their name as it appears in a passport. This will help when registering their S1 certificate..' %}
+{% set caption = data.mainCaption %}
+{% set inputError = true %}
+{% set idPrefix %}dependant-first-name2{% endset -%}
+{% set hideErrorMarkup = true %}
+
+
+{% set errorMessage %}
+<ul class="nhsuk-list">
+  <li>
+    Enter your family member's first name
+  </li>
+  <li>
+    Enter your family member's last name
+  </li>
+</ul>
+
+{% endset %}
+
+
+
+{% block form %}
+{{ input({
+    "label": {
+      "text": "First or given names"
+    },
+    "id": idPrefix,
+    "name": "dependantFirstName2",
+    "value": data.dependantFirstName2,
+    "errorMessage": {
+      "html": "Enter your family member's first name"
+    } if data['error'] == 'true'
+  }) }}
+
+  {{ input({
+    "label": {
+      "text": "Last or family name"
+    },
+    "id": "dependant-surname2",
+    "name": "dependantSurname2",
+    "value": data.dependantSurname2,
+    "errorMessage": {
+      "html": "Enter your family member's last name"
+    } if data['error'] == 'true'
+  }) }}
+
+{% endblock %}

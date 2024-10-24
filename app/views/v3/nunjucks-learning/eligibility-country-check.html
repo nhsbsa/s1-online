@@ -1,0 +1,37 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Are you or will you be mainly living outside the UK?' %}
+{% set caption = data.eligibilityCaption %}
+{% set errorMessage = 'Select yes if your main home is or will be outside the UK' %}
+{% set idPrefix %}eligibility-country-check{% endset -%}
+{% set hideBackLink = true %}
+{% set hint %}Select yes if your main home is or will be outside the UK. You may have more than one home, but your main home is where you’ll spend most of your time.{% endset %}
+
+{% block form %}
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "liveEU",
+    "hint": {
+      "text": hint
+    },
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+    {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.liveEU === 'Yes'
+    },
+    {
+        "value": "No",
+        "text": "No",
+        "checked": data.liveEU === 'No'
+    }
+  ]
+  }) }}
+ 
+ 
+
+{% endblock %}

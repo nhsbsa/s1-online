@@ -1,0 +1,51 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}When did you move to  {{ data.countrySOne or 'Germany'}}?{% endset %}
+{% set caption = data.eligibilityCaption %}
+
+
+{% set errorMessage %}
+  {%- if  data['errortype'] == 'empty' -%}
+    {% include '../nunjucks-learning/_error-move-content.html' %}
+  {%- else  -%}
+  {% include '../nunjucks-learning/_error-move-infuture-content.html' %}
+  {%- endif -%}
+
+{% endset %}
+
+
+{% set idPrefix %}eligibility-move-date{% endset -%}
+
+
+{% block form %}
+{{ dateInput({
+  "id": 'idPrefix',
+  "hint": {
+    "text": "For example, 15 3 2023"
+  },
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+  "items": [
+    {
+      "name": "moveDay",
+      "label": "Day",
+      "value": data['moveDay'],
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "moveMonth",
+      "label": "Month",
+      "value": data['moveMonth'],
+      "classes": "nhsuk-input--width-2"
+    },
+    {
+      "name": "moveYear",
+      "label": "Year",
+      "value": data['moveYear'],
+      "classes": "nhsuk-input--width-4"
+    }
+  ]
+}) }}
+
+
+{% endblock %}

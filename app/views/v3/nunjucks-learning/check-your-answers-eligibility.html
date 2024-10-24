@@ -1,0 +1,195 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Check your answers' %}
+{% set caption = data.eligibilityCaption %}
+{% set fullWidth = true %}
+{% set hideBackLink = true %}
+
+{% set location %}
+  Are you already living in {{ data.countrySOne or 'Germany' }}?
+{% endset %}
+{% set locationDate %}
+  When did you move to {{ data.countrySOne or 'Germany' }}? 
+{% endset %}
+{% set locationDateMove %}
+  When will you move to {{ data.countrySOne or 'Germany' }}?
+{% endset %}
+{% set ukStatePension %}
+  Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ '22 May 2024' | ninetyDaysFromNow }}?
+{% endset %}
+{% set foreignPension %}
+  Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
+{% endset %}
+{% set germanyContributions %}
+  Have you paid Statutory Health Contributions to Germany?
+{% endset %}
+{% set countries %}
+    {% for i in data['myInputsEUSP']%}
+        {{i}}<br>
+    {% endfor %}
+{% endset %}
+
+{% block form %}
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: "Are you permanently living or moving outside the UK?	"
+      },
+      value: {
+        html: data['liveEU'] or 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-country-check",
+            text: "Change",
+            visuallyHiddenText: "if you permanently living or moving outside the UK?"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Which country are you living in or moving to?"
+      },
+      value: {
+        html: data['countrySOne'] or 'Germany'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-country",
+            text: "Change",
+            visuallyHiddenText: "country are you living in or moving to"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: location
+      },
+      value: {
+        html: data['moveCheck'] or 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-move-check",
+            text: "Change",
+            visuallyHiddenText: "if you live in the country"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: locationDate if data['moveCheck'] == "Yes" else locationDateMove
+      },
+      value: {
+        html: data['moveDate'] if data['moveCheck'] == "Yes" else data['futureDate'] or '31 January 2011'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-move-date" if data['moveCheck'] == "Yes" else "eligibility-move-date-plan" or "eligibility-move-date",
+            text: "Change",
+            visuallyHiddenText: "when you moved to the country" if data['moveCheck'] == "Yes" else "when you will move to the country"
+          }
+        ]
+      }
+    },
+    { 
+      key: {
+        html: ukStatePension
+      },
+      value: {
+        html: data['ukStatePension'] or 'Yes'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-uk-state-pension",
+            text: "Change",
+            visuallyHiddenText: "If you are being paid a UK State Pension, or will you be paid your UK State Pension before 23 May 2024?"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        html: foreignPension
+      },
+      value: {
+        html: data['statePensionCheck'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-check-state-pension",
+            text: "Change",
+            visuallyHiddenText: "if you are being paid a state pension abroad"
+          }
+        ]
+      }
+    } ,
+    {
+      key: {
+        text: 'Have you paid Statutory Health Contributions to Germany?'
+      },
+      value: {
+        html: data['germanyContributions'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-germany-contributions",
+            text: "Change",
+            visuallyHiddenText: "if you have paid Statutory Health Contributions to Germany?
+            "
+          }
+        ]
+      }
+    } if data['countrySOne'] == 'Germany',
+    {
+      key: {
+        text: 'Do you also get a State Pension from an EU country, Norway, Iceland, Liechtenstein or Switzerland?'
+      },
+      value: {
+        html: data['euStatePension'] or 'No'
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-other-eu-state-pension",
+            text: "Change",
+            visuallyHiddenText: "if you also get a State Pension from an EU country, Norway, Iceland, Liechtenstein or Switzerland?"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: 'Which countries do you get a State Pension from, other than the UK?'
+      },
+      value: {
+        html: countries
+      },
+      actions: {
+        items: [
+          {
+            href: "eligibility-eu-country-state-pension",
+            text: "Change",
+            visuallyHiddenText: "which countries do you get a State Pension from, other than the UK?	"
+          }
+        ]
+      }
+    } if data['euStatePension'] == 'Yes'       
+  ] 
+}) }}
+<h2 class="nhsuk-heading-m">You can continue with your application</h2>
+<p>Based on the answers you’ve given, you may be eligible for an S1 form.</p>
+
+
+{% endblock %}

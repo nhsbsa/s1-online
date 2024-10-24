@@ -179,7 +179,7 @@ function removeInputEEA(btn){
     "Saint Helena, Ascension and Tristan da Cunha", "Saint Kitts and Nevis", "Saint Lucia",
     "Saint Martin (French part)", "Saint Pierre and Miquelon",
     "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe",
-    "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
+    "Saudi Arabia", "Scotland", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore",
     "Sint Maarten (Dutch part)", "Solomon Islands", "Somalia", "South Africa", 
     "South Georgia and the South Sandwich Islands", "South Sudan",
     "Sri Lanka", "Sudan", "Suriname", "Svalbard and Jan Mayen", "Swaziland",

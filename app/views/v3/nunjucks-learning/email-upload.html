@@ -1,0 +1,47 @@
+{% extends "layouts/emails.html" %} 
+{% set emailSubject %}More information needed to support your S1 application{% endset -%} 
+
+{% block form %}
+<p>Thank you for your application for an S1.</p>
+<p>We need you to send us some evidence so we can process your application.</p>
+
+<h2 class="nhsuk-heading-m">What you need to send</h2>
+<p>You need to send us a letter from the Department for Work and Pensions (DWP) that shows the exact date you started getting paid your UK State Pension.</p>
+<p>We cannot process your application until we get this evidence.</p>
+
+
+
+<h2 class="nhsuk-heading-m">Send your evidence online</h2>
+<p>You can send us your evidence by taking a photo of it with a mobile phone or digital camera, or by scanning it.</p>
+
+{{ insetText({
+  "HTML": "<p>Send us your evidence online at <a href=\"../upload/start-page\" title=\"External website\">https://services.nhsbsa.nhs.uk/cra/upload</a></p>"
+}) }}
+<p>You’ll need to give us your:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    National Insurance number
+  </li>
+  <li>
+    OHS reference number 
+  </li>
+  <li>
+    name
+  </li>
+  <li>
+    date of birth
+  </li>
+</ul>
+<p>This link will expire in 12 weeks. If you have not sent your evidence before {{ '22 May 2024' | twelveWeeksFromNow }}, you’ll need to contact us to ask for a new link. </p>
+<p>If you cannot send your evidence online, let us know by email at <a href="mailto:S1applications@nhsbsa.nhs.uk">S1applications@nhsbsa.nhs.uk</a> </p>
+
+
+<!-- information on when individuals might expect to hear back. -->
+{% include '../apply/_sla.html' %}
+
+<h2 class="nhsuk-heading-m">If you do not have this evidence</h2>
+<p>If the DWP cannot give you a letter with this information, you can ask them to send us an email notification called a HINT. This will give us the details we need. <a href="https://www.gov.uk/government/organisations/department-for-work-pensions">Find out how to contact the DWP on the GOV.UK website</a>.</p>
+
+<p>If you know when the DWP sent us a HINT, tell us and we will look for it.</p>
+
+{% endblock %}

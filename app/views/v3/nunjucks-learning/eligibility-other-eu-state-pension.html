@@ -1,0 +1,31 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'Do you get a State Pension from any other EU countries or from Switzerland, Norway, Iceland or Liechtenstein?' %}
+{% set caption = data.eligibilityCaption %}
+{% set errorMessage = 'Select yes if you get a State Pension from any other EU countries or from Switzerland, Norway, Iceland or Liechtenstein' %}
+{% set idPrefix %}eligibility-other-eu-state-pension{% endset -%}
+
+
+{% block form %}
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "euStatePension",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.euStatePension === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.euStatePension === 'No'
+      }
+    ]
+  }) }}
+
+
+{% endblock %}

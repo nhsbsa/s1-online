@@ -1,0 +1,18 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %}We need more information to process your application{% endset %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../nunjucks-learning/email-upload' %}
+{% set showButton = true %}
+
+{% block form %}
+<p>You need to send us some evidence before we can process your application for an S1.</p>
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>We’ve sent an email to <strong>{{ data['email'] or 'johnsmith@gmail.com'}}</strong> telling you what evidence you need to send and how to send it to us. </p>
+
+<p>If you do not receive the email within a few minutes, check your spam or junk mail folder.</p>
+
+{% endblock %}

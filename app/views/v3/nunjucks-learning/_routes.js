@@ -4,9 +4,8 @@ const router = express.Router()
 // const axios = require('axios');
 
 
-//// Alpha S1 V.2 /////
+//// Nunjucks Learning /////
 //////////////////////
-
 
 
 // 	Are you permanently living or moving outside the UK?
@@ -26,8 +25,6 @@ router.post([/eligibility-country-check/], function(req, res){
         res.redirect('eligibility-country-check');
     }
 })
-
-
 
 
 //  Which country do you need an S1 for?
@@ -129,8 +126,6 @@ router.post([/eligibility-move-date-plan/], function (req, res){
 });
 
 
-
-
 router.post([/eligibility-move-date/], function (req, res){
 
     // Get the Move Date values from the (dd / mm / yyyy) separate date inputs 
@@ -145,11 +140,22 @@ router.post([/eligibility-move-date/], function (req, res){
     // Set the applicantDob in the desired format
     req.session.data['moveDate'] = `${day} ${monthInLetters} ${year}`;
 
- 
     if (day == '' && month == '' && year == '') {
         data.error = 'true';
+        data.errortype = 'empty';
         res.redirect('eligibility-move-date');
     } else {
+        // Check if selected date is in the future
+        const selectedDate1 = new Date(`${month} ${day} ${year}`);
+        const today1 = new Date();
+        if (selectedDate1 > today1) {
+            // Date is on the future
+            data.error = 'true';
+            data.errortype = 'infuture';
+            res.redirect('eligibility-move-date');
+        } else {
+            // Date is in the past
+        }    
         data.error = 'false';
         res.redirect('eligibility-uk-state-pension');
     }
@@ -211,17 +217,19 @@ router.post([/eligibility-check-state-pension/], function(req, res){
     } else if (statePensionCheck == 'Yes' && countrySOne == 'Germany'){
         data.error = 'false';
         res.redirect('eligibility-germany-contributions');
-    } else if (statePensionCheck == 'No' && countrySOne == 'Germany'){
-        data.error = 'false';
-        res.redirect('eligibility-other-eu-state-pension');
     } else if (statePensionCheck == 'No' && countrySOne != 'Germany'){
         data.error = 'false';
         res.redirect('eligibility-other-eu-state-pension');
     } if (!statePensionCheck){
         data.error = 'true';
-        res.redirect('eligibility-other-eu-state-pension');
+        res.redirect('eligibility-check-state-pension');
     }
 })
+
+// End of Eligibilty section
+
+
+
 
 
 // Have you paid Statutory Health Contributions to Germany?

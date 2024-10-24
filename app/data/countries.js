@@ -194,6 +194,7 @@ const CountryList = [
 	{"code": "SM", "code3": "SMR", "name": "San Marino", "number": "674"},
 	{"code": "ST", "code3": "STP", "name": "Sao Tome and Principe", "number": "678"},
 	{"code": "SA", "code3": "SAU", "name": "Saudi Arabia", "number": "682"},
+	{"code": "XX", "code3": "SCO", "name": "Scotland", "number": "999"},
 	{"code": "SN", "code3": "SEN", "name": "Senegal", "number": "686"},
 	{"code": "RS", "code3": "SRB", "name": "Serbia", "number": "688"},
 	{"code": "SC", "code3": "SYC", "name": "Seychelles", "number": "690"},

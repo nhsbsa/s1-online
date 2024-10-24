@@ -1,0 +1,50 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Do you want to add any family members to your S1 application?{% endset %}
+{% set caption = data.mainCaption %}
+{% set errorMessage = 'Select yes if you want to add any family members to your S1 application' %}
+{% set idPrefix %}dependant-first-name{% endset -%}
+{% set hideBackLink = true %}
+{% set hintTextCopy %}
+
+{% endset %}
+
+{% block form %}
+<p>You can add family members as dependants on your application, including your:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    spouse or civil partner
+  </li>
+  <li>
+    partner
+  </li>
+  <li>
+    children
+  </li>
+</ul>
+<p>You cannot add a family member who is entitled to an S1 in their own right. They will have to make a separate application.</p>
+<p>There are different rules on who can be added to your S1, depending on the country you're living in. We cannot guarantee any S1 forms we issue to your family members will be accepted by the country you're moving to.</p>
+
+{{ radios({
+    "idPrefix": idPrefix,
+    "name": "dependantCheck",
+    "errorMessage": {
+      "html": errorMessage
+    } if data['error'] == 'true',
+
+    "items": [
+      {
+        "value": "Yes",
+        "text": "Yes",
+        "checked": data.dependantCheck === 'Yes'
+      },
+      {
+        "value": "No",
+        "text": "No",
+        "checked": data.dependantCheck === 'No'
+      }
+    ]
+  }) }}
+ 
+ 
+
+{% endblock %}
