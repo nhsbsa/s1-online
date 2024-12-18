@@ -64,10 +64,10 @@ router.post([/dob/], function (req, res) {
         data.error = 'true';
         res.redirect('dob');
     } else if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
-        res.redirect('record-not-found');
+        res.redirect('nino');
     } else if(req.body.dateOfBirth !== '' ) {
         data.error = 'false';
-        res.redirect('upload-file');
+        res.redirect('nino');
     }   
 }) 
 
