@@ -1,0 +1,30 @@
+{% extends 'layouts/forms.html' %}
+{% set title = 'We cannot find the outcome of your S1 application' %}
+{% set hideBackLink = true %}
+{% set hidecaption = true %}
+{% set showFontXl = true %}
+{% set hideButton = true %}
+
+{% block form %}
+<p class="nhsuk-u-padding-top-6">We cannot find the outcome of your S1 application using the information you have provided us.</p>
+<p>We search for your record using your:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>
+        name
+    </li>
+    <li>
+        date of birth
+    </li>
+    <li>
+        Overseas Healthcare Services (OHS) reference number
+    </li>
+    <li>
+        National Insurance number    
+    </li>
+</ul>
+<h3>What to do next</h3>
+<p>Check the information you have given us is correct and try again using the link in your email.</p>
+<p>If you're confident that the information you've given us is correct, you should <a target="_blank" href="#"> contact us</a>.</p>
+<p>You'll need your OHS reference number, which you can find on your confirmation email.</p>
+
+{% endblock %}
