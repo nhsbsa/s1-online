@@ -1,0 +1,16 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}We could not find your record {% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideBackLink = true %}
+{% set hideButton = true %}
+{% set hidecaption = true %}
+
+
+
+{% block form %}
+<p>We could not find your record with the information you’ve given us.</p>
+
+<h2 class="nhsuk-heading-m">Contact us</h2>
+
+<p>If your details are correct but we still cannot find your record, <a href="https://www.nhsbsa.nhs.uk/contact-overseas-healthcare-services">contact us</a>.</p>
+{% endblock %}

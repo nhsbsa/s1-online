@@ -88,12 +88,15 @@ function getMonthInLetters(month) {
     return '';
 }
 
-
 router.post([/nino/], function (req,res) {
+    res.redirect('split-check-your-answers') 
+})
+
+router.post([/split-check-your-answers/], function (req,res) {
     const day = req.session.data['upload-day'];
     const month = req.session.data['upload-month'];
     const year =req.session.data['upload-year']; 
-    var nino = req.session.data['nino'];
+    var split = req.session.data['split-check-your-answers'];
     const data = req.session.data;
     data.applicantDob =  `${req.body['upload-day']} ${req.body['upload-month']}  ${req.body['upload-year']}`
     const monthInLetters = getMonthInLetters(month);
@@ -101,15 +104,16 @@ router.post([/nino/], function (req,res) {
     req.session.data['applicantDob'] = `${day} ${monthInLetters} ${year}`;
    
     if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
-        res.redirect('record-not-found');
-    } else if(nino != '' ) {
+        res.redirect('split-record-not-found');
+    } else if(split != '' ) {
         data.error = 'false';
         res.redirect('upload-file');
-    } else if(nino == '') {
+    } else if(split == '') {
         data.error = 'true';
-        res.redirect('nino');
+        res.redirect('split-check-your-answers');
     }
 })
+
 
 router.post([/record-found/], function (req,res) {
     res.redirect('upload-file') 
@@ -149,8 +153,6 @@ router.post([/review-file/], function (req,res) {
     }
 })
 
-
-
 router.post([/upload-evidence/], function (req,res) {
     res.redirect('check-your-answers') 
 })
@@ -158,4 +160,5 @@ router.post([/upload-evidence/], function (req,res) {
 router.post([/check-your-answers/], function (req,res) {
     res.redirect('confirmation') 
 })
+
 module.exports = router

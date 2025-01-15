@@ -1,0 +1,88 @@
+{% extends 'layouts/forms.html' %}
+{% set title %}Check your details {% endset %}
+{% set caption = data.uploadCaption %}
+{% set hideBackLink = true %}
+{% set hideButton = false %}
+{% set hidecaption = true %}
+
+ 
+
+{% block form %}
+<p>Change any incorrect details and try again.</p>
+
+
+
+{{ summaryList({
+  rows: [
+    {
+      key: {
+        text: 'OHS reference number	'
+      },
+      value: {
+        html: data['ohsNumber'] or '25001275'
+      },
+      actions: {
+        items: [
+          {
+            href: "ohs-number",
+            text: "Change",
+            visuallyHiddenText: "your OHS reference number"
+          }
+        ]
+      }
+    },   
+    {
+      key: {
+        text: "Name"
+      },
+      value: {
+        html: data['applicantName'] or 'John Smith'
+      },
+      actions: {
+        items: [
+          {
+            href: "full-name",
+            text: "Change",
+            visuallyHiddenText: "your name"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "Date of birth"
+      },
+      value: {
+        html: data['applicantDob'] or '23 June 1980'
+      },
+      actions: {
+        items: [
+          {
+            href: "dob",
+            text: "Change",
+            visuallyHiddenText: "your date of birth"
+          }
+        ]
+      }
+    },
+    {
+      key: {
+        text: "National Insurance number"
+      },
+      value: {
+        html: data['applicant-nino'] or 'QQ123456C'
+      },
+      actions: {
+        items: [
+          {
+            href: "nino",
+            text: "Change",
+            visuallyHiddenText: "your national insurance number"
+          }
+        ]
+      }
+    } 
+  ] 
+}) }}
+
+{% endblock %}
