@@ -161,4 +161,8 @@ router.post([/check-your-answers/], function (req,res) {
     res.redirect('confirmation') 
 })
 
+router.post([/split-record-not-found/], function (req,res) {
+    res.redirect('start-page') 
+})
+
 module.exports = router

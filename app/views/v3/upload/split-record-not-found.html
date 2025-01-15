@@ -2,13 +2,15 @@
 {% set title %}We could not find your record {% endset %}
 {% set caption = data.uploadCaption %}
 {% set hideBackLink = true %}
-{% set hideButton = true %}
+{% set hideButton = false %}
 {% set hidecaption = true %}
+{% set buttonText = 'Finish' %}
 
 
 
 {% block form %}
 <p>We could not find your record with the information you’ve given us.</p>
+<p>If you want to change your previous answers click the <a href="split-check-your-answers">Change my previous answer</a> link.</p>
 
 <h2 class="nhsuk-heading-m">Contact us</h2>
 
