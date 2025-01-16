@@ -103,7 +103,7 @@ router.post([/split-check-your-answers/], function (req,res) {
 
     req.session.data['applicantDob'] = `${day} ${monthInLetters} ${year}`;
    
-    if (parseInt(year) > 1975) { // Check if dateOfBirth is after 1975
+    if (parseInt(year) < 1875) { // Check if dateOfBirth is after 1875
         res.redirect('split-record-not-found');
     } else if(split != '' ) {
         data.error = 'false';
@@ -113,7 +113,6 @@ router.post([/split-check-your-answers/], function (req,res) {
         res.redirect('split-check-your-answers');
     }
 })
-
 
 router.post([/record-found/], function (req,res) {
     res.redirect('upload-file') 
