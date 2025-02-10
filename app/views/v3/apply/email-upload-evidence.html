@@ -1,0 +1,29 @@
+{% extends "layouts/emails.html" %} 
+{% set emailSubject %}More information needed to support your S1 application{% endset -%} 
+
+{% block form %}
+<p>Thank you for your application for an S1.</p>
+<p>We need you to send us some evidence so we can process your application.</p>
+
+<h2 class="nhsuk-heading-m">What you need to send</h2>
+<p>You need to send us all of the following: </p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>
+    a letter from the Department for Work and Pensions (DWP) that shows the exact date you started getting paid your UK State Pension
+  </li>
+  <li>
+    a letter from the Department for Work and Pensions (DWP) that shows the exact date you started getting paid your UK State Pension
+  </li>
+  <li>
+    a letter from the pension provider showing a breakdown of the years you paid pension contributions to {{ data.countrySOne or 'Germany'}}
+  </li>
+</ul>
+<p>We cannot process your application until we get this evidence.</p>
+
+<!-- what personal ID user needs to provide. -->
+{% include '../apply/_evidence-email.html' %}
+
+<!-- information on when individuals might expect to hear back. -->
+{% include '../apply/_sla.html' %}
+
+{% endblock %}
