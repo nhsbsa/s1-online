@@ -1,0 +1,27 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %}UK GHIC application rejected{% endset %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../apply/email-upload' %}
+{% set showButton = true %}
+
+{% block form %}
+<p>Based on the information you have provided we cannot confirm your eligibility for a UK GHIC.</p>
+
+<h2 class="nhsuk-heading-l">What happens next</h2>
+<p>A confirmation has been emailed to <strong>{{ data['email'] or 'johnsmith@gmail.com'}}</strong>. </p>
+
+<p>If you do not receive the email within a few minutes, check your spam or junk mail folder.</p>
+
+<p>To be eligible for a UK GHIC, you must meet the following criteria:</p>
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>You are living in the UK and you do not have healthcare cover provided by an EU country, Switzerland, Norway, Iceland, or Liechtenstein </li>
+    <li>You are living in the EU, Switzerland, Norway, Iceland, or Liechtenstein with a registered S1, E121, E106 or E109 form issued by the UK </li>
+    <li>You are living in the EU, Switzerland, Norway, Iceland, or Liechtenstein with an A1 document which is issued by the UK </li>
+    <li>You are a UK resident who is studying in the EU, Switzerland, Norway, Iceland, or Liechtenstein </li>
+    <li>You are a family member or dependant of an entitled individual listed above </li>
+</ul>
+
+{% endblock %}
