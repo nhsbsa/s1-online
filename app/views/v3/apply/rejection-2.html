@@ -1,0 +1,24 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = true %}
+{% set cardTitle %}Your S1 application was rejected{% endset %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../apply/start-page' %}
+{% set showButton = true %}
+
+{% block form %}
+<p>We cannot give you an S1 from the UK for healthcare cover in (Country they applied for).</p>
+<p>This is because we have a record of another certificate of entitlement to healthcare cover for you for [Country they have an overlapping entitlement from].</p>
+<p>This could be because you:</p> 
+
+<ul class="nhsuk-list nhsuk-list--bullet">
+    <li>already have an S1, E121, E106 or E109 form issued by the UK</li>
+    <li>are a dependant on a family member's S1</li>
+    <li>made a previous S1 application that is not complete because we need you to send more evidence</li>
+</ul>
+<h2 class="nhsuk-heading-l">What happens next</h2>
+
+<p> Email <a href="mailto:S1applications@nhsbsa.nhs.uk">S1applications@nhsbsa.nhs.uk</a> to find out what you need to do next.</p>
+
+{% endblock %}
