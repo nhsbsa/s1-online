@@ -1,0 +1,17 @@
+{% extends 'layouts/main.html' %}
+{% set hideTitle = true %}
+{% set hideBackLink = true %}
+{% set showCard = false %}
+{% set cardTitle %}Your S1 application was rejected{% endset %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../apply/start-page' %}
+{% set showButton = false %}
+
+{% block form %}
+<h1 class="nhsuk-heading-l">
+    This link has expired</h1>
+
+
+<p>You need to <a href="#"> contact us to ask for a new link</a>.</p>
+<br>
+{% endblock %}
