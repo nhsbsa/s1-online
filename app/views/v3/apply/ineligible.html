@@ -28,16 +28,10 @@
   <p>This is because you are not moving to an EU country and we may need to ask you for more information or evidence to check your eligibility.</p>
   <p>You’ll need to <a href='contact'>contact us to make an application. </a></p>
  
+  <!-- 90 State Pension - NEW VERSION. For OLD VERSION see State Pension 90 Day question CRAT-7884 in General folder -->
 {%- elif  data['ineligible'] == 'uk-state-pension-fail' -%}
-  <p>You cannot get an S1 for healthcare cover when living abroad. This is because you need to be either:</p>
-  <ul class="nhsuk-list nhsuk-list--bullet">
-    <li>
-      getting paid your UK State Pension
-    </li>
-    <li>
-      entitled to start getting paid your UK State Pension in the next 90 days 
-    </li>
-  </ul>
+  <p>You cannot get an S1 for healthcare cover for living abroad if you are not getting paid your UK State Pension.</p>
+
 {%- elif  data['ineligible'] == 'check-state-pension-fail' -%}
   <p>You are not entitled to an S1 issued by the UK. This is because you get a State Pension from {{ data.countrySOne or 'Germany'}}.</p>
   <p>You should contact the health authorities in {{ data.countrySOne or 'Germany'}} because they are responsible for your healthcare.</p>

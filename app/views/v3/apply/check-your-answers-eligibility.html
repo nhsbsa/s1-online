@@ -13,8 +13,15 @@
 {% set locationDateMove %}
   When will you move to {{ data.countrySOne or 'Germany' }}?
 {% endset %}
+
+<!-- Change content relating to State Pension 90 Day question
 {% set ukStatePension %}
   Are you being paid a UK State Pension, or will you be paid your UK State Pension before {{ '22 May 2024' | ninetyDaysFromNow }}?
+{% endset %}
+End of Change content relating to State Pension 90 Day question -->
+
+{% set ukStatePension %}
+  Are you being paid a UK State Pension?
 {% endset %}
 {% set foreignPension %}
   Do you get a State Pension from {{ data.countrySOne or 'Germany' }}?
