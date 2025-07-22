@@ -1,7 +1,7 @@
 {% extends 'layouts/forms.html' %}
 {% set title = 'Which country are you living in or moving to?' %}
 {% set caption = 'Eligibility' %}
-{% set errorMessage = 'Enter the country you are living in or moving to' %}
+{% set errorMessage = 'You have entered a dependancy, enter the main country you are living in or moving to' %}
 {% set idPrefix %}location{% endset -%}
 
 
@@ -19,8 +19,7 @@
    {%- endif -%}
 
     <div class="nhsuk-hint">
-      <p>Enter the country you need S1 healthcare cover for.</p>
-      <p>Many countries have dependancies, for instance Reunion is a dependancy of France, Canary Islands is a dependency of Spain. In which case the country dependant on should be entered.</p>
+      Enter the country you need S1 healthcare cover for.
     </div>
 
     <div class="autocomplete-container" id="autocomplete-container">
@@ -31,7 +30,7 @@
       {%- if data['error'] == 'true' -%}
 
       <span class="nhsuk-error-message" id="location-error">
-        <span class="nhsuk-u-visually-hidden">Error:</span> Enter the country you are living in or moving to
+        <span class="nhsuk-u-visually-hidden">Error:</span> You have entered a dependancy, enter the main country you are living in or moving to
       </span>
       {%- endif -%}
  
