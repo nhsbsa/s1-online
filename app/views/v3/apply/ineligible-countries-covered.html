@@ -1,5 +1,5 @@
 {% extends 'layouts/main.html' %}
-{% set showTitle = true %}
+{% set showTitle = false %}
 {% set caption = data.eligibilityCaption %}
 {% set hideBackLink = true %}
 {% set buttonText = 'Finish' %}
@@ -45,9 +45,13 @@
   <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
 
   {%- else  -%}
-  <p>You do not need to apply for an S1 as you are already covered by this country.</p>
+ 
 {%- endif -%}
-
+<div class="nhsuk-grid-row">
+  <h1 class="nhsuk-heading-l">
+    You do not need to apply for an S1 </h1>
+    <p>If you are living in or moving to [region entered by user], you are entitled to medical treatment through the NHS residence-based healthcare system and do not require an S1. </p>
+</div>
 {% endblock %}
 
 

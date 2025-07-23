@@ -1,7 +1,7 @@
 {% extends 'layouts/forms.html' %}
 {% set title = 'Which country are you living in or moving to?' %}
 {% set caption = 'Eligibility' %}
-{% set errorMessage = 'You have entered a dependancy, enter the main country you are living in or moving to' %}
+{% set errorMessage = 'You have entered an overseas department, territory or dependency, enter the country the overseas department, territory or dependency belongs to' %}
 {% set idPrefix %}location{% endset -%}
 
 
@@ -30,7 +30,7 @@
       {%- if data['error'] == 'true' -%}
 
       <span class="nhsuk-error-message" id="location-error">
-        <span class="nhsuk-u-visually-hidden">Error:</span> You have entered a dependancy, enter the main country you are living in or moving to
+        <span class="nhsuk-u-visually-hidden">Error:</span> You have entered an overseas department, territory or dependency, enter the country the overseas department, territory or dependency belongs to
       </span>
       {%- endif -%}
  
