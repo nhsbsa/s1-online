@@ -1,0 +1,58 @@
+{% extends 'layouts/main.html' %}
+{% set showTitle = false %}
+{% set caption = data.eligibilityCaption %}
+{% set hideBackLink = true %}
+{% set buttonText = 'Finish' %}
+{% set buttonHref = '../apply/start-page' %}
+{% set showButton = false %}
+{% set title = data.ineligibleTitle + (' today' if data['ineligible'] == 'date-future' else '') %}
+
+
+
+{% block form %}
+
+{%- if data['ineligible'] == 'country-check-fail' -%}
+  <p>To be entitled to an S1 for healthcare cover for living abroad, you must be living or planning to live mainly in an EU country, Switzerland, Norway, Iceland or Liechtenstein. </p>
+
+{%- elif  data['ineligible'] == 'country-fail' -%}
+  <p> An S1 does not cover you for healthcare in {{ data.countrySOne or 'Germany'}}.</p>
+  <p>You can only apply for an S1 for healthcare cover if you are living or moving to an EU country, Switzerland, Norway, Iceland, or Liechtenstein.</p>
+
+  {%- elif  data['ineligible'] == 'date-future' -%}
+
+  <p> You may be entitled to an S1 for healthcare cover while living abroad. However, you cannot apply today.</p>
+  <p>This is because you are moving more than 90 days from today. You can apply for an S1 from {{ '22 May 2024' | ninetyDaysFromNow }}.</p>
+
+{%- elif  data['ineligible'] == 'country-fail-efta' -%}
+  <p> You may be entitled to an S1 for healthcare cover while living abroad. However, you cannot apply online.</p>
+  <p>This is because you are not moving to an EU country and we may need to ask you for more information or evidence to check your eligibility.</p>
+  <p>You’ll need to <a href='contact'>contact us to make an application. </a></p>
+ 
+  <!-- 90 State Pension - NEW VERSION. For OLD VERSION see State Pension 90 Day question CRAT-7884 in General folder -->
+{%- elif  data['ineligible'] == 'uk-state-pension-fail' -%}
+  <p>You cannot get an S1 for healthcare cover for living abroad if you are not getting paid your UK State Pension.</p>
+
+{%- elif  data['ineligible'] == 'check-state-pension-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you get a State Pension from {{ data.countrySOne or 'Germany'}}.</p>
+  <p>You should contact the health authorities in {{ data.countrySOne or 'Germany'}} because they are responsible for your healthcare.</p>
+
+{%- elif  data['ineligible'] == 'germany-contributions-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you paid Statutory Health Contributions to Germany.</p>
+  <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
+
+{%- elif  data['ineligible'] == 'check-state-contributions-fail' -%}
+  <p>You are not entitled to an S1 issued by the UK. This is because you have paid Statutory Health Contributions to Germany.</p>
+  <p>You should contact the health authorities in Germany because they are responsible for your healthcare.</p>
+
+  {%- else  -%}
+ 
+{%- endif -%}
+<div class="nhsuk-grid-row">
+  <h1 class="nhsuk-heading-l">
+    You need to reapply for an S1 </h1>
+    <p>Reapply and select France as the country you are moving to. </p>
+    <a href="#" class="nhsuk-button">Finish</a>
+</div>
+{% endblock %}
+
+
